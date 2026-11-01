@@ -1,0 +1,144 @@
+.picker {
+  margin: 6px 0 4px 32px;
+  padding: 10px 12px 12px;
+  border-radius: 6px;
+  background: #0a0e13;
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 18%);
+}
+
+/* What the line has now. */
+.selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  margin-bottom: 8px;
+  padding: 4px 4px 4px 5px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0b0f14;
+  background: var(--cat-color);
+}
+
+.clear {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  color: rgb(0 0 0 / 65%);
+  background: none;
+  cursor: pointer;
+}
+
+.clear:hover {
+  color: #0b0f14;
+  background: rgb(0 0 0 / 14%);
+}
+
+.clear svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.search {
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: rgb(255 255 255 / 5%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 18%);
+}
+
+.search:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+/* Every option, scrolling: your checklist's entries, then one group per type. */
+.results {
+  max-height: 260px;
+  margin: 6px 0 0;
+  padding: 0 2px 0 0;
+  overflow-y: auto;
+  list-style: none;
+  overscroll-behavior: contain;
+}
+
+.heading {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: block;
+  padding: 6px 6px 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: #0a0e13;
+}
+
+.results button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  cursor: pointer;
+}
+
+.results button[data-active] {
+  background: rgb(255 255 255 / 7%);
+}
+
+.results button[data-current] {
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.results small {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.onList {
+  color: var(--gold);
+}
+
+.noMatch {
+  margin: 8px 0 0;
+  padding: 2px 6px 4px;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.picker[data-bare] {
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Inside a popover: match its panel behind the sticky headings. */
+.picker[data-bare] .heading {
+  background: #121a23;
+}

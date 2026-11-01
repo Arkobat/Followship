@@ -1,0 +1,133 @@
+/* Phones: a bottom sheet. Wider screens: a panel beside the doll (see the media query below). */
+.panel {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  max-height: 75dvh;
+  border-radius: 10px 10px 0 0;
+  color: var(--text);
+  background: linear-gradient(180deg, #161f2a, #0c1117);
+  box-shadow:
+    0 0 0 1px rgb(201 163 92 / 45%),
+    0 -20px 60px rgb(0 0 0 / 60%);
+  animation: rise 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.panel:focus {
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgb(169 184 200 / 12%);
+}
+
+.header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+}
+
+.header p {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  cursor: help;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-muted);
+  background: rgb(255 255 255 / 5%);
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--text);
+  background: rgb(255 255 255 / 10%);
+}
+
+.close svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 16px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (min-width: 761px) {
+  .panel {
+    position: absolute;
+    inset: var(--top) auto auto var(--left);
+    width: var(--width);
+    max-height: var(--height);
+    border-radius: 8px;
+    box-shadow:
+      0 0 0 1px rgb(201 163 92 / 45%),
+      0 24px 60px rgb(0 0 0 / 65%);
+    animation: slide 160ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Pointer at the tabs that opened it. */
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--caret) - 7px);
+    left: -7px;
+    width: 12px;
+    height: 12px;
+    background: #161f2a;
+    box-shadow: -1px 1px 0 rgb(201 163 92 / 45%);
+    rotate: 45deg;
+  }
+
+  .panel[data-side='left']::before {
+    right: -7px;
+    left: auto;
+    box-shadow: 1px -1px 0 rgb(201 163 92 / 45%);
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 24px;
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: -8px 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

@@ -1,0 +1,355 @@
+.section h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 16px 0 8px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.count {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  color: var(--text-muted);
+}
+
+.count[data-full] {
+  color: #6fd37a;
+}
+
+.section h3 small {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-faint);
+}
+
+.empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tierRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tierBadge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 36px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0b0f14;
+  background: var(--tier-color);
+  cursor: help;
+}
+
+.options {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  max-width: 230px;
+  padding: 0 10px 0 6px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: rgb(255 255 255 / 4%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 16%);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    box-shadow 120ms ease,
+    opacity 120ms ease;
+}
+
+.option:hover:not(:disabled) {
+  background: rgb(255 255 255 / 8%);
+}
+
+/* What you have: glows. */
+.option[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  box-shadow:
+    inset 0 0 0 1px var(--accent),
+    0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.option:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.option img,
+.noIcon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 3px;
+}
+
+.noIcon {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  background: rgb(255 255 255 / 8%);
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.optionText strong {
+  overflow: hidden;
+  font-size: 0.84rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.optionText small {
+  overflow: hidden;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-faint);
+}
+
+/* On your checklist: a gold corner dot. */
+.option {
+  position: relative;
+}
+
+.option[data-marked]::after,
+.markKey {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 0 2px #121922;
+}
+
+.option[data-marked]::after {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+/* ---- Weapon tree: one step per row, from the weapon down ---- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  --accent: var(--gold-bright);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* The line joining the hexes; gold where both ends are picked (down to the weapon). */
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: -6px;
+  left: 27px;
+  width: 2px;
+  background: rgb(169 184 200 / 18%);
+}
+
+.step[data-picked]:has(+ :is([data-picked], [data-root]))::before {
+  background: var(--gold);
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+}
+
+button.stepHead {
+  cursor: pointer;
+}
+
+button.stepHead:hover,
+.step[data-open] > .stepHead {
+  background: rgb(255 255 255 / 5%);
+}
+
+button.stepHead:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: -2px;
+}
+
+.hexFrame {
+  display: grid;
+  flex: none;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 50%));
+}
+
+.hex {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 42px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: rgb(169 184 200 / 22%);
+  color: var(--text-faint);
+}
+
+/* Inner hex, so the outer one reads as a frame. */
+.hex > *,
+.step:not([data-picked], [data-root]) .hex::after {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 38px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: #121922;
+  object-fit: cover;
+}
+
+.step:not([data-picked], [data-root]) .hex::after {
+  content: '';
+  background: repeating-linear-gradient(45deg, #121922 0 4px, #18212c 4px 6px);
+}
+
+.step[data-open]:not([data-picked]) .hex {
+  background: var(--accent);
+}
+
+.step[data-picked] .hex,
+.step[data-root] .hex {
+  background: var(--gold);
+}
+
+.step[data-picked] .hexFrame {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 70%, transparent));
+}
+
+.stepText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.stepText small {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 75%, var(--text-faint));
+}
+
+.step[data-root] .stepText small {
+  color: var(--text-faint);
+}
+
+.stepText strong {
+  overflow: hidden;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+}
+
+.step:is([data-picked], [data-root]) .stepText strong {
+  color: var(--text);
+}
+
+.stepTier {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0b0f14;
+  background: var(--tier-color);
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  fill: none;
+  stroke: var(--text-faint);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: rotate 150ms ease;
+}
+
+.step[data-open] .chevron {
+  rotate: 180deg;
+}
+
+/* The open row's options, indented past the line. */
+.stepBody {
+  padding: 8px 4px 10px 56px;
+}
+
+.treeNote {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-faint);
+}

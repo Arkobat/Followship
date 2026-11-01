@@ -1,0 +1,217 @@
+.showcase {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 600px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  background: linear-gradient(160deg, rgb(24 33 44 / 70%), rgb(12 17 23 / 85%));
+  box-shadow:
+    inset 0 0 0 1px rgb(169 184 200 / 18%),
+    0 20px 50px rgb(0 0 0 / 45%);
+  isolation: isolate;
+}
+
+.glow {
+  position: absolute;
+  right: -10%;
+  top: 0;
+  width: 75%;
+  height: 90%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    color-mix(in srgb, var(--role-color) 38%, transparent),
+    transparent 65%
+  );
+  transition: background 400ms ease;
+}
+
+.art {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 64%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  /* The splash art has a painted background: feather every edge into the panel. */
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 38%, #000 88%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, #000 22%, #000 90%, transparent 100%);
+  mask-composite: intersect;
+  animation: art-in 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.info {
+  position: relative;
+  max-width: 440px;
+  padding: 40px;
+  animation: info-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.role {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--role-color) 55%, #fff);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: #f4ecda;
+  text-shadow:
+    0 2px 0 #000,
+    0 0 30px rgb(0 0 0 / 70%);
+}
+
+.epithet {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold-bright);
+}
+
+.tagline {
+  margin: 14px 0 0;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 80%);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 22px 0 0;
+  font-size: 0.95rem;
+  color: var(--text-faint);
+}
+
+.status[data-saved] {
+  color: var(--gold);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.8;
+}
+
+.status[data-saved] .dot {
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Start / continue on top; the hero's pages on fellows.gg and method.gg side by side below. */
+.actions {
+  display: grid;
+  gap: 8px;
+  max-width: 320px;
+  margin-top: 18px;
+}
+
+.primary {
+  justify-content: center;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.link {
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 0.78rem;
+}
+
+@keyframes art-in {
+  from {
+    opacity: 0;
+    translate: 24px 0;
+  }
+}
+
+@keyframes info-in {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .showcase {
+    min-height: 380px;
+  }
+
+  .art {
+    width: 70%;
+  }
+
+  .info {
+    padding: 24px;
+    max-width: 62%;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+}
+
+/* Phones: the selector page shows a sticky call-to-action bar instead. */
+@media (max-width: 900px) {
+  .primary {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .showcase {
+    min-height: 320px;
+  }
+
+  .info {
+    max-width: none;
+    padding: 20px;
+  }
+
+  .name {
+    font-size: 2.6rem;
+  }
+
+  .tagline {
+    max-width: 75%;
+  }
+
+  .art {
+    width: 80%;
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art,
+  .info {
+    animation: none;
+  }
+}

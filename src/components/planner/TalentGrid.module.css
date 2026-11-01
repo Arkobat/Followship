@@ -1,0 +1,317 @@
+.talents {
+  padding: 22px 22px 18px;
+}
+
+.empty {
+  margin: 0;
+  padding: 40px 22px;
+  text-align: center;
+  color: var(--text-faint);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 14px;
+}
+
+.header h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* "| 4": the points left, like in game. */
+.points {
+  padding-left: 12px;
+  border-left: 1px solid rgb(201 163 92 / 45%);
+  font-size: 1.3rem;
+  color: var(--gold-bright);
+}
+
+.points[data-empty] {
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action {
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 0.72rem;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One framed bar per row: the numeral plate, then three talents. */
+.row {
+  display: grid;
+  grid-template-columns: 74px repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 66px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgb(24 33 44 / 92%), rgb(13 19 26 / 92%));
+  box-shadow:
+    inset 0 0 0 1px rgb(201 163 92 / 38%),
+    inset 0 0 0 2px rgb(0 0 0 / 50%),
+    0 4px 12px rgb(0 0 0 / 30%);
+}
+
+.numeral {
+  display: grid;
+  place-items: center;
+  margin: 3px 0 3px 3px;
+  padding-right: 10px;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #e9d7b0;
+  background: linear-gradient(180deg, #2a3442, #19212b);
+  clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+  border-radius: 6px 0 0 6px;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 60%);
+}
+
+.talent {
+  --frame: rgb(169 184 200 / 22%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 10px 8px 12px;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  color: var(--text-faint);
+  background: none;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+/* Thin gold dividers between the three talents. */
+.talent + .talent::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 0;
+  width: 1px;
+  background: rgb(201 163 92 / 30%);
+}
+
+.talent:hover:not(:disabled) {
+  background: rgb(233 193 120 / 6%);
+}
+
+.talent:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: -3px;
+  border-radius: 4px;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  border-radius: 4px;
+  background: #0a0e13;
+  box-shadow: inset 0 0 0 1px var(--frame);
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  object-fit: cover;
+  filter: grayscale(0.85) brightness(0.55);
+  transition: filter 150ms ease;
+}
+
+.talent:hover:not(:disabled) .icon img {
+  filter: grayscale(0.4) brightness(0.8);
+}
+
+/* Picked: lit icon in a glowing gold frame, gold name. */
+.talent[aria-pressed='true'] {
+  --frame: var(--gold-bright);
+  color: var(--gold-bright);
+}
+
+.talent[aria-pressed='true'] .icon {
+  box-shadow:
+    inset 0 0 0 2px var(--gold-bright),
+    0 0 14px rgb(233 193 120 / 55%);
+}
+
+.talent[aria-pressed='true'] .icon img {
+  filter: none;
+}
+
+/* Costs more than the points left. */
+.talent:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* The cost, shown until it's picked, like the game's ◇2. */
+.cost {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-right: -4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-faint);
+}
+
+.cost::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgb(169 184 200 / 40%);
+  border-radius: 2px;
+  rotate: 45deg;
+}
+
+.talent[aria-pressed='true'] .cost {
+  visibility: hidden;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.text strong {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.text small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+
+.tier {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #0b0f14;
+  background: var(--tier-color);
+}
+
+.note {
+  margin: 12px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 760px) {
+  .talents {
+    padding: 18px 12px 14px;
+  }
+
+  .row {
+    grid-template-columns: 34px repeat(3, minmax(0, 1fr));
+  }
+
+  .numeral {
+    padding-right: 4px;
+    font-size: 1rem;
+  }
+
+  /* Stack each talent: icon over name. */
+  .talent {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .text {
+    align-items: center;
+  }
+
+  .text strong {
+    font-size: 0.74rem;
+  }
+
+  .cost {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    margin: 0;
+  }
+}
+
+/* In the build (from the checklist): a gold dot on the icon. */
+.talent[data-build] .icon,
+.buildKey {
+  position: relative;
+}
+
+.talent[data-build] .icon::after,
+.buildKey {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 0 2px #121922;
+}
+
+.talent[data-build] .icon::after {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+}
+
+/* Picked, but the build doesn't run it: swap it out. */
+.talent[data-extra] .icon {
+  box-shadow:
+    inset 0 0 0 2px #f0b44a,
+    0 0 12px rgb(240 180 74 / 45%);
+}
+
+.talent[data-extra] {
+  color: #f0b44a;
+}

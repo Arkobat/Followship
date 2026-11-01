@@ -1,0 +1,52 @@
+.group + .group {
+  margin-top: 28px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 7px 12px 9px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--role-color) 26%, transparent), transparent 75%);
+}
+
+/* Underline rule with a diamond cap, as in the game UI. */
+.header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 6px;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--role-color) 80%, transparent),
+    rgb(180 190 205 / 45%) 40%,
+    rgb(180 190 205 / 25%)
+  );
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  right: 2px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
+  rotate: 45deg;
+  background: rgb(180 190 205 / 55%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, var(--tile-size));
+  gap: var(--tile-gap);
+}

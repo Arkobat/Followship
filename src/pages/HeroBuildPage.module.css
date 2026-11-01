@@ -1,0 +1,271 @@
+.page {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+}
+
+.back {
+  margin-bottom: 20px;
+}
+
+/* ---- Banner ---- */
+
+.banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 24px;
+  padding: 20px 24px;
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--role-color) 18%, transparent), transparent 60%), rgb(14 20 27 / 78%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 18%);
+}
+
+.avatar {
+  width: 88px;
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 3px #c9963c,
+    0 0 18px rgb(240 190 90 / 40%);
+}
+
+.identity {
+  min-width: 0;
+}
+
+.role {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--role-color) 55%, #fff);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #f4ecda;
+}
+
+.epithet {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--gold-bright);
+}
+
+.meters {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.meter {
+  width: 190px;
+}
+
+.meterTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.meterTop span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.meterTop strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--meter-color);
+}
+
+.meterTop small {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+.meterBar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 8%);
+  overflow: hidden;
+}
+
+.meterBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--meter-color);
+  box-shadow: 0 0 10px var(--meter-color);
+  transition: width 400ms ease;
+}
+
+/* ---- Main layout ---- */
+
+.sharedBanner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: rgb(233 193 120 / 10%);
+  box-shadow: inset 0 0 0 1px rgb(233 193 120 / 40%);
+}
+
+.sharedBanner p {
+  flex: 1 1 280px;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.sharedBanner strong {
+  color: var(--gold-bright);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 20px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.gear {
+  overflow: hidden;
+  border-radius: 6px;
+  background:
+    radial-gradient(
+      ellipse 50% 60% at 50% 45%,
+      color-mix(in srgb, var(--role-color) 14%, transparent),
+      transparent 70%
+    ),
+    rgb(12 17 23 / 78%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 16%);
+}
+
+/* Gear / Talents tabs at the bottom of the doll, sitting on the line above the status board. */
+.viewTabs {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgb(201 163 92 / 35%);
+}
+
+/* The status board under the tabs draws no line of its own. */
+.viewTabs + * {
+  border-top: 0;
+}
+
+.viewTab {
+  min-width: 120px;
+  height: 34px;
+  margin-bottom: -1px;
+  padding: 0 18px;
+  border: 1px solid rgb(169 184 200 / 22%);
+  border-bottom-color: rgb(201 163 92 / 35%);
+  border-radius: 6px 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: rgb(10 14 19 / 70%);
+  cursor: pointer;
+  transition:
+    color 120ms ease,
+    background 120ms ease;
+}
+
+.viewTab:hover {
+  color: var(--text);
+}
+
+.viewTab:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: -2px;
+}
+
+/* The open tab joins the panel below it. */
+.viewTab[aria-selected='true'] {
+  border-color: rgb(201 163 92 / 55%);
+  border-bottom-color: transparent;
+  color: var(--gold-bright);
+  background: linear-gradient(180deg, #1b2532, rgb(12 17 23));
+  box-shadow: 0 -4px 14px rgb(233 193 120 / 12%);
+}
+
+.side {
+  position: sticky;
+  top: 16px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .side {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 16px 16px 48px;
+  }
+
+  .banner {
+    padding: 16px;
+  }
+
+  .avatar {
+    width: 64px;
+  }
+
+  .meters {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .meter {
+    flex: 1;
+    width: auto;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}

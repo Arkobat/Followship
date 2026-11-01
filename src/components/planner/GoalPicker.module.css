@@ -1,0 +1,114 @@
+.picker {
+  margin: 4px 0 10px;
+  border-radius: 6px;
+  background: #0b1016;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--cat-color) 40%, transparent),
+    0 10px 24px rgb(0 0 0 / 40%);
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid rgb(169 184 200 / 12%);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  color: var(--text);
+  background: rgb(255 255 255 / 6%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 22%);
+}
+
+.search input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--cat-color);
+}
+
+.done {
+  padding: 0 12px;
+  border: 0;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: rgb(255 255 255 / 8%);
+  cursor: pointer;
+}
+
+.done:hover {
+  background: rgb(255 255 255 / 14%);
+}
+
+.list {
+  max-height: 300px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.list button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.list button:hover:not(:disabled),
+.list button:focus-visible {
+  outline: none;
+  background: rgb(255 255 255 / 6%);
+}
+
+.list button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.text strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.text small {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--text-faint);
+}
+
+.state {
+  flex: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-color);
+}
+
+.noMatch {
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}

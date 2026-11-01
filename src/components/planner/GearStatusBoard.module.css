@@ -1,0 +1,148 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  border-top: 1px solid rgb(169 184 200 / 14%);
+  background: rgb(169 184 200 / 10%);
+}
+
+.group {
+  --status-color: #7d8794;
+  padding: 14px 16px 16px;
+  background: rgb(12 17 23 / 92%);
+}
+
+.group[data-status='replace'] {
+  --status-color: #e5625a;
+}
+
+.group[data-status='reroll'] {
+  --status-color: #f0b44a;
+}
+
+.group[data-status='legendary'],
+.group[data-status='noLines'] {
+  --status-color: #f2a64a;
+}
+
+.group[data-status='complete'] {
+  --status-color: #6fd37a;
+}
+
+.group h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--status-color);
+}
+
+.group h3 span {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  color: #0b0f14;
+  background: var(--status-color);
+}
+
+.group[data-status='unset'] h3 span,
+.group[data-status='unrated'] h3 span {
+  color: var(--text);
+  background: #2b3542;
+}
+
+.hint {
+  margin: 2px 0 10px;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.group li {
+  display: flex;
+  flex-direction: column;
+}
+
+.group button {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.95rem;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.group button:hover {
+  color: var(--gold-bright);
+}
+
+.group[data-status='complete'] button {
+  color: var(--text-faint);
+  text-decoration: line-through;
+  text-decoration-color: rgb(111 211 122 / 50%);
+}
+
+.group em {
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f2a64a;
+}
+
+.group small {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-faint);
+}
+
+.group .fixes {
+  margin: 2px 0 4px;
+  gap: 1px;
+}
+
+.group .fixes li {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-faint);
+}
+
+.from {
+  text-decoration: line-through;
+  text-decoration-color: rgb(229 98 90 / 60%);
+}
+
+.to {
+  font-weight: 700;
+  color: #f0b44a;
+}
+
+.to[data-anything] {
+  font-weight: 400;
+  color: var(--text-faint);
+}

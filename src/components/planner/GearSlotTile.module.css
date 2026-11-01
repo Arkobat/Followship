@@ -1,0 +1,524 @@
+.slot {
+  --status-color: #7d8794;
+  --tile: 62px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    opacity 160ms ease,
+    filter 160ms ease;
+}
+
+.slot[data-side='left'] {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.slot[data-status='replace'] {
+  --status-color: #e5625a;
+}
+
+.slot[data-status='reroll'] {
+  --status-color: #f0b44a;
+}
+
+.slot[data-status='legendary'],
+.slot[data-status='noLines'] {
+  --status-color: #f2a64a;
+}
+
+.slot[data-status='complete'] {
+  --status-color: #6fd37a;
+}
+
+.slot[data-dimmed] {
+  opacity: 0.35;
+  filter: saturate(0.4);
+}
+
+/* ---- Icon tile ---- */
+
+.tile {
+  --frame: #4d5d70;
+  --frame-hi: #94a5b8;
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--tile);
+  padding: 0;
+  border: 0;
+  height: var(--tile);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 50% 40%, rgb(60 75 92 / 55%), transparent 70%), linear-gradient(180deg, #18212b, #0e141b);
+  box-shadow:
+    0 0 0 1px #070a0e,
+    inset 0 0 0 2px var(--frame),
+    inset 0 0 0 3px #0a0f14,
+    inset 0 1px 0 3px rgb(255 255 255 / 4%),
+    0 4px 12px rgb(0 0 0 / 40%);
+  transition:
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.glyph {
+  width: 58%;
+  height: 58%;
+  color: #3d4a59;
+}
+
+.slot[data-status='complete'] .glyph {
+  color: #59705f;
+}
+
+.slot[data-legendary] .tile {
+  --frame: #d08a2e;
+  background:
+    radial-gradient(circle at 50% 40%, rgb(240 150 60 / 22%), transparent 70%),
+    linear-gradient(180deg, #221a12, #120e0a);
+}
+
+.slot:hover .tile,
+.tile:focus-visible {
+  --frame: #a9b8c8;
+  transform: translateY(-1px);
+}
+
+.slot[data-legendary]:hover .tile {
+  --frame: #f2b25a;
+}
+
+/* The legendary's own icon fills the tile; greyed out until you have it. */
+.legendaryArt {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.slot[data-legendary='wanted'] .legendaryArt {
+  opacity: 0.45;
+  filter: grayscale(0.9);
+}
+
+.slot[data-legendary='wanted'] .tile {
+  --frame: #8a5c22;
+}
+
+.legendaryName {
+  max-width: 170px;
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #f2c27a;
+}
+
+/* Planned (reroll target) rather than held: dashed glow. */
+.slot[data-highlighted='plans'] .tile {
+  outline: 2px dashed var(--hl-color);
+  outline-offset: 3px;
+}
+
+.slot[data-highlighted='holds'] .tile {
+  box-shadow:
+    0 0 0 1px #070a0e,
+    inset 0 0 0 2px var(--hl-color),
+    inset 0 0 0 3px #0a0f14,
+    0 0 16px color-mix(in srgb, var(--hl-color) 60%, transparent);
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+.wrap {
+  position: relative;
+}
+
+/* Tabs on the hero-facing edge of the tile, like the in-game neck / relic / weapon tabs. */
+.tabs {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 4px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 3px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  translate: 0 -50%;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.wrap[data-side='left'] .tabs {
+  right: auto;
+  left: calc(100% + 4px);
+}
+
+.tabs:hover,
+.tabs[data-open] {
+  background: rgb(233 193 120 / 16%);
+}
+
+.tabs[data-open] {
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.tabs:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 1px;
+}
+
+.tab {
+  display: grid;
+  width: 12px;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgb(10 14 19 / 85%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 34%);
+}
+
+.tabs:hover .tab:not([data-picked]) {
+  box-shadow: inset 0 0 0 1px rgb(233 193 120 / 60%);
+}
+
+.tab[data-picked] {
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 0 6px rgb(233 193 120 / 60%);
+}
+
+.tab img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* "2/3" plate on top of the tile, coloured by status. */
+.badge {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  translate: -50% 0;
+  min-width: 34px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+  color: #0b0f14;
+  background: var(--status-color);
+  box-shadow:
+    0 0 0 2px #0b1016,
+    0 2px 6px rgb(0 0 0 / 50%);
+}
+
+.slot[data-status='unset'] .badge,
+.slot[data-status='unrated'] .badge {
+  color: #c3cad3;
+  background: #2b3542;
+}
+
+/* ---- Text ---- */
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.slot[data-side='left'] .info {
+  align-items: flex-end;
+}
+
+.name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ece4d2;
+}
+
+.slot[data-side='left'] .name {
+  flex-direction: row-reverse;
+}
+
+.legendary {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f2a64a;
+}
+
+.status {
+  margin: 0 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--status-color);
+}
+
+.slot[data-status='unset'] .status,
+.slot[data-status='unrated'] .status {
+  color: var(--text-faint);
+}
+
+/* Three line icons: needed (full colour), wrong (dim, red ring), not entered (dashed). */
+.lines {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.slot[data-side='left'] .lines {
+  flex-direction: row-reverse;
+}
+
+.line {
+  position: relative;
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.line[data-state='empty'] {
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 30%);
+  background: repeating-linear-gradient(45deg, transparent 0 3px, rgb(169 184 200 / 10%) 3px 4px);
+}
+
+.line[data-state='surplus'],
+.line[data-state='unneeded'] {
+  filter: grayscale(0.85) brightness(0.7);
+}
+
+.line[data-state='surplus']::after,
+.line[data-state='unneeded']::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1.5px #e5625a;
+}
+
+.reroll {
+  max-width: 190px;
+  overflow: hidden;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #f0b44a;
+}
+
+.note {
+  max-width: 150px;
+  overflow: hidden;
+  font-size: 0.74rem;
+  font-style: italic;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-faint);
+}
+
+@media (max-width: 760px) {
+  .slot {
+    --tile: 52px;
+  }
+
+  /* Both columns read left-to-right on phones. */
+  .slot[data-side='left'] {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .slot[data-side='left'] .info {
+    align-items: flex-start;
+  }
+
+  .slot[data-side='left'] .name {
+    flex-direction: row;
+  }
+
+  .name {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .slot[data-side='left'] .lines {
+    flex-direction: row;
+  }
+
+  /* No room beside the lines: the status goes under them. */
+  .lines {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+
+  .status {
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+/* The checklist's weapon or relic in its tile: faded until you have it, lines still on top. */
+.itemArt {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.slot[data-item='wanted'] .itemArt {
+  opacity: 0.4;
+  filter: grayscale(0.9);
+}
+
+/* Line icons open a quick search to replace that line. */
+.line:hover,
+.line:focus-visible,
+.line[data-open] {
+  outline: 1.5px solid var(--gold-bright);
+  outline-offset: 1px;
+  filter: none;
+}
+
+.line[data-open] {
+  box-shadow: 0 0 8px rgb(233 193 120 / 60%);
+}
+
+/* The tile and its clear cross. */
+.tileWrap {
+  position: relative;
+  flex: none;
+}
+
+/* Red cross on the tile's top right, on hover: clears the piece. */
+.clear {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: #c8463e;
+  box-shadow:
+    0 0 0 2px #0b1016,
+    0 2px 6px rgb(0 0 0 / 50%);
+  cursor: pointer;
+  opacity: 0;
+  scale: 0.8;
+  transition:
+    opacity 120ms ease,
+    scale 120ms ease;
+}
+
+.slot:hover .clear,
+.slot:focus-within .clear {
+  opacity: 1;
+  scale: 1;
+}
+
+.clear:hover {
+  background: #e5625a;
+}
+
+.clear:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.clear svg {
+  width: 10px;
+  height: 10px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* The socket, after the lines: a round gem. Empty shows the build's gem faded in a dashed ring. */
+.socket {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin: 0 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #0a0e13;
+  box-shadow: 0 0 0 1px rgb(169 184 200 / 35%);
+  cursor: pointer;
+}
+
+.socket img {
+  width: 16px;
+  height: 16px;
+}
+
+.socket[data-state='empty'] {
+  box-shadow: none;
+  outline: 1px dashed rgb(169 184 200 / 55%);
+}
+
+.socket[data-state='empty'] img {
+  filter: grayscale(0.7);
+  opacity: 0.4;
+}
+
+.socket[data-state='good'] {
+  box-shadow: 0 0 0 1.5px var(--gold-bright);
+}
+
+.socket[data-state='wrong'] {
+  box-shadow: 0 0 0 1.5px #e5625a;
+}
+
+.socket[data-state='wrong'] img {
+  filter: grayscale(0.6) brightness(0.8);
+}
+
+.socket:hover,
+.socket:focus-visible,
+.socket[data-open] {
+  outline: 1.5px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.socket[data-open] {
+  box-shadow: 0 0 8px rgb(233 193 120 / 60%);
+}

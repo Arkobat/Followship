@@ -1,0 +1,314 @@
+import { useState, type CSSProperties, type ReactNode } from 'react'
+import { CATEGORY_BY_ID } from '../../data/catalog'
+import type { SlotId } from '../../data/gearSlots'
+import type { HeroId } from '../../data/heroes'
+import {
+  loadoutFor,
+  PICK_LIMITS,
+  TIER_RULES,
+  TIERS,
+  WEAPON_TREE_ROWS,
+  weaponTraitKey,
+  weaponTraitsFor,
+  type TieredOption,
+} from '../../data/loadout'
+import { setCharm, setWeaponTreeRow, toggleNeckPower, type HeroBuild } from '../../state/buildStore'
+import { EntryIcon } from './EntryIcon'
+import styles from './LoadoutTabs.module.css'
+
+interface Props {
+  heroId: HeroId
+  build: HeroBuild
+  slotId: SlotId
+}
+
+/** The neck / relic (charm) / weapon tabs: pick what you have, with every option tiered by how often top players take it. */
+export function LoadoutTabs({ heroId, build, slotId }: Props) {
+  const options = loadoutFor(heroId)
+  const picks = build.loadout
+
+  if (slotId === 'neck') {
+    return (
+      <Section title="Necklace powers" picked={picks.neck.length} limit={PICK_LIMITS.neck}>
+        <TierList
+          options={options.neck}
+          selected={(id) => picks.neck.includes(id)}
+          canSelect={() => picks.neck.length < PICK_LIMITS.neck}
+          onToggle={(id) => toggleNeckPower(heroId, id)}
+        />
+      </Section>
+    )
+  }
+
+  if (slotId === 'relic1' || slotId === 'relic2') {
+    const current = picks[slotId]
+    const other = picks[slotId === 'relic1' ? 'relic2' : 'relic1']
+    return (
+      <Section title="Charm" picked={current ? 1 : 0} limit={PICK_LIMITS.charm}>
+        <TierList
+          options={options.charms}
+          selected={(id) => id === current}
+          // Picking another charm swaps it in; the one in your other relic slot is taken.
+          canSelect={(id) => id !== other}
+          disabledHint="In your other relic slot"
+          onToggle={(id) => setCharm(heroId, slotId, id === current ? null : id)}
+        />
+      </Section>
+    )
+  }
+
+  if (slotId === 'weapon') return <WeaponTreeTab heroId={heroId} build={build} />
+
+  return null
+}
+
+/** Tree rows in display order: the aspect row (last) on top. */
+const TOP_DOWN = WEAPON_TREE_ROWS.map((_, i) => i).reverse()
+
+/**
+ * The weapon tree as a step list, drawn like in game: the aspect row on top, your weapon at the bottom.
+ * Each weapon drop rolls its own nodes, and the aspect is usually what you hunt a weapon for, so you
+ * start there and work down, picking what you took in each row from every option it can have.
+ */
+function WeaponTreeTab({ heroId, build }: { heroId: HeroId; build: HeroBuild }) {
+  const options = loadoutFor(heroId)
+  const traits = weaponTraitsFor(heroId)
+  const tree = build.loadout.weaponTree
+  const topEmpty = tree.lastIndexOf(null)
+  const [open, setOpen] = useState<number | null>(topEmpty === -1 ? null : topEmpty)
+  const weapon = options.weapons.find((w) => w.id === build.weapon?.id)
+  const onChecklist = new Set(build.goals.map(weaponTraitKey))
+  const picked = tree.filter(Boolean).length
+
+  const pick = (row: number, key: string | null) => {
+    setWeaponTreeRow(heroId, row, key)
+    if (!key) return
+    // On down to the next empty row; then back to any empty row higher up.
+    const next = tree.map((k, i) => (i === row ? key : k))
+    const below = next.findLastIndex((k, i) => i < row && !k)
+    const any = next.lastIndexOf(null)
+    setOpen(below !== -1 ? below : any !== -1 ? any : null)
+  }
+
+  return (
+    <section className={styles.section}>
+      <h3>
+        Weapon tree
+        <span className={styles.count} data-full={picked === tree.length || undefined}>
+          {picked}/{tree.length}
+        </span>
+        <small>Counts toward your checklist</small>
+      </h3>
+      <ol className={styles.steps}>
+        {TOP_DOWN.map((i) => {
+          const row = WEAPON_TREE_ROWS[i]
+          const option = traits.find((o) => o.id === tree[i])
+          const category = CATEGORY_BY_ID[row.category]
+          const isOpen = open === i
+          const tier = option?.unrated ? NO_DATA_TIER : TIERS.find((t) => t.id === option?.tier)
+          return (
+            <li
+              key={i}
+              className={styles.step}
+              data-picked={option ? true : undefined}
+              data-open={isOpen || undefined}
+              style={{ '--accent': category.color } as CSSProperties}
+            >
+              <button
+                type="button"
+                className={styles.stepHead}
+                aria-expanded={isOpen}
+                onClick={() => setOpen(isOpen ? null : i)}
+              >
+                <span className={styles.hexFrame}>
+                  <span className={styles.hex}>
+                    {option && (
+                      <EntryIcon
+                        goal={{ category: option.category, entryId: option.entryId, name: option.name }}
+                        size={26}
+                      />
+                    )}
+                  </span>
+                </span>
+                <span className={styles.stepText}>
+                  <small>
+                    Row {i + 1} · {category.singular}
+                  </small>
+                  <strong>
+                    {option?.name ?? `Choose ${/^[aeiou]/i.test(category.singular) ? 'an' : 'a'} ${category.singular}`}
+                  </strong>
+                </span>
+                {tier && (
+                  <span className={styles.stepTier} style={{ '--tier-color': tier.color } as CSSProperties}>
+                    {tier.id}
+                  </span>
+                )}
+                <svg className={styles.chevron} viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M4 6l4 4 4-4" />
+                </svg>
+              </button>
+              {isOpen && (
+                <div className={styles.stepBody}>
+                  <TierList
+                    options={traits.filter((o) => o.category === row.category)}
+                    selected={(id) => id === tree[i]}
+                    canSelect={(id) => !tree.some((k, j) => k === id && j !== i)}
+                    disabledHint={(id) => `Already picked in row ${tree.indexOf(id) + 1}`}
+                    marked={(id) => onChecklist.has(id)}
+                    onToggle={(id) => pick(i, id === tree[i] ? null : id)}
+                    icon={(o) => {
+                      const trait = traits.find((x) => x.id === o.id)!
+                      return (
+                        <EntryIcon
+                          goal={{ category: trait.category, entryId: trait.entryId, name: trait.name }}
+                          size={24}
+                        />
+                      )
+                    }}
+                    accent={category.color}
+                  />
+                </div>
+              )}
+            </li>
+          )
+        })}
+        <li className={styles.step} data-root>
+          <span className={styles.stepHead}>
+            <span className={styles.hexFrame}>
+              <span className={styles.hex}>{weapon?.icon ? <img src={weapon.icon} alt="" /> : <span>⚔</span>}</span>
+            </span>
+            <span className={styles.stepText}>
+              <small>Your weapon</small>
+              <strong>{weapon?.name ?? 'Pick it in the checklist (Edit list)'}</strong>
+            </span>
+          </span>
+        </li>
+      </ol>
+      <p className={styles.treeNote}>
+        Every weapon drop rolls its own tree. Start with the aspect you want, then pick the node you took in each row
+        below it; <span className={styles.markKey} /> marks what’s on your checklist.
+      </p>
+    </section>
+  )
+}
+
+function Section({
+  title,
+  picked,
+  limit,
+  hint,
+  children,
+}: {
+  title: string
+  picked: number
+  limit: number
+  hint?: string
+  children: ReactNode
+}) {
+  return (
+    <section className={styles.section}>
+      <h3>
+        {title}
+        <span className={styles.count} data-full={picked >= limit || undefined}>
+          {picked}/{limit}
+        </span>
+        {hint && <small>{hint}</small>}
+      </h3>
+      {children}
+    </section>
+  )
+}
+
+interface TierListProps {
+  options: TieredOption[]
+  selected: (id: string) => boolean
+  canSelect: (id: string) => boolean
+  onToggle: (id: string) => void
+  /** Why an option can't be picked. */
+  disabledHint?: string | ((id: string) => string)
+  /** Options to flag as being on your checklist. */
+  marked?: (id: string) => boolean
+  icon?: (option: TieredOption) => ReactNode
+  accent?: string
+}
+
+const NO_DATA = "Not on fellows.gg top players' weapon trees yet, so no tier"
+const NO_DATA_TIER = { id: '?', color: '#5b6573' }
+const isUnrated = (o: TieredOption) => 'unrated' in o && !!o.unrated
+
+function TierList({ options, selected, canSelect, onToggle, disabledHint, marked, icon, accent }: TierListProps) {
+  if (options.length === 0) return <p className={styles.empty}>No fellows.gg data for this hero yet.</p>
+
+  // The tiers, then a "?" row for options fellows.gg has no numbers for.
+  const rows = [
+    ...TIERS.map((tier) => ({
+      ...tier,
+      title: TIER_RULES,
+      options: options.filter((o) => !isUnrated(o) && o.tier === tier.id),
+    })),
+    { ...NO_DATA_TIER, title: NO_DATA, options: options.filter(isUnrated) },
+  ]
+
+  return (
+    <div className={styles.tiers} style={{ '--accent': accent ?? 'var(--gold-bright)' } as CSSProperties}>
+      {rows.map((tier) => {
+        const inTier = tier.options
+        if (inTier.length === 0) return null
+        return (
+          <div key={tier.id} className={styles.tierRow} style={{ '--tier-color': tier.color } as CSSProperties}>
+            <span className={styles.tierBadge} title={tier.title}>
+              {tier.id}
+            </span>
+            <ul className={styles.options}>
+              {inTier.map((option) => {
+                const isSelected = selected(option.id)
+                const disabled = !isSelected && !canSelect(option.id)
+                const isMarked = marked?.(option.id) ?? false
+                const pct = isUnrated(option)
+                  ? 'no data yet'
+                  : `${option.rateIsMax ? '≤ ' : ''}${Math.round(option.rate * 100)}%`
+                return (
+                  <li key={option.id}>
+                    <button
+                      type="button"
+                      className={styles.option}
+                      aria-pressed={isSelected}
+                      data-marked={isMarked || undefined}
+                      disabled={disabled}
+                      onClick={() => onToggle(option.id)}
+                      title={[
+                        option.description ??
+                          ('ability' in option && option.ability ? `Ability: ${option.ability}` : ''),
+                        isUnrated(option) ? NO_DATA : `Picked by ${pct} of top players`,
+                        isMarked ? 'On your checklist' : '',
+                        disabled
+                          ? typeof disabledHint === 'function'
+                            ? disabledHint(option.id)
+                            : (disabledHint ?? 'Limit reached: unpick one first')
+                          : '',
+                      ]
+                        .filter(Boolean)
+                        .join('\n')}
+                    >
+                      {icon ? (
+                        icon(option)
+                      ) : option.icon ? (
+                        <img src={option.icon} alt="" />
+                      ) : (
+                        <span className={styles.noIcon}>{option.name[0]}</span>
+                      )}
+                      <span className={styles.optionText}>
+                        <strong>{option.name}</strong>
+                        <small>{'ability' in option && option.ability ? `${option.ability} · ${pct}` : pct}</small>
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )
+      })}
+    </div>
+  )
+}

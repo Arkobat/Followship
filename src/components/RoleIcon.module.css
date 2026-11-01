@@ -1,0 +1,17 @@
+.icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #22303f, #0b1017 75%);
+  box-shadow:
+    inset 0 0 0 1.5px color-mix(in srgb, var(--role-color) 65%, #000),
+    0 0 10px color-mix(in srgb, var(--role-color) 35%, transparent);
+}
+
+.icon svg {
+  width: 62%;
+  height: 62%;
+  fill: var(--role-color);
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--role-color) 60%, transparent));
+}

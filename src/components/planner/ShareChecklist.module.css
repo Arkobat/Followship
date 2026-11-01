@@ -1,0 +1,58 @@
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: -4px 0 16px;
+  padding: 12px;
+  border-radius: 5px;
+  background: rgb(255 255 255 / 3%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 14%);
+}
+
+.label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.label:not(:first-child) {
+  margin-top: 6px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.row :global(.btn) {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 0.74rem;
+}
+
+.code {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: rgb(0 0 0 / 30%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 18%);
+}
+
+.code:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #f0a59f;
+}

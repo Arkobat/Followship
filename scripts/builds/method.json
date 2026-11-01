@@ -1,0 +1,1799 @@
+{
+  "source": "method.gg",
+  "url": "https://www.method.gg/fellowship/heroes",
+  "scraped": "2026-11-01",
+  "builds": [
+    {
+      "hero": "helena",
+      "name": "General",
+      "summary": "This general build is designed entirely around the idea that you do not have a Legendary and you're progressing through the beginning of the game.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/helena/talents",
+      "legendary": null,
+      "weapon": "Darkfrost Arms",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Guarded Veteran",
+        "Aftershock",
+        "High Command",
+        "Skull Cracker",
+        "Martial Command",
+        "Gleaming Shield",
+        "Front Line Defender",
+        "Master of War",
+        "Greater Shockwave"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Subduer": 2
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Hunter's Focus": 1
+        },
+        "enchant": {
+          "Valkyrie's Might": 15,
+          "Revenant's Might": 1
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 2,
+          "Diamond": 1,
+          "Amethyst": 2
+        }
+      }
+    },
+    {
+      "hero": "helena",
+      "name": "Chest Legendary",
+      "summary": "This is what I'd consider the one of the best end-game Shield Throw builds possible, fully supplemented by the Legendary Masochistic Razor Loop.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/helena/talents",
+      "legendary": "Warmaster Breastplate",
+      "weapon": "Darkfrost Arms",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "The Best Defense",
+        "Guarded Veteran",
+        "High Command",
+        "Skull Cracker",
+        "Martial Command",
+        "Gleaming Shield",
+        "Front Line Defender",
+        "Master of War",
+        "Greater Shockwave"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Subduer": 2
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Hunter's Focus": 1
+        },
+        "enchant": {
+          "Valkyrie's Might": 15,
+          "Revenant's Might": 1
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 2,
+          "Diamond": 1,
+          "Amethyst": 2
+        }
+      }
+    },
+    {
+      "hero": "helena",
+      "name": "Helm Legendary",
+      "summary": "This is the best general end-game build using the HTL legendary. This build has incredible value in combination with the Linked Heavy Metal Cloak legendary.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/helena/talents",
+      "legendary": "Warmaster Helm",
+      "weapon": "Darkfrost Arms",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Guarded Veteran",
+        "Aftershock",
+        "High Command",
+        "Skull Cracker",
+        "Martial Command",
+        "Gleaming Shield",
+        "Front Line Defender",
+        "Master of War",
+        "Greater Shockwave"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Subduer": 2
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Hunter's Focus": 1
+        },
+        "enchant": {
+          "Valkyrie's Might": 15,
+          "Revenant's Might": 1
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 2,
+          "Diamond": 1,
+          "Amethyst": 2
+        }
+      }
+    },
+    {
+      "hero": "helena",
+      "name": "Legs Legendary",
+      "summary": "This build heavily focuses on buffing Shockwave as much as possible to pair nicely with the additional uses we will be getting from our Bindings Of The Blackened Vanguard Legendary.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/helena/talents",
+      "legendary": "Warmaster Greaves",
+      "weapon": "Darkfrost Arms",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Guarded Veteran",
+        "Punishing Strikes",
+        "Aftershock",
+        "High Command",
+        "Martial Command",
+        "Gleaming Shield",
+        "Front Line Defender",
+        "Master of War",
+        "Greater Shockwave"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Subduer": 2
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Hunter's Focus": 1
+        },
+        "enchant": {
+          "Valkyrie's Might": 15,
+          "Revenant's Might": 1
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 2,
+          "Diamond": 1,
+          "Amethyst": 2
+        }
+      }
+    },
+    {
+      "hero": "meiko",
+      "name": "General",
+      "summary": "This is a pretty standard build for progressing as Meiko, revolving around the idea you are fairly new to Meiko and learning through leagues.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/meiko/talents",
+      "legendary": null,
+      "weapon": "Darkfrost Talons",
+      "relics": [
+        "Orb of Awakened Gaze",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Resonance of Earth",
+        "Earthwell",
+        "Perfect Storm",
+        "Whipping Apex",
+        "Debilitating Vortex",
+        "Guardian's Fluidity",
+        "Earthbourne",
+        "Warden of the Temple"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Monarch": 4
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Seized Opportunity": 3
+        },
+        "enchant": {
+          "Wraith's Guile": 15,
+          "Vampire's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2,
+          "Amethyst": 1,
+          "Diamond": 2
+        }
+      }
+    },
+    {
+      "hero": "meiko",
+      "name": "Legs Legendary",
+      "summary": "This is one Meiko's most durable builds, focusing on consuming large amounts of Serenity to obtain a large amount of damage reduction from the Legendary.",
+      "tags": [
+        "Tanky"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/meiko/talents",
+      "legendary": "Twinsoul Leggings",
+      "weapon": "Darkfrost Talons",
+      "relics": [
+        "Orb of Awakened Gaze",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Resonance of Earth",
+        "Earthwell",
+        "Perfect Storm",
+        "Whipping Apex",
+        "Debilitating Vortex",
+        "Guardian's Fluidity",
+        "Earthbourne",
+        "Warden of the Temple"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Monarch": 4
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Seized Opportunity": 3
+        },
+        "enchant": {
+          "Wraith's Guile": 15,
+          "Vampire's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2,
+          "Amethyst": 1,
+          "Diamond": 2
+        }
+      }
+    },
+    {
+      "hero": "meiko",
+      "name": "Chest Legendary",
+      "summary": "This build revolves around Earthfist Barrage and focuses on dealing as much damage and healing as possbile.",
+      "tags": [
+        "Damage"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/meiko/talents",
+      "legendary": "Twinsoul Tunic",
+      "weapon": "Darkfrost Talons",
+      "relics": [
+        "Orb of Awakened Gaze",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Resonance of Earth",
+        "Earthwell",
+        "Debilitating Vortex",
+        "Earthbourne",
+        "Warden of the Temple",
+        "Forbidden Technique",
+        "Rumbling Stone"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Monarch": 4
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Seized Opportunity": 3
+        },
+        "enchant": {
+          "Wraith's Guile": 15,
+          "Vampire's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2,
+          "Amethyst": 1,
+          "Diamond": 2
+        }
+      }
+    },
+    {
+      "hero": "meiko",
+      "name": "Helm Legendary",
+      "summary": "The primary goal with this build is as much Twin Souls: Bulwark uptime as possible as well as the 80% armour buff once it expires.",
+      "tags": [
+        "Tanky"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/meiko/talents",
+      "legendary": "Twinsoul Helm",
+      "weapon": "Darkfrost Talons",
+      "relics": [
+        "Orb of Awakened Gaze",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Resonance of Earth",
+        "Earthwell",
+        "Perfect Storm",
+        "Whipping Apex",
+        "Debilitating Vortex",
+        "Guardian's Fluidity",
+        "Earthbourne",
+        "Warden of the Temple"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Brave Machinations": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Monarch": 4
+        },
+        "sigil": {
+          "Inspired Allegiance": 4,
+          "Seized Opportunity": 3
+        },
+        "enchant": {
+          "Wraith's Guile": 15,
+          "Vampire's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2,
+          "Amethyst": 1,
+          "Diamond": 2
+        }
+      }
+    },
+    {
+      "hero": "xavian",
+      "name": "Blades",
+      "summary": "This is a more Crit-Oriented build designed to slam heavy damage and generate massive shields to outscale incoming damage. Note: If you are equipping Darkfrost Drakecarver, attack speed slows do not stack in Fellowship.",
+      "tags": [
+        "Damage"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/xavian/talents",
+      "legendary": "Light of Azamir Breastplate",
+      "weapon": "Darkfrost Drakecarver",
+      "relics": [
+        "Orb of Inner Seas",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Solar Burn",
+        "Rising Sun",
+        "Imposing Presence",
+        "Vanguard of Vengeance",
+        "Invictus",
+        "Golden Hour"
+      ],
+      "lines": {
+        "aspect": {
+          "Brave Machinations": 4,
+          "Martial Initiative": 2,
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Ogre's Might": 7,
+          "Valkyrie's Might": 6,
+          "Revenant's Might": 6
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2
+        }
+      }
+    },
+    {
+      "hero": "xavian",
+      "name": "Tanky",
+      "summary": "When you want to run your defensive Legendaries and bulk up for the team, this setup provides maximum survivability and mitigation. Early on, maintaining high uptime on Shining Halo and managing incoming damage spikes can be difficult.",
+      "tags": [
+        "Tanky"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/xavian/talents",
+      "legendary": "Light of Azamir Breastplate",
+      "weapon": "Darkfrost Drakecarver",
+      "relics": [
+        "Orb of Inner Seas",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Celestial Favor",
+        "Magic Ward",
+        "Hallowed Shield",
+        "Vanguard of Vengeance",
+        "Invictus",
+        "Golden Hour",
+        "Shifting Spectrum"
+      ],
+      "lines": {
+        "aspect": {
+          "Brave Machinations": 4,
+          "Martial Initiative": 2,
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Ogre's Might": 7,
+          "Valkyrie's Might": 6,
+          "Revenant's Might": 6
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2
+        }
+      }
+    },
+    {
+      "hero": "xavian",
+      "name": "3 Major Traits",
+      "summary": "Alternatively, you can swap completely and run all 3 of the Aspects. That build will look more like this. Note: See the 'Stats, Modifiers & Gems' section for the discussion around Major Traits.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/xavian/talents",
+      "legendary": "Light of Azamir Breastplate",
+      "weapon": "Darkfrost Drakecarver",
+      "relics": [
+        "Orb of Inner Seas",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Solar Burn",
+        "Rising Sun",
+        "Magic Ward",
+        "Hallowed Shield",
+        "Vanguard of Vengeance",
+        "Invictus",
+        "Golden Hour"
+      ],
+      "lines": {
+        "aspect": {
+          "Brave Machinations": 4,
+          "Martial Initiative": 2,
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Ogre's Might": 7,
+          "Valkyrie's Might": 6,
+          "Revenant's Might": 6
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2
+        }
+      }
+    },
+    {
+      "hero": "aeona",
+      "name": "Vehement Chest",
+      "summary": "This build is designed to be ran with Timeweaver Dress, as it capitalizes on the synergy between The Vehement and Continuum Shift to deal respectable AOE damage.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/aeona/talents",
+      "legendary": "Timeweaver Dress",
+      "weapon": "Elheryn's Guiding Sandglass",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Erasure",
+        "Uchronia",
+        "Chrona Tap",
+        "Hastening Doom",
+        "Oblivion's Embrace",
+        "Continuum Shift",
+        "Echoes of Divinity"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 2,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Diamond Strike": 4
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Vehement": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 3,
+          "Undine's Cunning": 6
+        },
+        "gem": {
+          "Emerald": 2,
+          "Diamond": 7,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "aeona",
+      "name": "Legs",
+      "summary": "This build is designed to be ran with Timeweaver Dress, as it capitalizes on the synergy between The Vehement and Continuum Shift to deal respectable AOE damage.",
+      "tags": [],
+      "url": "https://www.method.gg/fellowship/heroes/aeona/talents",
+      "legendary": "Timeweaver Leggings",
+      "weapon": "Elheryn's Guiding Sandglass",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Erasure",
+        "Uchronia",
+        "Chrona Tap",
+        "Hastening Doom",
+        "Oblivion's Embrace",
+        "Continuum Shift",
+        "Echoes of Divinity"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 2,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Diamond Strike": 4
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Wayfarer": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 3,
+          "Undine's Cunning": 6
+        },
+        "gem": {
+          "Emerald": 2,
+          "Diamond": 7,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "sylvie",
+      "name": "The Catapult",
+      "summary": "Early on, Nettle To The Petal is still the most value we can get out of our first two points and Natural Knowledge still has great value for a 1 pointer. With good play, it generally completely solves any mana issues in the early game.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/sylvie/talents",
+      "legendary": null,
+      "weapon": "Elheryn's Cache",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Synchronized Fluttering",
+        "Symbiosis",
+        "Nurtured Haven",
+        "Natural Protector",
+        "Flutterswift",
+        "Flower Power"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 1,
+          "Amethyst Splinters": 1,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Sinister": 4,
+          "The Vehement": 1,
+          "The Monarch": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Willful Momentum": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Unicorn's Cunning": 8,
+          "Salamander's Cunning": 8
+        },
+        "gem": {
+          "Amethyst": 5,
+          "Emerald": 2,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "sylvie",
+      "name": "The Chair (Helm)",
+      "summary": "This is the most commonly played endgame 14 point talent build at the high end. It can be played with either Daughter Of The Forest Helm or Daughter Of The Forest Tunic.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/sylvie/talents",
+      "legendary": "Daughter of the Forest Helm",
+      "weapon": "Elheryn's Cache",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Nettle to the Petal",
+        "Symbiosis",
+        "Sprouting Nettles",
+        "Nurtured Haven",
+        "Bluey's Gambit",
+        "Natural Protector",
+        "Flower Power",
+        "Rowdy Rootsap"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 1,
+          "Amethyst Splinters": 1,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1
+        },
+        "glyph": {
+          "The Sinister": 4,
+          "The Vehement": 1,
+          "The Monarch": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Willful Momentum": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Unicorn's Cunning": 8,
+          "Salamander's Cunning": 8
+        },
+        "gem": {
+          "Amethyst": 5,
+          "Emerald": 2,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "sylvie",
+      "name": "The Chair (Chest)",
+      "summary": "This is the most commonly played endgame 14 point talent build at the high end. It can be played with either Daughter Of The Forest Helm or Daughter Of The Forest Tunic.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/sylvie/talents",
+      "legendary": "Daughter of the Forest Tunic",
+      "weapon": "Elheryn's Cache",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Nettle to the Petal",
+        "Symbiosis",
+        "Sprouting Nettles",
+        "Nurtured Haven",
+        "Bluey's Gambit",
+        "Natural Protector",
+        "Flower Power",
+        "Rowdy Rootsap"
+      ],
+      "lines": {
+        "aspect": {
+          "Emerald Judgement": 1,
+          "Amethyst Splinters": 1,
+          "Martial Initiative": 4
+        },
+        "glyph": {
+          "The Monarch": 1,
+          "The Sinister": 4,
+          "The Mystic": 1
+        },
+        "sigil": {
+          "Willful Momentum": 1,
+          "Vengeful Soul": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Unicorn's Cunning": 9,
+          "Salamander's Cunning": 8
+        },
+        "gem": {
+          "Emerald": 2,
+          "Amethyst": 5,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "vigour",
+      "name": "General & Helm",
+      "summary": "Paired with Lightshaper Helm, this build will give you the best mix of survivability and output across all levels.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/vigour/talents",
+      "legendary": "Lightshaper Helm",
+      "weapon": "Forbidden Tome of Arcanistry",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Radiant Soul",
+        "Sacred Barrier",
+        "Enlightened Soul",
+        "Shining Blast",
+        "Greater Renewal",
+        "Grand Proliferation",
+        "Meticulous Runesmith",
+        "Beacon in the Dark"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Visions of Grandeur": 1,
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Monarch": 1
+        },
+        "sigil": {
+          "Vengeful Soul": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Undine's Cunning": 6,
+          "Salamander's Cunning": 6
+        },
+        "gem": {
+          "Amethyst": 5,
+          "Diamond": 10
+        }
+      }
+    },
+    {
+      "hero": "vigour",
+      "name": "Legendary Chest",
+      "summary": "Build specifically recommended for very high Empyrean Sands in order to survive Orb Explosions from the boss. Not recommended outside of that dungeon.",
+      "tags": [
+        "Tanky"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/vigour/talents",
+      "legendary": "Lightshaper Vestments",
+      "weapon": "Forbidden Tome of Arcanistry",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Sanguine Restoration"
+      ],
+      "talents": [
+        "Radiant Soul",
+        "Expansive Mind",
+        "Sacred Barrier",
+        "Ceremony of Light",
+        "Enlightened Soul",
+        "Shining Blast",
+        "Greater Renewal",
+        "Grand Proliferation",
+        "Beacon in the Dark"
+      ],
+      "lines": {
+        "aspect": {
+          "Martial Initiative": 4,
+          "Visions of Grandeur": 1,
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Monarch": 1
+        },
+        "sigil": {
+          "Vengeful Soul": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Undine's Cunning": 6,
+          "Salamander's Cunning": 6
+        },
+        "gem": {
+          "Amethyst": 5,
+          "Diamond": 10
+        }
+      }
+    },
+    {
+      "hero": "ardeos",
+      "name": "Fire Ball",
+      "summary": "As Ardeos, you’re heavily DoT based and Cinder generation can be slow early on, so we need to buff up our abilities through Talents to let us keep up while we scale.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/ardeos/talents",
+      "legendary": "Pyromancer Helm",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Slow Burn",
+        "Great Balls of Fire",
+        "Backdraft",
+        "Apocalyptic Surge",
+        "Undying Flame",
+        "Rolling Flames",
+        "Reign of Fire"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 3,
+          "Brave Machinations": 2,
+          "Amethyst Splinters": 1,
+          "Martial Initiative": 2,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Sinister": 2
+        },
+        "sigil": {
+          "Seized Opportunity": 1,
+          "Hunter's Focus": 4,
+          "Patient Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 3,
+          "Chimera's Cunning": 3,
+          "Undine's Cunning": 3
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Amethyst": 5,
+          "Emerald": 2,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "ardeos",
+      "name": "Engulfing Flames",
+      "summary": "Engulfing Flames is incredibly powerful but focuses entirely on single target and priority damage.",
+      "tags": [
+        "Single target"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/ardeos/talents",
+      "legendary": "Pyromancer Helm",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Slow Burn",
+        "Frog Squad",
+        "Apocalyptic Surge",
+        "Undying Flame",
+        "Cascading Inferno",
+        "Rolling Flames",
+        "Pyrophibian Frenzy"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 3,
+          "Brave Machinations": 2,
+          "Amethyst Splinters": 1,
+          "Martial Initiative": 2,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Sinister": 2
+        },
+        "sigil": {
+          "Seized Opportunity": 1,
+          "Hunter's Focus": 4,
+          "Patient Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 3,
+          "Chimera's Cunning": 3,
+          "Undine's Cunning": 3
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Amethyst": 5,
+          "Emerald": 2,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "ardeos",
+      "name": "Fire Frogs",
+      "summary": "With this build we're looking to maximise our AOE output. Playstyle wise there are no changes but we now have much higher AOE potential inbetween Wildfire windows due to the random Fire Frog procs.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/ardeos/talents",
+      "legendary": "Pyromancer Helm",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Slow Burn",
+        "Frog Squad",
+        "Apocalyptic Surge",
+        "Undying Flame",
+        "Rolling Flames",
+        "Pyrophibian Frenzy",
+        "Spontaneous Combustion"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 3,
+          "Brave Machinations": 2,
+          "Amethyst Splinters": 1,
+          "Martial Initiative": 2,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Sinister": 2
+        },
+        "sigil": {
+          "Seized Opportunity": 1,
+          "Hunter's Focus": 4,
+          "Patient Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 3,
+          "Chimera's Cunning": 3,
+          "Undine's Cunning": 3
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Amethyst": 5,
+          "Emerald": 2,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "elarion",
+      "name": "Barrage",
+      "summary": "The Spirit Barrage build uses the synergy of Skystrider Hauberk resetting Heartseeker Barrage.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/elarion/talents",
+      "legendary": "Skystrider Hauberk",
+      "weapon": "Void-touched Bow",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Piercing Seekers",
+        "Fusillade",
+        "Lunar Fury",
+        "Rising Moon",
+        "Lunarlight Affinity",
+        "Fervent Supremacy",
+        "Impending Heartseeker",
+        "Last Lights"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Amethyst Splinters": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Mystic": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Willful Momentum": 4,
+          "Kindling": 1
+        },
+        "enchant": {
+          "Centaur's Guile": 3,
+          "Wraith's Guile": 3,
+          "Strix's Guile": 3
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 7,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "elarion",
+      "name": "Highwind Arrow",
+      "summary": "The pure Highwind Arrow build runs Skystrider Helm.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/elarion/talents",
+      "legendary": "Skystrider Helm",
+      "weapon": "Void-touched Bow",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Resurgent Winds",
+        "Skyward Munitions",
+        "Lethal Shots",
+        "Rising Moon",
+        "Fervent Supremacy",
+        "Final Crescendo",
+        "Last Lights",
+        "Swift Reload"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Amethyst Splinters": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Philosopher": 4,
+          "The Mystic": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Willful Momentum": 4,
+          "Kindling": 1
+        },
+        "enchant": {
+          "Centaur's Guile": 3,
+          "Wraith's Guile": 3,
+          "Strix's Guile": 3
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 7,
+          "Ruby": 5
+        }
+      }
+    },
+    {
+      "hero": "gunde",
+      "name": "Grim Carve",
+      "summary": "Gunde's most well-rounded build. This build has great AoE damage and decent single target damage, but struggles with priority damage while doing AoE damage.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/gunde/talents",
+      "legendary": "Northlander's Harness",
+      "weapon": "Fateful Cleavers",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Death's Arc",
+        "Grim Harvest",
+        "Crimson strikes",
+        "Deep Rend",
+        "Frenzied Reign",
+        "Bloodbath",
+        "Carnage",
+        "Superior Serration",
+        "Ancestral Instinct",
+        "Harvester's Toll"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 2,
+          "Martial Initiative": 1
+        },
+        "glyph": {
+          "The Wayfarer": 4,
+          "The Trickster": 4,
+          "The Subduer": 3,
+          "The Monarch": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Willful Momentum": 1
+        },
+        "enchant": {
+          "Behemoth's Might": 8,
+          "Griffin's Might": 8
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 5
+        }
+      }
+    },
+    {
+      "hero": "gunde",
+      "name": "Oathshatter Heart Splitter",
+      "summary": "Gunde's strongest build for single target damage. This build has among the best single target and priority damage of any characters in the game. but struggles with raw AoE damage output.",
+      "tags": [
+        "Single target"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/gunde/talents",
+      "legendary": "Northlander's Harness",
+      "weapon": "Fateful Cleavers",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Grim Harvest",
+        "Deep Rend",
+        "Darkening Hearts",
+        "Frenzied Reign",
+        "Bloodbath",
+        "Oathshatter",
+        "Carnage",
+        "Harvester's Toll"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 2,
+          "Martial Initiative": 1
+        },
+        "glyph": {
+          "The Sinister": 4,
+          "The Wayfarer": 4,
+          "The Subduer": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Inspired Allegiance": 1
+        },
+        "enchant": {
+          "Behemoth's Might": 8,
+          "Griffin's Might": 8
+        },
+        "gem": {
+          "Emerald": 2,
+          "Sapphire": 5
+        }
+      }
+    },
+    {
+      "hero": "gunde",
+      "name": "Bloodcraze Spirit",
+      "summary": "Gunde's strongest build for AoE burst. This build has strong AoE burst, but lacks raw overall output landing it on the weaker side for now.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/gunde/talents",
+      "legendary": "Northlander's Harness",
+      "weapon": "Fateful Cleavers",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Death's Arc",
+        "Raven's Precision",
+        "Crimson strikes",
+        "Murder of Crows",
+        "Massacre",
+        "Slayer's Grin",
+        "Bloodcraze",
+        "Harvester's Toll"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 2,
+          "Martial Initiative": 1
+        },
+        "glyph": {
+          "The Wayfarer": 4,
+          "The Philosopher": 4,
+          "The Subduer": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Willful Momentum": 1
+        },
+        "enchant": {
+          "Valkyrie's Might": 15,
+          "Ogre's Might": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 2,
+          "Amethyst": 5,
+          "Ruby": 1
+        }
+      }
+    },
+    {
+      "hero": "mara",
+      "name": "Hemotoxin",
+      "summary": "Simple and effective build focused around dealing damage over time with Hemorrhaging Strike and the talents and effects tied to it.",
+      "tags": [
+        "Damage"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/mara/talents",
+      "legendary": "Hungering Blade Helm",
+      "weapon": "Sahril's Vengeance",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Red Ledger",
+        "Bloodrush",
+        "Gushing Blood",
+        "Maiden's Doom",
+        "Seething Burst",
+        "Hemotoxin",
+        "Sinner's Pride",
+        "Caustic Wounds"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 2,
+          "Martial Initiative": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Wayfarer": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Huldra's Guile": 1,
+          "Strix's Guile": 15
+        },
+        "gem": {
+          "Topaz": 5,
+          "Diamond": 2
+        }
+      }
+    },
+    {
+      "hero": "mara",
+      "name": "Starter Malevolence",
+      "summary": "The Malevolence build is more complex than the bleed build, but it comes with the benefit of a much better damage profile.",
+      "tags": [
+        "Single target"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/mara/talents",
+      "legendary": "Hungering Blade Leggings",
+      "weapon": "Sahril's Vengeance",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Assassin's Guile",
+        "Venomous Delight",
+        "Feed the Queen",
+        "Deadly Scheme",
+        "Macabre Stratagem",
+        "Sinner's Pride",
+        "Malevolence"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 2,
+          "Emerald Judgement": 2,
+          "Martial Initiative": 2,
+          "Amethyst Splinters": 4,
+          "Brave Machinations": 1
+        },
+        "glyph": {
+          "The Trickster": 4,
+          "The Subduer": 4
+        },
+        "sigil": {
+          "Seized Opportunity": 1,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Wyvern's Guile": 15,
+          "Wraith's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 5
+        }
+      }
+    },
+    {
+      "hero": "mara",
+      "name": "Spirit Malevolence",
+      "summary": "End game Spirit version of the Malevolence build that specs out of energy sustain to take more damage increasing talents.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/mara/talents",
+      "legendary": "Hungering Blade Leggings",
+      "weapon": "Sahril's Vengeance",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Assassin's Guile",
+        "Feed the Queen",
+        "Deadly Scheme",
+        "Macabre Stratagem",
+        "Maiden's Doom",
+        "Sinner's Pride",
+        "Malevolence"
+      ],
+      "lines": {
+        "aspect": {
+          "Visions of Grandeur": 1,
+          "Emerald Judgement": 2,
+          "Amethyst Splinters": 3,
+          "Martial Initiative": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Vengeful Soul": 1,
+          "Seized Opportunity": 1
+        },
+        "enchant": {
+          "Wraith's Guile": 15,
+          "Vampire's Guile": 1
+        },
+        "gem": {
+          "Sapphire": 2,
+          "Emerald": 5
+        }
+      }
+    },
+    {
+      "hero": "rime",
+      "name": "Adventure",
+      "summary": "This build focuses on the strongest talents with immediate impact and does not factor in your Legendary. It's the easiest to play and still competitive damage-wise.",
+      "tags": [
+        "Leveling"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/rime/talents",
+      "legendary": null,
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Avalanche",
+        "Coalescing Frost",
+        "Cold Shower",
+        "Chilling Finesse",
+        "Burstbolter",
+        "Cascading Blitz",
+        "Bursting Swallows",
+        "Soulfrost Torrent",
+        "Supreme Torrent"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Brave Machinations": 1
+        },
+        "glyph": {
+          "The Vehement": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 2,
+          "Chimera's Cunning": 2,
+          "Unicorn's Cunning": 2,
+          "Banshee's Cunning": 2
+        },
+        "gem": {
+          "Amethyst": 2,
+          "Emerald": 2,
+          "Sapphire": 5,
+          "Topaz": 5,
+          "Ruby": 1
+        }
+      }
+    },
+    {
+      "hero": "rime",
+      "name": "Frostweaver's Wrath",
+      "summary": "Harbinger Of Winter Leggings is mandatory for this build.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/rime/talents",
+      "legendary": "Harbinger of Winter Leggings",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Avalanche",
+        "Chilling Finesse",
+        "Burstbolter",
+        "Cascading Blitz",
+        "Harrowing Ice",
+        "Bursting Swallows",
+        "Greater Glacial Blast",
+        "Frostweaver's Wrath",
+        "Biting Cold"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Brave Machinations": 1
+        },
+        "glyph": {
+          "The Vehement": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 2,
+          "Chimera's Cunning": 2,
+          "Unicorn's Cunning": 2,
+          "Banshee's Cunning": 2
+        },
+        "gem": {
+          "Amethyst": 2,
+          "Emerald": 2,
+          "Sapphire": 5,
+          "Topaz": 5,
+          "Ruby": 1
+        }
+      }
+    },
+    {
+      "hero": "rime",
+      "name": "Icy Talons",
+      "summary": "This is the end game build for Harbinger Of Winter Furs.",
+      "tags": [
+        "Endgame"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/rime/talents",
+      "legendary": "Harbinger of Winter Furs",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Glacial Assault",
+        "Chilling Finesse",
+        "Burstbolter",
+        "Cascading Blitz",
+        "Bursting Swallows",
+        "Greater Glacial Blast",
+        "Navir's Keeper",
+        "Icy Talons",
+        "Biting Cold",
+        "Wisdom of the North"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Brave Machinations": 1
+        },
+        "glyph": {
+          "The Vehement": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 2,
+          "Chimera's Cunning": 2,
+          "Unicorn's Cunning": 2,
+          "Banshee's Cunning": 2
+        },
+        "gem": {
+          "Amethyst": 2,
+          "Emerald": 2,
+          "Sapphire": 5,
+          "Topaz": 5,
+          "Ruby": 1
+        }
+      }
+    },
+    {
+      "hero": "rime",
+      "name": "Beam",
+      "summary": "This is the end game build for Harbinger Of Winter Helm, heavily inspired by the Rime player neteX.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/rime/talents",
+      "legendary": "Harbinger of Winter Helm",
+      "weapon": "Asha's Chronoshift Spire",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Gathering Storms"
+      ],
+      "talents": [
+        "Avalanche",
+        "Coalescing Frost",
+        "Cold Shower",
+        "Chilling Finesse",
+        "Burstbolter",
+        "Cascading Blitz",
+        "Soulfrost Torrent",
+        "Biting Cold",
+        "Supreme Torrent"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 4,
+          "Emerald Judgement": 1,
+          "Visions of Grandeur": 1,
+          "Martial Initiative": 1,
+          "Brave Machinations": 1
+        },
+        "glyph": {
+          "The Vehement": 4,
+          "The Trickster": 4
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Vengeful Soul": 1
+        },
+        "enchant": {
+          "Salamander's Cunning": 2,
+          "Chimera's Cunning": 2,
+          "Unicorn's Cunning": 2,
+          "Banshee's Cunning": 2
+        },
+        "gem": {
+          "Amethyst": 2,
+          "Emerald": 2,
+          "Sapphire": 5,
+          "Topaz": 5,
+          "Ruby": 1
+        }
+      }
+    },
+    {
+      "hero": "tariq",
+      "name": "Lightning",
+      "summary": "This build takes mostly passive damage talents so you can focus on mastering Tariq's core gameplay of building and spending fury at the right timings.",
+      "tags": [
+        "Single target"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/tariq/talents",
+      "legendary": "Stormlord Harness",
+      "weapon": "Fateful Basher",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Ride the Lightning",
+        "High Road",
+        "Blood & Thunder",
+        "Bloodline",
+        "The Motherload",
+        "Thunderstruck",
+        "Far Beyond Driven",
+        "Ace of Spades",
+        "Crack the Sky"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 1,
+          "Visions of Grandeur": 2,
+          "Brave Machinations": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4,
+          "The Trickster": 1,
+          "The Vehement": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 2
+        },
+        "enchant": {
+          "Revenant's Might": 1,
+          "Griffin's Might": 8
+        },
+        "gem": {
+          "Sapphire": 7,
+          "Emerald": 7
+        }
+      }
+    },
+    {
+      "hero": "tariq",
+      "name": "Schism",
+      "summary": "This build focuses on the talent Schism to give you access to significant amounts of prio damage in trash packs, but plays significantly differently from previous iterations due to both changes to Schism itself as well as some new talents.",
+      "tags": [
+        "AoE"
+      ],
+      "url": "https://www.method.gg/fellowship/heroes/tariq/talents",
+      "legendary": "Stormlord Helm",
+      "weapon": "Fateful Basher",
+      "relics": [
+        "Orb of Hidden Riches",
+        "Orb of Inner Seas"
+      ],
+      "talents": [
+        "Ride the Lightning",
+        "Square Hammer",
+        "High Road",
+        "Bloodline",
+        "Mouth for War",
+        "Sledgehammer",
+        "Far Beyond Driven",
+        "Schism",
+        "Crack the Sky"
+      ],
+      "lines": {
+        "aspect": {
+          "Amethyst Splinters": 1,
+          "Visions of Grandeur": 2,
+          "Brave Machinations": 1,
+          "Emerald Judgement": 1
+        },
+        "glyph": {
+          "The Mystic": 4,
+          "The Philosopher": 4,
+          "The Trickster": 1,
+          "The Vehement": 1
+        },
+        "sigil": {
+          "Hunter's Focus": 4,
+          "Seized Opportunity": 2
+        },
+        "enchant": {
+          "Revenant's Might": 1,
+          "Griffin's Might": 8
+        },
+        "gem": {
+          "Sapphire": 7,
+          "Emerald": 7
+        }
+      }
+    }
+  ]
+}

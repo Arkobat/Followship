@@ -1,0 +1,16 @@
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: #10161e;
+}
+
+.frame img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: none;
+  height: auto;
+  user-select: none;
+}

@@ -1,0 +1,66 @@
+.panel {
+  position: absolute;
+  inset: var(--top) auto auto var(--left);
+  z-index: 50;
+  width: var(--width);
+  padding: 10px 12px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  background: linear-gradient(180deg, #161f2a, #0c1117);
+  box-shadow:
+    0 0 0 1px rgb(201 163 92 / 45%),
+    0 18px 48px rgb(0 0 0 / 65%);
+  animation: drop 140ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Pointer at the line icon. */
+.panel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: calc(var(--caret) - 6px);
+  width: 10px;
+  height: 10px;
+  background: #161f2a;
+  box-shadow: -1px -1px 0 rgb(201 163 92 / 45%);
+  rotate: 45deg;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+}
+
+.title span {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-faint);
+}
+
+@keyframes drop {
+  from {
+    translate: 0 -6px;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}
+
+.panel[data-above] {
+  transform: translateY(-100%);
+}
+
+.panel[data-above]::before {
+  top: auto;
+  bottom: -6px;
+  box-shadow: 1px 1px 0 rgb(201 163 92 / 45%);
+}

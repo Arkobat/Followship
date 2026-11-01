@@ -1,0 +1,162 @@
+:root {
+  --font-display: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --font-body: 'Alegreya Sans', system-ui, sans-serif;
+
+  --bg: #0d1218;
+  --text: #e6e0d3;
+  --text-muted: #b9b3a6;
+  --text-faint: #8a8578;
+  --gold: #c9a35c;
+  --gold-bright: #e9c178;
+
+  color-scheme: dark;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Background lives on :root only, so the fixed hero backdrop (z-index -1) shows through. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---- Site header ---- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 18px 24px 0;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+.wordmark em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    padding: 14px 16px 0;
+  }
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    filter 140ms ease,
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  color: #2b1d06;
+  background: linear-gradient(180deg, #ffe39a, #d7a44a 55%, #b07a2a);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 55%),
+    0 0 0 1px #5a3c0c,
+    0 6px 18px rgb(217 164 65 / 25%);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 55%),
+    0 0 0 1px #5a3c0c,
+    0 8px 24px rgb(217 164 65 / 40%);
+}
+
+.btn-ghost {
+  color: var(--text);
+  background: rgb(20 28 37 / 70%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 30%);
+}
+
+.btn-ghost:hover {
+  background: rgb(32 43 56 / 80%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 55%);
+}
+
+.btn-danger {
+  color: #f0a59f;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px rgb(217 71 63 / 45%);
+}
+
+.btn-danger:hover {
+  background: rgb(217 71 63 / 12%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
