@@ -1,0 +1,125 @@
+/* The character sheet under the paper doll: groups side by side, each a column of "label ··· value" rows. */
+.panel {
+  border-top: 1px solid rgb(169 184 200 / 14%);
+  background: rgb(12 17 23 / 92%);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 16px 0;
+}
+
+.header h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.header small {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 6px 22px;
+  padding: 8px 16px 4px;
+}
+
+.group h4 {
+  margin: 8px 0 4px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c9a35c;
+}
+
+.group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.86rem;
+  color: var(--text);
+}
+
+.stat[tabindex] {
+  cursor: help;
+}
+
+.stat[tabindex]:hover,
+.stat[tabindex]:focus-visible {
+  background: rgb(233 193 120 / 8%);
+}
+
+.stat span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stat b {
+  flex: none;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat[data-tone='health'] b {
+  color: #6fd37a;
+}
+
+.stat[data-tone='good'] b {
+  color: #6fd37a;
+}
+
+/* Secondaries in the game's cyan, the rating dimmed before the percent. */
+.stat[data-tone='secondary'] span,
+.stat[data-tone='secondary'] b {
+  color: #49eeee;
+}
+
+.rating {
+  margin-right: 4px;
+  font-weight: 400;
+  color: #8fb9bd;
+}
+
+.stat[data-muted] {
+  color: var(--text-faint);
+}
+
+.stat[data-gem] span::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 7px;
+  border-radius: 2px;
+  rotate: 45deg;
+  background: var(--hue);
+}
+
+.note {
+  margin: 6px 0 0;
+  padding: 0 16px 14px;
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}

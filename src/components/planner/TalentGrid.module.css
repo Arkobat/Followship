@@ -247,3 +247,22 @@
     margin: 0;
   }
 }
+
+/* Edit mode: every talent is a button. */
+.talent[data-editing] {
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.talent[data-editing]:hover:not(:disabled) {
+  background: rgb(233 193 120 / 8%);
+}
+
+.talent[data-editing]:hover:not(:disabled) .icon img {
+  filter: none;
+}
+
+.talent:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

@@ -2,11 +2,14 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { CATEGORY_BY_ID } from '../../data/catalog'
 import { GEAR_SLOTS, SIDE_CATEGORIES, SLOT_BY_ID, STAT_LINES, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
-import { setLegendaryEquipped, updateSlot, type HeroBuild } from '../../state/buildStore'
+import { getItem } from '../../data/items'
+import { updateSlot, type Goal, type HeroBuild } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
 import { SLOT_STATUS, type BuildAnalysis, type LineInfo } from '../../utils/progress'
 import { Tip } from '../tooltip/Tooltip'
-import { entryTip, itemTip } from '../tooltip/tipContent'
+import { entryTip } from '../tooltip/tipContent'
+import { Status } from '../tooltip/tips'
+import { ConfirmDialog } from './ConfirmDialog'
 import { EntryIcon } from './EntryIcon'
 import { LinePicker } from './LinePicker'
 import { SlotIcon } from './SlotIcon'
@@ -41,16 +44,20 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
   const prev = GEAR_SLOTS[(index - 1 + GEAR_SLOTS.length) % GEAR_SLOTS.length]
   const next = GEAR_SLOTS[(index + 1) % GEAR_SLOTS.length]
 
+  // A legendary has no lines (nor does a piece older saves marked so).
+  const lineless = (id: SlotId) =>
+    getItem(heroId, build.slots[id]?.item)?.rarity === 'Legendary' || !!build.slots[id]?.noLines
   // Start on the item when there's none, then the first empty line, so entering a fresh piece is click, click,
-  // click. Not on the legendary's slot ("I have it" comes first there) or a slot without lines.
+  // click.
   const firstLine = (id: SlotId) => {
-    const slotInfo = analysis.slots[id]
-    const empty = slotInfo.lines.findIndex((l) => !l.line)
-    return empty === -1 || slotInfo.legendary || slotInfo.status === 'noLines' ? null : empty
+    const empty = analysis.slots[id].lines.findIndex((l) => !l.line)
+    return empty === -1 || lineless(id) ? null : empty
   }
-  const needsItem = (id: SlotId) => !build.slots[id]?.item && !analysis.slots[id].legendary
+  const needsItem = (id: SlotId) => !build.slots[id]?.item
   const [picking, setPicking] = useState<number | null>(() => (needsItem(slotId) ? null : firstLine(slotId)))
   const [pickingItem, setPickingItem] = useState(() => needsItem(slotId))
+  // The line whose "Reroll to" is being confirmed.
+  const [confirming, setConfirming] = useState<number | null>(null)
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -60,11 +67,12 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
   // showModal() focuses the first button (Previous); a slot with one main action focuses that instead.
   useEffect(() => {
     dialogRef.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus()
-  }, [slotId, info.legendary?.equipped])
+  }, [slotId])
 
   const go = (id: SlotId) => {
     setPicking(needsItem(id) ? null : firstLine(id))
     setPickingItem(needsItem(id))
+    setConfirming(null)
     onChangeSlot(id)
   }
 
@@ -128,17 +136,40 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
               {line.suggestion === 'anything' ? (
                 <em>anything — nothing you still need fits this line</em>
               ) : (
-                <Tip content={entryTip(heroId, line.suggestion)}>
-                  <span
+                <Tip content={entryTip(heroId, line.suggestion, <Status>Click once you’ve rerolled it</Status>)}>
+                  <button
+                    type="button"
                     className={styles.target}
                     style={{ '--cat-color': CATEGORY_BY_ID[line.suggestion.category].color } as CSSProperties}
+                    onClick={() => setConfirming(line.index)}
                   >
                     <EntryIcon goal={line.suggestion} size={20} />
                     {line.suggestion.name}
-                  </span>
+                    <small>{CATEGORY_BY_ID[line.suggestion.category].singular}</small>
+                  </button>
                 </Tip>
               )}
             </p>
+          )}
+
+          {confirming === line.index && line.line && line.suggestion && line.suggestion !== 'anything' && (
+            <ConfirmDialog
+              title={`Reroll line ${line.index + 1}?`}
+              confirmLabel="Switch it"
+              onCancel={() => setConfirming(null)}
+              onConfirm={() => {
+                const { category, entryId, name } = line.suggestion as Goal
+                setLine(heroId, slotId, line.index, { category, entryId, name })
+                setConfirming(null)
+              }}
+            >
+              <p>
+                Line {line.index + 1} on your {slot.label.toLowerCase()} changes from <strong>{line.line.name}</strong>{' '}
+                ({CATEGORY_BY_ID[line.line.category].singular}) to <strong>{line.suggestion.name}</strong> (
+                {CATEGORY_BY_ID[line.suggestion.category].singular}).
+              </p>
+              <p>Do this once you’ve rerolled it in game.</p>
+            </ConfirmDialog>
           )}
 
           {picking === line.index && (
@@ -236,78 +267,14 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
       </header>
 
       <div className={styles.body}>
-        {plan ? (
-          <>
-            <section>
-              <h3>Item</h3>
-              {itemField}
-              {(info.legendary || info.status === 'noLines') && (
-                <p className={styles.legendaryHint}>A legendary has no lines to roll: nothing else to set here.</p>
-              )}
-            </section>
-            {!info.legendary && info.status !== 'noLines' && (
-              <section>
-                <h3>What’s on it</h3>
-                {linesList}
-                <p className={styles.legendaryHint}>
-                  Where a line sits doesn’t matter: your gear only needs as many of each, on any piece.
-                </p>
-              </section>
-            )}
-          </>
-        ) : info.legendary ? (
-          <>
-            <section>
-              <h3>Legendary</h3>
-              <div className={styles.legendary} data-equipped={info.legendary.equipped || undefined}>
-                {info.legendary.entry.icon && (
-                  <Tip content={itemTip(heroId, info.legendary.entry.id)}>
-                    <img src={info.legendary.entry.icon} alt="" />
-                  </Tip>
-                )}
-                <div>
-                  <strong>{info.legendary.entry.name}</strong>
-                  {info.legendary.entry.power && <small>Power: {info.legendary.entry.power}</small>}
-                </div>
-                {/* Getting the legendary is the point of this slot: until then it's the main action, and focused. */}
-                {info.legendary.equipped ? (
-                  <label className={styles.toggle}>
-                    <input type="checkbox" checked onChange={() => setLegendaryEquipped(heroId, false)} />
-                    <span aria-hidden="true" />I have it
-                  </label>
-                ) : (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-autofocus
-                    onClick={() => setLegendaryEquipped(heroId, true)}
-                  >
-                    I have it
-                  </button>
-                )}
-              </div>
-              <p className={styles.legendaryHint}>
-                {info.legendary.equipped
-                  ? 'A legendary has no lines to roll, so this slot is done. Pick a different legendary in the checklist.'
-                  : 'Get it first: it replaces whatever you wear here. Pick a different legendary in the checklist.'}
-              </p>
-            </section>
-            {!info.legendary.equipped && (
-              <section className={styles.meanwhile}>
-                <h3>Until then: what you wear now</h3>
-                {itemField}
-                {linesList}
-              </section>
-            )}
-          </>
-        ) : info.status === 'noLines' ? (
-          <section>
-            <h3>Item</h3>
-            {itemField}
-            {progress.noLines ? (
+        <section>
+          <h3>Item</h3>
+          {itemField}
+          {lineless(slotId) &&
+            (progress.noLines && getItem(heroId, progress.item)?.rarity !== 'Legendary' ? (
               <>
                 <p className={styles.legendaryHint}>
-                  Marked as a legendary (or anything else without lines): the slot is filled, with nothing to roll.
+                  Marked as having no lines: the slot is filled, with nothing to roll.
                 </p>
                 <button
                   type="button"
@@ -318,31 +285,19 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
                 </button>
               </>
             ) : (
-              <p className={styles.legendaryHint}>A legendary has no lines to roll: the slot is filled.</p>
+              <p className={styles.legendaryHint}>A legendary has no lines to roll: nothing else to set here.</p>
+            ))}
+        </section>
+        {!lineless(slotId) && (
+          <section>
+            <h3>What’s on it</h3>
+            {linesList}
+            {plan && (
+              <p className={styles.legendaryHint}>
+                Where a line sits doesn’t matter: your gear only needs as many of each, on any piece.
+              </p>
             )}
           </section>
-        ) : (
-          <>
-            <section>
-              <h3>Item</h3>
-              {itemField}
-            </section>
-            <section>
-              <h3>What’s on it</h3>
-              {linesList}
-              <button
-                type="button"
-                className={styles.markLink}
-                onClick={() => {
-                  setPicking(null)
-                  updateSlot(heroId, slotId, { noLines: true })
-                }}
-                title="For a legendary that isn't your build's, or anything else without lines"
-              >
-                No lines? Mark as legendary
-              </button>
-            </section>
-          </>
         )}
 
         {!plan && (

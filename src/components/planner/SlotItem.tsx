@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { SLOT_BY_ID, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
+import { SOCKET_SLOTS, type SocketSlot } from '../../data/loadout'
 import {
   getItem,
   itemLevelsOf,
@@ -22,6 +23,25 @@ import { ItemTip } from '../tooltip/tips'
 import { SlotIcon } from './SlotIcon'
 import pickerStyles from './LinePicker.module.css'
 import styles from './SlotItem.module.css'
+
+/** Whether changing an item also clears its lines and socket gem: remembered for every slot, on until turned off. */
+const FRESH_KEY = 'fellowship-build-guide:clear-on-change'
+
+const readFresh = () => {
+  try {
+    return localStorage.getItem(FRESH_KEY) !== 'false'
+  } catch {
+    return true
+  }
+}
+
+const writeFresh = (on: boolean) => {
+  try {
+    localStorage.setItem(FRESH_KEY, String(on))
+  } catch {
+    // Blocked storage: it's remembered until the page reloads.
+  }
+}
 
 interface Props {
   heroId: HeroId
@@ -88,8 +108,8 @@ export function SlotItem({ heroId, build, slotId, open, onOpen, onClose, onPicke
           slotId={slotId}
           current={item}
           wanted={wanted}
-          onPick={(id) => {
-            setSlotItem(heroId, slotId, id)
+          onPick={(id, fresh) => {
+            setSlotItem(heroId, slotId, id, fresh)
             if (onPicked) onPicked(getItem(heroId, id)?.rarity === 'Legendary')
             else onClose()
           }}
@@ -219,9 +239,13 @@ function ItemPicker({
   slotId: SlotId
   current: Item | undefined
   wanted: Item[]
-  onPick: (id: string | null) => void
+  /** `fresh`: clear the old piece's lines and socket gem. */
+  onPick: (id: string | null, fresh: boolean) => void
 }) {
   const [query, setQuery] = useState('')
+  const [fresh, setFresh] = useState(readFresh)
+  // Only a change has lines to clear; picking the same item again keeps them.
+  const pick = (id: string | null) => onPick(id, !!current && id !== current.id && fresh)
   const [active, setActive] = useState(0)
   const searchRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
@@ -272,18 +296,34 @@ function ItemPicker({
             }
             if (e.key === 'Enter' && options[active]) {
               e.preventDefault()
-              onPick(options[active].id)
+              pick(options[active].id)
             }
           }}
           placeholder="Search by name, stat or dungeon"
           aria-label={`Search ${SLOT_BY_ID[slotId].label} items`}
         />
         {current && (
-          <button type="button" className="btn btn-ghost" onClick={() => onPick(null)}>
+          <button type="button" className="btn btn-ghost" onClick={() => pick(null)}>
             Remove
           </button>
         )}
       </div>
+      {current && (
+        <label className={styles.fresh}>
+          <input
+            type="checkbox"
+            checked={fresh}
+            onChange={(e) => {
+              setFresh(e.target.checked)
+              writeFresh(e.target.checked)
+            }}
+          />
+          <span>
+            Clear its lines{SOCKET_SLOTS.includes(slotId as SocketSlot) ? ' and socket gem' : ''} when I change it
+            <small>A new piece comes without them. Remembered for every slot.</small>
+          </span>
+        </label>
+      )}
 
       {options.length === 0 && <p className={pickerStyles.noMatch}>Nothing matches “{query.trim()}”.</p>}
       {options.length > 0 && (
@@ -301,7 +341,7 @@ function ItemPicker({
                     data-rarity={rarityOf(item)}
                     className={styles.option}
                     onMouseEnter={() => setActive(i)}
-                    onClick={() => onPick(item.id)}
+                    onClick={() => pick(item.id)}
                   >
                     <span className={styles.optionIcon}>{item.icon && <img src={item.icon} alt="" />}</span>
                     <span className={styles.optionName}>{item.name}</span>

@@ -1036,9 +1036,17 @@ export function clearSlot(heroId: HeroId, slotId: SlotId) {
   }))
 }
 
-/** Sets the item you wear in a slot (`null` for none). */
-export function setSlotItem(heroId: HeroId, slotId: SlotId, itemId: string | null) {
-  updateBuild(heroId, (b) => withItem(b, slotId, itemsFor(heroId, slotId).find((i) => i.id === itemId)?.id))
+/** Sets the item you wear in a slot (`null` for none). `fresh`: it's a new piece, so its lines and socket gem go. */
+export function setSlotItem(heroId: HeroId, slotId: SlotId, itemId: string | null, fresh = false) {
+  updateBuild(heroId, (b) => {
+    const next = withItem(b, slotId, itemsFor(heroId, slotId).find((i) => i.id === itemId)?.id)
+    if (!fresh) return next
+    return {
+      ...next,
+      slots: { ...next.slots, [slotId]: { ...next.slots[slotId], lines: emptyLines(), noLines: undefined } },
+      loadout: { ...next.loadout, sockets: { ...next.loadout.sockets, [slotId]: undefined } },
+    }
+  })
 }
 
 /** Sets the item level of the item in a slot, if it comes in that level. */
@@ -1131,7 +1139,8 @@ export interface GearWriter {
   /** Writes to the build's gear (edit mode). */
   plan: boolean
   setLine: (heroId: HeroId, slotId: SlotId, index: number, line: GearLine | null) => void
-  setSlotItem: (heroId: HeroId, slotId: SlotId, itemId: string | null) => void
+  /** `fresh`: a new piece, without the old one's lines and socket gem. */
+  setSlotItem: (heroId: HeroId, slotId: SlotId, itemId: string | null, fresh?: boolean) => void
   clearSlot: (heroId: HeroId, slotId: SlotId) => void
   setSocket: (heroId: HeroId, slot: SocketSlot, id: string | null) => void
   setWeaponTreeRow: (heroId: HeroId, row: number, key: string | null) => void
@@ -1164,8 +1173,17 @@ export const PLAN_WRITER: GearWriter = {
       lines[index] = line
       return withPlanSlot(plan, slotId, { lines })
     }),
-  setSlotItem: (heroId, slotId, itemId) =>
-    updatePlan(heroId, (plan) => withPlanSlot(plan, slotId, { item: itemId ?? undefined })),
+  setSlotItem: (heroId, slotId, itemId, fresh) =>
+    updateBuild(heroId, (b) => {
+      const item = itemId ?? undefined
+      const plan = withPlanSlot(
+        b.plan ?? layoutPlan(heroId, b).plan,
+        slotId,
+        fresh ? { item, lines: emptyLines() } : { item },
+      )
+      const sockets = fresh ? cleanSockets(heroId, { ...b.sockets, [slotId]: undefined }) : b.sockets
+      return fromPlan(heroId, { ...b, sockets }, cleanPlan(heroId, plan)!)
+    }),
   clearSlot: (heroId, slotId) =>
     updateBuild(heroId, (b) => {
       const plan = withPlanSlot(b.plan ?? layoutPlan(heroId, b).plan, slotId, { item: undefined, lines: emptyLines() })
@@ -1185,6 +1203,14 @@ export const PLAN_WRITER: GearWriter = {
       if (taken || (key !== null && !key.startsWith(`${WEAPON_TREE_ROWS[row].category}:`))) return plan
       return { ...plan, weaponTree: plan.weaponTree.map((k, i) => (i === row ? key : k)) }
     }),
+}
+
+/** Adds a talent to the build, or takes it out (edit mode). Ignored when it costs more points than are left. */
+export function toggleTalent(heroId: HeroId, id: string) {
+  updateBuild(heroId, (b) => ({
+    ...b,
+    talents: cleanTalents(heroId, b.talents.includes(id) ? b.talents.filter((t) => t !== id) : [...b.talents, id]),
+  }))
 }
 
 // ---- Sockets ----

@@ -63,21 +63,29 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   type. The catalog has every line, so there is no "other" entry; old saves keep theirs until replaced.
 - In the slot editor, ← → switch slot (after the third line the search closes, so they work straight away);
   Ctrl + ← → switch even while typing in the search.
-- One of the hero's other legendaries as a slot's item fills it with nothing to roll, and counts as complete. "No
-  lines? Mark as legendary" (small, under a piece's lines) does the same without picking an item; "It has lines
-  after all" undoes it.
+- One of the hero's other legendaries as a slot's item fills it with nothing to roll, and counts as complete. (Older
+  saves may have a piece marked as having no lines; "It has lines after all" undoes it.)
+- Changing a piece's item (Change, top of the slot editor) clears its lines and socket gem too, since a new piece comes
+  without them. A checkbox in the item list turns that off; the choice is remembered for every slot (in its own
+  localStorage key, not the save). Picking the same item again, or picking one for an empty slot, clears nothing.
+- Hovering an empty slot or socket only says it's empty and to click to pick; it never shows the build's item there.
 - Left side (armour) can roll anything; the right side (neck, wrists, rings, relics, weapon) only enchants and
   gems. A gem line only rerolls into another gem. Reroll suggestions follow those rules and prefer the right
-  side for enchants.
-- The checklist's legendary takes over its slot (a legendary has no lines); the slot is done once you have it.
-  Until then, "I have it" is the slot editor's main (focused) action, and the piece you wear there can still have
-  its item and lines entered; they count, but get no reroll tips.
+  side for enchants. Tooltips name what kind of line each target is ("↻ Enchant: Kindling").
+- In the slot editor, a line's "Reroll to …" is a button: once you've rerolled it in game, click it and confirm, and
+  the line switches to it.
+- The checklist's legendary takes over its slot (a legendary has no lines); the slot is done once you wear it (pick
+  it as the slot's item). Until then the piece you wear there can still have its item and lines entered.
+- A piece to replace (the legendary's slot included) still gets reroll tips, since getting the item can take a while.
+  They come after the pieces you keep have had their pick, so they get what's left (often "anything").
+- The checklist counts every copy: with three of something the build wants two, it reads 3/2 in red (still done,
+  faded and struck through), says which piece has the extra, and the extra line gets a reroll tip.
 - A build names an item for each slot (legendary, weapon, two relics, armour). An empty slot shows the build's item
   faded; wearing something else there frames the tile red ("✕ Build wants …"), and the checklist lists those slots
   at the top with a button to open each. Relics count in either relic slot.
 - The Gear tab under the doll sorts the pieces: Reroll (lines to change), Replace (not the build's item, with the
-  build's legendary as its own group: "Get legendary") and Complete (all lines right, or another legendary with no
-  lines). A piece to replace gets no reroll tips: its lines go with it.
+  build's legendary as its own group: "Get legendary", each with its reroll tips for meanwhile) and Complete (all lines
+  right, or another legendary with no lines).
 - Edit mode (Edit build in the checklist's menu) edits the build the way you enter gear: the paper doll shows the
   build's gear, and clicking a slot picks its item and lines, a socket its gem, a weapon tab its tree. Where a line
   sits doesn't matter, only how many: a build with Griffin's Might on the helm is met by Griffin's Might on the
@@ -87,8 +95,26 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   aspect, enchant, sigil, enchant, sigil) have tabs with every option tiered S–F by how many top players pick it. Weapon tree picks count
   toward the checklist like a gear line.
 - Builds name their talents, but talents aren't on the checklist and don't count toward it. The Talents tab under
-  the doll (Gear / Talents) is the in-game grid with the build's talents lit. It's read only: it shows what to take,
-  not what you have. Every talent is tiered by how many top players pick it.
+  the doll (Gear / Talents) is the in-game grid with the build's talents lit: it shows what to take, not what you
+  have. In edit mode a click adds or takes out a talent (one that costs more points than are left can't be added).
+  Every talent is tiered by how many top players pick it.
+- The Stats panel under the doll is the character sheet: item level (once every slot is filled), health, mana, armor
+  and physical damage reduction, stamina and the primary stat, each secondary's rating and percent, parry, dodge,
+  block, cooldown reduction and gem power. Edit mode shows the build's. Hover a stat for what makes it up. It adds up
+  (`src/utils/stats.ts`, hero bases in `src/data/heroStats.ts`):
+  - base 100 stamina and 100 primary stat, plus every item's stats at its item level and temper, enchant lines (gear
+    and weapon tree), necklace powers (The Oak's +25% armor, The Shadow's magic damage reduction), gem traits the gem
+    power unlocks ("+N Stat", "+N%"; a higher rank replaces the lower), and a legendary's +10% primary stat and health.
+    Percent bonuses multiply.
+  - health = (hero base + stamina × hero multiplier) × 1.1 with a legendary; armor reduction = armor / (armor + 1024).
+  - secondaries: 0.16% per rating, with diminishing returns per bracket of the converted percent (10 / 15 / 20 / 25%
+    cost 1 / 0.98 / 0.96 / 0.94, beyond that 0.92, compounding); then flat percents (Critical Strike's 5% base, gem
+    traits) are added.
+  - a generic legendary's armor is scaled to the hero's armor type (plate, mail, leather, cloth weights from the game).
+
+  Checked against top players' character sheets on fellows.gg (Xavian and Helena match exactly). Talents and buffs
+  aren't counted, and there's no power score. Sources: the game's data and combat notes in Seriousnes/FellowshipAnalyzer
+  (`CombatMechanics.md`), solxnx.github.io, and fellowbis.com's stats guide (season 2).
 - Items at item level 315 are Regal (red) and can be tempered 0–8 times (the Tempered select under the item, 8/8 by
   default). Each step adds 1 to every stat but armor, and 2 Stamina; armor doesn't change.
 - Armor has a name, icon and armor value per armor type: Helena and Xavian see plate ("Blackguard Shoulderplates"),

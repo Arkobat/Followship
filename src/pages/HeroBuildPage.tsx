@@ -9,6 +9,7 @@ import { GemTree } from '../components/planner/GemTree'
 import { GearStatusBoard } from '../components/planner/GearStatusBoard'
 import { PaperDoll } from '../components/planner/PaperDoll'
 import { SlotEditor } from '../components/planner/SlotEditor'
+import { StatsPanel } from '../components/planner/StatsPanel'
 import { TalentGrid } from '../components/planner/TalentGrid'
 import type { SlotId } from '../data/gearSlots'
 import { getHero } from '../data/heroes'
@@ -197,7 +198,8 @@ export function HeroBuildPage() {
             {editing && (
               <p className={styles.editBanner}>
                 <strong>Editing the build’s gear.</strong> Click a slot to pick its item and lines, a socket for its
-                gem, the weapon’s tabs for its tree. Lines can go on any piece: only how many count.
+                gem, the weapon’s tabs for its tree, and the Talents tab for its talents. Lines can go on any piece:
+                only how many count.
               </p>
             )}
             <div id="build-view" role="tabpanel" aria-labelledby={`view-${view}`}>
@@ -212,7 +214,7 @@ export function HeroBuildPage() {
                   />
                 </GearWriterContext.Provider>
               ) : view === 'talents' ? (
-                <TalentGrid heroId={hero.id} build={build} />
+                <TalentGrid heroId={hero.id} build={build} editing={editing} />
               ) : view === 'gems' ? (
                 <GemTree heroId={hero.id} build={build} />
               ) : (
@@ -239,6 +241,7 @@ export function HeroBuildPage() {
             {view === 'gear' && build.active && !editing && (
               <GearStatusBoard heroId={hero.id} build={build} analysis={analysis} onSelectSlot={setEditingSlot} />
             )}
+            {view === 'gear' && <StatsPanel heroId={hero.id} build={shown} editing={editing} />}
           </section>
 
           <aside className={styles.side}>

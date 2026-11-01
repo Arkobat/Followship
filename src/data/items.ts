@@ -102,6 +102,52 @@ const ITEM_SLOT: Record<SlotId, ItemSlot> = {
 const BY_ID = new Map(ITEMS_DATA.map((i) => [i.id, i]))
 const cache = new Map<HeroId, Item[]>()
 
+type ArmorType = 'Plate' | 'Mail' | 'Leather' | 'Cloth'
+const ARMOR_TYPE: Record<HeroId, ArmorType> = {
+  helena: 'Plate',
+  xavian: 'Plate',
+  elarion: 'Mail',
+  tariq: 'Mail',
+  vigour: 'Mail',
+  gunde: 'Leather',
+  mara: 'Leather',
+  meiko: 'Leather',
+  sylvie: 'Leather',
+  ardeos: 'Cloth',
+  aeona: 'Cloth',
+  rime: 'Cloth',
+}
+/** The game's item armor (its stat settings): slot weight × (type weight × the level's pool + the type's flat armor). */
+const ARMOR_WEIGHTS: Record<ArmorType, { weight: number; flat: number }> = {
+  Plate: { weight: 2.8, flat: 200 },
+  Mail: { weight: 1.65, flat: 105 },
+  Leather: { weight: 1.6, flat: 96 },
+  Cloth: { weight: 1.41, flat: 90 },
+}
+const SLOT_ARMOR_WEIGHT: Partial<Record<ItemSlot, number>> = { head: 0.155, chest: 0.18, legs: 0.165 }
+/** The armor pool at item level 360, fit to worn legendaries (Helena's helm 188, Xavian's chest 218: all match). */
+const LEGENDARY_ARMOR_POOL = 361.7
+const LEGENDARY_ARMOR_LEVEL = 360
+
+/**
+ * A legendary's stats with the hero's armor: fellows.gg lists each generic legendary with one armor type's armor;
+ * it's scaled to the hero's at every level.
+ */
+function withHeroArmor(heroId: HeroId, slot: ItemSlot, base: Item | undefined): Pick<Item, 'stats' | 'statsByLevel'> {
+  const stats = base?.stats ?? {}
+  const generic = base?.statsByLevel?.[LEGENDARY_ARMOR_LEVEL]?.armor ?? stats.armor
+  const slotWeight = SLOT_ARMOR_WEIGHT[slot]
+  if (!base || !generic || !slotWeight) return { stats, statsByLevel: base?.statsByLevel }
+  const { weight, flat } = ARMOR_WEIGHTS[ARMOR_TYPE[heroId]]
+  const factor = (slotWeight * (weight * LEGENDARY_ARMOR_POOL + flat)) / generic
+  const scale = (s: Stats): Stats => (s.armor === undefined ? s : { ...s, armor: Math.round(s.armor * factor) })
+  return {
+    stats: scale(stats),
+    statsByLevel:
+      base.statsByLevel && Object.fromEntries(Object.entries(base.statsByLevel).map(([level, s]) => [level, scale(s)])),
+  }
+}
+
 /**
  * Everything the hero can wear. fellows.gg lists one generic legendary per slot, under the ids the heroes' own
  * legendaries share: those take the hero's name, icon and power, with the generic one's stats.
@@ -120,8 +166,7 @@ function heroItems(heroId: HeroId): Item[] {
       icon: l.icon,
       heroes: [heroId],
       itemLevel: base?.itemLevel ?? 0,
-      stats: base?.stats ?? {},
-      statsByLevel: base?.statsByLevel,
+      ...withHeroArmor(heroId, l.slot as ItemSlot, base),
       trait: l.power ? { name: l.power } : undefined,
       legendaryStats: base?.legendaryStats,
       dropsIn: base?.dropsIn,
@@ -147,8 +192,13 @@ function heroItems(heroId: HeroId): Item[] {
 function asWornBy(item: Item, heroId: HeroId): Item {
   const own = item.variants?.find((v) => v.heroes.includes(heroId))
   if (!own) return item
-  const armor = <T extends Stats | undefined>(s: T): T =>
-    (s && own.armor !== undefined && s.armor !== undefined ? { ...s, armor: own.armor } : s) as T
+  // A variant without armor has none (only Helena's take on a weapon is a shield).
+  const armor = <T extends Stats | undefined>(s: T): T => {
+    if (!s || s.armor === undefined) return s
+    if (own.armor !== undefined) return { ...s, armor: own.armor } as T
+    const { armor: _, ...rest } = s
+    return rest as T
+  }
   return {
     ...item,
     name: own.name,

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { getEntry, nameFor } from '../../data/catalog'
+import { CATEGORY_BY_ID, getEntry, nameFor, type CategoryId } from '../../data/catalog'
 import { LEFT_SLOTS, RIGHT_SLOTS, SLOT_BY_ID, type SlotId } from '../../data/gearSlots'
 import type { Hero } from '../../data/heroes'
 import { gemId, getSocketGem } from '../../data/gems'
@@ -9,7 +9,7 @@ import type { HeroBuild } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
 import type { BuildAnalysis } from '../../utils/progress'
 import { entryTip, itemTip } from '../tooltip/tipContent'
-import { OptionTip, PicksTip, SocketGemTip, Status } from '../tooltip/tips'
+import { EmptyTip, OptionTip, PicksTip, SocketGemTip, Status } from '../tooltip/tips'
 import { GearSlotTile, type ItemArt, type SocketView, type TabPick, type TileTips } from './GearSlotTile'
 import { LoadoutPicker } from './LoadoutPicker'
 import { QuickLinePicker } from './QuickLinePicker'
@@ -67,13 +67,14 @@ function itemFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
 const wrongItemFor = (hero: Hero, analysis: BuildAnalysis, slotId: SlotId) =>
   analysis.items.wrong.includes(slotId) ? getItem(hero.id, analysis.items.wanted[slotId]) : undefined
 
-/** Tooltips for a tile: the item (or the build's, until you have it), each line, the socket and the tabs. */
+/** "Enchant", "Defensive trait": what kind of line a reroll target is. */
+const kindOf = (category: CategoryId) => CATEGORY_BY_ID[category].singular.replace(/^\w/, (c) => c.toUpperCase())
+
+/** Tooltips for a tile: the item you wear (nothing more when it's empty), each line, the socket and the tabs. */
 function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: SlotId): TileTips {
   const info = analysis.slots[slotId]
   const progress = build.slots[slotId]
   const options = loadoutFor(hero.id)
-  const legendary = info.legendary && !info.legendary.equipped ? info.legendary.entry : undefined
-  const buildsItem = legendary?.id ?? analysis.items.wanted[slotId]
   const wrong = wrongItemFor(hero, analysis, slotId)
   const tile = progress?.item
     ? itemTip(hero.id, progress.item, {
@@ -83,17 +84,12 @@ function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
           !l.suggestion
             ? undefined
             : l.suggestion === 'anything'
-              ? 'anything'
-              : nameFor(hero.id, l.suggestion.category, l.suggestion.entryId, l.suggestion.name),
+              ? 'anything you need'
+              : `${kindOf(l.suggestion.category)}: ${nameFor(hero.id, l.suggestion.category, l.suggestion.entryId, l.suggestion.name)}`,
         ),
         note: wrong && <Status tone="bad">Not your build’s: it wants {wrong.name} here</Status>,
       })
-    : buildsItem
-      ? itemTip(hero.id, buildsItem, {
-          slotId,
-          note: <Status>Your build’s {legendary ? 'legendary' : 'item'} for this slot: you don’t have it yet</Status>,
-        })
-      : null
+    : () => <EmptyTip title={SLOT_BY_ID[slotId].label} text="Nothing entered yet. Click to pick the item." />
 
   const lines = info.lines.map((l) => {
     if (!l.line) return null
@@ -106,7 +102,12 @@ function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
         {l.state === 'surplus' && <Status>You already have enough of these</Status>}
         {l.state === 'unneeded' && <Status tone="bad">Not on your checklist</Status>}
         {l.suggestion && (
-          <Status>↻ Reroll to {l.suggestion === 'anything' ? 'anything you need' : l.suggestion.name}</Status>
+          <Status>
+            ↻ Reroll to{' '}
+            {l.suggestion === 'anything'
+              ? 'anything you need'
+              : `${kindOf(l.suggestion.category).toLowerCase()} ${l.suggestion.name}`}
+          </Status>
         )}
       </>,
     )
@@ -116,12 +117,10 @@ function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
   if (isSocketSlot(slotId)) {
     const have = getSocketGem(build.loadout.sockets[slotId])
     const target = getSocketGem(build.sockets[slotId])
-    const shown = have ?? target
-    const rated = shown && options.sockets[socketKind(slotId)].find((o) => o.id === gemId('flawless', shown.colour))
-    if (shown)
-      socket = () => (
-        <SocketGemTip gem={shown} rated={rated} have={!!have} target={target} socket={SLOT_BY_ID[slotId].label} />
-      )
+    const rated = have && options.sockets[socketKind(slotId)].find((o) => o.id === gemId('flawless', have.colour))
+    socket = have
+      ? () => <SocketGemTip gem={have} rated={rated} have target={target} socket={SLOT_BY_ID[slotId].label} />
+      : () => <EmptyTip title={`${SLOT_BY_ID[slotId].label} socket`} text="Empty. Click to pick the gem in it." />
   }
 
   let tabs: TileTips['tabs'] = null

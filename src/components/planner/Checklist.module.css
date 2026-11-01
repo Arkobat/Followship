@@ -302,6 +302,19 @@
   color: #6fd37a;
 }
 
+/* Done with too many (3/2): still done, but the count says so in red. */
+.row[data-over] {
+  opacity: 0.75;
+}
+
+.row[data-over] .rowName {
+  text-decoration-color: rgb(229 98 90 / 75%);
+}
+
+.row[data-over] .count {
+  color: #ff6b62;
+}
+
 .checklist[data-editing] .row[data-done] {
   opacity: 1;
 }

@@ -74,25 +74,25 @@ export function GearStatusBoard({ heroId, build, analysis, onSelectSlot }: Props
   )
 }
 
-/** What to do: "2. Other enchant → Ogre's Might" for each wrong line, or the item to get instead. */
+/**
+ * What to do: "2. Other enchant → Ogre's Might" for each wrong line, after the item to get instead (meanwhile, the
+ * piece you wear can still be rerolled).
+ */
 function Fixes({ heroId, build, analysis, info }: Omit<Props, 'onSelectSlot'> & { info: SlotInfo }) {
-  if (info.status === 'legendary' || info.status === 'replace') {
-    const worn = getItem(heroId, build.slots[info.slot.id]?.item)
-    const to = info.legendary?.entry.name ?? getItem(heroId, analysis.items.wanted[info.slot.id])?.name
-    return (
-      <ul className={styles.fixes}>
+  const replace = info.status === 'legendary' || info.status === 'replace'
+  const worn = getItem(heroId, build.slots[info.slot.id]?.item)
+  const to = info.legendary?.entry.name ?? getItem(heroId, analysis.items.wanted[info.slot.id])?.name
+  const wrong = info.lines.filter((l) => l.suggestion)
+  if (!replace && wrong.length === 0) return null
+  return (
+    <ul className={styles.fixes}>
+      {replace && (
         <li>
           {worn && <span className={styles.from}>{worn.name}</span>}
           {' → '}
           <span className={styles.to}>{to}</span>
         </li>
-      </ul>
-    )
-  }
-  const wrong = info.lines.filter((l) => l.suggestion)
-  if (info.status !== 'reroll' || wrong.length === 0) return null
-  return (
-    <ul className={styles.fixes}>
+      )}
       {wrong.map((l) => (
         <li key={l.index}>
           <span className={styles.from}>

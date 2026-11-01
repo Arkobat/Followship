@@ -236,7 +236,7 @@ export function GearSlotTile({
             </span>
           )}
           {wrongItem && <span className={styles.wrongItem}>✕ Build wants {wrongItem}</span>}
-          {status === 'reroll' && rerollTargets.length > 0 && (
+          {rerollTargets.length > 0 && (
             <span className={styles.reroll}>↻ {rerollTargets.map((t) => t.name).join(', ')}</span>
           )}
           {progress?.note && <span className={styles.note}>{progress.note}</span>}

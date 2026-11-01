@@ -10,10 +10,11 @@ import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
  *  - each line either fills a checklist goal ("good") or doesn't (wrong / surplus copy),
  *  - a piece's x/3 is its number of good lines,
  *  - wrong lines get a reroll suggestion that respects what can roll where,
- *  - a piece that isn't the build's item is to be replaced: its lines count, but get no reroll tips.
+ *  - a piece that isn't the build's item is to be replaced: its lines count, and get reroll tips too (getting the
+ *    item can take a while), after the pieces you keep have had their pick.
  * A trait picked on the weapon tree counts like a line, before gear does.
  * The checklist's legendary takes over its slot: it's done once the legendary is equipped. Until then the
- * piece you wear there can have lines: they count, but get no reroll tips (it's being replaced). Any other
+ * piece you wear there can have lines: they count, and get reroll tips last (it's being replaced). Any other
  * slot can hold another legendary (picked as its item, or marked as having no lines): filled, nothing to rate. Without a build there's nothing to rate lines against: they're "unrated".
  */
 
@@ -74,6 +75,8 @@ export interface GoalInfo {
   have: number
   /** Slots holding a good copy (repeats for doubles). */
   on: SlotId[]
+  /** Slots holding a copy beyond the target: too many (`have` stops at the target). */
+  extra: SlotId[]
   /** Picked on the weapon tree, which counts as one copy. */
   weaponPick: boolean
   /** Slots where a reroll is suggested for this goal. */
@@ -120,7 +123,10 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   const rated = build.active !== null
   const goalByKey = new Map(build.goals.map((g) => [keyOf(g), g]))
   const goals = new Map<string, GoalInfo>(
-    build.goals.map((g) => [g.id, { goal: g, have: 0, on: [], weaponPick: false, planned: [], unplaced: 0 }]),
+    build.goals.map((g) => [
+      g.id,
+      { goal: g, have: 0, on: [], extra: [], weaponPick: false, planned: [], unplaced: 0 },
+    ]),
   )
   // Weapon tree picks are fixed choices, so they claim their copy before gear lines.
   for (const key of build.loadout.weaponTree) {
@@ -172,7 +178,10 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
       const goal = goalByKey.get(keyOf(line))
       if (!goal) return { index, line, state: 'unneeded' }
       const info = goals.get(goal.id)!
-      if (info.have >= goal.target) return { index, line, goal, state: 'surplus' }
+      if (info.have >= goal.target) {
+        info.extra.push(slot.id)
+        return { index, line, goal, state: 'surplus' }
+      }
       info.have++
       info.on.push(slot.id)
       return { index, line, goal, state: 'good' }
@@ -197,10 +206,10 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     slots[slot.id] = { slot, lines: infos, correct, status }
   }
 
-  // 2. Suggest rerolls for wrong lines, cheapest pieces (fewest lines off) first. Pieces being replaced get none.
+  // 2. Suggest rerolls for wrong lines, cheapest pieces (fewest lines off) first. Pieces being replaced (the
+  //    legendary's slot included) come after the ones you keep: you may wear them a while yet.
   const remaining = new Map(build.goals.map((g) => [g.id, g.target - goals.get(g.id)!.have]))
   const wrong = GEAR_SLOTS.map((s) => slots[s.id])
-    .filter((s) => !s.legendary && s.status !== 'replace')
     .sort((a, b) => STATUS_PRIORITY[a.status] - STATUS_PRIORITY[b.status] || b.correct - a.correct)
     .flatMap((s) =>
       s.lines

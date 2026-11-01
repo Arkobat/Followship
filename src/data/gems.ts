@@ -8,6 +8,16 @@ export type GemColour = 'ruby' | 'amethyst' | 'topaz' | 'emerald' | 'sapphire' |
 /** In-game row order. */
 export const GEM_COLOURS: GemColour[] = ['ruby', 'amethyst', 'topaz', 'emerald', 'sapphire', 'diamond']
 
+/** Each colour's hue in the gems window. */
+export const GEM_HUES: Record<GemColour, string> = {
+  ruby: '#e0336a',
+  amethyst: '#a46cf0',
+  topaz: '#e8c33c',
+  emerald: '#33c46a',
+  sapphire: '#3a8cf5',
+  diamond: '#e6e9ef',
+}
+
 export const GEM_SIZES = [
   { id: 'small', name: 'Small', power: 150 },
   { id: 'large', name: 'Large', power: 250 },

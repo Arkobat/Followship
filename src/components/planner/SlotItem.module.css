@@ -222,6 +222,32 @@
   min-height: 32px;
 }
 
+/* "Clear its lines when I change it": remembered for every slot. */
+.fresh {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.fresh input {
+  flex: none;
+  margin: 2px 0 0;
+  accent-color: var(--gold-bright);
+}
+
+.fresh span {
+  display: grid;
+  gap: 1px;
+}
+
+.fresh small {
+  font-size: 0.74rem;
+  color: var(--text-faint);
+}
+
 .option {
   min-height: 34px;
 }

@@ -392,6 +392,51 @@ export function GemTraitTip({
   )
 }
 
+/** An empty slot or socket: nothing to show but how to fill it. */
+export function EmptyTip({ title, text }: { title: string; text: string }) {
+  return (
+    <Card kind="entry" title={title}>
+      <Section>
+        <Text>{text}</Text>
+      </Section>
+    </Card>
+  )
+}
+
+/** A stat on the character sheet, like the game's: its value, what makes it up, and what it does. */
+export function StatTip({
+  name,
+  value,
+  rows,
+  description,
+}: {
+  name: string
+  value: ReactNode
+  /** Label, amount; `good` for bonuses (green, like the game's "Bonus"). */
+  rows?: { label: ReactNode; value: ReactNode; good?: boolean }[]
+  description?: string
+}) {
+  return (
+    <Card kind="entry" title={name} kicker={value}>
+      {rows && rows.length > 0 && (
+        <Section>
+          {rows.map((r, i) => (
+            <div key={i} className={styles.row}>
+              <span className={r.good ? styles.good : undefined}>{r.label}</span>
+              <b className={r.good ? styles.good : undefined}>{r.value}</b>
+            </div>
+          ))}
+        </Section>
+      )}
+      {description && (
+        <Section>
+          <Text>{description}</Text>
+        </Section>
+      )}
+    </Card>
+  )
+}
+
 /** Several picks in one card (necklace powers, the weapon tree): each with what it does. */
 export function PicksTip({
   title,

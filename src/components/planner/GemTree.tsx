@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { GEM_COLOURS, gemColourName, gemId, getSocketGem, type GemColour } from '../../data/gems'
+import { GEM_COLOURS, GEM_HUES, gemColourName, gemId, getSocketGem } from '../../data/gems'
 import { GEM_LINE_POWER, GEM_POWER_BONUS, GEM_THRESHOLDS, gemPowerOf, traitsOf } from '../../data/gemPower'
 import type { HeroId } from '../../data/heroes'
 import type { HeroBuild } from '../../state/buildStore'
@@ -13,15 +13,6 @@ interface Props {
 }
 
 /** Colours as the game draws them. */
-const GEM_HUES: Record<GemColour, string> = {
-  ruby: '#e0336a',
-  amethyst: '#a46cf0',
-  topaz: '#e8c33c',
-  emerald: '#33c46a',
-  sapphire: '#3a8cf5',
-  diamond: '#e6e9ef',
-}
-
 /**
  * The gems window, read only: a column per colour, its ten traits from the bottom up. Traits your gem power unlocks
  * are lit; the ones the build reaches have a gold frame. Power comes from gem lines and socket gems (edited on the

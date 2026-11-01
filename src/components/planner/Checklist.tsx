@@ -298,25 +298,35 @@ interface RowProps {
 }
 
 function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
-  const { goal, have, on, weaponPick, planned, unplaced } = info
+  const { goal, have, on, extra, weaponPick, planned, unplaced } = info
   // Edit mode lists the build's own lines: nothing to tick off.
   const done = !editing && isGoalDone(info)
+  // Done, with copies to spare: those lines can be rerolled into something else.
+  const over = !editing && extra.length > 0
+  const count = have + extra.length
 
   return (
     <Tip
       content={() => (
         <EntryTip heroId={heroId} category={goal.category} entryId={goal.entryId} name={goal.name}>
           <Status tone={done ? 'good' : undefined}>
-            {editing ? `The build has ${have}` : `You have ${have} of ${goal.target}`}
+            {editing ? `The build has ${have}` : `You have ${count} of ${goal.target}`}
             {on.length > 0 ? `: ${summarizeSlots(on, SLOT_BY_ID)}` : ''}
             {weaponPick ? `${on.length > 0 ? ',' : ':'} weapon tree` : ''}
           </Status>
+          {over && (
+            <Status tone="bad">
+              {extra.length} too many ({summarizeSlots(extra, SLOT_BY_ID)}): reroll {extra.length > 1 ? 'them' : 'it'}{' '}
+              into something you need
+            </Status>
+          )}
         </EntryTip>
       )}
     >
       <li
         className={styles.row}
         data-done={done || undefined}
+        data-over={over || undefined}
         onMouseEnter={() => onHighlight(goal.id)}
         onMouseLeave={() => onHighlight(null)}
       >
@@ -328,6 +338,11 @@ function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
               .filter(Boolean)
               .join(' · ') || 'None yet'}
           </span>
+          {over && (
+            <span className={styles.rowUnplaced}>
+              {extra.length} too many: {summarizeSlots(extra, SLOT_BY_ID)}
+            </span>
+          )}
           {!done && planned.length > 0 && (
             <span className={styles.rowPlanned}>↻ Reroll {summarizeSlots(planned, SLOT_BY_ID)}</span>
           )}
@@ -347,7 +362,7 @@ function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
                 <path d="M2.5 6.2 5 8.6l4.6-5" />
               </svg>
             )}
-            {have}/{goal.target}
+            {count}/{goal.target}
           </span>
         )}
       </li>
