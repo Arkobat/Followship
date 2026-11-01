@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
-import { CATEGORY_BY_ID } from '../../data/catalog'
+import { CATEGORY_BY_ID, getEntry } from '../../data/catalog'
 import type { SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
 import {
@@ -11,8 +11,13 @@ import {
   weaponTraitKey,
   weaponTraitsFor,
   type TieredOption,
+  type WeaponTraitOption,
 } from '../../data/loadout'
-import { setCharm, setWeaponTreeRow, toggleNeckPower, type HeroBuild } from '../../state/buildStore'
+import { setCharm, toggleNeckPower, type HeroBuild } from '../../state/buildStore'
+import { useGearWriter } from '../../state/gearWriter'
+import { Tip } from '../tooltip/Tooltip'
+import { entryTip } from '../tooltip/tipContent'
+import { OptionTip, Status } from '../tooltip/tips'
 import { EntryIcon } from './EntryIcon'
 import styles from './LoadoutTabs.module.css'
 
@@ -32,6 +37,7 @@ export function LoadoutTabs({ heroId, build, slotId }: Props) {
       <Section title="Necklace powers" picked={picks.neck.length} limit={PICK_LIMITS.neck}>
         <TierList
           options={options.neck}
+          kind="Necklace power"
           selected={(id) => picks.neck.includes(id)}
           canSelect={() => picks.neck.length < PICK_LIMITS.neck}
           onToggle={(id) => toggleNeckPower(heroId, id)}
@@ -47,6 +53,7 @@ export function LoadoutTabs({ heroId, build, slotId }: Props) {
       <Section title="Charm" picked={current ? 1 : 0} limit={PICK_LIMITS.charm}>
         <TierList
           options={options.charms}
+          kind="Charm"
           selected={(id) => id === current}
           // Picking another charm swaps it in; the one in your other relic slot is taken.
           canSelect={(id) => id !== other}
@@ -71,6 +78,7 @@ const TOP_DOWN = WEAPON_TREE_ROWS.map((_, i) => i).reverse()
  * start there and work down, picking what you took in each row from every option it can have.
  */
 function WeaponTreeTab({ heroId, build }: { heroId: HeroId; build: HeroBuild }) {
+  const { setWeaponTreeRow } = useGearWriter()
   const options = loadoutFor(heroId)
   const traits = weaponTraitsFor(heroId)
   const tree = build.loadout.weaponTree
@@ -114,39 +122,48 @@ function WeaponTreeTab({ heroId, build }: { heroId: HeroId; build: HeroBuild }) 
               data-open={isOpen || undefined}
               style={{ '--accent': category.color } as CSSProperties}
             >
-              <button
-                type="button"
-                className={styles.stepHead}
-                aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? null : i)}
+              <Tip
+                content={
+                  option
+                    ? entryTip(heroId, { category: option.category, entryId: option.entryId, name: option.name })
+                    : null
+                }
               >
-                <span className={styles.hexFrame}>
-                  <span className={styles.hex}>
-                    {option && (
-                      <EntryIcon
-                        goal={{ category: option.category, entryId: option.entryId, name: option.name }}
-                        size={26}
-                      />
-                    )}
+                <button
+                  type="button"
+                  className={styles.stepHead}
+                  aria-expanded={isOpen}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                >
+                  <span className={styles.hexFrame}>
+                    <span className={styles.hex}>
+                      {option && (
+                        <EntryIcon
+                          goal={{ category: option.category, entryId: option.entryId, name: option.name }}
+                          size={26}
+                        />
+                      )}
+                    </span>
                   </span>
-                </span>
-                <span className={styles.stepText}>
-                  <small>
-                    Row {i + 1} · {category.singular}
-                  </small>
-                  <strong>
-                    {option?.name ?? `Choose ${/^[aeiou]/i.test(category.singular) ? 'an' : 'a'} ${category.singular}`}
-                  </strong>
-                </span>
-                {tier && (
-                  <span className={styles.stepTier} style={{ '--tier-color': tier.color } as CSSProperties}>
-                    {tier.id}
+                  <span className={styles.stepText}>
+                    <small>
+                      Row {i + 1} · {category.singular}
+                    </small>
+                    <strong>
+                      {option?.name ??
+                        `Choose ${/^[aeiou]/i.test(category.singular) ? 'an' : 'a'} ${category.singular}`}
+                    </strong>
                   </span>
-                )}
-                <svg className={styles.chevron} viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M4 6l4 4 4-4" />
-                </svg>
-              </button>
+                  {tier && (
+                    <span className={styles.stepTier} style={{ '--tier-color': tier.color } as CSSProperties}>
+                      {tier.id}
+                    </span>
+                  )}
+                  <svg className={styles.chevron} viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" />
+                  </svg>
+                </button>
+              </Tip>
               {isOpen && (
                 <div className={styles.stepBody}>
                   <TierList
@@ -230,13 +247,15 @@ interface TierListProps {
   marked?: (id: string) => boolean
   icon?: (option: TieredOption) => ReactNode
   accent?: string
+  /** What the options are, for their tooltips ("Necklace power"); weapon traits use their category. */
+  kind?: string
 }
 
 const NO_DATA = "Not on fellows.gg top players' weapon trees yet, so no tier"
 const NO_DATA_TIER = { id: '?', color: '#5b6573' }
 const isUnrated = (o: TieredOption) => 'unrated' in o && !!o.unrated
 
-function TierList({ options, selected, canSelect, onToggle, disabledHint, marked, icon, accent }: TierListProps) {
+function TierList({ options, selected, canSelect, onToggle, disabledHint, marked, icon, accent, kind }: TierListProps) {
   if (options.length === 0) return <p className={styles.empty}>No fellows.gg data for this hero yet.</p>
 
   // The tiers, then a "?" row for options fellows.gg has no numbers for.
@@ -267,42 +286,56 @@ function TierList({ options, selected, canSelect, onToggle, disabledHint, marked
                 const pct = isUnrated(option)
                   ? 'no data yet'
                   : `${option.rateIsMax ? '≤ ' : ''}${Math.round(option.rate * 100)}%`
+                const trait = option as Partial<WeaponTraitOption>
+                const entry = trait.category && trait.entryId ? getEntry(trait.category, trait.entryId) : undefined
                 return (
-                  <li key={option.id}>
-                    <button
-                      type="button"
-                      className={styles.option}
-                      aria-pressed={isSelected}
-                      data-marked={isMarked || undefined}
-                      disabled={disabled}
-                      onClick={() => onToggle(option.id)}
-                      title={[
-                        option.description ??
-                          ('ability' in option && option.ability ? `Ability: ${option.ability}` : ''),
-                        isUnrated(option) ? NO_DATA : `Picked by ${pct} of top players`,
-                        isMarked ? 'On your checklist' : '',
-                        disabled
-                          ? typeof disabledHint === 'function'
-                            ? disabledHint(option.id)
-                            : (disabledHint ?? 'Limit reached: unpick one first')
-                          : '',
-                      ]
-                        .filter(Boolean)
-                        .join('\n')}
-                    >
-                      {icon ? (
-                        icon(option)
-                      ) : option.icon ? (
-                        <img src={option.icon} alt="" />
-                      ) : (
-                        <span className={styles.noIcon}>{option.name[0]}</span>
-                      )}
-                      <span className={styles.optionText}>
-                        <strong>{option.name}</strong>
-                        <small>{'ability' in option && option.ability ? `${option.ability} · ${pct}` : pct}</small>
-                      </span>
-                    </button>
-                  </li>
+                  // On the row, not the button: a disabled button gets no hover.
+                  <Tip
+                    key={option.id}
+                    content={() => (
+                      <OptionTip
+                        option={{
+                          ...option,
+                          icon: option.icon ?? entry?.icon,
+                          description: option.description ?? entry?.description,
+                        }}
+                        kind={kind ?? (entry ? CATEGORY_BY_ID[entry.category].singular : 'Option')}
+                      >
+                        {isSelected && <Status tone="good">You have it</Status>}
+                        {isMarked && <Status>On your checklist</Status>}
+                        {disabled && (
+                          <Status tone="bad">
+                            {typeof disabledHint === 'function'
+                              ? disabledHint(option.id)
+                              : (disabledHint ?? 'Limit reached: unpick one first')}
+                          </Status>
+                        )}
+                      </OptionTip>
+                    )}
+                  >
+                    <li>
+                      <button
+                        type="button"
+                        className={styles.option}
+                        aria-pressed={isSelected}
+                        data-marked={isMarked || undefined}
+                        disabled={disabled}
+                        onClick={() => onToggle(option.id)}
+                      >
+                        {icon ? (
+                          icon(option)
+                        ) : option.icon ? (
+                          <img src={option.icon} alt="" />
+                        ) : (
+                          <span className={styles.noIcon}>{option.name[0]}</span>
+                        )}
+                        <span className={styles.optionText}>
+                          <strong>{option.name}</strong>
+                          <small>{'ability' in option && option.ability ? `${option.ability} · ${pct}` : pct}</small>
+                        </span>
+                      </button>
+                    </li>
+                  </Tip>
                 )
               })}
             </ul>

@@ -1,0 +1,200 @@
+.gems {
+  padding: 22px 22px 18px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin-bottom: 14px;
+}
+
+.header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+
+/* Six framed columns, like the game's gems window. */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 4px 10px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgb(24 33 44 / 88%), rgb(11 16 22 / 92%));
+  box-shadow:
+    inset 0 0 0 1px rgb(201 163 92 / 30%),
+    inset 0 0 0 2px rgb(0 0 0 / 50%);
+}
+
+.nodes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The rail behind the traits. */
+.nodes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  translate: -1px 0;
+  background: rgb(169 184 200 / 14%);
+}
+
+.node {
+  position: relative;
+}
+
+/* Lit traits join up with a coloured rail, as in game. */
+.node[data-lit]::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 50%;
+  width: 4px;
+  translate: -2px 0;
+  background: var(--hue);
+  box-shadow: 0 0 6px var(--hue);
+}
+
+.node[data-lit]:first-child::before,
+.node:not([data-lit]) + .node[data-lit]::before {
+  top: 50%;
+}
+
+.trait {
+  position: relative;
+  display: block;
+  width: 38px;
+  height: 38px;
+  padding: 2px;
+  border-radius: 4px;
+  background: #0a0e13;
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 18%);
+  cursor: help;
+}
+
+.trait img {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  opacity: 0.22;
+  filter: grayscale(0.8);
+}
+
+.node[data-lit] .trait {
+  box-shadow:
+    inset 0 0 0 2px var(--hue),
+    0 0 10px color-mix(in srgb, var(--hue) 55%, transparent);
+}
+
+.node[data-lit] .trait img {
+  opacity: 1;
+  filter: none;
+}
+
+/* The build reaches it: the gold frame used for the build's picks elsewhere. Until you have it, it stays as grey as
+   the rest, so only lit traits show colour. */
+.node[data-wanted] .trait {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.trait:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.power {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 12px 0 6px;
+  line-height: 1.1;
+  cursor: help;
+}
+
+.power strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--hue);
+}
+
+.power small {
+  font-size: 0.74rem;
+  color: var(--gold-bright);
+}
+
+.gem {
+  width: 30px;
+  height: 30px;
+}
+
+.note {
+  margin: 14px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+.keyLit,
+.keyWanted {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 3px 0 2px;
+  vertical-align: -2px;
+  border-radius: 2px;
+}
+
+.keyLit {
+  box-shadow: inset 0 0 0 2px #33c46a;
+}
+
+.keyWanted {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 1px;
+}
+
+@media (max-width: 640px) {
+  .gems {
+    padding: 16px 12px;
+  }
+
+  .columns {
+    gap: 4px;
+  }
+
+  .trait {
+    width: 30px;
+    height: 30px;
+  }
+}

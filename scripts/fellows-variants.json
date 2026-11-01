@@ -1,0 +1,9301 @@
+{
+ "scrapedAt": "2026-11-01T17:29:05.888Z",
+ "variants": {
+  "166": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "167": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Icon_Gunde_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "169": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "170": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "171": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_Default_Chest_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "179": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "180": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Icon_Gunde_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "182": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "183": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_Default_Feet_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "240": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "241": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Icon_Gunde_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "243": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "244": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_Default_Hands_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "249": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "250": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Icon_Gunde_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "251": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "252": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "471": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "474": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "475": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_Default_Shoulders_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "635": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "636": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Icon_Gunde_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "638": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "639": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "640": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_Default_Waist_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2635": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Back_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2636": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Back_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2665": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2666": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2667": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2668": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2669": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2670": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2671": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2673": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2674": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2675": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2676": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2677": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2678": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2679": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2681": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2682": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2683": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2684": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2685": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2686": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2687": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2726": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2727": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Default2_Chest_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2728": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2729": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2730": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2731": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2732": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Default2_Feet_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2733": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2734": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2735": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2788": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2789": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2790": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2791": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2792": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2793": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2794": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2796": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2797": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2798": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2799": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2800": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2801": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2802": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2804": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "2805": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2806": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2807": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2808": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2809": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2810": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "2915": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Tex_bow_03_bg.jpg",
+     "Mara": "Tex_bow_03_bg.jpg",
+     "Meiko": "Tex_bow_03_bg.jpg"
+    }
+   }
+  ],
+  "2918": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Tex_staff_03_bg.jpg",
+     "Aeona": "Tex_staff_03_bg.jpg",
+     "Ardeos": "Tex_staff_03_bg.jpg",
+     "Sylvie": "Tex_staff_03_bg.jpg",
+     "Vigour": "Tex_staff_03_bg.jpg"
+    }
+   }
+  ],
+  "2921": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Tex_sv_11_bg.jpg",
+     "Xavian": "Tex_sv_11_bg.jpg",
+     "Gunde": "Tex_sv_11_bg.jpg",
+     "Tariq": "Tex_sv_11_bg.jpg"
+    }
+   }
+  ],
+  "2927": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Tex_kn_02_bg.jpg",
+     "Mara": "Tex_kn_02_bg.jpg",
+     "Meiko": "Tex_kn_02_bg.jpg"
+    }
+   }
+  ],
+  "2930": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Tex_st_11_bg.jpg",
+     "Aeona": "Tex_st_11_bg.jpg",
+     "Ardeos": "Tex_st_11_bg.jpg",
+     "Sylvie": "Tex_st_11_bg.jpg",
+     "Vigour": "Tex_st_11_bg.jpg"
+    }
+   }
+  ],
+  "2933": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Tex_axe_13_bg.jpg",
+     "Xavian": "Tex_axe_13_bg.jpg",
+     "Gunde": "Tex_axe_13_bg.jpg",
+     "Tariq": "Tex_axe_13_bg.jpg"
+    }
+   }
+  ],
+  "2939": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Elarion": "Tex_kn_02g.jpg",
+     "Mara": "Tex_kn_02g.jpg",
+     "Meiko": "Tex_kn_02g.jpg"
+    }
+   }
+  ],
+  "2942": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Tex_stf_01_bg.jpg",
+     "Aeona": "Tex_stf_01_bg.jpg",
+     "Ardeos": "Tex_stf_01_bg.jpg",
+     "Sylvie": "Tex_stf_01_bg.jpg",
+     "Vigour": "Tex_stf_01_bg.jpg"
+    }
+   }
+  ],
+  "2945": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Tex_sw_01_bg.jpg",
+     "Xavian": "Tex_sw_01_bg.jpg",
+     "Gunde": "Tex_sw_01_bg.jpg",
+     "Tariq": "Tex_sw_01_bg.jpg"
+    }
+   }
+  ],
+  "2973": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2974": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2975": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2976": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2977": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2978": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2979": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2981": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2982": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2983": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2984": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2985": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2986": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2987": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2989": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_Gem_61.jpg"
+    }
+   }
+  ],
+  "2990": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_armor_14_b.jpg"
+    }
+   }
+  ],
+  "2991": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_boots_1_b.jpg"
+    }
+   }
+  ],
+  "2992": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_gloves_38_b.jpg"
+    }
+   }
+  ],
+  "2993": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_helmet_05_b.jpg"
+    }
+   }
+  ],
+  "2994": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_pants_05_b.jpg"
+    }
+   }
+  ],
+  "2995": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Gunde": "Tex_shoulders_01_b.jpg"
+    }
+   }
+  ],
+  "3033": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3034": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Default2_Hands_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3035": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3036": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3037": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3038": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3039": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3040": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3093": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3094": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3095": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3096": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3097": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3098": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3099": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3101": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3102": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3103": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3104": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3105": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3106": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3107": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3109": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3110": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3111": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3112": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3113": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3114": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3115": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3242": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3243": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3244": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3245": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3246": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3247": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3248": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3250": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3251": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3252": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3253": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3254": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3255": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3256": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3258": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3259": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3260": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3261": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3262": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3263": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3264": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3329": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3330": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3331": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3332": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3333": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3334": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3335": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3337": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3338": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3339": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3340": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3341": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3342": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3343": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3345": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3346": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3347": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3348": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3349": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3350": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3351": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3441": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3442": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3443": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3444": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3445": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3446": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3447": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3449": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3450": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3451": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3452": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3453": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3454": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3455": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3457": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3458": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3459": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3460": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3461": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3462": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3463": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3590": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3591": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3592": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3593": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3594": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3595": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3596": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3598": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3599": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3600": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3601": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3602": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3603": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3604": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3606": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3607": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3608": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3609": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3610": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3611": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3612": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3650": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3651": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Default2_Shoulders_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3652": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3653": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3706": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3707": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3708": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3709": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3710": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3711": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3712": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3714": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3715": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3716": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3717": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3718": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3719": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3720": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3722": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3723": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3724": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3725": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3726": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3727": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3728": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3828": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Ardeos": "Icon_Firemage_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3829": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Tariq": "Icon_Ink_Default2_Waist_R1_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3830": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Sylvie": "Icon_Rime_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3831": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Vigour": "Icon_Vigor_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3832": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3885": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3886": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3887": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3888": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3889": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3890": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3891": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3893": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3894": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3895": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3896": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3897": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3898": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3899": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3901": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Legendary.jpg"
+    }
+   }
+  ],
+  "3902": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3903": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3904": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3905": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3906": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "3907": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4139": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Meiko": "Icon_Meiko_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4664": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4665": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Chest_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4666": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4667": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Feet_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4668": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4669": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Hands_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4670": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Head_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4671": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4672": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4673": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4674": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4675": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4676": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4677": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4679": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4680": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4681": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4682": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4683": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4684": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4685": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4687": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4688": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4689": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4690": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4691": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4692": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4693": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4709": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4710": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Shoulders_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4753": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4754": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4755": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4756": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4757": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4758": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4759": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4761": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4762": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4763": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4764": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4765": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4766": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4767": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4769": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4770": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4771": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4772": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4773": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4774": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4775": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4875": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Aeona": "Icon_Lisa_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "4876": [
+   {
+    "name": null,
+    "heroes": [],
+    "icons": {
+     "Xavian": "Icon_Sune_Default_Waist_R0_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "5798": [
+   {
+    "name": "Roiling Cloak",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5799": [
+   {
+    "name": "Pilgrim's Shroud",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5800": [
+   {
+    "name": "Windswept Cape",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5802": [
+   {
+    "name": "Hunting Furs",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5803": [
+   {
+    "name": "Bleeding Cloak",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5804": [
+   {
+    "name": "Webwoven Mantle",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5806": [
+   {
+    "name": "Regal Mantle",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5807": [
+   {
+    "name": "Weaver's Pride",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5808": [
+   {
+    "name": "Drakescale Cape",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5811": [
+   {
+    "name": "Overgrowth Cloak",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5812": [
+   {
+    "name": "Whispering Shroud",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5813": [
+   {
+    "name": "Starlit Drape",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Back_R2_T0_Heroic.jpg",
+     "Helena": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Sylvie": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Vigour": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Tariq": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Meiko": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Mara": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Rime": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Elarion": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Ardeos": "Icon_Cloak01_MF_Back_R2_T1_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Back_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Back_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5815": [
+   {
+    "name": "Battle Res",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5816": [
+   {
+    "name": "Chickenize",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5819": [
+   {
+    "name": "Dispell",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5820": [
+   {
+    "name": "Group Invisibility",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5821": [
+   {
+    "name": "Health Potion",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5822": [
+   {
+    "name": "Interrupt Healer",
+    "heroes": [
+     "Sylvie",
+     "Vigour",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5823": [
+   {
+    "name": "Mana Potion",
+    "heroes": [
+     "Sylvie",
+     "Vigour",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5824": [
+   {
+    "name": "Move Speed",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5825": [
+   {
+    "name": "Portal",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5827": [
+   {
+    "name": "Blooming Vestments",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Tectonic Plate",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Drakehunter's Scalemail",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Embalmer's Scapular",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5828": [
+   {
+    "name": "Frostbark Tunic",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Barnacled Brigandine",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Brightscale Byrnie",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hourglass Gown",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5829": [
+   {
+    "name": "Deathadder Jerkin",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Dwarven Plate",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Coinbanded Hauberk",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Regalia of Hubris",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5831": [
+   {
+    "name": "Trollhide Jerkin",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Cuirass of Wyrmfrost",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sandpest Harness",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gossamer Robes",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5833": [
+   {
+    "name": "Berserker's Straps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sunforged Plate",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hussar's Hauberk",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Spellwoven Robes",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5834": [
+   {
+    "name": "Slaughtervine Wraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lordly Chestplate",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wolfbane Chestguard",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Raiment of Devotion",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5835": [
+   {
+    "name": "Tribal Hauberk",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Venom Pitted Chestpiece",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Stormfury Harness",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Webbed Robe",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5836": [
+   {
+    "name": "Gem-Studded Harness",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Meteor Plate",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Claymail Hauberk",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chillweave Robes",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5840": [
+   {
+    "name": "Winged Jerkin",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gallant Cuirass",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bear Pelt Wraps",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mender's Doublet",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5842": [
+   {
+    "name": "Wrap of Insects",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chestplate of the Heartless",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mirrored Cuirass",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "The Emporer's Originals",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5843": [
+   {
+    "name": "Harness of the Raven",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Guardian's Bulwark",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chainmail of the Eclipse",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Academy Vestments",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5844": [
+   {
+    "name": "Reed Cuirass",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Crystal Hauberk",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Studded Sternum",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Snowmelt Robe",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5846": [
+   {
+    "name": "Bladed Boots",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Eldrin Spiked Treads",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Snowmelt Frostpads",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Slippers of Frost",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5847": [
+   {
+    "name": "White Fur Boots",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Executioner's Bloody Sabatons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sabatons of the Peaks",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Winterstride Bindings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5848": [
+   {
+    "name": "Spidertreads",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Cloven Sabatons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wildthorn Boots",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Moonlit Moccasins",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5849": [
+   {
+    "name": "Wavestalker's Boots",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "King's Path Warboots",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Goblinguard Boots",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Scorched Treads",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5850": [
+   {
+    "name": "Pawprint Sandals",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Cavalry Greaves",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Skystride Greaves",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Slippers of Falling Sand",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5851": [
+   {
+    "name": "Griffinhide Ridingboots",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Vanguard's March",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Eldrin Warboots",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Incantation Slippers",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5853": [
+   {
+    "name": "Wyrdleaf Footwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hammering Sabatons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Harbinger's Greaves",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Elemental Footwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5854": [
+   {
+    "name": "Monastic Sandals",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Foe Stompers",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Relentless Sabatons",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sandstride Bindings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5855": [
+   {
+    "name": "Destined Bindings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Defender's Stance",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Thundering Greaves",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Scholarly Moccasins",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5856": [
+   {
+    "name": "Bloodtrail Sollerets",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Trench Greaves",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Talons of Night",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Treads of Retreat",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5857": [
+   {
+    "name": "Mossgrip Bindings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ironwood Sabatons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Grounding Sabatons",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Elderbark Sandals",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5858": [
+   {
+    "name": "Treads of Silent Night",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Feet_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Feet_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Feet_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Battlefield Striders",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Feet_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gale Treads",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Feet_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Feet_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Feet_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Moonlace Slippers",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Feet_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Feet_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Feet_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5860": [
+   {
+    "name": "Grips of Bullybashing",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Tidal Gauntlets",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Grasps of Nightfall",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hands of Fate",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5862": [
+   {
+    "name": "Four-Finger Gloves",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Shieldbearer's Wargrips",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Drawstring Grips",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mothscale Fingerwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5864": [
+   {
+    "name": "Thieves' Pocket Pickers",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Righteous Fists",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Forsaken Handguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Flametouched Mitts",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5868": [
+   {
+    "name": "Bloodgutter Thumbguard",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lightbearer's Handguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bismuth Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lorekeeper's Bindings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5869": [
+   {
+    "name": "Barklaced Gloves",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gorestained Steelgloves",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Serrated Wargrips",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ebbing Palmwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5870": [
+   {
+    "name": "Bardic Grips",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Frostbite Handguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Burntsteel Wargrips",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Moonlace Palmwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5872": [
+   {
+    "name": "Coralwoven Grips",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Abyssal Grips",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Arachnid Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Vinewoven Gloves",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5873": [
+   {
+    "name": "Monestary Handwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Divine Fists",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Griffon's Talons",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Velvet Bindings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5874": [
+   {
+    "name": "Touch of the Wilds",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hands of the Fallen",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Crawling Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hands of the Mother",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5879": [
+   {
+    "name": "Coldhide Wraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ironsilk Battlegloves",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Starfall Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gloves of Elemental Binding",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5880": [
+   {
+    "name": "Centimane Gloves",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Tungsten Gauntlets",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Runic Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Erudite Gloves",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5881": [
+   {
+    "name": "Sharkhide Gloves",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Hands_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Hands_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Hands_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Oathkeeper's Gauntlets",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Hands_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Battlemaster's Gauntlets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Hands_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Hands_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Hands_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gloves of the Sage",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Hands_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Hands_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Hands_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5882": [
+   {
+    "name": "Nappa Skullcap",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bloodpolished Warhelm",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Riptide Coronet",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gossamer Headwrap",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5883": [
+   {
+    "name": "Briarhide Hood",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Dawnforged Greathelm",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Stormlinked Chainhood",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Headdress of the Nightshriek",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5885": [
+   {
+    "name": "Hood of Shadows",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Imperial Sallet",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ironwoven Faceguard",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bonebleached Headwrap",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5887": [
+   {
+    "name": "Boarhide Headguard",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Houndskull Bascinet",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Crown of Antlers",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Verdant Mask",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5888": [
+   {
+    "name": "Wildwarden Faceguard",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bastion Headguard",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chitinous Faceguard",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Illusionist's Veil",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5889": [
+   {
+    "name": "Elkfur Ushanka",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Oathsworn Visor",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Highwinter Helm",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Icicled Circlet",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5891": [
+   {
+    "name": "Hunter's Hood",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Circlet of Will",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Starstalker Chainhood",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Scholar's Cowl",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5892": [
+   {
+    "name": "Savage Headband",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Underworld Greathelm",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Silvercrowned Coif",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Moonthread Veil",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5893": [
+   {
+    "name": "Sandworn Mask",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Resolute Warcrown",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chainlink Crown",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Embroidered Hood",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5894": [
+   {
+    "name": "Mask of the Ranger",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bulwark Warhelm",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mountainlord Helm",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Invoker's Cap",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5896": [
+   {
+    "name": "Shadowstitched Hood",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lionsmane Helmet",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Drakescale Coif",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Runestitched Cowl",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5897": [
+   {
+    "name": "Prowler's Headdress",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Valiant Visor",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Gilded Coif",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Dreamer's Cowl",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5898": [
+   {
+    "name": "Northlander's Harness",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Warmaster Breastplate",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Daughter of the Forest Tunic",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Lightshaper Vestments",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Stormlord Harness",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Twinsoul Tunic",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Hungering Blade Hauberk",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Harbinger of Winter Furs",
+    "heroes": [
+     "Rime"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Skystrider Hauberk",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Pyromancer Robe",
+    "heroes": [
+     "Ardeos"
+    ],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Timeweaver Dress",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Light of Azamir Breastplate",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Chest_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "5899": [
+   {
+    "name": "Northlander's Helm",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Warmaster Helm",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Daughter of the Forest Helm",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Lightshaper Helm",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Stormlord Helm",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Twinsoul Helm",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Hungering Blade Helm",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Harbinger of Winter Helm",
+    "heroes": [
+     "Rime"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Skystrider Helm",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Pyromancer Helm",
+    "heroes": [
+     "Ardeos"
+    ],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Timeweaver Helm",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Helm of the First King",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Head_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "5900": [
+   {
+    "name": "Northlander's Wraps",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Warmaster Greaves",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Daughter of the Forest Leggings",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Lightshaper Leggings",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Stormlord Wraps",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Twinsoul Leggings",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Hungering Blade Leggings",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Harbinger of Winter Leggings",
+    "heroes": [
+     "Rime"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Skystrider Leggings",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Pyromancer Codpiece",
+    "heroes": [
+     "Ardeos"
+    ],
+    "icons": {
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Timeweaver Leggings",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   },
+   {
+    "name": "Light of Azamir Greaves",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Legendary.jpg"
+    }
+   }
+  ],
+  "5902": [
+   {
+    "name": "Bloodshard Talisman",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5903": [
+   {
+    "name": "Lifelight Anchor",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5904": [
+   {
+    "name": "Collar of Rage",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5905": [
+   {
+    "name": "Pendant of Lunar Blessing",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5906": [
+   {
+    "name": "Cord of Memories",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5907": [
+   {
+    "name": "Pendant of the Deep",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5908": [
+   {
+    "name": "Collar of Growth",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5909": [
+   {
+    "name": "String of Wyrmfrost",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5910": [
+   {
+    "name": "Rubilite Focus",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5911": [
+   {
+    "name": "Frost-Gripped Locket",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5912": [
+   {
+    "name": "Lariat of Sacrifice",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5913": [
+   {
+    "name": "Skittering Collar",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5914": [
+   {
+    "name": "Mark of the Siren",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5915": [
+   {
+    "name": "Collar of Untold Riches",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5916": [
+   {
+    "name": "Hellcollar",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5917": [
+   {
+    "name": "Neck_Spirit70_Haste30",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5919": [
+   {
+    "name": "Orb of Sanguine Restoration",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5921": [
+   {
+    "name": "Orb of Hidden Riches",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5924": [
+   {
+    "name": "Orb of Gathering Storms",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5925": [
+   {
+    "name": "Orb of Awakened Gaze",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5926": [
+   {
+    "name": "Orb of Inner Seas",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5930": [
+   {
+    "name": "Rubellite Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5931": [
+   {
+    "name": "Gilded Druidic Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5932": [
+   {
+    "name": "Beguiling Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5934": [
+   {
+    "name": "Fanged Loop",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5935": [
+   {
+    "name": "Burning Brass Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5936": [
+   {
+    "name": "Trolltooth Scrimshaw Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5937": [
+   {
+    "name": "Gemmed Band of Violet Fire",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5938": [
+   {
+    "name": "Ring of Elemental Corruption",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5939": [
+   {
+    "name": "Salted Patina Loop",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5941": [
+   {
+    "name": "Loop of Twisted Power",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5942": [
+   {
+    "name": "Branding Ring",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5943": [
+   {
+    "name": "Seal of Eldrin Swiftness",
+    "heroes": [
+     "Gunde",
+     "Helena",
+     "Sylvie",
+     "Vigour",
+     "Tariq",
+     "Meiko",
+     "Mara",
+     "Rime",
+     "Elarion",
+     "Ardeos",
+     "Aeona",
+     "Xavian"
+    ],
+    "icons": {}
+   }
+  ],
+  "5944": [
+   {
+    "name": "Pillaged Shouldercape",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mantle of the Martyr",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Echoing Spaulders",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Whisperwoven Shoulderwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5945": [
+   {
+    "name": "Night Patrol Shoulderpads",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Barnacled Mantle",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Coralgrown Epaulets",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Living Epaulets",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5946": [
+   {
+    "name": "Infested Leatherpads",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Monolithic Pauldrons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bogiron Shoulderlinks",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Spidersilk Epaulets",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5947": [
+   {
+    "name": "Ancient Shadowmantle",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Knightly Spaulders",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lamellar Mantle",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fluttering Shouldercloth",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5949": [
+   {
+    "name": "Dueling Spaulders",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Blackguard Shoulderplates",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mantle of Starlight",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Spellbinder's Mantle",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5950": [
+   {
+    "name": "Shifting Spaulders",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Demonforged Pauldrons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ironhide Shoulderguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Manawoven Shouldercloth",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5952": [
+   {
+    "name": "Toadskin Mantle",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Eldrin Shoulderplates",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Moonlight Mantle",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Dusklight Amice",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5953": [
+   {
+    "name": "Mantle of Vines",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Lamplight Shoulder Sconse",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Shoulderpads of Frenzy",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chattering Epaulets",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5954": [
+   {
+    "name": "Howler's Spaulders",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Deepstone Spaulders",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Singed Scalemantle",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Starlight Epaulets",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5956": [
+   {
+    "name": "Beastspeaker's Shoulderguards",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Honorbound Spaulders",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fused Shoulderlinks",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Vellumscrawled Amice",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5958": [
+   {
+    "name": "Mantle of Winds",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Blessed Pauldrons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wyrmscale Shoulderguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Runestitched Shoulderwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5959": [
+   {
+    "name": "Mercenary Mantle",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Shoulders_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Shoulders_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Shoulders_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Unyielding Pauldrons",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Shoulderguards of the Hunt",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Shoulders_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Shoulders_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Shoulders_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Mantle of Dreams",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Shoulders_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Shoulders_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Shoulders_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5960": [
+   {
+    "name": "Bullhide Pants",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Insignia Faulds",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bonebuckled Pants",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Unusual Leggings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5962": [
+   {
+    "name": "Brawler's Leggings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Paladin's Legguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Marching Legguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sarong of Eternity",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5964": [
+   {
+    "name": "Cannibal Legwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Legionnaire's Legguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Deathward Legwraps",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Intimidating Tights",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5967": [
+   {
+    "name": "Hardened Kelp Wrappings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Bloodstone Legplates",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Princely Breeches",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Hardened Bark Pants",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5968": [
+   {
+    "name": "Recruit's Tassets",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Justicar's Ancient Legplates",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Outrunner's Leggings",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Scribe's Leggings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5969": [
+   {
+    "name": "Trollhair Trousers",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Rubilite Legguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Djinnbound Waistwrap",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Cinch of the Bonecarver",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5970": [
+   {
+    "name": "Sailcloth Leggings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Legplates of Draconic Might",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Chained Legplates",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fancy Pantaloons",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5973": [
+   {
+    "name": "Soundless Legwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Warlord's Greatgirdle",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Silkpadded Chausses",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Primordial Britches",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5974": [
+   {
+    "name": "Raptorhide Waistwrap",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Earthquake Leggings",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fjordstrider Leggings",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Shaman's Waistwrap",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5976": [
+   {
+    "name": "Warmonger's Trousers",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Legguards of Uncut Stone",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Crescent Legguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Devilish Culottes",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5977": [
+   {
+    "name": "Poisoner's Waistwrap",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wyrmscale Legplates",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Pillars of the Hunt",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Flamelicked Coattails",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5978": [
+   {
+    "name": "Festeringhide Leggings",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Prog01_Waist_R2_T0_Heroic.jpg",
+     "Sylvie": "Icon_Mosse_PetalMetal_Waist_R2_T0_Heroic.jpg",
+     "Meiko": "Icon_Meiko_CmLeather_Waist_R2_T0_Heroic.jpg",
+     "Mara": "Icon_Mara_Shadowblade_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Prayer-etched Cuisses",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_FkPlate_Waist_R2_T0_Heroic.jpg",
+     "Xavian": "Icon_Sune_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Stormstruck Legplates",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigor_DrPlate_Waist_R2_T0_Heroic.jpg",
+     "Tariq": "Icon_Ink_Beastslayer_Waist_R2_T0_Heroic.jpg",
+     "Elarion": "Icon_Bowguy_AngelicHawk_Waist_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Elemental Hide Leggings",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_ArcticOwl_Waist_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Firemage_FmCloth_Waist_R2_T0_Heroic.jpg",
+     "Aeona": "Icon_Lisa_Prog01_Waist_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5980": [
+   {
+    "name": "Voidbringer's Renders",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Weapon_Madness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Elheryn's Cache",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Forbidden Tome of Arcanistry",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigour_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Hammer",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Tariq_Weapon_VoidMadness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Daggers",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Weapon_VoidMadness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Conduit",
+    "heroes": [
+     "Rime"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_Weapon_VoidMadness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Bow",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Weapon_VoidMadness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Pillar",
+    "heroes": [
+     "Ardeos"
+    ],
+    "icons": {
+     "Ardeos": "Icon_Ardeos_Weapon_VoidMadness_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Elheryn's Guiding Sandglass",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Weapon_Arcane_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5981": [
+   {
+    "name": "Sahril's Arms",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sahril's Grasp",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sahril's Greatsword",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5982": [
+   {
+    "name": "Forgefather's Axes",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sickle of Faelight Gardens",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "History of the Faelight Gardens",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigour_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sahril's Reckoning",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Tariq_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Sahril's Vengeance",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Weapon_DwarvenFire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Branch of the Everliving",
+    "heroes": [
+     "Rime",
+     "Ardeos"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Ardeos_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Arc of the Everliving",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "The Sand of Seasons",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5983": [
+   {
+    "name": "Zeraleth's Arms",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_Weapon_BloodVampire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Zeraleth's Claws",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_BloodVampire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Zaraleth's Mournfang",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Weapon_Zaraleth_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5984": [
+   {
+    "name": "Fateful Cleavers",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Zeraleth's Scythe",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_BloodVampire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Zeraleth's Compendium",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigour_Weapon_BloodVampire_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fateful Basher",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Tariq_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fateful Blades",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Asha's Chronoshift Spire",
+    "heroes": [
+     "Rime",
+     "Ardeos"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg",
+     "Ardeos": "Icon_Ardeos_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Asha's Chronoshift Bow",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "The Devourer’s Hour",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Weapon_Zaraleths_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5985": [
+   {
+    "name": "Fateful Arms",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_Weapon_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fists of Fate",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_ArcaneTime_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fateful Dawnrender",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Weapon_Arcane_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5986": [
+   {
+    "name": "Rootbinder's Choppers",
+    "heroes": [
+     "Gunde"
+    ],
+    "icons": {
+     "Gunde": "Icon_Gunde_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Iceshaper's Brand",
+    "heroes": [
+     "Sylvie"
+    ],
+    "icons": {
+     "Sylvie": "Icon_Mosse_FrostDrake_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Ancient Iceshaper's Tome",
+    "heroes": [
+     "Vigour"
+    ],
+    "icons": {
+     "Vigour": "Icon_Vigour_Weapon_FrostDrake_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wildstone Crusher",
+    "heroes": [
+     "Tariq"
+    ],
+    "icons": {
+     "Tariq": "Icon_Tariq_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Wildstone Shards",
+    "heroes": [
+     "Mara"
+    ],
+    "icons": {
+     "Mara": "Icon_Mara_Weapon_WildNature_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Void-touched Conduit",
+    "heroes": [
+     "Rime"
+    ],
+    "icons": {
+     "Rime": "Icon_Rime_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Frozen Longbow of An'zhyr",
+    "heroes": [
+     "Elarion"
+    ],
+    "icons": {
+     "Elarion": "Icon_Bowguy_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Frozen Staff of An'zhyr",
+    "heroes": [
+     "Ardeos"
+    ],
+    "icons": {
+     "Ardeos": "Icon_Ardeos_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Fragments of Frozen Time",
+    "heroes": [
+     "Aeona"
+    ],
+    "icons": {
+     "Aeona": "Icon_Lisa_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5987": [
+   {
+    "name": "Darkfrost Arms",
+    "heroes": [
+     "Helena"
+    ],
+    "icons": {
+     "Helena": "Icon_Warmaster_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Darkfrost Talons",
+    "heroes": [
+     "Meiko"
+    ],
+    "icons": {
+     "Meiko": "Icon_Meiko_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   },
+   {
+    "name": "Darkfrost Drakecarver",
+    "heroes": [
+     "Xavian"
+    ],
+    "icons": {
+     "Xavian": "Icon_Sune_Weapon_FrostDragon_Weapon_R2_T0_Heroic.jpg"
+    }
+   }
+  ],
+  "5989": [
+   {
+    "name": "Ivoried Wristbands",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Crusader Wristguards",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Soulshade Armguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Hiisi Bands",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5992": [
+   {
+    "name": "Jade Bracelet",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Unbreakable Warbracers",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Archer's Sleeves",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Winter Armwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5993": [
+   {
+    "name": "Bands of the Ocean",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Commander's Bracers",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Binding Chains",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Sea-Sprayed Wraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5996": [
+   {
+    "name": "Bracers of Hatred",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Justicar's Marks of Duty",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Infernal Bracers",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Oracle Wristwraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5997": [
+   {
+    "name": "Marrow Leather Wraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Venerable Bracers",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Copper Chaincuffs",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Golembinder's Bands",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5998": [
+   {
+    "name": "Furnaceguard Bracers",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Sunstone Bracelet",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Mandible Bracelet",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Enchanter's Bracelet",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "5999": [
+   {
+    "name": "Bracers of the Hidden Valley",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Malachite Bands",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Goblin Belt Bracers",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Dawnbloom Wraps",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "6000": [
+   {
+    "name": "Barbarian Wristwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Field Marshal's Cuffs",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Charred Armguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Goblin's Girdle",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "6004": [
+   {
+    "name": "Warrior Armbands",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Bracelet of the Mountains",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Demontooth Bracelet",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Wristwraps of Patience",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "6005": [
+   {
+    "name": "Herbalist Wraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Steadyhand Bracers",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Waning Armguards",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Jeweled Cuffs",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "6006": [
+   {
+    "name": "Bramblethorn Bracers",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Knight Errant's Flourish",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Bracelet of Purpose",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Mirrored Vanity Bands",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ],
+  "6007": [
+   {
+    "name": "Guiding Wristwraps",
+    "heroes": [
+     "Gunde",
+     "Sylvie",
+     "Meiko",
+     "Mara"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Wristguards of Holy Purpose",
+    "heroes": [
+     "Helena",
+     "Xavian"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Channeling Chains",
+    "heroes": [
+     "Vigour",
+     "Tariq",
+     "Elarion"
+    ],
+    "icons": {}
+   },
+   {
+    "name": "Wraps of Boundless Arcana",
+    "heroes": [
+     "Rime",
+     "Ardeos",
+     "Aeona"
+    ],
+    "icons": {}
+   }
+  ]
+ }
+}

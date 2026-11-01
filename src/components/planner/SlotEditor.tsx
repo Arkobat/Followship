@@ -2,11 +2,15 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { CATEGORY_BY_ID } from '../../data/catalog'
 import { GEAR_SLOTS, SIDE_CATEGORIES, SLOT_BY_ID, STAT_LINES, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
-import { setLegendaryEquipped, setLine, updateSlot, type HeroBuild } from '../../state/buildStore'
+import { setLegendaryEquipped, updateSlot, type HeroBuild } from '../../state/buildStore'
+import { useGearWriter } from '../../state/gearWriter'
 import { SLOT_STATUS, type BuildAnalysis, type LineInfo } from '../../utils/progress'
+import { Tip } from '../tooltip/Tooltip'
+import { entryTip, itemTip } from '../tooltip/tipContent'
 import { EntryIcon } from './EntryIcon'
 import { LinePicker } from './LinePicker'
 import { SlotIcon } from './SlotIcon'
+import { SlotItem } from './SlotItem'
 import styles from './SlotEditor.module.css'
 
 interface Props {
@@ -27,6 +31,8 @@ const STATE_LABEL: Record<LineInfo['state'], string> = {
 }
 
 export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onClose }: Props) {
+  // Edit mode: this is the build's piece, not yours.
+  const { plan, setLine } = useGearWriter()
   const dialogRef = useRef<HTMLDialogElement>(null)
   const slot = SLOT_BY_ID[slotId]
   const info = analysis.slots[slotId]
@@ -35,14 +41,16 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
   const prev = GEAR_SLOTS[(index - 1 + GEAR_SLOTS.length) % GEAR_SLOTS.length]
   const next = GEAR_SLOTS[(index + 1) % GEAR_SLOTS.length]
 
-  // Start on the first empty line so entering a fresh piece is click, click, click. Not on the legendary's slot
-  // ("I have it" comes first there) or a slot without lines.
+  // Start on the item when there's none, then the first empty line, so entering a fresh piece is click, click,
+  // click. Not on the legendary's slot ("I have it" comes first there) or a slot without lines.
   const firstLine = (id: SlotId) => {
     const slotInfo = analysis.slots[id]
     const empty = slotInfo.lines.findIndex((l) => !l.line)
     return empty === -1 || slotInfo.legendary || slotInfo.status === 'noLines' ? null : empty
   }
-  const [picking, setPicking] = useState<number | null>(() => firstLine(slotId))
+  const needsItem = (id: SlotId) => !build.slots[id]?.item && !analysis.slots[id].legendary
+  const [picking, setPicking] = useState<number | null>(() => (needsItem(slotId) ? null : firstLine(slotId)))
+  const [pickingItem, setPickingItem] = useState(() => needsItem(slotId))
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -55,7 +63,8 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
   }, [slotId, info.legendary?.equipped])
 
   const go = (id: SlotId) => {
-    setPicking(firstLine(id))
+    setPicking(needsItem(id) ? null : firstLine(id))
+    setPickingItem(needsItem(id))
     onChangeSlot(id)
   }
 
@@ -81,31 +90,37 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
     <ol className={styles.lines}>
       {info.lines.map((line) => (
         <li key={line.index} className={styles.line} data-state={line.state}>
-          <button
-            type="button"
-            className={styles.lineMain}
-            onClick={() => setPicking(picking === line.index ? null : line.index)}
-            aria-expanded={picking === line.index}
-          >
-            <span className={styles.lineNo}>{line.index + 1}</span>
-            {line.line ? (
-              <>
-                <EntryIcon goal={line.line} size={30} />
+          <Tip content={picking === line.index ? null : entryTip(heroId, line.line)}>
+            <button
+              type="button"
+              className={styles.lineMain}
+              onClick={() => {
+                setPickingItem(false)
+                setPicking(picking === line.index ? null : line.index)
+              }}
+              aria-expanded={picking === line.index}
+            >
+              <span className={styles.lineNo}>{line.index + 1}</span>
+              {line.line ? (
+                <>
+                  <EntryIcon goal={line.line} size={30} />
+                  <span className={styles.lineText}>
+                    <strong>{line.line.name}</strong>
+                    <small>
+                      {CATEGORY_BY_ID[line.line.category].label.replace(/s$/, '')}
+                      {plan ? '' : ` · ${STATE_LABEL[line.state]}`}
+                    </small>
+                  </span>
+                </>
+              ) : (
                 <span className={styles.lineText}>
-                  <strong>{line.line.name}</strong>
-                  <small>
-                    {CATEGORY_BY_ID[line.line.category].label.replace(/s$/, '')} · {STATE_LABEL[line.state]}
-                  </small>
+                  <strong className={styles.placeholder}>Enter line {line.index + 1}</strong>
+                  <small>{plan ? 'What should the build have here?' : 'What did this line roll?'}</small>
                 </span>
-              </>
-            ) : (
-              <span className={styles.lineText}>
-                <strong className={styles.placeholder}>Enter line {line.index + 1}</strong>
-                <small>What did this line roll?</small>
-              </span>
-            )}
-            <span className={styles.stateMark} aria-hidden="true" />
-          </button>
+              )}
+              <span className={styles.stateMark} aria-hidden="true" />
+            </button>
+          </Tip>
 
           {line.suggestion && (
             <p className={styles.suggestion}>
@@ -113,13 +128,15 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
               {line.suggestion === 'anything' ? (
                 <em>anything — nothing you still need fits this line</em>
               ) : (
-                <span
-                  className={styles.target}
-                  style={{ '--cat-color': CATEGORY_BY_ID[line.suggestion.category].color } as CSSProperties}
-                >
-                  <EntryIcon goal={line.suggestion} size={20} />
-                  {line.suggestion.name}
-                </span>
+                <Tip content={entryTip(heroId, line.suggestion)}>
+                  <span
+                    className={styles.target}
+                    style={{ '--cat-color': CATEGORY_BY_ID[line.suggestion.category].color } as CSSProperties}
+                  >
+                    <EntryIcon goal={line.suggestion} size={20} />
+                    {line.suggestion.name}
+                  </span>
+                </Tip>
               )}
             </p>
           )}
@@ -141,6 +158,25 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
         </li>
       ))}
     </ol>
+  )
+
+  const itemField = (
+    <SlotItem
+      heroId={heroId}
+      build={build}
+      slotId={slotId}
+      open={pickingItem}
+      onOpen={() => {
+        setPicking(null)
+        setPickingItem(true)
+      }}
+      onClose={() => setPickingItem(false)}
+      // Picked: on to the first empty line (a legendary has none).
+      onPicked={(legendary) => {
+        setPickingItem(false)
+        setPicking(legendary ? null : firstLine(slotId))
+      }}
+    />
   )
 
   return (
@@ -167,19 +203,21 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
                 : '0/1'
               : info.status === 'noLines'
                 ? '★'
-                : `${info.status === 'unset' || info.status === 'unrated' ? '–' : info.correct}/${STAT_LINES}`}
+                : plan
+                  ? `${info.lines.filter((l) => l.line).length}/${STAT_LINES}`
+                  : `${info.status === 'unset' || info.status === 'unrated' ? '–' : info.correct}/${STAT_LINES}`}
           </span>
         </span>
         <div className={styles.title}>
           <h2 id="slot-editor-title">{slot.label}</h2>
           <p>
-            {SLOT_STATUS[info.status].label}
+            {plan ? 'Your build’s' : SLOT_STATUS[info.status].label}
             <span>
               {' '}
               ·{' '}
-              {info.legendary
+              {info.legendary && !plan
                 ? 'reserved for your legendary'
-                : info.status === 'noLines'
+                : info.legendary || info.status === 'noLines'
                   ? 'no lines to roll'
                   : SIDE_CATEGORIES[slot.side].map((c) => CATEGORY_BY_ID[c].label.toLowerCase()).join(', ')}
             </span>
@@ -198,12 +236,35 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
       </header>
 
       <div className={styles.body}>
-        {info.legendary ? (
+        {plan ? (
+          <>
+            <section>
+              <h3>Item</h3>
+              {itemField}
+              {(info.legendary || info.status === 'noLines') && (
+                <p className={styles.legendaryHint}>A legendary has no lines to roll: nothing else to set here.</p>
+              )}
+            </section>
+            {!info.legendary && info.status !== 'noLines' && (
+              <section>
+                <h3>What’s on it</h3>
+                {linesList}
+                <p className={styles.legendaryHint}>
+                  Where a line sits doesn’t matter: your gear only needs as many of each, on any piece.
+                </p>
+              </section>
+            )}
+          </>
+        ) : info.legendary ? (
           <>
             <section>
               <h3>Legendary</h3>
               <div className={styles.legendary} data-equipped={info.legendary.equipped || undefined}>
-                {info.legendary.entry.icon && <img src={info.legendary.entry.icon} alt="" />}
+                {info.legendary.entry.icon && (
+                  <Tip content={itemTip(heroId, info.legendary.entry.id)}>
+                    <img src={info.legendary.entry.icon} alt="" />
+                  </Tip>
+                )}
                 <div>
                   <strong>{info.legendary.entry.name}</strong>
                   {info.legendary.entry.power && <small>Power: {info.legendary.entry.power}</small>}
@@ -233,55 +294,71 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
             </section>
             {!info.legendary.equipped && (
               <section className={styles.meanwhile}>
-                <h3>Until then: what’s on it now</h3>
+                <h3>Until then: what you wear now</h3>
+                {itemField}
                 {linesList}
               </section>
             )}
           </>
         ) : info.status === 'noLines' ? (
           <section>
-            <h3>Legendary</h3>
-            <p className={styles.legendaryHint}>
-              Marked as a legendary (or anything else without lines): the slot is filled, with nothing to roll.
-            </p>
-            <button
-              type="button"
-              className={styles.markLink}
-              onClick={() => updateSlot(heroId, slotId, { noLines: undefined })}
-            >
-              It has lines after all
-            </button>
+            <h3>Item</h3>
+            {itemField}
+            {progress.noLines ? (
+              <>
+                <p className={styles.legendaryHint}>
+                  Marked as a legendary (or anything else without lines): the slot is filled, with nothing to roll.
+                </p>
+                <button
+                  type="button"
+                  className={styles.markLink}
+                  onClick={() => updateSlot(heroId, slotId, { noLines: undefined })}
+                >
+                  It has lines after all
+                </button>
+              </>
+            ) : (
+              <p className={styles.legendaryHint}>A legendary has no lines to roll: the slot is filled.</p>
+            )}
           </section>
         ) : (
-          <section>
-            <h3>What’s on it</h3>
-            {linesList}
-            <button
-              type="button"
-              className={styles.markLink}
-              onClick={() => {
-                setPicking(null)
-                updateSlot(heroId, slotId, { noLines: true })
-              }}
-              title="For a legendary that isn't your build's, or anything else without lines"
-            >
-              No lines? Mark as legendary
-            </button>
-          </section>
+          <>
+            <section>
+              <h3>Item</h3>
+              {itemField}
+            </section>
+            <section>
+              <h3>What’s on it</h3>
+              {linesList}
+              <button
+                type="button"
+                className={styles.markLink}
+                onClick={() => {
+                  setPicking(null)
+                  updateSlot(heroId, slotId, { noLines: true })
+                }}
+                title="For a legendary that isn't your build's, or anything else without lines"
+              >
+                No lines? Mark as legendary
+              </button>
+            </section>
+          </>
         )}
 
-        <section>
-          <h3>Note</h3>
-          <div className={styles.row}>
-            <input
-              className={styles.note}
-              value={progress.note ?? ''}
-              onChange={(e) => updateSlot(heroId, slotId, { note: e.target.value || undefined })}
-              placeholder="Note, e.g. drops in Stormwatch"
-              aria-label="Note"
-            />
-          </div>
-        </section>
+        {!plan && (
+          <section>
+            <h3>Note</h3>
+            <div className={styles.row}>
+              <input
+                className={styles.note}
+                value={progress.note ?? ''}
+                onChange={(e) => updateSlot(heroId, slotId, { note: e.target.value || undefined })}
+                placeholder="Note, e.g. drops in Stormwatch"
+                aria-label="Note"
+              />
+            </div>
+          </section>
+        )}
       </div>
 
       <footer className={styles.footer}>

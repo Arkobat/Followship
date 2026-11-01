@@ -1,0 +1,247 @@
+.slotItem {
+  --rarity: var(--text-muted);
+}
+
+/* The item you wear: its art, name and rarity, opening the list. */
+.current {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 10px 6px 6px;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: rgb(255 255 255 / 3%);
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 14%);
+  cursor: pointer;
+}
+
+.current:hover,
+.current[aria-expanded='true'] {
+  background: rgb(255 255 255 / 6%);
+}
+
+.current[data-rarity='Epic'],
+.option[data-rarity='Epic'] {
+  --rarity: #c08af5;
+}
+
+.current[data-rarity='Regal'],
+.option[data-rarity='Regal'] {
+  --rarity: #e0383e;
+}
+
+.current[data-rarity='Legendary'],
+.option[data-rarity='Legendary'] {
+  --rarity: #f2a64a;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  color: #56677a;
+  background: #0e141b;
+  box-shadow: inset 0 0 0 1px var(--rarity);
+}
+
+.current[data-empty] .icon {
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 20%);
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--rarity);
+}
+
+.icon svg {
+  width: 60%;
+  height: 60%;
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.text strong {
+  color: var(--rarity);
+}
+
+.current[data-empty] .text strong {
+  color: var(--text-faint);
+}
+
+.text small {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.buildTag {
+  flex: none;
+  padding: 1px 7px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0b0f14;
+  background: var(--gold-bright);
+}
+
+.text .wrong {
+  font-weight: 700;
+  color: #e5625a;
+}
+
+.change {
+  flex: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* ---- Details ---- */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0 4px;
+}
+
+.selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.level select {
+  height: 28px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  color: var(--text);
+  background: #0a0e13;
+  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 25%);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgb(255 255 255 / 5%);
+}
+
+.stats li span {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Secondary stats, like the game's green. */
+.stats li[data-stat='crit'],
+.stats li[data-stat='haste'],
+.stats li[data-stat='expertise'],
+.stats li[data-stat='spirit'] {
+  color: #7fdc8a;
+}
+
+.effect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 4px;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.effect strong {
+  color: var(--gold-bright);
+}
+
+.effect small {
+  color: var(--text-faint);
+}
+
+.effect span {
+  flex-basis: 100%;
+  white-space: pre-line;
+  color: var(--text-muted);
+}
+
+.drops {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+/* ---- Picker ---- */
+
+.picker {
+  margin: 6px 0 0;
+}
+
+.searchRow {
+  display: flex;
+  gap: 8px;
+}
+
+.searchRow .btn {
+  flex: none;
+  min-height: 32px;
+}
+
+.option {
+  min-height: 34px;
+}
+
+.optionIcon {
+  display: grid;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  background: #0e141b;
+  box-shadow: inset 0 0 0 1px var(--rarity);
+  overflow: hidden;
+}
+
+.optionIcon img {
+  width: 100%;
+  height: 100%;
+}
+
+.optionName {
+  color: var(--rarity);
+}

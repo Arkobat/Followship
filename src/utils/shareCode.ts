@@ -1,54 +1,75 @@
-import { CATEGORIES, getEntry, OLD_ENCHANT_IDS, type CategoryId } from '../data/catalog'
-import { getHero, isHeroId, type HeroId } from '../data/heroes'
-import { SOCKET_SLOTS } from '../data/loadout'
+import { CATALOG, getEntry, type CategoryId } from '../data/catalog'
+import { getHero, HEROES, type HeroId } from '../data/heroes'
+import { loadoutFor, SOCKET_SLOTS } from '../data/loadout'
+import { presetSlug, type PresetBuild } from '../data/presetBuilds'
+import { legendariesFor } from '../data/recommended'
+import {
+  HERO_CODES,
+  LEGENDARY_CODES,
+  LINE_CODES,
+  RELIC_CODES,
+  SOCKET_GEM_CODES,
+  TALENT_CODES,
+  WEAPON_CODES,
+} from '../data/shortCodes'
 import type { ChecklistData } from '../state/buildStore'
 
 /**
- * Build share codes: `FB2.` + base64url(JSON). Short category letters and
- * catalog ids keep them compact; names travel only for custom entries.
+ * Build share codes. The build is written as short text, every item by its two-letter code (`data/shortCodes.ts`),
+ * then packed into base64url; the name follows, after a dot, as base64url UTF-8:
  *
- *   { h: heroId, n: buildName, l: legendaryId | null, w: weaponId | null, r: [relicId, …], t: [talentId, …],
- *     s: [neckGem, wristsGem, ring1Gem, ring2Gem] (0 for none),
- *     g: [[letter, entryId, target, name?], …] }
+ *   1                  format version
+ *   ar                 hero
+ *   hd                 legendary (00: none)
+ *   ac                 weapon (00: none)
+ *   ohoi               two relics (00 each: none)
+ *   spemem00           socket gems: neck, wrists, ring #1, ring #2 (00: none)
+ *   bffhgi.            talents, then a dot
+ *   gm7vg3hf …         lines: code, then the target when it's more than 1
  *
- * `w` and `r` were added later; codes without them load with no weapon or relics. `t` came after
- * that; codes without it leave your talents as they are, and codes without `s` your socket gems.
- * FB1 codes are read the same, with enchants under their old ids (see OLD_ENCHANT_IDS); `n` came with FB2.
+ * The text uses 0–9, a–z and the dot (37 symbols), packed as one big base-37 number into base64url (6 bits a
+ * character), so it comes out about an eighth shorter than the text and stays URL-safe. Items without a code (new
+ * ones not given one yet, custom lines from old saves) are left out.
  */
 
-const PREFIX = 'FB2.'
-const OLD_PREFIX = 'FB1.'
+const VERSION = '1'
+const SYMBOLS = '0123456789abcdefghijklmnopqrstuvwxyz.'
+const BASE64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+const NONE = '00'
 
-const LETTER: Record<CategoryId, string> = {
-  aspect: 'a',
-  glyph: 'g',
-  sigil: 's',
-  enchant: 'e',
-  gem: 'm',
-  defensive: 'd',
+const invert = (codes: Record<string, string>) => new Map(Object.entries(codes).map(([id, code]) => [code, id]))
+const HERO_BY_CODE = invert(HERO_CODES) as Map<string, HeroId>
+const LEGENDARY_BY_CODE = invert(LEGENDARY_CODES)
+const LINE_BY_CODE = invert(LINE_CODES)
+const SOCKET_GEM_BY_CODE = invert(SOCKET_GEM_CODES)
+const WEAPON_BY_CODE = invert(WEAPON_CODES)
+const RELIC_BY_CODE = invert(RELIC_CODES)
+const TALENT_BY_CODE = invert(TALENT_CODES)
+
+/** The text as one base-37 number, written in base64url. The version digit up front is never 0, so nothing is lost. */
+function pack(text: string): string {
+  let n = 0n
+  for (const ch of text) n = n * 37n + BigInt(SYMBOLS.indexOf(ch))
+  let out = ''
+  for (; n > 0n; n /= 64n) out = BASE64URL[Number(n % 64n)] + out
+  return out
 }
-const CATEGORY_BY_LETTER = Object.fromEntries(Object.entries(LETTER).map(([c, l]) => [l, c])) as Record<
-  string,
-  CategoryId
->
 
-type Row = [letter: string, entryId: string, target: number, name?: string]
-
-interface Payload {
-  h: string
-  n?: string
-  l: string | null
-  w?: string | null
-  r?: string[]
-  t?: string[]
-  s?: (string | 0)[]
-  g: Row[]
+function unpack(code: string): string | null {
+  let n = 0n
+  for (const ch of code) {
+    const digit = BASE64URL.indexOf(ch)
+    if (digit === -1) return null
+    n = n * 64n + BigInt(digit)
+  }
+  let text = ''
+  for (; n > 0n; n /= 37n) text = SYMBOLS[Number(n % 37n)] + text
+  return text
 }
 
 function toBase64Url(text: string) {
-  const bytes = new TextEncoder().encode(text)
   let bin = ''
-  for (const b of bytes) bin += String.fromCharCode(b)
+  for (const b of new TextEncoder().encode(text)) bin += String.fromCharCode(b)
   return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
@@ -57,82 +78,141 @@ function fromBase64Url(code: string) {
   return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))
 }
 
+const codeOf = (codes: Record<string, string>, id: string | null | undefined) => (id && codes[id]) || NONE
+
 export function encodeChecklist(heroId: HeroId, data: ChecklistData, name?: string): string {
-  const order = (c: CategoryId) => CATEGORIES.findIndex((x) => x.id === c)
-  const g = [...data.goals]
-    .sort((a, b) => order(a.category) - order(b.category))
-    .map((goal): Row => {
-      const row: Row = [LETTER[goal.category], goal.entryId, goal.target]
-      if (!getEntry(goal.category, goal.entryId)) row.push(goal.name)
-      return row
-    })
-  const payload: Payload = {
-    h: heroId,
-    n: name,
-    l: data.legendary,
-    w: data.weapon,
-    r: data.relics,
-    t: data.talents,
-    s: SOCKET_SLOTS.map((slot) => data.sockets?.[slot] ?? 0),
-    g,
-  }
-  return PREFIX + toBase64Url(JSON.stringify(payload))
+  const relics = [data.relics[0], data.relics[1]]
+  const lines = data.goals
+    .filter((goal) => LINE_CODES[`${goal.category}:${goal.entryId}`])
+    .map((goal) => LINE_CODES[`${goal.category}:${goal.entryId}`] + (goal.target > 1 ? goal.target : ''))
+  const text =
+    VERSION +
+    HERO_CODES[heroId] +
+    codeOf(LEGENDARY_CODES, data.legendary) +
+    codeOf(WEAPON_CODES, data.weapon) +
+    relics.map((id) => codeOf(RELIC_CODES, id)).join('') +
+    SOCKET_SLOTS.map((slot) => codeOf(SOCKET_GEM_CODES, data.sockets?.[slot])).join('') +
+    (data.talents ?? []).flatMap((id) => TALENT_CODES[id] ?? []).join('') +
+    '.' +
+    lines.join('')
+  return pack(text) + (name ? '.' + toBase64Url(name) : '')
 }
 
 export type DecodeResult =
   { ok: true; heroId: HeroId; name?: string; data: ChecklistData } | { ok: false; error: string }
 
+const DAMAGED: DecodeResult = { ok: false, error: 'The code is incomplete or damaged. Copy it again.' }
+
 /** Accepts a bare code or a full share link containing `checklist=`. */
 export function decodeChecklist(input: string): DecodeResult {
   const trimmed = input.trim()
   const fromLink = /[?&]checklist=([^&\s]+)/.exec(trimmed)?.[1]
-  const code = fromLink ? decodeURIComponent(fromLink) : trimmed
-  const old = code.startsWith(OLD_PREFIX)
-  if (!code.startsWith(PREFIX) && !old) return { ok: false, error: 'That doesn’t look like a build code.' }
+  const [packed, encodedName] = (fromLink ? decodeURIComponent(fromLink) : trimmed).split('.')
+  const text = packed ? unpack(packed) : null
+  if (!text || text[0] !== VERSION) return { ok: false, error: 'That doesn’t look like a build code.' }
 
-  let payload: Payload
+  // Fixed-width part: version, hero, legendary, weapon, two relics, four socket gems.
+  const pairs = (from: number, count: number) =>
+    Array.from({ length: count }, (_, i) => text.slice(from + i * 2, from + i * 2 + 2))
+  const [hero, legendary, weapon, relic1, relic2, ...gems] = pairs(1, 9)
+  const heroId = HERO_BY_CODE.get(hero)
+  const dot = text.indexOf('.', 19)
+  if (!heroId || gems.length !== 4 || dot === -1) return DAMAGED
+
+  let name: string | undefined
   try {
-    payload = JSON.parse(fromBase64Url(code.slice(PREFIX.length)))
+    name = encodedName ? fromBase64Url(encodedName) : undefined
   } catch {
-    return { ok: false, error: 'The code is incomplete or damaged. Copy it again.' }
-  }
-  if (!payload || !isHeroId(payload.h) || !Array.isArray(payload.g)) {
-    return { ok: false, error: 'The code is incomplete or damaged. Copy it again.' }
+    return DAMAGED
   }
 
   const goals: ChecklistData['goals'] = []
-  for (const row of payload.g) {
-    if (!Array.isArray(row)) continue
-    const [letter, rawId, target, name] = row
-    const entryId = old && letter === LETTER.enchant ? (OLD_ENCHANT_IDS[rawId] ?? rawId) : rawId
-    const category = CATEGORY_BY_LETTER[letter]
-    if (!category || typeof entryId !== 'string' || typeof target !== 'number') continue
-    const entryName = getEntry(category, entryId)?.name ?? (typeof name === 'string' ? name : undefined)
-    if (entryName) goals.push({ category, entryId, target, name: entryName })
+  for (const [, code, target] of text.slice(dot + 1).matchAll(/([a-z]{2})(\d*)/g)) {
+    const [category, entryId] = (LINE_BY_CODE.get(code)?.split(':') ?? []) as [CategoryId?, string?]
+    const entry = category && entryId ? getEntry(category, entryId) : undefined
+    if (entry)
+      goals.push({ category: entry.category, entryId: entry.id, name: entry.name, target: Number(target) || 1 })
   }
+
   return {
     ok: true,
-    heroId: payload.h,
-    name: typeof payload.n === 'string' ? payload.n : undefined,
+    heroId,
+    name,
     data: {
-      legendary: typeof payload.l === 'string' ? payload.l : null,
-      weapon: typeof payload.w === 'string' ? payload.w : null,
-      relics: Array.isArray(payload.r) ? payload.r.filter((id) => typeof id === 'string') : [],
-      talents: Array.isArray(payload.t) ? payload.t.filter((id) => typeof id === 'string') : undefined,
-      sockets: Array.isArray(payload.s)
-        ? Object.fromEntries(
-            SOCKET_SLOTS.flatMap((slot, i) => (typeof payload.s?.[i] === 'string' ? [[slot, payload.s[i]]] : [])),
-          )
-        : undefined,
+      legendary: LEGENDARY_BY_CODE.get(legendary) ?? null,
+      weapon: WEAPON_BY_CODE.get(weapon) ?? null,
+      relics: [relic1, relic2].flatMap((code) => RELIC_BY_CODE.get(code) ?? []),
+      talents: pairs(19, (dot - 19) / 2).flatMap((code) => TALENT_BY_CODE.get(code) ?? []),
+      sockets: Object.fromEntries(
+        SOCKET_SLOTS.flatMap((slot, i) => {
+          const gem = SOCKET_GEM_BY_CODE.get(gems[i])
+          return gem ? [[slot, gem]] : []
+        }),
+      ),
       goals,
     },
   }
 }
 
+const siteUrl = () => `${location.origin}${location.pathname}`
+
 /** A link that opens this hero with the checklist ready to load. */
 export function shareLink(heroId: HeroId, code: string) {
-  const base = `${location.origin}${location.pathname}`
-  return `${base}#/hero/${heroId}?checklist=${encodeURIComponent(code)}`
+  return `${siteUrl()}#/hero/${heroId}?checklist=${code}`
+}
+
+/** A link to a built-in build by name, e.g. `#/hero/ardeos?build=fire-frogs`: no code needed. */
+export function presetLink(preset: PresetBuild) {
+  return `${siteUrl()}#/hero/${preset.heroId}?build=${presetSlug(preset)}`
 }
 
 export const heroName = (heroId: HeroId) => getHero(heroId)?.name ?? heroId
+
+// Every code has to be unique (socket gems share their colour's line code on purpose) and every catalog entry
+// needs one, or it can't be shared: say so while developing.
+if (import.meta.env.DEV) {
+  const all = [HERO_CODES, LEGENDARY_CODES, LINE_CODES, WEAPON_CODES, RELIC_CODES, TALENT_CODES].flatMap(Object.values)
+  const taken = new Set<string>()
+  for (const code of all) {
+    if (!/^[a-z]{2}$/.test(code) || taken.has(code)) console.error(`Share code "${code}" is invalid or used twice`)
+    taken.add(code)
+  }
+  const missing = (codes: Record<string, string>, ids: string[], kind: string) => {
+    for (const id of ids) if (!codes[id]) console.error(`No share code for ${kind} ${id}`)
+  }
+  missing(
+    LINE_CODES,
+    CATALOG.map((e) => `${e.category}:${e.id}`),
+    'line',
+  )
+  for (const { id } of HEROES) {
+    const loadout = loadoutFor(id)
+    missing(
+      LEGENDARY_CODES,
+      legendariesFor(id).map((l) => l.id),
+      'legendary',
+    )
+    missing(
+      WEAPON_CODES,
+      loadout.weapons.map((w) => w.id),
+      'weapon',
+    )
+    missing(
+      RELIC_CODES,
+      loadout.relics.map((r) => r.id),
+      'relic',
+    )
+    missing(
+      TALENT_CODES,
+      loadout.talents.rows.flat().map((t) => t.id),
+      'talent',
+    )
+    missing(
+      SOCKET_GEM_CODES,
+      Object.values(loadout.sockets)
+        .flat()
+        .map((g) => g.id),
+      'socket gem',
+    )
+  }
+}

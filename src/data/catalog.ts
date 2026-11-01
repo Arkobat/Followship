@@ -3,8 +3,11 @@
  * checklist shows it. Sourced from fellows.gg (Early Access S3) — run through
  * the "Updating the catalog" steps in the README when a patch adds more.
  *
- * Entries are shared by all heroes: the game doesn't restrict them per hero.
+ * Entries are shared by all heroes: the game doesn't restrict them per hero, but it names enchants by the hero's
+ * main stat (see `nameFor`).
  */
+import type { HeroId } from './heroes'
+import { HERO_PRIMARY_STAT } from './itemsData'
 
 export type CategoryId = 'aspect' | 'glyph' | 'sigil' | 'enchant' | 'gem' | 'defensive'
 
@@ -38,6 +41,8 @@ export interface CatalogEntry {
   name: string
   /** Other names for the same thing (enchant variants for other main stats). */
   aliases?: string[]
+  /** Enchants: the name heroes of each main stat see (`name` is the Strength one). */
+  names?: Record<string, string>
   /** Path under /public. */
   icon?: string
   description?: string
@@ -130,11 +135,12 @@ const ENCHANTS: CatalogEntry[] = [
       '+6 Haste, +6 Spirit',
       ["Centaur's Guile", "Unicorn's Cunning", "Manticore's Might"],
     ],
-  ]),
+    // The first two aliases are the Agility (Guile) and Intellect (Cunning) names.
+  ]).map((e) => ({ ...e, names: { Strength: e.name, Agility: e.aliases![0], Intellect: e.aliases![1] } })),
 ]
 
 /**
- * Enchant ids before they took their in-game names (save data before v8, FB1 share codes), by stat pair.
+ * Enchant ids before they took their in-game names (save data before v8), by stat pair.
  * `behemoths-might` moved: it was Critical Strike + Expertise, it's now Expertise + Haste.
  */
 export const OLD_ENCHANT_IDS: Record<string, string> = {
@@ -171,6 +177,15 @@ const ENTRY_BY_KEY = new Map(CATALOG.map((e) => [`${e.category}:${e.id}`, e]))
 
 export function getEntry(category: CategoryId, id: string): CatalogEntry | undefined {
   return ENTRY_BY_KEY.get(`${category}:${id}`)
+}
+
+/**
+ * The name a hero sees: enchants are named per main stat, so Griffin's Might is Strix's Guile on an Agility hero
+ * and Salamander's Cunning on an Intellect hero. Anything not in the catalog keeps `fallback`.
+ */
+export function nameFor(heroId: HeroId, category: CategoryId, id: string, fallback = id): string {
+  const entry = getEntry(category, id)
+  return entry ? (entry.names?.[HERO_PRIMARY_STAT[heroId]] ?? entry.name) : fallback
 }
 
 export function entriesFor(category: CategoryId): CatalogEntry[] {

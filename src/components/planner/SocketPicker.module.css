@@ -1,81 +1,114 @@
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  max-height: 290px;
-  margin: 0 -4px;
-  padding: 0 4px;
-  overflow-y: auto;
-  list-style: none;
-}
-
-.gem {
-  display: flex;
+/* The game's gem window: a row per colour, sizes left to right with their gem power on top, joined by dashes. */
+.grid {
+  display: grid;
+  grid-template-columns: 6px repeat(4, 1fr) 40px;
   align-items: center;
-  gap: 9px;
-  width: 100%;
-  padding: 5px 8px;
-  border: 0;
-  border-radius: 5px;
-  font: inherit;
-  text-align: left;
-  color: var(--text);
-  background: none;
-  cursor: pointer;
+  gap: 6px 0;
 }
 
-.gem:hover,
-.gem:focus-visible {
-  outline: none;
-  background: rgb(233 193 120 / 9%);
+.power {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--gold-bright);
 }
 
-/* The gem you have in it. */
-.gem[aria-pressed='true'] {
-  background: rgb(233 193 120 / 14%);
-  box-shadow: inset 0 0 0 1px rgb(233 193 120 / 55%);
-}
-
-.gem img {
-  flex: none;
-  width: 26px;
-  height: 26px;
-}
-
-.text {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  min-width: 0;
-  line-height: 1.2;
-}
-
-.text strong {
-  font-size: 0.84rem;
-  font-weight: 600;
-}
-
-.text small {
-  font-size: 0.7rem;
+.power:last-child {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 500;
   color: var(--text-faint);
 }
 
-/* The gem the build wants here. */
-.build {
-  padding: 1px 6px;
-  border-radius: 999px;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #0b0f14;
+/* A bar by the build's colour. */
+.rowMark {
+  align-self: stretch;
+  width: 3px;
+  border-radius: 2px;
+}
+
+.rowMark[data-target] {
   background: var(--gold-bright);
 }
 
-.tier {
+.cell {
+  position: relative;
   display: grid;
   place-items: center;
-  flex: none;
+  justify-self: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  /* An octagon, like the game's empty gem frames. */
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  background: linear-gradient(180deg, #232c38, #121820);
+  cursor: pointer;
+}
+
+.cell img {
+  width: 30px;
+  height: 30px;
+  opacity: 0.45;
+  filter: saturate(0.6);
+  transition:
+    opacity 120ms,
+    filter 120ms;
+}
+
+.cell:hover img,
+.cell:focus-visible img,
+.cell[aria-pressed='true'] img {
+  opacity: 1;
+  filter: none;
+}
+
+.cell:hover,
+.cell:focus-visible {
+  outline: none;
+  background: linear-gradient(180deg, #34404f, #1a222c);
+}
+
+/* The gem you have in it. */
+.cell[aria-pressed='true'] {
+  background: linear-gradient(180deg, #8a6a32, #3d2e14);
+}
+
+.cell[aria-pressed='true']::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  clip-path: inherit;
+  background: linear-gradient(180deg, #2a3442, #141a22);
+  z-index: -1;
+}
+
+/* The build's gem: a gold dot in the corner. */
+.cell[data-target]::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 0 1.5px #0b0f14;
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.66rem;
+  line-height: 1.1;
+  color: var(--text-faint);
+}
+
+.tier b {
+  display: grid;
+  place-items: center;
   width: 16px;
   height: 16px;
   border-radius: 3px;
@@ -86,12 +119,21 @@
   background: var(--tier-color);
 }
 
-.rate {
-  flex: none;
-  width: 30px;
-  font-size: 0.72rem;
-  text-align: right;
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0 0;
+  font-size: 0.74rem;
   color: var(--text-faint);
+}
+
+.legendTarget {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-bright);
 }
 
 .empty {

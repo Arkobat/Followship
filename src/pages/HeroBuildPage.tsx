@@ -4,32 +4,41 @@ import { Backdrop } from '../components/Backdrop'
 import { HeroPortrait } from '../components/HeroPortrait'
 import { RoleIcon } from '../components/RoleIcon'
 import { Checklist } from '../components/planner/Checklist'
+import { DungeonPlan } from '../components/planner/DungeonPlan'
+import { GemTree } from '../components/planner/GemTree'
 import { GearStatusBoard } from '../components/planner/GearStatusBoard'
 import { PaperDoll } from '../components/planner/PaperDoll'
 import { SlotEditor } from '../components/planner/SlotEditor'
 import { TalentGrid } from '../components/planner/TalentGrid'
 import type { SlotId } from '../data/gearSlots'
 import { getHero } from '../data/heroes'
+import { presetBySlug } from '../data/presetBuilds'
 import { ROLES } from '../data/roles'
 import {
   addSharedBuild,
   buildOf,
   deleteBuild,
+  GEAR_WRITER,
   isStarted,
   openHero,
+  PLAN_WRITER,
+  planView,
   switchBuild,
   useSaveData,
 } from '../state/buildStore'
+import { GearWriterContext } from '../state/gearWriter'
 import { analyzeBuild } from '../utils/progress'
 import { decodeChecklist, heroName } from '../utils/shareCode'
 import { formatRelative } from '../utils/time'
 import styles from './HeroBuildPage.module.css'
 
-type View = 'gear' | 'talents'
+type View = 'gear' | 'talents' | 'gems' | 'dungeons'
 
 const VIEWS: { id: View; label: string }[] = [
   { id: 'gear', label: 'Gear' },
   { id: 'talents', label: 'Talents' },
+  { id: 'gems', label: 'Gems' },
+  { id: 'dungeons', label: 'Dungeons' },
 ]
 
 export function HeroBuildPage() {
@@ -41,7 +50,16 @@ export function HeroBuildPage() {
   const [editingSlot, setEditingSlot] = useState<SlotId | null>(null)
   const [highlightGoalId, setHighlightGoalId] = useState<string | null>(null)
   const [view, setView] = useState<View>('gear')
+  // Edit mode: the paper doll and slot editor show and change the build's gear instead of yours.
+  const [editing, setEditingState] = useState(false)
   const analysis = useMemo(() => (build ? analyzeBuild(build) : null), [build])
+  const shown = useMemo(() => (build && editing ? planView(build) : build), [build, editing])
+  const shownAnalysis = useMemo(() => (shown && editing ? analyzeBuild(shown) : analysis), [shown, editing, analysis])
+  const setEditing = (on: boolean) => {
+    setEditingState(on)
+    setEditingSlot(null)
+    if (on) setView('gear')
+  }
   const [searchParams, setSearchParams] = useSearchParams()
   const sharedCode = searchParams.get('checklist')
   const shared = useMemo(() => (sharedCode ? decodeChecklist(sharedCode) : null), [sharedCode])
@@ -58,7 +76,7 @@ export function HeroBuildPage() {
   }, [hero, shared])
 
   if (!hero) return <Navigate to="/heroes" replace />
-  if (!build || !analysis) return <Backdrop hero={hero} />
+  if (!build || !analysis || !shown || !shownAnalysis) return <Backdrop hero={hero} />
 
   const role = ROLES[hero.role]
   const { summary } = analysis
@@ -68,6 +86,12 @@ export function HeroBuildPage() {
     // Adding it again finds the one the link already added.
     const ref = shared?.ok ? addSharedBuild(hero.id, shared.data, shared.name ?? 'Shared build') : undefined
     if (ref) switchBuild(hero.id, ref)
+    dismissShared()
+  }
+  const buildSlug = searchParams.get('build')
+  const linked = buildSlug ? presetBySlug(hero.id, buildSlug) : undefined
+  const useLinked = () => {
+    if (linked) switchBuild(hero.id, `preset:${linked.id}`)
     dismissShared()
   }
 
@@ -140,22 +164,62 @@ export function HeroBuildPage() {
           </div>
         )}
 
+        {/* A link to a built-in build by name (`?build=fire-frogs`): nothing to add, just offer it. */}
+        {buildSlug && (
+          <div className={styles.sharedBanner} role="status">
+            {linked && build.active !== `preset:${linked.id}` ? (
+              <>
+                <p>
+                  <strong>
+                    Someone shared a built-in {hero.name} build with you: {linked.name} ({linked.source}).
+                  </strong>{' '}
+                  Use it now? Your gear stays as it is.
+                </p>
+                <button type="button" className="btn btn-primary" onClick={useLinked}>
+                  Use build
+                </button>
+              </>
+            ) : (
+              <p>
+                {linked
+                  ? `You’re already using ${linked.name} (${linked.source}).`
+                  : `There’s no built-in ${hero.name} build called “${buildSlug}”.`}
+              </p>
+            )}
+            <button type="button" className="btn btn-ghost" onClick={dismissShared}>
+              {linked && build.active !== `preset:${linked.id}` ? 'Not now' : 'Dismiss'}
+            </button>
+          </div>
+        )}
+
         <div className={styles.layout}>
-          <section className={styles.gear} aria-label="Build">
+          <section className={styles.gear} aria-label="Build" data-editing={editing || undefined}>
+            {editing && (
+              <p className={styles.editBanner}>
+                <strong>Editing the build’s gear.</strong> Click a slot to pick its item and lines, a socket for its
+                gem, the weapon’s tabs for its tree. Lines can go on any piece: only how many count.
+              </p>
+            )}
             <div id="build-view" role="tabpanel" aria-labelledby={`view-${view}`}>
               {view === 'gear' ? (
-                <PaperDoll
-                  hero={hero}
-                  build={build}
-                  analysis={analysis}
-                  highlightGoalId={highlightGoalId}
-                  onSelectSlot={setEditingSlot}
-                />
-              ) : (
+                <GearWriterContext.Provider value={editing ? PLAN_WRITER : GEAR_WRITER}>
+                  <PaperDoll
+                    hero={hero}
+                    build={shown}
+                    analysis={shownAnalysis}
+                    highlightGoalId={highlightGoalId}
+                    onSelectSlot={setEditingSlot}
+                  />
+                </GearWriterContext.Provider>
+              ) : view === 'talents' ? (
                 <TalentGrid heroId={hero.id} build={build} />
+              ) : view === 'gems' ? (
+                <GemTree heroId={hero.id} build={build} />
+              ) : (
+                <DungeonPlan heroId={hero.id} build={build} analysis={analysis} />
               )}
             </div>
-            {/* Gear / Talents, like the tabs under the in-game character screen. */}
+            {/* Gear / Talents / Gems / Dungeons, like the tabs under the in-game character screen. */}
             <div className={styles.viewTabs} role="tablist" aria-label="Build view">
               {VIEWS.map((v) => (
                 <button
@@ -172,7 +236,9 @@ export function HeroBuildPage() {
                 </button>
               ))}
             </div>
-            {view === 'gear' && build.active && <GearStatusBoard analysis={analysis} onSelectSlot={setEditingSlot} />}
+            {view === 'gear' && build.active && !editing && (
+              <GearStatusBoard heroId={hero.id} build={build} analysis={analysis} onSelectSlot={setEditingSlot} />
+            )}
           </section>
 
           <aside className={styles.side}>
@@ -180,8 +246,11 @@ export function HeroBuildPage() {
               key={hero.id}
               heroId={hero.id}
               build={build}
-              analysis={analysis}
+              analysis={shownAnalysis}
+              editing={editing}
+              onEditingChange={setEditing}
               onHighlight={setHighlightGoalId}
+              onSelectSlot={setEditingSlot}
             />
           </aside>
         </div>
@@ -201,14 +270,16 @@ export function HeroBuildPage() {
       </div>
 
       {editingSlot && (
-        <SlotEditor
-          heroId={hero.id}
-          build={build}
-          analysis={analysis}
-          slotId={editingSlot}
-          onChangeSlot={setEditingSlot}
-          onClose={() => setEditingSlot(null)}
-        />
+        <GearWriterContext.Provider value={editing ? PLAN_WRITER : GEAR_WRITER}>
+          <SlotEditor
+            heroId={hero.id}
+            build={shown}
+            analysis={shownAnalysis}
+            slotId={editingSlot}
+            onChangeSlot={setEditingSlot}
+            onClose={() => setEditingSlot(null)}
+          />
+        </GearWriterContext.Provider>
       )}
     </>
   )

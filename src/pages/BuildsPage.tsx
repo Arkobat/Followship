@@ -108,10 +108,12 @@ export function BuildsPage() {
     if (!result.ok) return setCodeError(result.error)
     if (result.heroId !== hero.id)
       return setCodeError(`That build is for ${heroName(result.heroId)}, not ${hero.name}.`)
-    addSharedBuild(hero.id, result.data, result.name ?? 'Shared build')
+    const ref = addSharedBuild(hero.id, result.data, result.name ?? 'Shared build')
     setCode('')
     setCodeError(null)
-    setSource('Shared')
+    // A code for a build you already have finds that one, which may be one of yours.
+    const existing = save.saved.find((s) => `saved:${s.id}` === ref)
+    setSource(existing && !existing.shared ? 'Yours' : 'Shared')
   }
 
   return (

@@ -4,11 +4,12 @@ import {
   activeBuildName,
   checklistOf,
   addSharedBuild,
+  presetOf,
   switchBuild,
   useSaveData,
   type HeroBuild,
 } from '../../state/buildStore'
-import { decodeChecklist, encodeChecklist, heroName, shareLink } from '../../utils/shareCode'
+import { decodeChecklist, encodeChecklist, heroName, presetLink, shareLink } from '../../utils/shareCode'
 import styles from './ShareChecklist.module.css'
 
 interface Props {
@@ -20,13 +21,16 @@ interface Props {
 export function ShareChecklist({ heroId, build }: Props) {
   const { saved } = useSaveData()
   const code = encodeChecklist(heroId, checklistOf(build), activeBuildName(build, saved))
+  // A built-in build is shared by name: a short link anyone can open.
+  const preset = presetOf(heroId, build.active)
+  const link = preset ? presetLink(preset) : shareLink(heroId, code)
   const [copied, setCopied] = useState<'code' | 'link' | null>(null)
   const [input, setInput] = useState('')
   const [error, setError] = useState<string | null>(null)
 
   const copy = async (what: 'code' | 'link') => {
     try {
-      await navigator.clipboard.writeText(what === 'code' ? code : shareLink(heroId, code))
+      await navigator.clipboard.writeText(what === 'code' ? code : link)
       setCopied(what)
       setTimeout(() => setCopied(null), 1600)
     } catch {
@@ -51,10 +55,16 @@ export function ShareChecklist({ heroId, build }: Props) {
       {build.active && (
         <>
           <label className={styles.label} htmlFor="share-code">
-            Your build code
+            {preset ? 'Link to this build' : 'Your build code'}
           </label>
           <div className={styles.row}>
-            <input id="share-code" className={styles.code} value={code} readOnly onFocus={(e) => e.target.select()} />
+            <input
+              id="share-code"
+              className={styles.code}
+              value={preset ? link : code}
+              readOnly
+              onFocus={(e) => e.target.select()}
+            />
           </div>
           <div className={styles.row}>
             <button type="button" className="btn btn-ghost" onClick={() => copy('code')}>
@@ -80,7 +90,7 @@ export function ShareChecklist({ heroId, build }: Props) {
             setError(null)
           }}
           onKeyDown={(e) => e.key === 'Enter' && input && load()}
-          placeholder="FB2.…"
+          placeholder="Paste a code or link"
         />
         <button type="button" className="btn btn-primary" disabled={!input.trim()} onClick={load}>
           Load

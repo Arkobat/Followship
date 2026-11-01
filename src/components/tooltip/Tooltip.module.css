@@ -1,0 +1,225 @@
+/* The in-game tooltip card: dark panel, the name in its rarity colour, then sections split by thin rules. */
+/* A manual popover (to sit over modal dialogs), so the browser's popover styles are undone. */
+.layer {
+  position: fixed;
+  inset: 0 auto auto 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: none;
+  z-index: 100;
+  pointer-events: none;
+  animation: fade 90ms ease-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    animation: none;
+  }
+}
+
+.card {
+  --accent: #c9a35c;
+  width: 300px;
+  max-width: calc(100vw - 16px);
+  border-radius: 3px;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: #d9d4c7;
+  background-color: #0d1016;
+  background-image:
+    radial-gradient(120% 70px at 50% 0, color-mix(in srgb, var(--accent) 34%, transparent), transparent),
+    linear-gradient(180deg, #1a1f29, #0d1016 60%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 55%, #000),
+    0 0 0 2px rgb(0 0 0 / 70%),
+    0 16px 40px rgb(0 0 0 / 70%);
+}
+
+.card[data-rarity='Common'] {
+  --accent: #b8b8b8;
+}
+.card[data-rarity='Uncommon'] {
+  --accent: #5ec46a;
+}
+.card[data-rarity='Rare'] {
+  --accent: #4f9bf0;
+}
+.card[data-rarity='Epic'] {
+  --accent: #b06ef0;
+}
+.card[data-rarity='Regal'] {
+  --accent: #e0383e;
+}
+.card[data-rarity='Legendary'] {
+  --accent: #f2a03d;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Items: the name centred in capitals, as in game. */
+.card[data-kind='item'] .head {
+  justify-content: center;
+  text-align: center;
+}
+
+.head img {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 60%, #000);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  text-shadow: 0 1px 2px #000;
+}
+
+.card[data-kind='item'] .title {
+  font-size: 1.12rem;
+  text-transform: uppercase;
+}
+
+.kicker {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #8f8a7e;
+  text-shadow: none;
+}
+
+.section {
+  padding: 7px 12px;
+  border-top: 1px solid rgb(255 255 255 / 7%);
+}
+
+.head + .section {
+  border-top: 0;
+}
+
+/* Two-sided rows: "Shoulders ··· 315", "Regal ··· Tempered 8/8". */
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #a8a294;
+}
+
+.row b {
+  font-weight: 500;
+  color: #d9d4c7;
+}
+
+.rarity {
+  color: var(--accent);
+}
+
+.level {
+  color: #b9a3f5;
+}
+
+.stats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  color: #ece7da;
+}
+
+.stats li[data-stat='primary'] {
+  color: #fff;
+}
+
+.text {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.text + .text {
+  margin-top: 5px;
+}
+
+/* An effect's name: "Glyph: The Subduer", "Power: Iron Sentinel". */
+.label {
+  font-weight: 700;
+  color: #e9c178;
+}
+
+.muted {
+  color: #8f8a7e;
+}
+
+.good {
+  color: #7fd88a;
+}
+
+.bad {
+  color: #ef8a6e;
+}
+
+/* The lines on a piece, each with its icon. */
+.lines {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lines li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* A line to reroll: struck through, with what to reroll it into after it. */
+.rerolled {
+  color: #8f8a7e;
+  text-decoration: line-through;
+  text-decoration-color: rgb(239 138 110 / 70%);
+}
+
+.reroll {
+  font-weight: 700;
+  color: #f0b44a;
+}
+
+.lines img {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+.foot {
+  padding: 6px 12px 8px;
+  border-top: 1px solid rgb(255 255 255 / 7%);
+  font-size: 0.78rem;
+  color: #8f8a7e;
+}

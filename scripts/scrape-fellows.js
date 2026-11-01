@@ -1,6 +1,6 @@
 // Paste into the browser console on any fellows.gg page (same origin, so fetches work).
-// It walks the top 20 Eternal players of every hero, then prints JSON to save as
-// scripts/fellows-builds.json. Then run: node scripts/generate-recommended.mjs
+// It walks the top 25 Eternal players of every hero, with each player's gear piece by piece, then prints JSON to
+// save as scripts/fellows-builds.json. Then run: node scripts/generate-recommended.mjs
 //
 // It's slow on purpose (one request at a time, with pauses) to go easy on fellows.gg.
 ;(async () => {
@@ -18,9 +18,24 @@
     vigour: 'hero/20/Vigour',
     aeona: 'hero/24/Aeona',
   }
-  const TOP_PAGES = 4 // 5 players per page
+  const TOP_PAGES = 5 // 5 players per page
   const RIGHT = new Set(['Necklace', 'Wrists', 'Ring', 'Relic', 'Weapon'])
   const CAT = { Master: 'aspect', Heroic: 'sigil', StatEnchant: 'enchant' }
+  // fellows.gg's gear categories as the planner's slots; rings and relics fill #1 then #2.
+  const SLOT = {
+    Head: ['head'],
+    Shoulders: ['shoulders'],
+    Back: ['back'],
+    Chest: ['chest'],
+    Hands: ['hands'],
+    Legs: ['legs'],
+    Feet: ['feet'],
+    Necklace: ['neck'],
+    Wrists: ['wrists'],
+    Ring: ['ring1', 'ring2'],
+    Relic: ['relic1', 'relic2'],
+    Weapon: ['weapon'],
+  }
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
   const props = async (url) =>
@@ -43,85 +58,90 @@
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')
   const round = (n) => Math.round(n * 1000) / 1000
+  const unknownCategories = new Set()
 
-  /** Lines per entry on one player's gear, or null if any piece isn't a full 3 lines (unfinished gear). */
-  function gearLines(items) {
-    const lines = {}
+  /** A piece's lines as [category, name] pairs: gems, then traits (enchant ranks split between lines), then glyphs. */
+  function pieceLines(i) {
+    const lines = (i.itemGems || []).map((g) => ['gem', g.type])
+    const traits = i.traits || []
+    if (RIGHT.has(i.categoryName)) {
+      // Enchant ranks stack per line; split the non-gem lines between enchants by rank.
+      const free = 3 - lines.length
+      const total = traits.reduce((s, t) => s + t.rank, 0)
+      let given = 0
+      traits.forEach((t, idx) => {
+        const k = idx === traits.length - 1 ? free - given : Math.round((free * t.rank) / total)
+        given += k
+        for (let n = 0; n < k; n++) lines.push([CAT[t.category] ?? t.category, short(t.name)])
+      })
+    } else {
+      for (const t of traits) {
+        const k = t.category === 'StatEnchant' ? Math.max(1, Math.round(t.rank / 6)) : t.rank
+        for (let n = 0; n < k; n++) lines.push([CAT[t.category] ?? t.category, short(t.name)])
+      }
+      for (const b of i.blessings || []) for (let n = 0; n < b.level; n++) lines.push(['glyph', b.name])
+    }
+    for (const [c] of lines) if (!['aspect', 'sigil', 'enchant', 'gem', 'glyph'].includes(c)) unknownCategories.add(c)
+    return lines
+  }
+
+  /** One player's gear slot by slot, their legendary, and whether every piece has its 3 lines. */
+  function gearOf(items) {
+    const gear = {}
+    const sockets = {}
     let legendary = null
-    const add = (k, n) => (lines[k] = (lines[k] || 0) + n)
+    let complete = true
+    const taken = {}
     for (const i of items) {
+      const slots = SLOT[i.categoryName]
+      if (!slots) continue // charms
+      const slotId = slots[(taken[i.categoryName] = (taken[i.categoryName] ?? -1) + 1)]
+      if (!slotId) continue
+      if (i.hasGemSocket) {
+        if (i.gem) out.socketGems[i.gem.slug] = [i.gem.name, icon(i.gem.icon), i.gem.type, i.gem.power]
+        sockets[slotId] = i.gem?.slug ?? null
+      }
       if (i.rarityName === 'Legendary') {
         legendary = i.id
+        gear[slotId] = { id: i.id, name: i.name, level: i.itemLevel, lines: [] }
         continue
       }
-      const gems = i.itemGems || []
-      const traits = i.traits || []
-      let n = gems.length
-      for (const g of gems) add('gem|' + g.type, 1)
-      if (RIGHT.has(i.categoryName)) {
-        // Enchant ranks stack per line; split the non-gem lines between enchants by rank.
-        if (traits.some((t) => t.category !== 'StatEnchant')) return null
-        const free = 3 - gems.length
-        const total = traits.reduce((s, t) => s + t.rank, 0)
-        let given = 0
-        traits.forEach((t, idx) => {
-          const k = idx === traits.length - 1 ? free - given : Math.round((free * t.rank) / total)
-          given += k
-          add('enchant|' + short(t.name), k)
-          n += k
-        })
-      } else {
-        for (const t of traits) {
-          const k = t.category === 'StatEnchant' ? Math.max(1, Math.round(t.rank / 6)) : t.rank
-          add((CAT[t.category] ?? t.category) + '|' + short(t.name), k)
-          n += k
-        }
-        for (const b of i.blessings || []) {
-          add('glyph|' + b.name, b.level)
-          n += b.level
-        }
-      }
-      if (n !== 3) return null
+      const lines = pieceLines(i)
+      if (lines.length !== 3) complete = false
+      gear[slotId] = { id: i.id, name: i.name, level: i.itemLevel, temper: i.upgrades, lines: lines.slice(0, 3) }
     }
-    return { lines, legendary }
+    return { gear, sockets, legendary, complete }
   }
 
   // Socket gems (one socket each on the necklace, wrists and rings), apart from the gem lines.
-  const SOCKETS = { Necklace: 'neck', Wrists: 'wrists', Ring: 'ring' }
-  function socketGems(items) {
-    const sockets = { neck: [], wrists: [], ring: [] }
-    for (const i of items) {
-      const slot = SOCKETS[i.categoryName]
-      if (!slot || !i.hasGemSocket) continue
-      if (i.gem) out.socketGems[i.gem.slug] = [i.gem.name, icon(i.gem.icon), i.gem.type, i.gem.power]
-      sockets[slot].push(i.gem?.slug ?? null)
-    }
-    return sockets
-  }
   /** Per socket type, the share of filled sockets holding each gem; plus the most common pair of ring gems. */
   function socketStats(players) {
-    const rates = (slot) => {
+    const rates = (slots) => {
       const count = {}
       let n = 0
-      for (const p of players) for (const g of p[slot]) if (g) ((count[g] = (count[g] || 0) + 1), n++)
+      for (const p of players)
+        for (const s of slots) {
+          const g = p.sockets[s]
+          if (g) ((count[g] = (count[g] || 0) + 1), n++)
+        }
       return Object.entries(count)
         .map(([id, c]) => [id, round(c / n)])
         .sort((a, b) => b[1] - a[1])
     }
     const pairs = {}
     for (const p of players)
-      if (p.ring.length === 2 && p.ring.every(Boolean)) {
-        const key = [...p.ring].sort().join('|')
+      if (p.sockets.ring1 && p.sockets.ring2) {
+        const key = [p.sockets.ring1, p.sockets.ring2].sort().join('|')
         pairs[key] = (pairs[key] || 0) + 1
       }
     const ringPair =
       Object.entries(pairs)
         .sort((a, b) => b[1] - a[1])[0]?.[0]
         .split('|') ?? []
-    return { neck: rates('neck'), wrists: rates('wrists'), ring: rates('ring'), ringPair }
+    return { neck: rates(['neck']), wrists: rates(['wrists']), ring: rates(['ring1', 'ring2']), ringPair }
   }
 
-  // Shared details live once at the top level; heroes only carry ids and pick rates.
+  // Shared details live once at the top level; heroes carry ids, pick rates and their top players.
   const out = {
     scraped: new Date().toISOString().slice(0, 10),
     league: 'Eternal',
@@ -202,26 +222,33 @@
         ]),
     )
 
+    // The top players, each with their gear, weapon tree (bottom row first), talents and socket gems. A profile
+    // shows the player's main hero unless asked for this one.
+    const [, heroNumber, heroName] = path.split('/')
     const players = []
+    const optionNames = new Set()
     for (let page = 1; page <= TOP_PAGES; page++) {
       const pp = page === 1 ? p : await props(`/${path}?page=${page}`)
       for (const pl of pp.leaderboardContent.paginator.paginator.data) {
         await sleep(300)
         try {
           const j = await (
-            await fetch(`/character-contents/${pl.id}/${pl.slug}`, { headers: { Accept: 'application/json' } })
+            await fetch(`/character-contents/${pl.id}/${pl.slug}?hero=${heroName}`, {
+              headers: { Accept: 'application/json' },
+            })
           ).json()
           const gs = j.profile.gearSetAndAttributes
-          const picks = gs?.weaponTraits.filter((t) => t.selected && t.maxLevel > 1) ?? []
+          const picks = gs?.weaponTraits?.filter((t) => t.selected && t.maxLevel > 1) ?? []
           if (!gs || picks.length === 0) continue // private or empty profile
-          const gear = gearLines(gs.gearSet.gear.map((g) => g.item).filter((i) => i.categoryName !== 'Charm'))
+          if (gs.talents?.heroId !== Number(heroNumber)) continue // another hero's gear
+          gs.weaponTraits.filter((t) => traitCat[t.name]).forEach((t) => optionNames.add(t.name))
+          const talentSlugs = new Map(gs.talents.rows.flatMap((r) => r.cells.map((c) => [c.talent.id, c.talent.slug])))
           players.push({
             player: pl.name,
             rank: pl.rankPosition,
-            options: gs.weaponTraits.filter((t) => traitCat[t.name]).map((t) => t.name),
-            picks: picks.filter((t) => traitCat[t.name]).map((t) => t.name),
-            gear,
-            sockets: socketGems(gs.gearSet.gear.map((g) => g.item)),
+            ...gearOf(gs.gearSet.gear.map((g) => g.item)),
+            tree: picks.filter((t) => traitCat[t.name]).map((t) => [traitCat[t.name], short(t.name)]),
+            talents: (gs.talents.selectedTalentIds ?? []).map((id) => talentSlugs.get(id)).filter(Boolean),
           })
         } catch {
           // Skip profiles that fail to load.
@@ -231,49 +258,34 @@
 
     // Weapon tree options and how often top players pick each.
     const pickCount = {}
-    const optionNames = new Set()
-    for (const pl of players) {
-      pl.options.forEach((n) => optionNames.add(n))
-      pl.picks.forEach((n) => (pickCount[n] = (pickCount[n] || 0) + 1))
-    }
+    for (const pl of players) for (const [, n] of pl.tree) pickCount[n] = (pickCount[n] || 0) + 1
     const weaponTraits = [...optionNames].map((n) => [
       traitCat[n],
       short(n),
-      round((pickCount[n] || 0) / players.length),
+      round((pickCount[short(n)] || 0) / players.length),
     ])
-
-    // Recommendation: the full-gear build (gear lines + weapon picks) closest to the average,
-    // among players wearing the most common legendary.
-    const full = players
-      .filter((pl) => pl.gear)
-      .map((pl) => {
-        const lines = { ...pl.gear.lines }
-        for (const n of pl.picks) lines[traitCat[n] + '|' + short(n)] = (lines[traitCat[n] + '|' + short(n)] || 0) + 1
-        return { ...pl, lines, legendary: pl.gear.legendary }
-      })
-    const legCount = {}
-    for (const pl of full) if (pl.legendary) legCount[pl.legendary] = (legCount[pl.legendary] || 0) + 1
-    const modal = Object.entries(legCount).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
-    const avg = {}
-    for (const pl of full) for (const [k, n] of Object.entries(pl.lines)) avg[k] = (avg[k] || 0) + n / full.length
-    const dist = (pl) => Object.keys(avg).reduce((s, k) => s + Math.abs((pl.lines[k] || 0) - avg[k]), 0)
-    const pick = full.filter((pl) => String(pl.legendary) === String(modal)).sort((a, b) => dist(a) - dist(b))[0]
 
     out.heroes[heroId] = {
       legendaries,
-      legendary: modal ? Number(modal) : null,
-      players: full.length,
-      pick: { player: pick.player, rank: pick.rank },
-      lines: pick.lines,
       neck,
       charms,
       relics,
       weapons,
       weaponTraits,
-      sockets: socketStats(players.map((pl) => pl.sockets)),
+      sockets: socketStats(players),
       talents: { points: talentBudget, rows: talentRows },
+      players,
     }
-    console.log(heroId, 'done:', players.length, 'players,', full.length, 'with full gear')
+    console.log(
+      heroId,
+      'done:',
+      players.length,
+      'players,',
+      players.filter((pl) => pl.complete).length,
+      'with full gear',
+    )
   }
+  if (unknownCategories.size) console.warn('Unknown line categories:', [...unknownCategories])
+  window.fellowsBuilds = out
   console.log(JSON.stringify(out))
 })()

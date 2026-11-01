@@ -37,6 +37,34 @@
   --status-color: #6fd37a;
 }
 
+/* The build's gear (edit mode): nothing to rate, so one colour. */
+.slot[data-plan] {
+  --status-color: var(--gold-bright);
+}
+
+.slot[data-plan] .status {
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+}
+
+/* You wear something other than the build's item here. */
+.slot[data-wrong-item] .tile {
+  --frame: #c8463e;
+}
+
+.wrongItem {
+  max-width: 190px;
+  overflow: hidden;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #e5625a;
+}
+
 .slot[data-dimmed] {
   opacity: 0.35;
   filter: saturate(0.4);
@@ -86,7 +114,7 @@
     linear-gradient(180deg, #221a12, #120e0a);
 }
 
-.slot:hover .tile,
+.slot:not([data-wrong-item]):hover .tile,
 .tile:focus-visible {
   --frame: #a9b8c8;
   transform: translateY(-1px);
@@ -502,6 +530,10 @@
 
 .socket[data-state='good'] {
   box-shadow: 0 0 0 1.5px var(--gold-bright);
+}
+
+.socket[data-state='smaller'] {
+  box-shadow: 0 0 0 1.5px #e0a14a;
 }
 
 .socket[data-state='wrong'] {

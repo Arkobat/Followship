@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react'
 import { methodUrl, type Hero } from '../data/heroes'
 import { ROLES } from '../data/roles'
 import type { HeroBuild } from '../state/buildStore'
-import { formatRelative } from '../utils/time'
 import { RoleIcon } from './RoleIcon'
 import styles from './HeroShowcase.module.css'
 
@@ -27,11 +26,6 @@ export function HeroShowcase({ hero, build, onOpen }: Props) {
         <h2 className={styles.name}>{hero.name}</h2>
         <p className={styles.epithet}>{hero.epithet}</p>
         <p className={styles.tagline}>{hero.tagline}</p>
-
-        <p className={styles.status} data-saved={build ? true : undefined}>
-          <span className={styles.dot} aria-hidden="true" />
-          {build ? `Started · updated ${formatRelative(build.updatedAt)}` : 'Not started yet'}
-        </p>
 
         <div className={styles.actions}>
           <button type="button" className={`btn btn-primary ${styles.primary}`} onClick={onOpen}>

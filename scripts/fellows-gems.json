@@ -1,0 +1,477 @@
+{
+ "scrapedAt": "2026-11-01T17:29:05.892Z",
+ "traits": [
+  {
+   "colour": "amethyst",
+   "power": 80,
+   "id": 531,
+   "name": "Sealed Fate",
+   "icon": "T_Icon_Shadow_121.jpg",
+   "description": "Your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span> and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span> effects on characters with more than <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>50% health</span> have <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+5%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span> chance."
+  },
+  {
+   "colour": "amethyst",
+   "power": 150,
+   "id": 284,
+   "name": "Berserker's Zeal",
+   "icon": "T_Icon_Shadow_140.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+4</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+8</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span>"
+  },
+  {
+   "colour": "amethyst",
+   "power": 220,
+   "id": 306,
+   "name": "Reaper's Reprieve",
+   "icon": "T_Nhance_RPG_Icons_ArcaneSmoke.jpg",
+   "description": "Each time <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>an enemy that you dealt damage to dies</span>, you gain <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Reaper's Reprieve</span>, healing you for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>12%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span> over <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>18 seconds</span>."
+  },
+  {
+   "colour": "amethyst",
+   "power": 300,
+   "id": 332,
+   "name": "Killer Instinct",
+   "icon": "T_Nhance_RPG_Icons_ShadowRaise.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span> chance."
+  },
+  {
+   "colour": "amethyst",
+   "power": 450,
+   "id": 334,
+   "name": "Blessing of the Deathdealer",
+   "icon": "T_Nhance_RPG_Icons_ShadowRoar.jpg",
+   "description": "Your Critical Strikes do <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>2%</span> more <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span> and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span>."
+  },
+  {
+   "colour": "amethyst",
+   "power": 600,
+   "id": 532,
+   "name": "Sealed Fate - II",
+   "icon": "T_Icon_Shadow_121.jpg",
+   "description": "Your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span> and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span> effects on characters with more than <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>50% health</span> have <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+15%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span> chance.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Sealed Fate</span>)"
+  },
+  {
+   "colour": "amethyst",
+   "power": 800,
+   "id": 285,
+   "name": "Berserker's Zeal - II",
+   "icon": "T_Icon_Shadow_140.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+24</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Berserker's Zeal</span>)"
+  },
+  {
+   "colour": "amethyst",
+   "power": 1000,
+   "id": 307,
+   "name": "Reaper's Reprieve - II",
+   "icon": "T_Nhance_RPG_Icons_ArcaneSmoke.jpg",
+   "description": "Each time <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>an enemy that you dealt damage to dies</span>, you gain <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Reaper's Reprieve - II</span>, healing you for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>36%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span> over <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>18 seconds</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Reaper's Reprieve</span>)"
+  },
+  {
+   "colour": "amethyst",
+   "power": 1250,
+   "id": 333,
+   "name": "Killer Instinct - II",
+   "icon": "T_Nhance_RPG_Icons_ShadowRaise.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span> chance.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Killer Instinct</span>)"
+  },
+  {
+   "colour": "amethyst",
+   "power": 1500,
+   "id": 335,
+   "name": "Blessing of the Deathdealer - II",
+   "icon": "T_Nhance_RPG_Icons_ShadowRoar.jpg",
+   "description": "Your Critical Strikes do <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>6%</span> more <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span> and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Blessing of the Deathdealer</span>)"
+  },
+  {
+   "colour": "diamond",
+   "power": 80,
+   "id": 338,
+   "name": "Harmonious Soul",
+   "icon": "T_Nhance_RPG_Arcane_19.jpg",
+   "description": "Each time <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>an enemy you are in combat with is defeated</span>, you gain <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+0.6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span>, <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span>, <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span>, and <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>5 seconds</span>, stacking up to <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>4 times</span>.<br><br>When the duration of <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Harmonious Soul</span> expires, you lose <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>1</span> stack."
+  },
+  {
+   "colour": "diamond",
+   "power": 150,
+   "id": 298,
+   "name": "Stoic's Teachings",
+   "icon": "Tex_SpellBook01_34.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+40</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Armor</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+4</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span>"
+  },
+  {
+   "colour": "diamond",
+   "power": 220,
+   "id": 302,
+   "name": "Tranquil Resolve",
+   "icon": "Tex_SpellBook01_59.jpg",
+   "description": "When <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>you take Magic Damage</span> you gain <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Tranquil Resolve</span>, reducing all Magic Damage you take by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>8%</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>6 seconds</span>.<br><br><span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>This effect cannot occur more than once every 20 seconds</span>."
+  },
+  {
+   "colour": "diamond",
+   "power": 300,
+   "id": 292,
+   "name": "Ancient's Wisdom",
+   "icon": "T_Nhance_RPG_Arcane_36.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span>"
+  },
+  {
+   "colour": "diamond",
+   "power": 450,
+   "id": 290,
+   "name": "Blessing of the Artisan",
+   "icon": "T_Nhance_RPG_Arcane_21.jpg",
+   "description": "Your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Relic cooldowns</span> are reduced by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>8%</span>."
+  },
+  {
+   "colour": "diamond",
+   "power": 600,
+   "id": 339,
+   "name": "Harmonious Soul - II",
+   "icon": "T_Nhance_RPG_Arcane_19.jpg",
+   "description": "Each time <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>an enemy you are in combat with is defeated</span>, you gain <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+0.6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Critical Strike</span>, <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span>, <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span>, and <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>5 seconds</span>, stacking up to <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>12 times</span>.<br><br>When the duration of <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Harmonious Soul - II</span> expires, you lose <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>1</span> stack.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Harmonious Soul</span>)"
+  },
+  {
+   "colour": "diamond",
+   "power": 800,
+   "id": 299,
+   "name": "Stoic's Teachings - II",
+   "icon": "Tex_SpellBook01_34.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+120</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Armor</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Stoic's Teachings</span>)"
+  },
+  {
+   "colour": "diamond",
+   "power": 1000,
+   "id": 303,
+   "name": "Tranquil Resolve - II",
+   "icon": "Tex_SpellBook01_59.jpg",
+   "description": "When <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>you take Magic Damage</span> you gain <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Tranquil Resolve - II</span>, reducing all Magic Damage you take by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>24%</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>6 seconds</span>.<br><br><span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>This effect cannot occur more than once every 20 seconds</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Tranquil Resolve</span>)"
+  },
+  {
+   "colour": "diamond",
+   "power": 1250,
+   "id": 293,
+   "name": "Ancient's Wisdom - II",
+   "icon": "T_Nhance_RPG_Arcane_36.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Ancient's Wisdom</span>)"
+  },
+  {
+   "colour": "emerald",
+   "power": 80,
+   "id": 322,
+   "name": "First Strike",
+   "icon": "T_Icon_Nature_205.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+5%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>15 seconds</span> when <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>dealing damage to any enemy for the first time</span>."
+  },
+  {
+   "colour": "emerald",
+   "power": 150,
+   "id": 282,
+   "name": "Vanguard's Resolve",
+   "icon": "T_Icon_Fel_07.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+4</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+8</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span>"
+  },
+  {
+   "colour": "emerald",
+   "power": 220,
+   "id": 346,
+   "name": "Sentinel's Bastion",
+   "icon": "T_Nhance_RPG_Icons_SpiritAmulet_SentinelBastion.jpg",
+   "description": "Every <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>60 seconds</span>, you gain a shield that absorbs damage equal to <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>5%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span>. The shield lasts for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>60 seconds</span>. Damage dealt to the shield is <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>reduced by 50%</span>."
+  },
+  {
+   "colour": "emerald",
+   "power": 300,
+   "id": 328,
+   "name": "Tactician's Accumen",
+   "icon": "T_Nhance_RPG_Icons_NatureAmbush.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span>"
+  },
+  {
+   "colour": "emerald",
+   "power": 450,
+   "id": 342,
+   "name": "Blessing of the Commander",
+   "icon": "T_Icon_Fel_02.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>4%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Ability Cooldown</span> reduction"
+  },
+  {
+   "colour": "emerald",
+   "power": 600,
+   "id": 323,
+   "name": "First Strike - II",
+   "icon": "T_Icon_Nature_205.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+15%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>15 seconds</span> when <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>dealing damage to any enemy for the first time</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>First Strike</span>)"
+  },
+  {
+   "colour": "emerald",
+   "power": 800,
+   "id": 283,
+   "name": "Vanguard's Resolve - II",
+   "icon": "T_Icon_Fel_07.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+24</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Vanguard's Resolve</span>)"
+  },
+  {
+   "colour": "emerald",
+   "power": 1000,
+   "id": 347,
+   "name": "Sentinel's Bastion - II",
+   "icon": "T_Nhance_RPG_Icons_SpiritAmulet_SentinelBastion.jpg",
+   "description": "Every <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>60 seconds</span>, you gain a shield that absorbs damage equal to <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>15%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span>. The shield lasts for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>60 seconds</span>. Damage dealt to the shield is <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>reduced by 50%</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Sentinel's Bastion</span>)"
+  },
+  {
+   "colour": "emerald",
+   "power": 1250,
+   "id": 329,
+   "name": "Tactician's Accumen - II",
+   "icon": "T_Nhance_RPG_Icons_NatureAmbush.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Expertise</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Tactician's Accumen</span>)"
+  },
+  {
+   "colour": "emerald",
+   "power": 1500,
+   "id": 343,
+   "name": "Blessing of the Commander - II",
+   "icon": "T_Icon_Fel_02.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Ability Cooldown</span> reduction<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Blessing of the Commander</span>)"
+  },
+  {
+   "colour": "ruby",
+   "power": 80,
+   "id": 296,
+   "name": "Might of the Minotaur",
+   "icon": "T_Nhance_RPG_Icons_InfernalMadness.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span> while you are above <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>80% health</span>."
+  },
+  {
+   "colour": "ruby",
+   "power": 150,
+   "id": 278,
+   "name": "Champion's Heart",
+   "icon": "T_Icon_BloodCombat_132.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span>"
+  },
+  {
+   "colour": "ruby",
+   "power": 220,
+   "id": 310,
+   "name": "Unyielding Vitality",
+   "icon": "T_Icon_BloodCombat_137.jpg",
+   "description": "You heal for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>0.7%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span> every <span style='color:#FD89FAFF; font-weight:normal; font-style:normal; font-size:9;'>2 seconds</span> while in combat."
+  },
+  {
+   "colour": "ruby",
+   "power": 300,
+   "id": 300,
+   "name": "Titan's Blood",
+   "icon": "T_BloodDrop.jpg",
+   "description": " <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+3%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span>"
+  },
+  {
+   "colour": "ruby",
+   "power": 450,
+   "id": 330,
+   "name": "Blessing of the Conqueror",
+   "icon": "T_Nhance_RPG_Icons_BloodHide.jpg",
+   "description": "While <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>in combat with a boss</span> your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span>, <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span>, and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Absorption</span> is increased by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>5%</span>."
+  },
+  {
+   "colour": "ruby",
+   "power": 600,
+   "id": 297,
+   "name": "Might of the Minotaur - II",
+   "icon": "T_Nhance_RPG_Icons_InfernalMadness.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span> while you are above <span style='color:#5FF5BEFF; font-weight:normal; font-style:normal; font-size:9;'>80% health</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Might of the Minotaur</span>)"
+  },
+  {
+   "colour": "ruby",
+   "power": 800,
+   "id": 279,
+   "name": "Champion's Heart - II",
+   "icon": "T_Icon_BloodCombat_132.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+18</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Champion's Heart</span>)"
+  },
+  {
+   "colour": "ruby",
+   "power": 1000,
+   "id": 311,
+   "name": "Unyielding Vitality - II",
+   "icon": "T_Icon_BloodCombat_137.jpg",
+   "description": "You heal for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>2.1%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span> every <span style='color:#FD89FAFF; font-weight:normal; font-style:normal; font-size:9;'>2 seconds</span> while in combat.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Unyielding Vitality</span>)"
+  },
+  {
+   "colour": "ruby",
+   "power": 1250,
+   "id": 301,
+   "name": "Titan's Blood - II",
+   "icon": "T_BloodDrop.jpg",
+   "description": " <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+9%</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Titan's Blood</span>)"
+  },
+  {
+   "colour": "ruby",
+   "power": 1500,
+   "id": 331,
+   "name": "Blessing of the Conqueror - II",
+   "icon": "T_Nhance_RPG_Icons_BloodHide.jpg",
+   "description": "While <span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>in combat with a boss</span> your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Damage</span>, <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Healing</span>, and <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Absorption</span> is increased by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>15%</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Blessing of the Conqueror</span>)"
+  },
+  {
+   "colour": "sapphire",
+   "power": 80,
+   "id": 294,
+   "name": "Ancestral Surge",
+   "icon": "T_Icon_Energy_130.jpg",
+   "description": "Your maximum <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit Points</span> is increased by <span style='color:#5F9AC9FF; font-weight:normal; font-style:normal; font-size:9;'>10</span>.<br><br>While <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> is active, your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span> is increased by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>8%</span>."
+  },
+  {
+   "colour": "sapphire",
+   "power": 150,
+   "id": 276,
+   "name": "Mystic's Intuition",
+   "icon": "T_Icon_Frost_120.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+4</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+8</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span>"
+  },
+  {
+   "colour": "sapphire",
+   "power": 220,
+   "id": 304,
+   "name": "Resonating Soul",
+   "icon": "T_Nhance_RPG_Energy_17.jpg",
+   "description": "For every <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>10% Health</span> you are missing, all Damage you take is reduced by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>1%</span>."
+  },
+  {
+   "colour": "sapphire",
+   "power": 300,
+   "id": 286,
+   "name": "Oracle's Foresight",
+   "icon": "T_Icon_Energy_124.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span>"
+  },
+  {
+   "colour": "sapphire",
+   "power": 450,
+   "id": 308,
+   "name": "Blessing of the Prophet",
+   "icon": "T_Nhance_RPG_Energy_29.jpg",
+   "description": "The cost of your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit Ability</span> is reduced by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>5%</span>.<br><br>The duration of <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> is increased by <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>6 seconds</span>."
+  },
+  {
+   "colour": "sapphire",
+   "power": 600,
+   "id": 295,
+   "name": "Ancestral Surge - II",
+   "icon": "T_Icon_Energy_130.jpg",
+   "description": "Your maximum <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit Points</span> is increased by <span style='color:#5F9AC9FF; font-weight:normal; font-style:normal; font-size:9;'>30</span>.<br><br>While <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> is active, your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Strength</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Intellect</span> / <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Agility</span> is increased by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>24%</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Ancestral Surge</span>)"
+  },
+  {
+   "colour": "sapphire",
+   "power": 800,
+   "id": 277,
+   "name": "Mystic's Intuition - II",
+   "icon": "T_Icon_Frost_120.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+24</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Mystic's Intuition</span>)"
+  },
+  {
+   "colour": "sapphire",
+   "power": 1000,
+   "id": 305,
+   "name": "Resonating Soul - II",
+   "icon": "T_Nhance_RPG_Energy_17.jpg",
+   "description": "For every <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>10% Health</span> you are missing, all Damage you take is reduced by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>3%</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Resonating Soul</span>)"
+  },
+  {
+   "colour": "sapphire",
+   "power": 1250,
+   "id": 287,
+   "name": "Oracle's Foresight - II",
+   "icon": "T_Icon_Energy_124.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Oracle's Foresight</span>)"
+  },
+  {
+   "colour": "sapphire",
+   "power": 1500,
+   "id": 309,
+   "name": "Blessing of the Prophet - II",
+   "icon": "T_Nhance_RPG_Energy_29.jpg",
+   "description": "The cost of your <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit Ability</span> is reduced by <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>15%</span>.<br><br>The duration of <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> is increased by <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>18 seconds</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Blessing of the Prophet</span>)"
+  },
+  {
+   "colour": "topaz",
+   "power": 80,
+   "id": 318,
+   "name": "Adrenaline Rush",
+   "icon": "T_Nhance_RPG_Icons_HolyArrow.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+3%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>10 seconds</span> each time you deal damage to or heal a character that has <span style='color:#FF5B5BFF; font-weight:normal; font-style:normal; font-size:9;'>30% or less health</span>."
+  },
+  {
+   "colour": "topaz",
+   "power": 150,
+   "id": 280,
+   "name": "Thief's Alacrity",
+   "icon": "T_Nhance_RPG_Gold_15.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+4</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+8</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span>"
+  },
+  {
+   "colour": "topaz",
+   "power": 220,
+   "id": 344,
+   "name": "Rogue's Resurgence",
+   "icon": "T_Icon_Gold_135.jpg",
+   "description": "When you are <span style='color:#FF5B5BFF; font-weight:normal; font-style:normal; font-size:9;'>below 50% health</span> you are instantly healed for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>8%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span>. <br><br><span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>This effect can only occur once every 20 seconds</span>."
+  },
+  {
+   "colour": "topaz",
+   "power": 300,
+   "id": 320,
+   "name": "Feline Grace",
+   "icon": "Tex_SpellBook06_01.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span>"
+  },
+  {
+   "colour": "topaz",
+   "power": 450,
+   "id": 316,
+   "name": "Blessing of the Virtuoso",
+   "icon": "Tex_SpellBook01_11.jpg",
+   "description": "You retain <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+2%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span> from <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> while it is not active."
+  },
+  {
+   "colour": "topaz",
+   "power": 600,
+   "id": 319,
+   "name": "Adrenaline Rush - II",
+   "icon": "T_Nhance_RPG_Icons_HolyArrow.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+9%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span> for <span style='color:#D265EFFF; font-weight:normal; font-style:normal; font-size:9;'>10 seconds</span> each time you deal damage to or heal a character that has <span style='color:#FF5B5BFF; font-weight:normal; font-style:normal; font-size:9;'>30% or less health</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Adrenaline Rush</span>)"
+  },
+  {
+   "colour": "topaz",
+   "power": 800,
+   "id": 281,
+   "name": "Thief's Alacrity - II",
+   "icon": "T_Nhance_RPG_Gold_15.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+12</span> <span style='color:#EAE3DBFF; font-weight:normal; font-style:normal; font-size:9;'>Stamina</span><br><span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+24</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Thief's Alacrity</span>)"
+  },
+  {
+   "colour": "topaz",
+   "power": 1000,
+   "id": 345,
+   "name": "Rogue's Resurgence - II",
+   "icon": "T_Icon_Gold_135.jpg",
+   "description": "When you are <span style='color:#FF5B5BFF; font-weight:normal; font-style:normal; font-size:9;'>below 50% health</span> you are instantly healed for <span style='color:#4ECC22FF; font-weight:normal; font-style:normal; font-size:9;'>24%</span> of your <span style='color:#42CBB1FF; font-weight:normal; font-style:normal; font-size:9;'>Maximum Health</span>.<br><br><span style='color:#909BA6FF; font-weight:normal; font-style:normal; font-size:9;'>This effect can only occur once every 20 seconds</span>.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Rogue's Resurgence</span>)"
+  },
+  {
+   "colour": "topaz",
+   "power": 1250,
+   "id": 321,
+   "name": "Feline Grace - II",
+   "icon": "Tex_SpellBook06_01.jpg",
+   "description": "<span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span><br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Feline Grace</span>)"
+  },
+  {
+   "colour": "topaz",
+   "power": 1500,
+   "id": 317,
+   "name": "Blessing of the Virtuoso - II",
+   "icon": "Tex_SpellBook01_11.jpg",
+   "description": "You retain <span style='color:#E08600FF; font-weight:normal; font-style:normal; font-size:9;'>+6%</span> <span style='color:#49EEEEFF; font-weight:normal; font-style:normal; font-size:9;'>Haste</span> from <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Spirit of Heroism</span> while it is not active.<br><br>(Replaces <span style='color:#D3A55AFF; font-weight:normal; font-style:normal; font-size:9;'>Blessing of the Virtuoso</span>)"
+  }
+ ]
+}

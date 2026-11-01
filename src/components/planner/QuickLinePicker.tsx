@@ -1,6 +1,7 @@
 import { SLOT_BY_ID, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
-import { setLine, type HeroBuild } from '../../state/buildStore'
+import type { HeroBuild } from '../../state/buildStore'
+import { useGearWriter } from '../../state/gearWriter'
 import type { BuildAnalysis } from '../../utils/progress'
 import { AnchoredPopover } from './AnchoredPopover'
 import { LinePicker } from './LinePicker'
@@ -21,6 +22,7 @@ const ROOM = 340
 
 /** Replace one line straight from the paper doll: a small search under its icon, no modal. */
 export function QuickLinePicker({ heroId, build, analysis, slotId, index, anchor, onClose }: Props) {
+  const { setLine } = useGearWriter()
   const slot = SLOT_BY_ID[slotId]
   return (
     <AnchoredPopover

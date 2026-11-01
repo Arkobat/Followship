@@ -1,6 +1,7 @@
 import { CATEGORIES, type CategoryDefinition, type CategoryId } from '../data/catalog'
 import { GEAR_SLOTS, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
 import { SOCKET_SLOTS } from '../data/loadout'
+import { getItem, itemForOption } from '../data/items'
 import { getLegendary, type Legendary } from '../data/recommended'
 import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
 
@@ -8,19 +9,20 @@ import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
  * Works out progress from what's actually rolled on your gear:
  *  - each line either fills a checklist goal ("good") or doesn't (wrong / surplus copy),
  *  - a piece's x/3 is its number of good lines,
- *  - wrong lines get a reroll suggestion that respects what can roll where.
+ *  - wrong lines get a reroll suggestion that respects what can roll where,
+ *  - a piece that isn't the build's item is to be replaced: its lines count, but get no reroll tips.
  * A trait picked on the weapon tree counts like a line, before gear does.
  * The checklist's legendary takes over its slot: it's done once the legendary is equipped. Until then the
  * piece you wear there can have lines: they count, but get no reroll tips (it's being replaced). Any other
- * slot can be marked as having no lines (another legendary): filled, nothing to rate. Without a build there's nothing to rate lines against: they're "unrated".
+ * slot can hold another legendary (picked as its item, or marked as having no lines): filled, nothing to rate. Without a build there's nothing to rate lines against: they're "unrated".
  */
 
 /** Where a piece stands, from its good lines. */
 export type SlotStatus = 'unset' | 'unrated' | 'replace' | 'reroll' | 'legendary' | 'noLines' | 'complete'
 
 export const SLOT_STATUS: Record<SlotStatus, { label: string; hint: string }> = {
-  replace: { label: 'Replace', hint: `0–1/${STAT_LINES} lines right` },
-  reroll: { label: 'Reroll', hint: `${STAT_LINES - 1}/${STAT_LINES} lines right` },
+  replace: { label: 'Replace', hint: 'Not the build’s item' },
+  reroll: { label: 'Reroll', hint: 'Lines to change' },
   legendary: { label: 'Get legendary', hint: 'Swap in your legendary' },
   noLines: { label: 'Legendary', hint: 'No lines to roll' },
   complete: { label: 'Complete', hint: `${STAT_LINES}/${STAT_LINES} lines right` },
@@ -94,6 +96,11 @@ export interface BuildAnalysis {
   legendary: LegendaryInfo | null
   /** The build's socket gems: sockets holding the right gem, and the sockets that have a target. */
   sockets: { have: number; need: number }
+  /**
+   * The items the build names: the one for each slot (`wanted`), how many you wear, and the slots where you wear
+   * something else.
+   */
+  items: { wanted: Partial<Record<SlotId, string>>; have: number; need: number; wrong: SlotId[] }
   summary: { slotsComplete: number; slotsTotal: number; have: number; need: number }
 }
 
@@ -133,11 +140,17 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   //    surplus copy lands on the weaker piece (the one you'd reroll anyway).
   const slots = {} as Record<SlotId, SlotInfo>
   const legendarySlot = legendary?.entry.slot
+  const wanted = wantedItems(build)
+  const worn = (s: SlotId) => build.slots[s]?.item
+  // Wearing something other than the build's item: replace it. (The legendary's slot already says to get it.)
+  const wrongItem = (s: SlotId) => rated && !!worn(s) && !!wanted[s] && worn(s) !== wanted[s] && s !== legendarySlot
   if (legendary?.equipped) {
     slots[legendarySlot!] = { slot: SLOT_BY_ID[legendarySlot!], lines: [], correct: 0, status: 'complete', legendary }
   }
   for (const slot of GEAR_SLOTS) {
-    if (slot.id !== legendarySlot && build.slots[slot.id]?.noLines) {
+    const progress = build.slots[slot.id]
+    const otherLegendary = getItem(build.heroId, progress?.item)?.rarity === 'Legendary'
+    if (slot.id !== legendarySlot && (progress?.noLines || otherLegendary) && !wrongItem(slot.id)) {
       slots[slot.id] = { slot, lines: [], correct: 0, status: 'noLines' }
     }
   }
@@ -171,23 +184,24 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
       slots[slot.id] = { slot, lines: infos, correct, status: 'legendary', legendary: legendary! }
       continue
     }
-    const status: SlotStatus = !entered
-      ? 'unset'
-      : !rated
-        ? 'unrated'
-        : correct >= STAT_LINES
-          ? 'complete'
-          : correct === STAT_LINES - 1
-            ? 'reroll'
-            : 'replace'
+    // Reroll changes a piece's lines; replace changes the piece.
+    const status: SlotStatus = wrongItem(slot.id)
+      ? 'replace'
+      : !entered
+        ? 'unset'
+        : !rated
+          ? 'unrated'
+          : correct >= STAT_LINES
+            ? 'complete'
+            : 'reroll'
     slots[slot.id] = { slot, lines: infos, correct, status }
   }
 
-  // 2. Suggest rerolls for wrong lines, cheapest pieces (one line off) first.
+  // 2. Suggest rerolls for wrong lines, cheapest pieces (fewest lines off) first. Pieces being replaced get none.
   const remaining = new Map(build.goals.map((g) => [g.id, g.target - goals.get(g.id)!.have]))
   const wrong = GEAR_SLOTS.map((s) => slots[s.id])
-    .filter((s) => !s.legendary)
-    .sort((a, b) => STATUS_PRIORITY[a.status] - STATUS_PRIORITY[b.status])
+    .filter((s) => !s.legendary && s.status !== 'replace')
+    .sort((a, b) => STATUS_PRIORITY[a.status] - STATUS_PRIORITY[b.status] || b.correct - a.correct)
     .flatMap((s) =>
       s.lines
         .filter((l) => l.state === 'surplus' || l.state === 'unneeded')
@@ -242,7 +256,13 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     }
   })
 
-  const items = [legendary, build.weapon, ...build.relics].filter((i) => i !== null)
+  const wantedSlots = Object.keys(wanted) as SlotId[]
+  const items = {
+    wanted,
+    have: wantedSlots.filter((s) => worn(s) === wanted[s]).length,
+    need: wantedSlots.length,
+    wrong: wantedSlots.filter(wrongItem),
+  }
   const targets = SOCKET_SLOTS.filter((s) => build.sockets[s])
   const sockets = {
     have: targets.filter((s) => build.loadout.sockets[s] === build.sockets[s]).length,
@@ -255,17 +275,54 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     categories,
     legendary,
     sockets,
+    items,
     summary: {
       // A slot marked as having no lines (another legendary) is as done as it gets.
       slotsComplete: GEAR_SLOTS.filter((s) => slots[s.id].status === 'complete' || slots[s.id].status === 'noLines')
         .length,
       slotsTotal: GEAR_SLOTS.length,
-      // Named items (legendary, weapon, relics) and socket gems count one each. Talents don't count: the Talents
-      // tab shows the build's.
-      have: categories.reduce((n, c) => n + c.have, 0) + items.filter((i) => i.equipped).length + sockets.have,
-      need: categories.reduce((n, c) => n + c.need, 0) + items.length + sockets.need,
+      // The build's items and socket gems count one each. Talents don't count: the Talents tab shows the build's.
+      have: categories.reduce((n, c) => n + c.have, 0) + items.have + sockets.have,
+      need: categories.reduce((n, c) => n + c.need, 0) + items.need + sockets.need,
     },
   }
+}
+
+const RELIC_SLOTS: SlotId[] = ['relic1', 'relic2']
+
+/**
+ * The item the build wants in each slot: its gear's (see `BuildPlan`), or for a build without gear of its own the
+ * legendary, weapon and relics it names. Relics go either way round: a relic slot wearing one of the build's relics
+ * wants that one, and the rest fill the other relic slots in order.
+ */
+export function wantedItems(build: HeroBuild): Partial<Record<SlotId, string>> {
+  const { heroId, plan } = build
+  const wanted: Partial<Record<SlotId, string>> = {}
+  let relics: string[]
+  if (plan) {
+    for (const slot of GEAR_SLOTS) {
+      const item = plan.slots[slot.id]?.item
+      if (item && !RELIC_SLOTS.includes(slot.id)) wanted[slot.id] = item
+    }
+    relics = RELIC_SLOTS.flatMap((s) => plan.slots[s]?.item ?? [])
+  } else {
+    const legendary = getLegendary(heroId, build.legendary?.id)
+    if (legendary) wanted[legendary.slot] = legendary.id
+    const weapon = build.weapon && itemForOption(heroId, 'weapon', build.weapon.id)
+    if (weapon) wanted.weapon = weapon.id
+    relics = build.relics.flatMap((r) => itemForOption(heroId, 'relic1', r.id)?.id ?? [])
+  }
+  const free = RELIC_SLOTS.filter((s) => {
+    const worn = build.slots[s]?.item
+    if (!worn || !relics.includes(worn)) return true
+    wanted[s] = worn
+    relics = relics.filter((r) => r !== worn)
+    return false
+  })
+  free.forEach((s, i) => {
+    if (relics[i]) wanted[s] = relics[i]
+  })
+  return wanted
 }
 
 export const isGoalDone = (g: GoalInfo) => g.have >= g.goal.target

@@ -308,178 +308,26 @@
 
 /* ---- Edit mode ---- */
 
-.editControls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.stepper {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 4px;
-  background: rgb(255 255 255 / 6%);
-  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 20%);
-}
-
-.stepper button {
-  width: 28px;
-  height: 28px;
-  border: 0;
-  background: none;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  cursor: pointer;
-}
-
-.stepper button:hover:not(:disabled) {
-  color: var(--gold-bright);
-}
-
-.stepper button:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.stepper span {
-  min-width: 22px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-align: center;
-  color: var(--cat-color);
-}
-
-.remove {
+.editNotes {
   display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 0;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 10px 12px;
   border-radius: 4px;
-  background: none;
-  color: var(--text-faint);
-  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  background: rgb(233 193 120 / 7%);
+  box-shadow: inset 0 0 0 1px rgb(233 193 120 / 22%);
 }
 
-.remove:hover {
-  color: #f0a59f;
-  background: rgb(217 71 63 / 12%);
+.editNotes p {
+  margin: 0;
 }
 
-.remove svg {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
+.editWarning {
+  color: #f0b44a;
 }
-
-.addBtn {
-  margin-top: 4px;
-  padding: 6px 0;
-  border: 0;
-  background: none;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--cat-color);
-  cursor: pointer;
-}
-
-.addBtn:hover {
-  text-decoration: underline;
-}
-
-/* ---- Legendary ---- */
-
-.legendaryIcon {
-  width: 30px;
-  height: 30px;
-  flex: none;
-  border-radius: 4px;
-  box-shadow: 0 0 0 1px #d08a2e;
-}
-
-.row:not([data-done]) .legendaryIcon {
-  filter: grayscale(0.8);
-  opacity: 0.6;
-}
-
-.equip {
-  flex: none;
-  min-height: 28px;
-  padding: 0 10px;
-  border: 0;
-  border-radius: 4px;
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #f2c27a;
-  background: rgb(242 166 74 / 12%);
-  box-shadow: inset 0 0 0 1px rgb(242 166 74 / 40%);
-  cursor: pointer;
-}
-
-.equip:hover {
-  background: rgb(242 166 74 / 22%);
-}
-
-.equip[aria-pressed='true'] {
-  padding: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.legendaryOptions {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 6px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.legendaryOption {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 4px;
-  font: inherit;
-  text-align: left;
-  background: none;
-  box-shadow: inset 0 0 0 1px rgb(169 184 200 / 14%);
-  cursor: pointer;
-}
-
-.legendaryOption:hover {
-  background: rgb(255 255 255 / 5%);
-}
-
-.legendaryOption[aria-checked='true'] {
-  background: rgb(242 166 74 / 10%);
-  box-shadow: inset 0 0 0 1px #d08a2e;
-}
-
-.legendaryOption img,
-.noLegendary {
-  width: 30px;
-  height: 30px;
-  flex: none;
-  border-radius: 4px;
-}
-
-.noLegendary {
-  display: grid;
-  place-items: center;
-  color: var(--text-faint);
-  background: rgb(255 255 255 / 5%);
-}
-
-/* ---- Recommendation source (edit mode) ---- */
 
 .source {
   display: flex;
@@ -497,106 +345,41 @@
   color: var(--text-faint);
 }
 
-/* ---- Gear choices (edit mode) ---- */
+/* ---- Items you wear that aren't the build's ---- */
 
-.choiceTitle {
-  margin: 12px 0 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.legendaryOption[aria-checked='true'][role='checkbox'] {
-  background: rgb(242 166 74 / 10%);
-  box-shadow: inset 0 0 0 1px #d08a2e;
-}
-
-.legendaryOption:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.tierTag {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 22px;
-  height: 22px;
-  margin-left: auto;
+.wrongItems {
+  margin: 0 0 16px;
+  padding: 10px 12px;
   border-radius: 4px;
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: #0b0f14;
-  background: var(--tier-color);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: rgb(229 98 90 / 8%);
+  box-shadow: inset 0 0 0 1px rgb(229 98 90 / 35%);
 }
 
-.equip:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.wrongItems strong {
+  color: #f0a59f;
 }
 
-/* Socket gems in edit mode: one row of gem icons per socket, most used first. */
-.socketPicked {
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--gold-bright);
+.wrongItems ul {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.socketChoices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 6px;
-}
-
-.socketChoice {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
+.wrongItems button {
   padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 3%);
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgb(229 98 90 / 60%);
+  text-underline-offset: 2px;
   cursor: pointer;
 }
 
-.socketChoice img {
-  width: 26px;
-  height: 26px;
-  filter: grayscale(0.6) brightness(0.7);
-}
-
-.socketChoice:hover img,
-.socketChoice[aria-checked='true'] img {
-  filter: none;
-}
-
-.socketChoice[aria-checked='true'] {
-  background: rgb(233 193 120 / 12%);
-  box-shadow: 0 0 0 1.5px var(--gold-bright);
-}
-
-.socketTier {
-  position: absolute;
-  right: -2px;
-  bottom: -2px;
-  display: grid;
-  place-items: center;
-  width: 13px;
-  height: 13px;
-  border-radius: 3px;
-  font-family: var(--font-display);
-  font-size: 0.56rem;
-  font-weight: 800;
-  color: #0b0f14;
-  background: var(--tier-color);
-}
-
-.socketWrong {
-  color: #e5625a;
+.wrongItems button:hover {
+  color: #f0a59f;
 }

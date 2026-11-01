@@ -1,6 +1,9 @@
 import { useState, type CSSProperties } from 'react'
 import { CATEGORY_BY_ID } from '../../data/catalog'
+import { SLOT_BY_ID } from '../../data/gearSlots'
+import { getSocketGem } from '../../data/gems'
 import type { HeroId } from '../../data/heroes'
+import { itemForOption } from '../../data/items'
 import { loadoutFor, SOCKET_SLOTS, socketKind } from '../../data/loadout'
 import { getLegendary } from '../../data/recommended'
 import {
@@ -8,14 +11,19 @@ import {
   copyBuild,
   deleteSavedBuild,
   MAX_NAME_LENGTH,
+  presetOf,
   renameSavedBuild,
   switchBuild,
   type BuildRef,
   type ChecklistData,
 } from '../../state/buildStore'
 import type { BuildAnalysis } from '../../utils/progress'
+import { presetLink } from '../../utils/shareCode'
 import { formatRelative } from '../../utils/time'
 import { EntryIcon } from '../planner/EntryIcon'
+import { Tip } from '../tooltip/Tooltip'
+import { entryTip, itemTip } from '../tooltip/tipContent'
+import { OptionTip, SocketGemTip, Status } from '../tooltip/tips'
 import styles from './BuildCard.module.css'
 
 /** One build on the Builds page: built in or yours, with how much of it your gear already has. */
@@ -46,7 +54,20 @@ const LINE_PREVIEW = 8
 
 export function BuildCard({ heroId, entry, active, onUse }: Props) {
   const [renaming, setRenaming] = useState(false)
+  const [linkCopied, setLinkCopied] = useState(false)
   const options = loadoutFor(heroId)
+  const preset = presetOf(heroId, entry.ref)
+
+  const copyLink = async () => {
+    if (!preset) return
+    try {
+      await navigator.clipboard.writeText(presetLink(preset))
+      setLinkCopied(true)
+      setTimeout(() => setLinkCopied(false), 1600)
+    } catch {
+      prompt('Copy the link:', presetLink(preset))
+    }
+  }
   const { data, progress } = entry
   const isMine = entry.ref.startsWith('saved:')
   const id = entry.ref.slice(entry.ref.indexOf(':') + 1)
@@ -54,10 +75,24 @@ export function BuildCard({ heroId, entry, active, onUse }: Props) {
 
   const legendary = getLegendary(heroId, data.legendary)
   const items = [
-    legendary && { key: 'legendary', name: `${legendary.name} (legendary)`, icon: legendary.icon, legendary: true },
+    legendary && {
+      key: 'legendary',
+      itemId: legendary.id,
+      name: `${legendary.name} (legendary)`,
+      icon: legendary.icon,
+      legendary: true,
+    },
     ...[data.weapon, ...data.relics].map((itemId) => {
       const item = [...options.weapons, ...options.relics].find((o) => o.id === itemId)
-      return item && { key: item.id, name: item.name, icon: item.icon, legendary: false }
+      return (
+        item && {
+          key: item.id,
+          itemId: itemForOption(heroId, data.weapon === item.id ? 'weapon' : 'relic1', item.id)?.id,
+          name: item.name,
+          icon: item.icon,
+          legendary: false,
+        }
+      )
     }),
   ].filter((i) => !!i)
   const gems = SOCKET_SLOTS.map((slot) => options.sockets[socketKind(slot)].find((g) => g.id === data.sockets?.[slot]))
@@ -107,32 +142,43 @@ export function BuildCard({ heroId, entry, active, onUse }: Props) {
 
       <div className={styles.items}>
         {items.map((i) => (
-          <span key={i.key} className={styles.item} data-legendary={i.legendary || undefined} title={i.name}>
-            {i.icon && <img src={i.icon} alt={i.name} loading="lazy" />}
-          </span>
+          <Tip key={i.key} content={itemTip(heroId, i.itemId)}>
+            <span className={styles.item} data-legendary={i.legendary || undefined}>
+              {i.icon && <img src={i.icon} alt={i.name} loading="lazy" />}
+            </span>
+          </Tip>
         ))}
         {gems.some(Boolean) && <span className={styles.divider} aria-hidden="true" />}
         {gems.map(
           (g, i) =>
             g && (
-              <span key={i} className={styles.gem} title={`${g.name} socket gem`}>
-                <img src={g.icon} alt={g.name} loading="lazy" />
-              </span>
+              <Tip
+                key={i}
+                content={() => {
+                  const gem = getSocketGem(g.id)
+                  return gem ? <SocketGemTip gem={gem} rated={g} socket={SLOT_BY_ID[SOCKET_SLOTS[i]].label} /> : null
+                }}
+              >
+                <span className={styles.gem}>
+                  <img src={g.icon} alt={g.name} loading="lazy" />
+                </span>
+              </Tip>
             ),
         )}
       </div>
 
       <ul className={styles.lines} aria-label="Lines to collect">
         {lines.slice(0, LINE_PREVIEW).map((g) => (
-          <li
+          <Tip
             key={`${g.category}:${g.entryId}`}
-            style={{ '--cat-color': CATEGORY_BY_ID[g.category].color } as CSSProperties}
-            title={`${g.name} ×${g.target}`}
+            content={entryTip(heroId, g, <Status>The build wants {g.target}</Status>)}
           >
-            <EntryIcon goal={g} size={20} />
-            <span className={styles.lineName}>{g.name}</span>
-            <span className={styles.lineCount}>×{g.target}</span>
-          </li>
+            <li style={{ '--cat-color': CATEGORY_BY_ID[g.category].color } as CSSProperties}>
+              <EntryIcon goal={g} size={20} />
+              <span className={styles.lineName}>{g.name}</span>
+              <span className={styles.lineCount}>×{g.target}</span>
+            </li>
+          </Tip>
         ))}
         {lines.length > LINE_PREVIEW && (
           <li
@@ -150,9 +196,9 @@ export function BuildCard({ heroId, entry, active, onUse }: Props) {
       {talents.length > 0 && (
         <div className={styles.talents} aria-label="Talents">
           {talents.map((t) => (
-            <span key={t.id} title={t.name}>
-              {t.icon && <img src={t.icon} alt={t.name} loading="lazy" />}
-            </span>
+            <Tip key={t.id} content={() => <OptionTip option={t} kind="Talent" cost={t.cost} />}>
+              <span>{t.icon && <img src={t.icon} alt={t.name} loading="lazy" />}</span>
+            </Tip>
           ))}
         </div>
       )}
@@ -190,6 +236,11 @@ export function BuildCard({ heroId, entry, active, onUse }: Props) {
         <button type="button" className="btn btn-ghost" onClick={() => copyBuild(heroId, entry.ref)}>
           Copy
         </button>
+        {preset && (
+          <button type="button" className="btn btn-ghost" onClick={copyLink} title={presetLink(preset)}>
+            {linkCopied ? 'Copied ✓' : 'Copy link'}
+          </button>
+        )}
         {isMine && (
           <>
             <button type="button" className="btn btn-ghost" onClick={() => setRenaming(true)}>

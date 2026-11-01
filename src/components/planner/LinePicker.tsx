@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import { CATEGORY_BY_ID, entriesFor, type CategoryId } from '../../data/catalog'
+import { CATEGORY_BY_ID, entriesFor, nameFor, type CategoryId } from '../../data/catalog'
 import { rerollCategories, type SlotSide } from '../../data/gearSlots'
 import type { GearLine, HeroBuild } from '../../state/buildStore'
 import type { BuildAnalysis, LineInfo } from '../../utils/progress'
+import { Tip } from '../tooltip/Tooltip'
+import { entryTip } from '../tooltip/tipContent'
+import { Status } from '../tooltip/tips'
 import { EntryIcon } from './EntryIcon'
 import styles from './LinePicker.module.css'
 
@@ -45,7 +48,7 @@ export function LinePicker({ build, analysis, side, current, onPick, bare }: Pro
   const matches: GearLine[] = categories
     .flatMap(entriesFor)
     .filter((e) => !q || e.name.toLowerCase().includes(q) || e.aliases?.some((a) => a.toLowerCase().includes(q)))
-    .map((e) => ({ category: e.category, entryId: e.id, name: e.name }))
+    .map((e) => ({ category: e.category, entryId: e.id, name: nameFor(build.heroId, e.category, e.id, e.name) }))
   const onList = matches.filter((l) => goalByKey.has(key(l)))
   const sections = [
     { label: 'On your list', lines: onList },
@@ -119,25 +122,37 @@ export function LinePicker({ build, analysis, side, current, onPick, bare }: Pro
             return (
               <li key={key(line)}>
                 {heading && <span className={styles.heading}>{heading}</span>}
-                <button
-                  type="button"
-                  data-active={i === active || undefined}
-                  data-current={(selected && key(selected) === key(line)) || undefined}
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => onPick(line)}
+                <Tip
+                  content={entryTip(
+                    build.heroId,
+                    line,
+                    info && goal ? (
+                      <Status tone={info.have >= goal.target ? 'good' : undefined}>
+                        On your checklist: you have {info.have} of {goal.target}
+                      </Status>
+                    ) : undefined,
+                  )}
                 >
-                  <EntryIcon goal={line} size={22} />
-                  {line.name}
-                  <small>
-                    {info && goal ? (
-                      <span className={styles.onList}>
-                        On your list · {info.have}/{goal.target}
-                      </span>
-                    ) : (
-                      CATEGORY_BY_ID[line.category].singular
-                    )}
-                  </small>
-                </button>
+                  <button
+                    type="button"
+                    data-active={i === active || undefined}
+                    data-current={(selected && key(selected) === key(line)) || undefined}
+                    onMouseEnter={() => setActive(i)}
+                    onClick={() => onPick(line)}
+                  >
+                    <EntryIcon goal={line} size={22} />
+                    {line.name}
+                    <small>
+                      {info && goal ? (
+                        <span className={styles.onList}>
+                          On your list · {info.have}/{goal.target}
+                        </span>
+                      ) : (
+                        CATEGORY_BY_ID[line.category].singular
+                      )}
+                    </small>
+                  </button>
+                </Tip>
               </li>
             )
           })}

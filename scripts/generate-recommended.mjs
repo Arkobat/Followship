@@ -1,5 +1,6 @@
 // Turns scripts/fellows-builds.json (from scrape-fellows.js) into
-// src/data/recommendedData.ts (legendaries + starting checklists) and
+// src/data/recommendedData.ts (legendaries, starting checklists and the leaderboard builds: #1, Top 10, Top 25, each
+// with its gear piece by piece) and
 // src/data/loadoutData.ts (tiered necklace powers, charms, weapon tree traits, talents, socket gems, and the weapons
 // and relics the checklist can name).
 // Usage: node scripts/generate-recommended.mjs
@@ -8,9 +9,20 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const root = new URL('../', import.meta.url)
 const data = JSON.parse(readFileSync(new URL('scripts/fellows-builds.json', root), 'utf8'))
 const catalogSource = readFileSync(new URL('src/data/catalog.ts', root), 'utf8')
+const ITEM_IDS = new Set(
+  [...readFileSync(new URL('src/data/itemsData.ts', root), 'utf8').matchAll(/^ {4}id: '(\d+)'/gm)].map((m) => m[1]),
+)
 
 // Socket gems come in sizes; only the largest (+500) are worth socketing at max level.
 const MAX_GEM_POWER = Math.max(...Object.values(data.socketGems).map(([, , , power]) => power))
+// Each gem's largest size: a build aims for that, whatever size its player has socketed for now.
+const LARGEST_GEM = Object.fromEntries(
+  Object.entries(data.socketGems).map(([id, [, , type]]) => [
+    id,
+    Object.entries(data.socketGems).find(([, [, , t, power]]) => t === type && power === MAX_GEM_POWER)?.[0] ?? id,
+  ]),
+)
+const largestGem = (id) => (id ? (LARGEST_GEM[id] ?? id) : id)
 const CATEGORY_ORDER = ['aspect', 'glyph', 'sigil', 'enchant', 'gem', 'defensive']
 const SLOTS = {
   Head: 'head',
@@ -48,6 +60,102 @@ const known = (category, id, name) => catalogSource.includes(category === 'gem' 
 const legendaries = {}
 const recommended = {}
 const loadouts = {}
+const leaderboard = {}
+
+// Keep in sync with WEAPON_TREE_ROWS in src/data/loadout.ts: bottom row first.
+const TREE_ROWS = ['sigil', 'enchant', 'sigil', 'enchant', 'aspect']
+// The leaderboard builds: the #1 player's, and the real build closest to what the top 10 and top 25 run.
+const TOPS = [1, 10, 25]
+
+/** A [category, fellows.gg name] line as the planner's line, or null (and noted) when the catalog lacks it. */
+function lineOf([category, name]) {
+  const id = entryId(category, name)
+  if (!known(category, id, name)) {
+    missing.add(`${category}: ${name} (${id})`)
+    return null
+  }
+  return { category, entryId: id, name: gameName(category, name) }
+}
+const keyOf = (l) => `${l.category}:${l.entryId}`
+
+/**
+ * One top player's build as the planner stores it: gear slot by slot (items and lines), the weapon tree laid on its
+ * rows, and everything counted (what the checklist needs).
+ */
+function playerBuild(heroId, hero, pl) {
+  const slots = {}
+  for (const [slotId, piece] of Object.entries(pl.gear)) {
+    const id = String(piece.id)
+    const isLegendary = hero.legendaries.some(([l]) => String(l) === id)
+    if (!isLegendary && !ITEM_IDS.has(id)) missing.add(`item: ${piece.name} (${id}), worn by ${pl.player}`)
+    const lines = piece.lines.map(lineOf)
+    slots[slotId] = { item: id, lines: [0, 1, 2].map((i) => lines[i] ?? null) }
+  }
+  const left = Object.fromEntries(TREE_ROWS.map((c) => [c, []]))
+  for (const l of pl.tree.map(lineOf)) if (l) left[l.category]?.push(keyOf(l))
+  const weaponTree = TREE_ROWS.map((c) => left[c].shift() ?? null)
+
+  const counts = {}
+  for (const s of Object.values(slots)) for (const l of s.lines) if (l) counts[keyOf(l)] = (counts[keyOf(l)] ?? 0) + 1
+  for (const k of weaponTree) if (k) counts[k] = (counts[k] ?? 0) + 1
+
+  const talentIds = new Set(hero.talents.rows.flat().map(([id]) => id))
+  for (const t of pl.talents) if (!talentIds.has(t)) missing.add(`talent: ${t}, picked by ${pl.player}`)
+  return {
+    player: pl.player,
+    rank: pl.rank,
+    complete: pl.complete,
+    legendary: pl.legendary === null ? null : String(pl.legendary),
+    items: Object.fromEntries(Object.entries(slots).map(([s, x]) => [s, x.item])),
+    counts,
+    talents: pl.talents.filter((t) => talentIds.has(t)),
+    sockets: Object.fromEntries(
+      Object.entries(pl.sockets)
+        .filter(([, g]) => g)
+        .map(([s, g]) => [s, largestGem(g)]),
+    ),
+    plan: { slots, weaponTree },
+  }
+}
+
+/**
+ * The real build closest to what a group of top players runs, among those with full gear wearing the group's most
+ * common legendary. Closeness counts the lines (gear and weapon tree, wherever they sit), how many of the group wear
+ * each of its items, and how many take each of its talents.
+ */
+function closestBuild(group) {
+  const share = (n) => n / group.length
+  const legendaryCount = {}
+  for (const b of group) legendaryCount[b.legendary] = (legendaryCount[b.legendary] ?? 0) + 1
+  const legendary = Object.entries(legendaryCount).sort((a, b) => b[1] - a[1])[0][0]
+
+  const full = group.filter((b) => b.complete)
+  const avg = {}
+  for (const b of full) for (const [k, n] of Object.entries(b.counts)) avg[k] = (avg[k] ?? 0) + n / full.length
+  const wearing = {}
+  const taking = {}
+  for (const b of group) {
+    for (const [s, id] of Object.entries(b.items)) wearing[`${s}:${id}`] = (wearing[`${s}:${id}`] ?? 0) + 1
+    for (const t of b.talents) taking[t] = (taking[t] ?? 0) + 1
+  }
+  const talents = new Set([...Object.keys(taking), ...group.flatMap((b) => b.talents)])
+  const distance = (b) =>
+    Object.keys({ ...avg, ...b.counts }).reduce((s, k) => s + Math.abs((b.counts[k] ?? 0) - (avg[k] ?? 0)), 0) +
+    Object.entries(b.items).reduce((s, [slot, id]) => s + 1 - share(wearing[`${slot}:${id}`]), 0) +
+    0.5 * [...talents].reduce((s, t) => s + Math.abs(Number(b.talents.includes(t)) - share(taking[t] ?? 0)), 0)
+
+  const candidates = [full.filter((b) => String(b.legendary) === legendary), full, group].find((l) => l.length)
+  const pick = [...candidates].sort((a, b) => distance(a) - distance(b) || a.rank - b.rank)[0]
+  return { pick, wearLegendary: legendaryCount[pick.legendary] ?? 0 }
+}
+
+const goalsOf = (counts) =>
+  Object.entries(counts)
+    .map(([key, target]) => {
+      const [category, id] = key.split(':')
+      return { category, entryId: id, target }
+    })
+    .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category) || b.target - a.target)
 
 /** The talents with the highest total pick rate that fit the point budget: the most popular build. */
 function popularTalents({ points, rows }) {
@@ -125,7 +233,8 @@ for (const [heroId, hero] of Object.entries(data.heroes)) {
         Object.entries(data.socketGems)
           .filter(([, [, , , power]]) => power === MAX_GEM_POWER)
           .map(([id, [name, , type, power]]) => {
-            const rate = hero.sockets[kind].find(([gem]) => gem === id)?.[1] ?? 0
+            // Counting every size of the gem.
+            const rate = hero.sockets[kind].reduce((sum, [gem, r]) => (largestGem(gem) === id ? sum + r : sum), 0)
             return {
               id,
               name,
@@ -158,30 +267,42 @@ for (const [heroId, hero] of Object.entries(data.heroes)) {
     if (!SLOTS[slot]) throw new Error(`${heroId}: unknown legendary slot ${slot}`)
     return { id: String(id), name, slot: SLOTS[slot], power, icon: `icons/legendary-${heroId}-${SLOTS[slot]}.webp` }
   })
-  const goals = Object.entries(hero.lines)
-    .map(([key, target]) => {
-      const [category, name] = key.split('|')
-      const id = entryId(category, name)
-      if (!known(category, id, name)) missing.add(`${category}: ${name} (${id})`)
-      return { category, entryId: id, target }
-    })
-    .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category) || b.target - a.target)
+  const builds = hero.players.map((pl) => playerBuild(heroId, hero, pl)).sort((a, b) => a.rank - b.rank)
+  if (builds.length === 0) throw new Error(`${heroId}: no public top players`)
+  leaderboard[heroId] = TOPS.map((top) => {
+    const group = builds.filter((b) => b.rank <= top)
+    // The #1 build is whoever ranks highest among public profiles, gear as it is.
+    const { pick, wearLegendary } =
+      top === 1 ? { pick: builds[0], wearLegendary: 1 } : closestBuild(group.length ? group : builds)
+    return {
+      top,
+      player: pick.player,
+      rank: pick.rank,
+      players: top === 1 ? 1 : group.length,
+      wearLegendary,
+      talents: pick.talents,
+      sockets: pick.sockets,
+      goals: goalsOf(pick.counts),
+      plan: pick.plan,
+    }
+  })
+  const top25 = leaderboard[heroId].at(-1)
   recommended[heroId] = {
-    legendary: hero.legendary === null ? null : String(hero.legendary),
+    legendary: builds.find((b) => b.rank === top25.rank).legendary,
     // The most-picked weapon and relics (the sampled player's own items aren't in the scrape).
     weapon: loadouts[heroId].weapons[0]?.id ?? null,
     relics: loadouts[heroId].relics.slice(0, 2).map((r) => r.id),
     talents: popularTalents(hero.talents),
     // The most common gem per socket; the rings take the most common pair.
     sockets: {
-      neck: hero.sockets.neck[0]?.[0],
-      wrists: hero.sockets.wrists[0]?.[0],
-      ring1: hero.sockets.ringPair[0] ?? hero.sockets.ring[0]?.[0],
-      ring2: hero.sockets.ringPair[1] ?? hero.sockets.ring[0]?.[0],
+      neck: largestGem(hero.sockets.neck[0]?.[0]),
+      wrists: largestGem(hero.sockets.wrists[0]?.[0]),
+      ring1: largestGem(hero.sockets.ringPair[0] ?? hero.sockets.ring[0]?.[0]),
+      ring2: largestGem(hero.sockets.ringPair[1] ?? hero.sockets.ring[0]?.[0]),
     },
-    goals,
-    basedOn: `${hero.pick.player} (#${hero.pick.rank})`,
-    players: hero.players,
+    goals: top25.goals,
+    basedOn: `${top25.player} (#${top25.rank})`,
+    players: top25.players,
   }
 }
 
@@ -200,7 +321,7 @@ writeFileSync(
   new URL('src/data/recommendedData.ts', root),
   `// Generated by scripts/generate-recommended.mjs from fellows.gg — don't edit by hand.
 import type { HeroId } from './heroes'
-import type { Legendary, Recommendation } from './recommended'
+import type { LeaderboardBuild, Legendary, Recommendation } from './recommended'
 
 export const RECOMMENDED_SOURCE = ${json({ site: 'fellows.gg', patch: data.patch, league: data.league, scraped: data.scraped })}
 
@@ -212,6 +333,13 @@ export const LEGENDARY_DATA: Partial<Record<HeroId, Legendary[]>> = ${json(legen
  * \`basedOn\` names that player.
  */
 export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = ${json(recommended)}
+
+/**
+ * Per hero: the leaderboard builds, each a real top ${data.league} player's gear piece by piece. Top 1 is the
+ * highest-ranked public profile; Top 10 and Top 25 are the builds closest to what those players run (see
+ * \`closestBuild\` in scripts/generate-recommended.mjs).
+ */
+export const LEADERBOARD_DATA: Partial<Record<HeroId, LeaderboardBuild[]>> = ${json(leaderboard)}
 `,
 )
 writeFileSync(

@@ -2,7 +2,7 @@ import type { CategoryId } from './catalog'
 import type { SlotId } from './gearSlots'
 import type { HeroId } from './heroes'
 import type { SocketSlot } from './loadout'
-import { LEGENDARY_DATA, RECOMMENDED_DATA } from './recommendedData'
+import { LEADERBOARD_DATA, LEGENDARY_DATA, RECOMMENDED_DATA } from './recommendedData'
 
 /**
  * Per-hero legendaries and the starting checklist a fresh build gets.
@@ -44,6 +44,36 @@ export interface Recommendation {
   /** How many top builds it was picked from. */
   players: number
 }
+
+/** A gear line in a leaderboard build's gear. */
+export interface LeaderboardLine {
+  category: CategoryId
+  entryId: string
+  name: string
+}
+
+/**
+ * A leaderboard build: a real top player's gear piece by piece. `top` 1 is the highest-ranked public profile; 10
+ * and 25 are the builds closest to what those players run.
+ */
+export interface LeaderboardBuild {
+  top: number
+  player: string
+  rank: number
+  /** Public profiles it was picked from. */
+  players: number
+  /** How many of them wear its legendary. */
+  wearLegendary: number
+  talents: string[]
+  sockets: Partial<Record<SocketSlot, string>>
+  goals: RecommendedGoal[]
+  plan: {
+    slots: Partial<Record<SlotId, { item?: string; lines: (LeaderboardLine | null)[] }>>
+    weaponTree: (string | null)[]
+  }
+}
+
+export const leaderboardFor = (heroId: HeroId): LeaderboardBuild[] => LEADERBOARD_DATA[heroId] ?? []
 
 export function legendariesFor(heroId: HeroId): Legendary[] {
   return LEGENDARY_DATA[heroId] ?? []

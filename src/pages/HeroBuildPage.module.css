@@ -163,6 +163,25 @@
   box-shadow: inset 0 0 0 1px rgb(169 184 200 / 16%);
 }
 
+/* Edit mode: the doll shows the build's gear, framed in gold. */
+.gear[data-editing] {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold-bright) 55%, transparent);
+}
+
+.editBanner {
+  margin: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-bright) 30%, transparent);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+}
+
+.editBanner strong {
+  color: var(--gold-bright);
+}
+
 /* Gear / Talents tabs at the bottom of the doll, sitting on the line above the status board. */
 .viewTabs {
   display: flex;

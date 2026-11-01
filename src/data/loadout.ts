@@ -1,4 +1,4 @@
-import { entriesFor, type CategoryId } from './catalog'
+import { entriesFor, nameFor, type CategoryId } from './catalog'
 import type { SlotId } from './gearSlots'
 import type { HeroId } from './heroes'
 import { LOADOUT_DATA } from './loadoutData'
@@ -137,17 +137,21 @@ const traitCache = new Map<HeroId, WeaponTraitOption[]>()
 /**
  * Every trait a weapon tree row can hold: the tiered ones from fellows.gg, plus catalog entries it
  * hasn't seen on top players' trees (flagged `unrated`), so you can always enter what your weapon has.
+ * Names are the hero's (enchants are named per main stat).
  */
 export function weaponTraitsFor(heroId: HeroId): WeaponTraitOption[] {
   let list = traitCache.get(heroId)
   if (!list) {
-    const rated = loadoutFor(heroId).weaponTraits
+    const rated = loadoutFor(heroId).weaponTraits.map((o) => ({
+      ...o,
+      name: nameFor(heroId, o.category, o.entryId, o.name),
+    }))
     const unrated = (['aspect', 'sigil', 'enchant'] as const).flatMap((category) =>
       entriesFor(category)
         .filter((e) => !rated.some((o) => o.category === category && o.entryId === e.id))
         .map((e): WeaponTraitOption => ({
           id: weaponTraitKey({ category, entryId: e.id }),
-          name: e.name,
+          name: nameFor(heroId, category, e.id, e.name),
           tier: 'F',
           rate: 0,
           category,

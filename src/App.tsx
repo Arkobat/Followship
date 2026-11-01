@@ -2,6 +2,7 @@ import { Link, Navigate, Route, Routes } from 'react-router'
 import { BuildsPage } from './pages/BuildsPage'
 import { HeroBuildPage } from './pages/HeroBuildPage'
 import { HeroSelectPage } from './pages/HeroSelectPage'
+import { TooltipLayer } from './components/tooltip/Tooltip'
 import { getSaveData } from './state/buildStore'
 
 /** Landing route: resume the last hero, otherwise show the selector. */
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <TooltipLayer />
     </>
   )
 }

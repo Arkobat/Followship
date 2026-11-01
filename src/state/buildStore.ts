@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react'
-import { CATEGORY_BY_ID, getEntry, OLD_ENCHANT_IDS, type CategoryId } from '../data/catalog'
-import { SLOT_BY_ID, STAT_LINES, type SlotId } from '../data/gearSlots'
+import { CATEGORY_BY_ID, nameFor, OLD_ENCHANT_IDS, type CategoryId } from '../data/catalog'
+import { GEAR_SLOTS, SIDE_CATEGORIES, SLOT_BY_ID, STAT_LINES, type SlotId } from '../data/gearSlots'
 import { getHero, isHeroId, type HeroId } from '../data/heroes'
 import {
   loadoutFor,
@@ -13,6 +13,8 @@ import {
   weaponTraitsFor,
   type SocketSlot,
 } from '../data/loadout'
+import { gemId, getSocketGem } from '../data/gems'
+import { getItem, itemForOption, itemLevelsOf, itemsFor, MAX_TEMPER } from '../data/items'
 import { fellowsBuildId, getPreset, type PresetBuild } from '../data/presetBuilds'
 import { getLegendary, legendariesFor, recommendationFor } from '../data/recommended'
 
@@ -25,7 +27,7 @@ import { getLegendary, legendariesFor, recommendationFor } from '../data/recomme
  */
 
 const STORAGE_KEY = 'fellowship-build-guide'
-const SCHEMA_VERSION = 8
+const SCHEMA_VERSION = 9
 
 /** What's rolled on one line of a piece. `entryId: 'other'` ("something I don't need") is from older saves: no longer offered. */
 export interface GearLine {
@@ -36,6 +38,11 @@ export interface GearLine {
 
 /** One equipped piece. */
 export interface SlotProgress {
+  /** The item you wear here (an `Item` id), and its item level when it comes in several. */
+  item?: string
+  itemLevel?: number
+  /** How many times a Regal (315) item is tempered, 0–8; missing means fully. */
+  temper?: number
   /** Always STAT_LINES long; `null` until you've entered that line. */
   lines?: (GearLine | null)[]
   /** Free text, e.g. "farm Ruins for this". */
@@ -47,11 +54,29 @@ export interface SlotProgress {
 /** An item named on the checklist (legendary, weapon, relic), ticked off once you have it. */
 export interface ItemGoal {
   id: string
+  /** It's the item in its slot: always worked out from the slots (see `withEquipped`), never set by hand. */
   equipped: boolean
 }
 
 /** The legendary on the checklist. It takes over its slot, so that slot has no lines to track. */
 export type LegendaryGoal = ItemGoal
+
+/** One piece of the build's gear: the item to wear and the lines on it. */
+export interface PlanSlot {
+  item?: string
+  /** Always STAT_LINES long. */
+  lines: (GearLine | null)[]
+}
+
+/**
+ * The build's gear, entered like your own: an item and its lines per slot, and the weapon tree. The checklist counts
+ * its lines (where a line sits doesn't matter, only how many) and names its items; see `fromPlan`.
+ */
+export interface BuildPlan {
+  slots: Partial<Record<SlotId, PlanSlot>>
+  /** One `category:entryId` (or null) per row, bottom row first, as on `LoadoutPicks`. */
+  weaponTree: (string | null)[]
+}
 
 /** Something you want N of across your gear, e.g. 7× Ogre's Might. */
 export interface Goal {
@@ -76,10 +101,12 @@ export interface HeroBuild {
   weapon: ItemGoal | null
   /** Up to two, never the same relic twice. */
   relics: ItemGoal[]
-  /** The talents the build runs, within the hero's points. What you have is `loadout.talents`. */
+  /** The talents the build runs, within the hero's points. */
   talents: string[]
   /** The socket gem each socket should hold. What you have is `loadout.sockets`. */
   sockets: Sockets
+  /** The build's gear, once it's been edited slot by slot; built-in and older builds have none (see `layoutPlan`). */
+  plan: BuildPlan | null
   loadout: LoadoutPicks
 }
 
@@ -112,8 +139,6 @@ export interface LoadoutPicks {
   relic2: string | null
   /** The weapon tree, one `category:entryId` (or null) per row, bottom row first (see WEAPON_TREE_ROWS). */
   weaponTree: (string | null)[]
-  /** Talents you have picked in game (the build's targets are `HeroBuild.talents`). */
-  talents: string[]
   /** Socket gems you have in each socket. */
   sockets: Sockets
 }
@@ -123,7 +148,6 @@ export const emptyLoadout = (): LoadoutPicks => ({
   relic1: null,
   relic2: null,
   weaponTree: WEAPON_TREE_ROWS.map(() => null),
-  talents: [],
   sockets: {},
 })
 
@@ -139,6 +163,8 @@ export interface ChecklistData {
   /** Missing in older share codes too: loading one keeps the build's socket gems. */
   sockets?: Sockets
   goals: Pick<Goal, 'category' | 'entryId' | 'name' | 'target'>[]
+  /** The build's gear slot by slot. Share codes don't carry it. */
+  plan?: BuildPlan
 }
 
 export interface SaveData {
@@ -162,12 +188,12 @@ const clampTarget = (n: number) => Math.max(1, Math.min(99, Math.round(n)))
 function toGoals(
   heroId: HeroId,
   data: ChecklistData,
-): Pick<HeroBuild, 'goals' | 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets'> {
+): Pick<HeroBuild, 'goals' | 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets' | 'plan'> {
   const goals: Goal[] = []
   for (const g of data.goals) {
     if (!(g.category in CATEGORY_BY_ID) || !g.entryId || !Number.isFinite(g.target)) continue
     if (goals.some((x) => x.category === g.category && x.entryId === g.entryId)) continue
-    const name = getEntry(g.category, g.entryId)?.name ?? g.name
+    const name = nameFor(heroId, g.category, g.entryId, g.name)
     if (!name) continue
     goals.push({ id: newId(), category: g.category, entryId: g.entryId, name, target: clampTarget(g.target) })
   }
@@ -178,11 +204,15 @@ function toGoals(
     ...toItemGoals(heroId, data.weapon, data.relics),
     talents: cleanTalents(heroId, data.talents),
     sockets: cleanSockets(heroId, data.sockets),
+    plan: cleanPlan(heroId, data.plan),
   }
 }
 
 /** No build: an empty checklist. */
-const NO_BUILD: Pick<HeroBuild, 'active' | 'goals' | 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets'> = {
+const NO_BUILD: Pick<
+  HeroBuild,
+  'active' | 'goals' | 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets' | 'plan'
+> = {
   active: null,
   goals: [],
   legendary: null,
@@ -190,18 +220,39 @@ const NO_BUILD: Pick<HeroBuild, 'active' | 'goals' | 'legendary' | 'weapon' | 'r
   relics: [],
   talents: [],
   sockets: {},
+  plan: null,
 }
 
-/** No build, but what you have stays: a legendary, weapon or relics marked "I have it". */
-const withoutBuild = (b: HeroBuild): HeroBuild => ({
+/** No build. What you have stays: it's the items in your slots. */
+const withoutBuild = (b: HeroBuild): HeroBuild => ({ ...b, ...NO_BUILD })
+
+const RELIC_SLOTS = ['relic1', 'relic2'] as const
+
+/** The checklist's legendary, weapon and relics count as had while they're the item in their slot. */
+function withEquipped(b: HeroBuild): HeroBuild {
+  const legendary = getLegendary(b.heroId, b.legendary?.id)
+  const holds = (slotId: SlotId, optionId: string) => getItem(b.heroId, b.slots[slotId]?.item)?.slug === optionId
+  return {
+    ...b,
+    legendary: b.legendary && {
+      ...b.legendary,
+      equipped: !!legendary && b.slots[legendary.slot]?.item === legendary.id,
+    },
+    weapon: b.weapon && { ...b.weapon, equipped: holds('weapon', b.weapon.id) },
+    relics: b.relics.map((r) => ({ ...r, equipped: RELIC_SLOTS.some((slotId) => holds(slotId, r.id)) })),
+  }
+}
+
+/** A slot with another item (`undefined` takes it out). Its lines stay: they're entered separately. */
+const withItem = (b: HeroBuild, slotId: SlotId, item: string | undefined): HeroBuild => ({
   ...b,
-  ...NO_BUILD,
-  legendary: b.legendary?.equipped ? b.legendary : null,
-  weapon: b.weapon?.equipped ? b.weapon : null,
-  relics: b.relics.filter((r) => r.equipped),
+  slots: {
+    ...b.slots,
+    [slotId]: { lines: emptyLines(), ...b.slots[slotId], item, itemLevel: undefined, temper: undefined },
+  },
 })
 
-/** Socket gems the hero's options list for each socket; anything else is dropped. */
+/** The build's socket gems: ones the hero's options list for each socket (the largest size); anything else is dropped. */
 function cleanSockets(heroId: HeroId, raw: Sockets | undefined): Sockets {
   const options = loadoutFor(heroId).sockets
   const sockets: Sockets = {}
@@ -209,6 +260,163 @@ function cleanSockets(heroId: HeroId, raw: Sockets | undefined): Sockets {
     const id = raw?.[slot]
     if (id && options[socketKind(slot)].some((o) => o.id === id)) sockets[slot] = id
   }
+  return sockets
+}
+
+/** A weapon tree: each row a trait of its own category, and no trait twice. */
+function cleanWeaponTree(heroId: HeroId, rows: (string | null)[]): (string | null)[] {
+  const traits = weaponTraitsFor(heroId)
+  return WEAPON_TREE_ROWS.map((row, i) => {
+    const key = rows[i]
+    const option = traits.find((o) => weaponTraitKey(o) === key)
+    return option?.category === row.category && rows.indexOf(key) === i ? key! : null
+  })
+}
+
+/** The build's gear with anything invalid dropped: items the slot can't hold, lines its side can't roll. */
+function cleanPlan(heroId: HeroId, raw: BuildPlan | null | undefined): BuildPlan | null {
+  if (!raw || typeof raw !== 'object') return null
+  const slots: BuildPlan['slots'] = {}
+  for (const slot of GEAR_SLOTS) {
+    const s = raw.slots?.[slot.id]
+    if (!s) continue
+    const item = itemsFor(heroId, slot.id).find((i) => i.id === s.item)
+    // A legendary has no lines.
+    const lines = Array.from({ length: STAT_LINES }, (_, i) => {
+      const l = s.lines?.[i]
+      return l && item?.rarity !== 'Legendary' && SIDE_CATEGORIES[slot.side].includes(l.category)
+        ? heroLine(heroId, { category: l.category, entryId: l.entryId, name: l.name })
+        : null
+    })
+    if (item || lines.some(Boolean)) slots[slot.id] = item ? { item: item.id, lines } : { lines }
+  }
+  return { slots, weaponTree: cleanWeaponTree(heroId, raw.weaponTree ?? []) }
+}
+
+const lineKey = (x: { category: CategoryId; entryId: string }) => `${x.category}:${x.entryId}`
+
+/**
+ * The checklist from the build's gear: every line on it (and on the weapon tree) counted, whichever slot it's on,
+ * and its legendary, weapon and relics named. Goals keep their ids, so the checklist doesn't reshuffle.
+ */
+function fromPlan(heroId: HeroId, b: HeroBuild, plan: BuildPlan): HeroBuild {
+  const counts = new Map<string, Pick<Goal, 'category' | 'entryId' | 'name' | 'target'>>()
+  const count = (category: CategoryId, entryId: string) => {
+    const known = counts.get(lineKey({ category, entryId }))
+    if (known) known.target++
+    else
+      counts.set(lineKey({ category, entryId }), {
+        category,
+        entryId,
+        name: nameFor(heroId, category, entryId),
+        target: 1,
+      })
+  }
+  for (const slot of GEAR_SLOTS) for (const l of plan.slots[slot.id]?.lines ?? []) if (l) count(l.category, l.entryId)
+  for (const key of plan.weaponTree) {
+    if (!key) continue
+    const [category, entryId] = key.split(':')
+    count(category as CategoryId, entryId)
+  }
+  const goals = [
+    ...b.goals.filter((g) => counts.has(lineKey(g))).map((g) => ({ ...g, target: counts.get(lineKey(g))!.target })),
+    ...[...counts.values()]
+      .filter((c) => !b.goals.some((g) => lineKey(g) === lineKey(c)))
+      .map((c) => ({ id: newId(), ...c })),
+  ]
+
+  const itemIn = (slotId: SlotId) => getItem(heroId, plan.slots[slotId]?.item)
+  const legendary = GEAR_SLOTS.map((s) => itemIn(s.id)).find((i) => i && getLegendary(heroId, i.id))
+  const { weapons, relics } = loadoutFor(heroId)
+  const weapon = itemIn('weapon')?.slug
+  const relicIds = [...new Set(RELIC_SLOTS.flatMap((s) => itemIn(s)?.slug ?? []))]
+  return {
+    ...b,
+    plan,
+    goals,
+    legendary: legendary ? { id: legendary.id, equipped: false } : null,
+    weapon: weapon && weapons.some((w) => w.id === weapon) ? { id: weapon, equipped: false } : null,
+    relics: relicIds.filter((id) => relics.some((r) => r.id === id)).map((id) => ({ id, equipped: false })),
+  }
+}
+
+/**
+ * A build without gear of its own (built in, shared, or from before builds were entered slot by slot) laid out on the
+ * slots, so it can be edited like one: its legendary, weapon and relics in their slots, the weapon tree filled from
+ * its aspects, sigils and enchants, then its lines spread over the gear by what each side can roll (aspects, glyphs,
+ * sigils and defensive traits on the left; one gem per piece, as its last line; enchants on the right first).
+ * `unplaced` is what didn't fit anywhere.
+ */
+export function layoutPlan(
+  heroId: HeroId,
+  b: Pick<HeroBuild, 'goals' | 'legendary' | 'weapon' | 'relics'>,
+): { plan: BuildPlan; unplaced: { goal: Goal; count: number }[] } {
+  const slots: BuildPlan['slots'] = {}
+  const put = (slotId: SlotId, item: string | undefined) => {
+    if (item) slots[slotId] = { item, lines: emptyLines() }
+  }
+  const legendary = getLegendary(heroId, b.legendary?.id)
+  if (legendary) put(legendary.slot, legendary.id)
+  if (b.weapon) put('weapon', itemForOption(heroId, 'weapon', b.weapon.id)?.id)
+  b.relics.forEach((r, i) => put(RELIC_SLOTS[i], itemForOption(heroId, RELIC_SLOTS[i], r.id)?.id))
+
+  const left = new Map(b.goals.map((g) => [g.id, g.target]))
+  const take = (g: Goal) => left.set(g.id, left.get(g.id)! - 1)
+  const most = (a: Goal, z: Goal) => left.get(z.id)! - left.get(a.id)!
+
+  // The weapon tree: traits top players take first.
+  const traits = weaponTraitsFor(heroId)
+  const used = new Set<string>()
+  const weaponTree = WEAPON_TREE_ROWS.map((row) => {
+    const goal = b.goals
+      .filter((g) => g.category === row.category && left.get(g.id)! > 0 && !used.has(lineKey(g)))
+      .map((g) => ({ g, option: traits.find((o) => weaponTraitKey(o) === lineKey(g)) }))
+      .filter((x) => x.option)
+      .sort((x, z) => Number(!!x.option!.unrated) - Number(!!z.option!.unrated) || most(x.g, z.g))[0]?.g
+    if (!goal) return null
+    take(goal)
+    used.add(lineKey(goal))
+    return lineKey(goal)
+  })
+
+  const open = GEAR_SLOTS.filter((s) => s.id !== legendary?.slot)
+  for (const s of open) slots[s.id] ??= { lines: emptyLines() }
+  const fill = (categories: CategoryId[], side: 'left' | 'right', gem = false) => {
+    for (const s of open.filter((x) => x.side === side)) {
+      const lines = slots[s.id]!.lines
+      const indexes = lines.map((_, i) => i)
+      if (gem) indexes.reverse()
+      for (const i of indexes) {
+        if (lines[i]) continue
+        if (gem && lines.some((l) => l?.category === 'gem')) break
+        // Only enchants (and gems) can double up on a piece.
+        const goal = b.goals
+          .filter((g) => categories.includes(g.category) && left.get(g.id)! > 0)
+          .filter((g) => g.category === 'enchant' || !lines.some((l) => l && lineKey(l) === lineKey(g)))
+          .sort(most)[0]
+        if (!goal) break
+        take(goal)
+        lines[i] = { category: goal.category, entryId: goal.entryId, name: goal.name }
+      }
+    }
+  }
+  fill(['gem'], 'right', true)
+  fill(['aspect', 'glyph', 'sigil', 'defensive'], 'left')
+  fill(['gem'], 'left', true)
+  fill(['enchant'], 'right')
+  fill(['enchant'], 'left')
+
+  for (const s of open) if (!slots[s.id]!.item && !slots[s.id]!.lines.some(Boolean)) delete slots[s.id]
+  return {
+    plan: { slots, weaponTree },
+    unplaced: b.goals.filter((g) => left.get(g.id)! > 0).map((g) => ({ goal: g, count: left.get(g.id)! })),
+  }
+}
+
+/** The socket gems you have: any size of any colour. */
+function cleanHaveSockets(raw: Sockets | undefined): Sockets {
+  const sockets: Sockets = {}
+  for (const slot of SOCKET_SLOTS) if (getSocketGem(raw?.[slot])) sockets[slot] = raw![slot]
   return sockets
 }
 
@@ -250,7 +458,7 @@ export function recommendedChecklist(heroId: HeroId): ChecklistData {
     relics: rec?.relics ?? [],
     talents: rec?.talents ?? [],
     sockets: rec?.sockets ?? {},
-    goals: (rec?.goals ?? []).map((g) => ({ ...g, name: getEntry(g.category, g.entryId)?.name ?? g.entryId })),
+    goals: (rec?.goals ?? []).map((g) => ({ ...g, name: nameFor(heroId, g.category, g.entryId) })),
   }
 }
 
@@ -262,7 +470,8 @@ export function presetChecklist(heroId: HeroId, preset: PresetBuild): ChecklistD
     relics: preset.relics,
     talents: preset.talents,
     sockets: preset.sockets ?? recommendationFor(heroId)?.sockets ?? {},
-    goals: preset.goals.map((g) => ({ ...g, name: getEntry(g.category, g.entryId)?.name ?? g.entryId })),
+    goals: preset.goals.map((g) => ({ ...g, name: nameFor(heroId, g.category, g.entryId) })),
+    ...(preset.plan ? { plan: preset.plan } : {}),
   }
 }
 
@@ -280,6 +489,15 @@ const keyOf = (c: ChecklistData) =>
     [...(c.talents ?? [])].sort(),
     SOCKET_SLOTS.map((s) => c.sockets?.[s] ?? null),
     c.goals.map((g) => `${g.category}:${g.entryId}:${g.target}`).sort(),
+    c.plan
+      ? [
+          GEAR_SLOTS.map((s) => {
+            const slot = c.plan!.slots[s.id]
+            return slot ? [slot.item ?? null, slot.lines.map((l) => l && lineKey(l))] : null
+          }),
+          c.plan.weaponTree,
+        ]
+      : null,
   ])
 
 export const sameChecklist = (heroId: HeroId, a: ChecklistData, b: ChecklistData) =>
@@ -340,6 +558,12 @@ export const MAX_NAME_LENGTH = 40
 const cleanName = (name: unknown) =>
   typeof name === 'string' && name.trim() ? name.trim().slice(0, MAX_NAME_LENGTH) : undefined
 
+/** A line under the name the hero sees (enchants are named per main stat). */
+const heroLine = (heroId: HeroId, line: GearLine): GearLine => ({
+  ...line,
+  name: nameFor(heroId, line.category, line.entryId, line.name),
+})
+
 /** v8 renamed enchants to their in-game names (same stat pairs, see OLD_ENCHANT_IDS). */
 const renamed = (category: string, entryId: string, version: number) =>
   version < 8 && category === 'enchant' ? (OLD_ENCHANT_IDS[entryId] ?? entryId) : entryId
@@ -356,10 +580,23 @@ function sanitizeBuild(heroId: HeroId, raw: Partial<LegacyBuild>, version: numbe
     const lines = (slot.lines ?? emptyLines())
       .slice(0, STAT_LINES)
       .map((l) =>
-        l && l.category in CATEGORY_BY_ID ? { ...l, entryId: renamed(l.category, l.entryId, version) } : null,
+        l && l.category in CATEGORY_BY_ID
+          ? heroLine(heroId, { ...l, entryId: renamed(l.category, l.entryId, version) })
+          : null,
       )
     while (lines.length < STAT_LINES) lines.push(null)
-    slots[id as SlotId] = { lines, note: slot.note, noLines: slot.noLines === true || undefined }
+    const item = itemsFor(heroId, id as SlotId).find((i) => i.id === slot.item)
+    slots[id as SlotId] = {
+      lines,
+      note: slot.note,
+      noLines: slot.noLines === true || undefined,
+      item: item?.id,
+      itemLevel: item && itemLevelsOf(item).includes(slot.itemLevel!) ? slot.itemLevel : undefined,
+      temper:
+        item && Number.isInteger(slot.temper) && slot.temper! >= 0 && slot.temper! < MAX_TEMPER
+          ? slot.temper
+          : undefined,
+    }
     if (slot.legendary) legacyLegendarySlot = id as SlotId
   }
 
@@ -383,7 +620,7 @@ function sanitizeBuild(heroId: HeroId, raw: Partial<LegacyBuild>, version: numbe
         id: g.id,
         category: g.category,
         entryId,
-        name: getEntry(g.category, entryId)?.name ?? g.name,
+        name: nameFor(heroId, g.category, entryId, g.name),
         target: g.target,
       })
   }
@@ -422,7 +659,20 @@ function sanitizeBuild(heroId: HeroId, raw: Partial<LegacyBuild>, version: numbe
     for (const r of items.relics) r.equipped = !!raw.relics?.find((x) => x.id === r.id)?.equipped
   }
 
-  return {
+  // Before v9 the checklist's legendary, weapon and relics were ticked "I have it": now that's the item in the slot.
+  if (version < 9) {
+    const place = (slotId: SlotId, item: string | undefined) => {
+      if (item) slots[slotId] = { lines: emptyLines(), ...slots[slotId], item }
+    }
+    const legendarySlot = getLegendary(heroId, legendary?.id)?.slot
+    if (legendary?.equipped && legendarySlot) place(legendarySlot, legendary.id)
+    if (items.weapon?.equipped) place('weapon', itemForOption(heroId, 'weapon', items.weapon.id)?.id)
+    items.relics
+      .filter((r) => r.equipped)
+      .forEach((r, i) => place(RELIC_SLOTS[i], itemForOption(heroId, RELIC_SLOTS[i], r.id)?.id))
+  }
+
+  return withEquipped({
     heroId,
     active: isBuildRef(raw.active) ? raw.active : null,
     createdAt: raw.createdAt ?? now,
@@ -435,8 +685,9 @@ function sanitizeBuild(heroId: HeroId, raw: Partial<LegacyBuild>, version: numbe
     talents: cleanTalents(heroId, version < 6 ? recommendedChecklist(heroId).talents : raw.talents),
     // Socket gems joined the build in v7: start from the recommendation.
     sockets: cleanSockets(heroId, version < 7 ? recommendedChecklist(heroId).sockets : raw.sockets),
+    plan: cleanPlan(heroId, raw.plan),
     loadout: sanitizeLoadout(heroId, raw.loadout, version),
-  }
+  })
 }
 
 /** v4 picked the weapon on its tab and kept tree picks as an unordered list. */
@@ -453,25 +704,17 @@ function sanitizeLoadout(
   const neck = [...new Set(raw?.neck ?? [])].filter((id) => pick(options.neck, id)).slice(0, PICK_LIMITS.neck)
   const relic1 = pick(options.charms, raw?.relic1)
   const relic2 = raw?.relic2 !== relic1 ? pick(options.charms, raw?.relic2) : null
-  // Each row takes a trait of its own category, and no trait twice.
-  const traits = weaponTraitsFor(heroId)
   const rows = (raw?.weaponTree ?? weaponPath(raw?.weaponTraits ?? [])).map((key) => {
     if (!key) return key
     const [category, entryId] = key.split(':')
     return `${category}:${renamed(category, entryId, version)}`
   })
-  const weaponTree = WEAPON_TREE_ROWS.map((row, i) => {
-    const key = rows[i]
-    const option = traits.find((o) => weaponTraitKey(o) === key)
-    return option?.category === row.category && rows.indexOf(key) === i ? key! : null
-  })
   return {
     neck,
     relic1,
     relic2,
-    weaponTree,
-    talents: cleanTalents(heroId, raw?.talents),
-    sockets: cleanSockets(heroId, raw?.sockets),
+    weaponTree: cleanWeaponTree(heroId, rows),
+    sockets: cleanHaveSockets(raw?.sockets),
   }
 }
 function migrate(raw: unknown): SaveData {
@@ -602,15 +845,17 @@ function isUntouched(b: HeroBuild) {
   const l = b.loadout
   return (
     !b.active &&
+    !b.plan &&
     !b.legendary &&
     !b.weapon &&
     b.relics.length === 0 &&
-    Object.values(b.slots).every((slot) => !slot?.note && !slot?.noLines && !slot?.lines?.some(Boolean)) &&
+    Object.values(b.slots).every(
+      (slot) => !slot?.item && !slot?.note && !slot?.noLines && !slot?.lines?.some(Boolean),
+    ) &&
     l.neck.length === 0 &&
     !l.relic1 &&
     !l.relic2 &&
     l.weaponTree.every((k) => !k) &&
-    l.talents.length === 0 &&
     Object.values(l.sockets).every((gem) => !gem)
   )
 }
@@ -652,7 +897,7 @@ export function openHero(heroId: HeroId) {
 function updateBuild(heroId: HeroId, update: (build: HeroBuild) => HeroBuild) {
   const existing = buildOf(state, heroId)
   const now = new Date().toISOString()
-  let next: HeroBuild = { ...update(existing), updatedAt: now }
+  let next: HeroBuild = { ...withEquipped(update(existing)), updatedAt: now }
   let saved = state.saved
   const checklist = checklistOf(next)
   if (next.active === existing.active && keyOf(checklist) !== keyOf(checklistOf(existing))) {
@@ -767,112 +1012,91 @@ export function setLine(heroId: HeroId, slotId: SlotId, index: number, line: Gea
   updateBuild(heroId, (b) => {
     const slot = b.slots[slotId] ?? {}
     const lines = [...(slot.lines ?? emptyLines())]
-    lines[index] = line
+    lines[index] = line && heroLine(heroId, line)
     return { ...b, slots: { ...b.slots, [slotId]: { ...slot, lines } } }
   })
 }
 
-/**
- * Empties a piece: its lines and socket gem, and for the checklist's legendary, weapon or a relic, the item
- * itself (marked as not had). The note stays.
- */
+/** Empties a piece: its item, lines and socket gem. The note stays. */
 export function clearSlot(heroId: HeroId, slotId: SlotId) {
-  updateBuild(heroId, (b) => {
-    const relic = slotId === 'relic1' ? 0 : slotId === 'relic2' ? 1 : -1
-    const isLegendarySlot = getLegendary(heroId, b.legendary?.id)?.slot === slotId
-    return {
-      ...b,
-      slots: { ...b.slots, [slotId]: { ...b.slots[slotId], lines: emptyLines(), noLines: undefined } },
-      legendary: b.legendary && isLegendarySlot ? { ...b.legendary, equipped: false } : b.legendary,
-      weapon: b.weapon && slotId === 'weapon' ? { ...b.weapon, equipped: false } : b.weapon,
-      relics: b.relics.map((r, i) => (i === relic ? { ...r, equipped: false } : r)),
-      loadout: { ...b.loadout, sockets: { ...b.loadout.sockets, [slotId]: undefined } },
-    }
-  })
-}
-
-// ---- Goals ----
-
-export function addGoal(heroId: HeroId, goal: Pick<Goal, 'category' | 'entryId' | 'name'> & { target?: number }) {
-  updateBuild(heroId, (b) => {
-    if (b.goals.some((g) => g.category === goal.category && g.entryId === goal.entryId)) return b
-    return { ...b, goals: [...b.goals, { id: newId(), ...goal, target: goal.target ?? 1 }] }
-  })
-}
-
-export function removeGoal(heroId: HeroId, goalId: string) {
-  updateBuild(heroId, (b) => ({ ...b, goals: b.goals.filter((g) => g.id !== goalId) }))
-}
-
-export function setGoalTarget(heroId: HeroId, goalId: string, target: number) {
-  const t = clampTarget(target)
   updateBuild(heroId, (b) => ({
     ...b,
-    goals: b.goals.map((g) => (g.id === goalId ? { ...g, target: t } : g)),
+    slots: {
+      ...b.slots,
+      [slotId]: {
+        ...b.slots[slotId],
+        lines: emptyLines(),
+        noLines: undefined,
+        item: undefined,
+        itemLevel: undefined,
+        temper: undefined,
+      },
+    },
+    loadout: { ...b.loadout, sockets: { ...b.loadout.sockets, [slotId]: undefined } },
   }))
 }
 
-/** Picks the checklist's legendary (`null` for none). Keeps "equipped" only if it's the same one. */
-export function setLegendary(heroId: HeroId, legendaryId: string | null) {
-  updateBuild(heroId, (b) => ({
-    ...b,
-    legendary: legendaryId
-      ? { id: legendaryId, equipped: b.legendary?.id === legendaryId && b.legendary.equipped }
-      : null,
-  }))
+/** Sets the item you wear in a slot (`null` for none). */
+export function setSlotItem(heroId: HeroId, slotId: SlotId, itemId: string | null) {
+  updateBuild(heroId, (b) => withItem(b, slotId, itemsFor(heroId, slotId).find((i) => i.id === itemId)?.id))
+}
+
+/** Sets the item level of the item in a slot, if it comes in that level. */
+export function setSlotItemLevel(heroId: HeroId, slotId: SlotId, level: number) {
+  updateBuild(heroId, (b) => {
+    const slot = b.slots[slotId]
+    const item = getItem(heroId, slot?.item)
+    if (!slot || !item || !itemLevelsOf(item).includes(level)) return b
+    return { ...b, slots: { ...b.slots, [slotId]: { ...slot, itemLevel: level } } }
+  })
+}
+
+/** Sets how many times the Regal item in a slot is tempered (0–8). */
+export function setSlotItemTemper(heroId: HeroId, slotId: SlotId, temper: number) {
+  updateBuild(heroId, (b) => {
+    const slot = b.slots[slotId]
+    if (!slot?.item || !Number.isInteger(temper) || temper < 0 || temper > MAX_TEMPER) return b
+    return { ...b, slots: { ...b.slots, [slotId]: { ...slot, temper: temper === MAX_TEMPER ? undefined : temper } } }
+  })
+}
+
+// ---- The checklist ----
+
+/** "I have it": the item goes in its slot, replacing what's there; unticked, the slot is left empty. */
+function setHave(b: HeroBuild, slotId: SlotId, itemId: string | undefined, have: boolean): HeroBuild {
+  if (!itemId) return b
+  if (have) return withItem(b, slotId, itemId)
+  return b.slots[slotId]?.item === itemId ? withItem(b, slotId, undefined) : b
 }
 
 export function setLegendaryEquipped(heroId: HeroId, equipped: boolean) {
-  updateBuild(heroId, (b) => (b.legendary ? { ...b, legendary: { ...b.legendary, equipped } } : b))
-}
-
-/** Picks the checklist's weapon (`null` for none). */
-export function setWeaponGoal(heroId: HeroId, weaponId: string | null) {
-  updateBuild(heroId, (b) => ({ ...b, weapon: keepEquipped(b.weapon, weaponId) }))
-}
-
-export function setWeaponEquipped(heroId: HeroId, equipped: boolean) {
-  updateBuild(heroId, (b) => (b.weapon ? { ...b, weapon: { ...b.weapon, equipped } } : b))
-}
-
-/** Adds or removes a relic on the checklist. Ignored when it would go over two. */
-export function toggleRelicGoal(heroId: HeroId, relicId: string) {
   updateBuild(heroId, (b) => {
-    if (b.relics.some((r) => r.id === relicId)) return { ...b, relics: b.relics.filter((r) => r.id !== relicId) }
-    return b.relics.length < RELIC_GOALS ? { ...b, relics: [...b.relics, { id: relicId, equipped: false }] } : b
+    const legendary = getLegendary(heroId, b.legendary?.id)
+    return legendary ? setHave(b, legendary.slot, legendary.id, equipped) : b
   })
 }
 
-export function setRelicEquipped(heroId: HeroId, relicId: string, equipped: boolean) {
-  updateBuild(heroId, (b) => ({ ...b, relics: b.relics.map((r) => (r.id === relicId ? { ...r, equipped } : r)) }))
-}
-
-/** The same item again keeps its "equipped"; a different one starts unequipped. */
-const keepEquipped = (current: ItemGoal | null, id: string | null): ItemGoal | null =>
-  id ? { id, equipped: current?.id === id && current.equipped } : null
-
-/** The build with another checklist: the same legendary, weapon or relics keep "equipped". Gear is untouched. */
+/** The build with another checklist. Gear is untouched, and "I have it" follows from it. */
 function applyChecklist(heroId: HeroId, b: HeroBuild, data: ChecklistData): HeroBuild {
   const next = toGoals(heroId, data)
   return {
     ...b,
     goals: next.goals,
-    legendary: keepEquipped(b.legendary, next.legendary?.id ?? null),
-    weapon: keepEquipped(b.weapon, next.weapon?.id ?? null),
-    relics: next.relics.map((r) => keepEquipped(b.relics.find((x) => x.id === r.id) ?? null, r.id)!),
+    legendary: next.legendary,
+    weapon: next.weapon,
+    relics: next.relics,
     talents: data.talents ? next.talents : b.talents,
     sockets: data.sockets ? next.sockets : b.sockets,
+    plan: next.plan,
   }
 }
 
 /** Your gear against another build's checklist, for showing how close you are to it. */
-export const previewBuild = (build: HeroBuild, ref: BuildRef, data: ChecklistData): HeroBuild => ({
-  ...applyChecklist(build.heroId, build, data),
-  active: ref,
-})
+export const previewBuild = (build: HeroBuild, ref: BuildRef, data: ChecklistData): HeroBuild =>
+  withEquipped({ ...applyChecklist(build.heroId, build, data), active: ref })
 
 export function checklistOf(
-  build: Pick<HeroBuild, 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets' | 'goals'>,
+  build: Pick<HeroBuild, 'legendary' | 'weapon' | 'relics' | 'talents' | 'sockets' | 'goals' | 'plan'>,
 ): ChecklistData {
   return {
     legendary: build.legendary?.id ?? null,
@@ -881,39 +1105,93 @@ export function checklistOf(
     talents: build.talents,
     sockets: build.sockets,
     goals: build.goals.map(({ category, entryId, name, target }) => ({ category, entryId, name, target })),
+    ...(build.plan ? { plan: build.plan } : {}),
   }
 }
 
-// ---- Talents ----
-
-/** Sets the talents the build runs, e.g. to the ones you have. */
-export function setBuildTalents(heroId: HeroId, ids: string[]) {
-  updateBuild(heroId, (b) => ({ ...b, talents: cleanTalents(heroId, ids) }))
+/**
+ * The build's gear as a hero's gear, for edit mode: the paper doll and slot editor show (and, through `PLAN_WRITER`,
+ * change) the build instead of what you wear. Sockets hold the build's gems; the weapon tree is the build's.
+ */
+export function planView(b: HeroBuild): HeroBuild {
+  const plan = b.plan ?? layoutPlan(b.heroId, b).plan
+  const slots: HeroBuild['slots'] = {}
+  for (const [id, s] of Object.entries(plan.slots)) slots[id as SlotId] = { item: s.item, lines: s.lines }
+  return withEquipped({
+    ...b,
+    slots,
+    loadout: { ...b.loadout, weaponTree: plan.weaponTree, sockets: b.sockets },
+  })
 }
 
-/** Picks a talent you have in game if it fits the points left, or unpicks it. */
-export function toggleTalent(heroId: HeroId, id: string) {
-  updateLoadout(heroId, (l) => ({ ...l, talents: toggled(heroId, l.talents, id) }))
+// ---- Who the paper doll edits: your gear, or the build's (edit mode) ----
+
+/** The changes the paper doll, slot editor and pickers make, to your gear or to the build's. */
+export interface GearWriter {
+  /** Writes to the build's gear (edit mode). */
+  plan: boolean
+  setLine: (heroId: HeroId, slotId: SlotId, index: number, line: GearLine | null) => void
+  setSlotItem: (heroId: HeroId, slotId: SlotId, itemId: string | null) => void
+  clearSlot: (heroId: HeroId, slotId: SlotId) => void
+  setSocket: (heroId: HeroId, slot: SocketSlot, id: string | null) => void
+  setWeaponTreeRow: (heroId: HeroId, row: number, key: string | null) => void
 }
 
-/** Sets the talents you have, e.g. cleared or copied from the build. */
-export function setTalents(heroId: HeroId, ids: string[]) {
-  updateLoadout(heroId, (l) => ({ ...l, talents: cleanTalents(heroId, ids) }))
+export const GEAR_WRITER: GearWriter = {
+  plan: false,
+  setLine,
+  setSlotItem,
+  clearSlot,
+  setSocket,
+  setWeaponTreeRow,
 }
 
-const toggled = (heroId: HeroId, ids: string[], id: string) =>
-  ids.includes(id) ? ids.filter((t) => t !== id) : cleanTalents(heroId, [...ids, id])
+/** Changes the build's gear (laid out from its checklist the first time) and the checklist with it. */
+function updatePlan(heroId: HeroId, update: (plan: BuildPlan) => BuildPlan) {
+  updateBuild(heroId, (b) => fromPlan(heroId, b, cleanPlan(heroId, update(b.plan ?? layoutPlan(heroId, b).plan))!))
+}
+
+const withPlanSlot = (plan: BuildPlan, slotId: SlotId, patch: Partial<PlanSlot>): BuildPlan => ({
+  ...plan,
+  slots: { ...plan.slots, [slotId]: { lines: emptyLines(), ...plan.slots[slotId], ...patch } },
+})
+
+export const PLAN_WRITER: GearWriter = {
+  plan: true,
+  setLine: (heroId, slotId, index, line) =>
+    updatePlan(heroId, (plan) => {
+      const lines = [...(plan.slots[slotId]?.lines ?? emptyLines())]
+      lines[index] = line
+      return withPlanSlot(plan, slotId, { lines })
+    }),
+  setSlotItem: (heroId, slotId, itemId) =>
+    updatePlan(heroId, (plan) => withPlanSlot(plan, slotId, { item: itemId ?? undefined })),
+  clearSlot: (heroId, slotId) =>
+    updateBuild(heroId, (b) => {
+      const plan = withPlanSlot(b.plan ?? layoutPlan(heroId, b).plan, slotId, { item: undefined, lines: emptyLines() })
+      const sockets = cleanSockets(heroId, { ...b.sockets, [slotId]: undefined })
+      return fromPlan(heroId, { ...b, sockets }, cleanPlan(heroId, plan)!)
+    }),
+  // The build always wants the largest gem: the colour is what's picked.
+  setSocket: (heroId, slot, id) =>
+    updateBuild(heroId, (b) => {
+      const gem = getSocketGem(id)
+      const sockets = cleanSockets(heroId, { ...b.sockets, [slot]: gem ? gemId('flawless', gem.colour) : undefined })
+      return fromPlan(heroId, { ...b, sockets }, b.plan ?? layoutPlan(heroId, b).plan)
+    }),
+  setWeaponTreeRow: (heroId, row, key) =>
+    updatePlan(heroId, (plan) => {
+      const taken = key !== null && plan.weaponTree.some((k, i) => k === key && i !== row)
+      if (taken || (key !== null && !key.startsWith(`${WEAPON_TREE_ROWS[row].category}:`))) return plan
+      return { ...plan, weaponTree: plan.weaponTree.map((k, i) => (i === row ? key : k)) }
+    }),
+}
 
 // ---- Sockets ----
 
-/** Sets the socket gem a socket should hold in the build (`null` for none). */
-export function setSocketGoal(heroId: HeroId, slot: SocketSlot, id: string | null) {
-  updateBuild(heroId, (b) => ({ ...b, sockets: cleanSockets(heroId, { ...b.sockets, [slot]: id ?? undefined }) }))
-}
-
-/** Sets the socket gem you have in a socket (`null` for empty). */
+/** Sets the socket gem you have in a socket, any size (`null` for empty). */
 export function setSocket(heroId: HeroId, slot: SocketSlot, id: string | null) {
-  updateLoadout(heroId, (l) => ({ ...l, sockets: cleanSockets(heroId, { ...l.sockets, [slot]: id ?? undefined }) }))
+  updateLoadout(heroId, (l) => ({ ...l, sockets: cleanHaveSockets({ ...l.sockets, [slot]: id ?? undefined }) }))
 }
 
 // ---- Tabs (neck powers, charms, weapon) ----
