@@ -160,7 +160,7 @@ function tipsFor(
   let socket: TileTips['socket'] = null
   if (isSocketSlot(slotId)) {
     const have = getSocketGem(build.loadout.sockets[slotId])
-    const target = getSocketGem(build.sockets[slotId])
+    const target = getSocketGem(analysis.sockets.targets[slotId])
     const rated = have && options.sockets[socketKind(slotId)].find((o) => o.id === gemId('flawless', have.colour))
     socket = have
       ? () => <SocketGemTip gem={have} rated={rated} have target={target} socket={SLOT_BY_ID[slotId].label} />
@@ -205,11 +205,11 @@ function tipsFor(
   return { tile, lines, socket, tabs }
 }
 
-/** The socket on a neck, wrists or ring: the gem you have and the one the build wants. */
-function socketFor(build: HeroBuild, slotId: SlotId): SocketView | undefined {
+/** The socket on a neck, wrists or ring: the gem you have and the build's gem for it (matched to yours, wherever it sits). */
+function socketFor(build: HeroBuild, analysis: BuildAnalysis, slotId: SlotId): SocketView | undefined {
   if (!isSocketSlot(slotId)) return undefined
   const have = getSocketGem(build.loadout.sockets[slotId])
-  const want = getSocketGem(build.sockets[slotId])
+  const want = getSocketGem(analysis.sockets.targets[slotId])
   return {
     gem: have ?? null,
     target: want ?? null,
@@ -290,6 +290,7 @@ export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot
           heroId={hero.id}
           build={build}
           slot={socket.slot}
+          target={analysis.sockets.targets[socket.slot]}
           anchor={socket.anchor}
           onClose={closeSocket}
         />
@@ -321,7 +322,7 @@ export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot
                     open?.slotId === slot.id && open.index === index ? null : { slotId: slot.id, index, anchor },
                   )
                 }}
-                socket={socketFor(build, slot.id)}
+                socket={socketFor(build, analysis, slot.id)}
                 socketOpen={socket?.slot === slot.id}
                 onOpenSocket={(anchor) => {
                   if (!isSocketSlot(slot.id)) return

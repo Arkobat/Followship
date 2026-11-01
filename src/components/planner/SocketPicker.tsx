@@ -14,6 +14,8 @@ interface Props {
   heroId: HeroId
   build: HeroBuild
   slot: SocketSlot
+  /** The build's gem for this socket (matched to the gems you have, wherever they sit). */
+  target: string | undefined
   /** The socket button that opened it. */
   anchor: HTMLButtonElement
   onClose: () => void
@@ -26,10 +28,10 @@ const ROOM = 330
  * Pick the socket gem you have, like the game's gem window: a row per colour, its four sizes left to right with their
  * gem power on top. Each row ends with how often top players socket that colour here; the build's gem is marked.
  */
-export function SocketPicker({ heroId, build, slot, anchor, onClose }: Props) {
+export function SocketPicker({ heroId, build, slot, target: targetId, anchor, onClose }: Props) {
   const { plan, setSocket } = useGearWriter()
   const label = SLOT_BY_ID[slot].label
-  const target = getSocketGem(build.sockets[slot])
+  const target = getSocketGem(targetId)
   const have = build.loadout.sockets[slot]
   const rated = loadoutFor(heroId).sockets[socketKind(slot)]
   const pick = (id: string | null) => {

@@ -1,6 +1,7 @@
 import { CATEGORIES, type CategoryDefinition, type CategoryId } from '../data/catalog'
 import { GEAR_SLOTS, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
-import { SOCKET_SLOTS } from '../data/loadout'
+import { getSocketGem } from '../data/gems'
+import { SOCKET_SLOTS, type SocketSlot } from '../data/loadout'
 import type { HeroId } from '../data/heroes'
 import { getItem, itemForOption } from '../data/items'
 import { getLegendary, type Legendary } from '../data/recommended'
@@ -19,6 +20,8 @@ import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
  * in any other slot is to be replaced (the build wants a piece with lines there); without a build it fills the slot,
  * nothing to rate, as does a piece older saves marked as having no lines. Without a build there's nothing to rate
  * lines against: they're "unrated".
+ * Socket gems only add gem power, so which socket holds which gem doesn't matter: the build's gems are matched to
+ * yours wherever they sit (see `matchSockets`).
  */
 
 /** Where a piece stands, from its good lines. */
@@ -100,8 +103,11 @@ export interface BuildAnalysis {
   goals: Map<string, GoalInfo>
   categories: CategoryProgress[]
   legendary: LegendaryInfo | null
-  /** The build's socket gems: sockets holding the right gem, and the sockets that have a target. */
-  sockets: { have: number; need: number }
+  /**
+   * The build's socket gems: the one each socket should hold (`targets`, after matching them to the gems you have
+   * wherever they sit), sockets holding theirs, and the sockets that have one.
+   */
+  sockets: { targets: Partial<Record<SocketSlot, string>>; have: number; need: number }
   /**
    * The items the build names: the one for each slot (`wanted`), how many you wear, and the slots where you wear
    * something else (including a legendary where the build has none: `wanted` may be missing for those).
@@ -145,8 +151,8 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   const legendaryEntry = getLegendary(build.heroId, build.legendary?.id)
   const legendary = legendaryEntry ? { entry: legendaryEntry, equipped: !!build.legendary?.equipped } : null
 
-  // 1. Count copies. Pieces with more matching lines claim copies first, so a
-  //    surplus copy lands on the weaker piece (the one you'd reroll anyway).
+  // 1. Count copies. Pieces you keep claim copies first, then the ones with more matching lines, so a surplus copy
+  //    lands on a piece to replace or the weaker piece (the one you'd reroll anyway).
   const slots = {} as Record<SlotId, SlotInfo>
   const legendarySlot = legendary?.entry.slot
   const wanted = wantedItems(build)
@@ -177,7 +183,10 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
       matches: lines.filter((l) => l && goalByKey.has(keyOf(l))).length,
     }
   })
-  const claimOrder = [...raw].sort((a, b) => b.matches - a.matches)
+  // Pieces you keep claim before pieces to replace (the legendary's slot too), so a surplus copy lands on the piece
+  // that's going anyway: reroll that one, not the keeper.
+  const leaving = (s: SlotId) => Number(s === legendarySlot || wrongItem(s))
+  const claimOrder = [...raw].sort((a, b) => leaving(a.slot.id) - leaving(b.slot.id) || b.matches - a.matches)
 
   for (const { slot, lines } of claimOrder) {
     const infos: LineInfo[] = lines.map((line, index) => {
@@ -280,10 +289,11 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     need: wantedSlots.length,
     wrong: GEAR_SLOTS.map((s) => s.id).filter(wrongItem),
   }
-  const targets = SOCKET_SLOTS.filter((s) => build.sockets[s])
+  const targets = matchSockets(build.sockets, build.loadout.sockets)
   const sockets = {
-    have: targets.filter((s) => build.loadout.sockets[s] === build.sockets[s]).length,
-    need: targets.length,
+    targets,
+    have: SOCKET_SLOTS.filter((s) => targets[s] && build.loadout.sockets[s] === targets[s]).length,
+    need: SOCKET_SLOTS.filter((s) => targets[s]).length,
   }
 
   return {
@@ -305,40 +315,49 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   }
 }
 
-const RELIC_SLOTS: SlotId[] = ['relic1', 'relic2']
+/** Slots that hold the same kind of item, where it doesn't matter which one holds which. */
+const PAIRED_SLOTS: SlotId[][] = [
+  ['ring1', 'ring2'],
+  ['relic1', 'relic2'],
+]
 
 /**
  * The item the build wants in each slot: its gear's (see `BuildPlan`), or for a build without gear of its own the
- * legendary, weapon and relics it names. Relics go either way round: a relic slot wearing one of the build's relics
- * wants that one, and the rest fill the other relic slots in order.
+ * legendary, weapon and relics it names. Rings and relics go either way round: one wearing one of the build's items
+ * for the pair wants that one, and the rest fill the pair's other slots in order.
  */
 export function wantedItems(build: HeroBuild): Partial<Record<SlotId, string>> {
   const { heroId, plan } = build
   const wanted: Partial<Record<SlotId, string>> = {}
-  let relics: string[]
   if (plan) {
     for (const slot of GEAR_SLOTS) {
       const item = plan.slots[slot.id]?.item
-      if (item && !RELIC_SLOTS.includes(slot.id)) wanted[slot.id] = item
+      if (item) wanted[slot.id] = item
     }
-    relics = RELIC_SLOTS.flatMap((s) => plan.slots[s]?.item ?? [])
   } else {
     const legendary = getLegendary(heroId, build.legendary?.id)
     if (legendary) wanted[legendary.slot] = legendary.id
     const weapon = build.weapon && itemForOption(heroId, 'weapon', build.weapon.id)
     if (weapon) wanted.weapon = weapon.id
-    relics = build.relics.flatMap((r) => itemForOption(heroId, 'relic1', r.id)?.id ?? [])
+    build.relics.forEach((r, i) => {
+      const relic = itemForOption(heroId, 'relic1', r.id)
+      if (relic) wanted[`relic${i + 1}` as SlotId] = relic.id
+    })
   }
-  const free = RELIC_SLOTS.filter((s) => {
-    const worn = build.slots[s]?.item
-    if (!worn || !relics.includes(worn)) return true
-    wanted[s] = worn
-    relics = relics.filter((r) => r !== worn)
-    return false
-  })
-  free.forEach((s, i) => {
-    if (relics[i]) wanted[s] = relics[i]
-  })
+  for (const pair of PAIRED_SLOTS) {
+    const items = pair.flatMap((s) => wanted[s] ?? [])
+    for (const s of pair) delete wanted[s]
+    const free = pair.filter((s) => {
+      const worn = build.slots[s]?.item
+      if (!worn || !items.includes(worn)) return true
+      wanted[s] = worn
+      items.splice(items.indexOf(worn), 1)
+      return false
+    })
+    free.forEach((s, i) => {
+      if (items[i]) wanted[s] = items[i]
+    })
+  }
   return wanted
 }
 
@@ -356,4 +375,39 @@ export function summarizeSlots(slotIds: SlotId[], labels: Record<SlotId, { label
   const counts = new Map<SlotId, number>()
   for (const s of slotIds) counts.set(s, (counts.get(s) ?? 0) + 1)
   return [...counts].map(([slot, n]) => `${labels[slot].label}${n > 1 ? ` ×${n}` : ''}`).join(' · ')
+}
+
+/**
+ * The build's socket gems moved to where yours sit, since a gem gives the same gem power in any socket: each of yours
+ * keeps the build's gem for its socket if it's that gem, else takes the same gem from another socket, else one of its
+ * colour (a smaller or larger size). The build's gems left over go to empty sockets first, then to ones holding a gem
+ * the build doesn't want.
+ */
+export function matchSockets(
+  want: Partial<Record<SocketSlot, string>>,
+  have: Partial<Record<SocketSlot, string | null>>,
+): Partial<Record<SocketSlot, string>> {
+  const targets: Partial<Record<SocketSlot, string>> = {}
+  const left = SOCKET_SLOTS.flatMap((s) => (want[s] ? [want[s]!] : []))
+  const take = (slot: SocketSlot, id: string | undefined) => {
+    if (!id || targets[slot] || !left.includes(id)) return
+    targets[slot] = id
+    left.splice(left.indexOf(id), 1)
+  }
+  const colour = (id: string | null | undefined) => getSocketGem(id)?.colour
+  for (const s of SOCKET_SLOTS) if (have[s] === want[s]) take(s, want[s])
+  for (const s of SOCKET_SLOTS)
+    take(
+      s,
+      left.find((id) => id === have[s]),
+    )
+  for (const s of SOCKET_SLOTS)
+    if (have[s])
+      take(
+        s,
+        left.find((id) => colour(id) === colour(have[s])),
+      )
+  for (const s of SOCKET_SLOTS) if (!have[s]) take(s, left[0])
+  for (const s of SOCKET_SLOTS) take(s, left[0])
+  return targets
 }

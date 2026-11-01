@@ -84,10 +84,13 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
 - A piece to replace (the legendary's slot included) still gets reroll tips, since getting the item can take a while.
   They come after the pieces you keep have had their pick, so they get what's left (often "anything").
 - The checklist counts every copy: with three of something the build wants two, it reads 3/2 in red (still done,
-  faded and struck through), says which piece has the extra, and the extra line gets a reroll tip.
+  faded and struck through), says which piece has the extra, and the extra line gets a reroll tip. Pieces you keep
+  claim the copies first, so the extra lands on a piece to replace (or the legendary's slot) when one has it: reroll
+  that, not the keeper.
 - A build names an item for each slot (legendary, weapon, two relics, armour). An empty slot shows the build's item
   faded; wearing something else there frames the tile red ("✕ Build wants …"), and the checklist lists those slots
-  at the top with a button to open each. Relics count in either relic slot.
+  at the top with a button to open each. Rings and relics count in either slot of the pair, and socket gems in any
+  socket: wearing them swapped is never wrong. (Charms are only rated against top players, not by slot.)
 - The Gear tab under the doll sorts the pieces: Reroll (lines to change), Replace (not the build's item, with the
   build's legendary as its own group: "Get legendary", each with its reroll tips for meanwhile) and Complete (all lines
   right).
@@ -128,7 +131,10 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   build names the gem for each socket (new builds start from the most used; the rings from the most used pair; edit
   mode picks the colour, always the largest), and the round socket after a piece's lines holds the gem you have, picked from the in-game grid (colour by size,
   150 / 250 / 350 / 500): gold when it matches, amber when it's the right colour but smaller than the build's
-  (always the largest), red when it's another colour, and the build's gem shown faded while empty.
+  (always the largest), red when it's another colour, and the build's gem shown faded while empty. A socket gem only
+  adds gem power, so which socket holds it doesn't matter: the build's gems are matched to yours wherever they sit
+  (Emerald in the neck and Diamond on the wrists is right when the build has them the other way round), a gem of the
+  right colour takes that colour's gem, and the rest go to empty sockets first (`matchSockets` in `progress.ts`).
 - The Gems tab (Gear / Talents / Gems) is the in-game gems window: each colour's ten traits, lit when your gear's gem
   power reaches them, and outlined in gold up to what the build reaches (a trait you haven't unlocked stays as grey as
   the rest; only the outline marks it). A gem line gives 100 of its colour, a socket gem its size. Orb of Hidden
