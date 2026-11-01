@@ -195,6 +195,7 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
     <SlotItem
       heroId={heroId}
       build={build}
+      analysis={analysis}
       slotId={slotId}
       open={pickingItem}
       onOpen={() => {

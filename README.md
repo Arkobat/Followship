@@ -63,12 +63,17 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   type. The catalog has every line, so there is no "other" entry; old saves keep theirs until replaced.
 - In the slot editor, ← → switch slot (after the third line the search closes, so they work straight away);
   Ctrl + ← → switch even while typing in the search.
-- One of the hero's other legendaries as a slot's item fills it with nothing to roll, and counts as complete. (Older
-  saves may have a piece marked as having no lines; "It has lines after all" undoes it.)
+- A legendary has no lines (any saved on its slot, left from the piece before, are ignored). With a build, a legendary
+  anywhere but the build's legendary slot is to be replaced: the build wants a piece with lines there ("✕ Build wants
+  a piece with lines"), so a legendary chest doesn't count when the build's legendary is a helm. Without a build it
+  just fills the slot. (Older saves may have a piece marked as having no lines; "It has lines after all" undoes it.)
 - Changing a piece's item (Change, top of the slot editor) clears its lines and socket gem too, since a new piece comes
   without them. A checkbox in the item list turns that off; the choice is remembered for every slot (in its own
   localStorage key, not the save). Picking the same item again, or picking one for an empty slot, clears nothing.
-- Hovering an empty slot or socket only says it's empty and to click to pick; it never shows the build's item there.
+- Hovering an empty slot or socket says what the build wants there: "Build wants" its item (or a piece with lines) and
+  the lines the build's gear has on it (its own plan, or the layout edit mode shows), or the socket's gem. A slot with
+  lines entered but no item gets only the item, since its lines are rated on the tile. Edit mode adds nothing: the
+  tiles are the build.
 - Left side (armour) can roll anything; the right side (neck, wrists, rings, relics, weapon) only enchants and
   gems. A gem line only rerolls into another gem. Reroll suggestions follow those rules and prefer the right
   side for enchants. Tooltips name what kind of line each target is ("↻ Enchant: Kindling").
@@ -85,7 +90,7 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   at the top with a button to open each. Relics count in either relic slot.
 - The Gear tab under the doll sorts the pieces: Reroll (lines to change), Replace (not the build's item, with the
   build's legendary as its own group: "Get legendary", each with its reroll tips for meanwhile) and Complete (all lines
-  right, or another legendary with no lines).
+  right).
 - Edit mode (Edit build in the checklist's menu) edits the build the way you enter gear: the paper doll shows the
   build's gear, and clicking a slot picks its item and lines, a socket its gem, a weapon tab its tree. Where a line
   sits doesn't matter, only how many: a build with Griffin's Might on the helm is met by Griffin's Might on the
@@ -237,6 +242,8 @@ only; that names their stats and enchants.
 
 `src/data/gemTraitsData.ts` is each gem colour's ten traits and the power they unlock at (80, 150, 220, 300, 450,
 600, 800, 1000, 1250, 1500), from `scripts/fellows-gems.json` (step 3 above). Run `node scripts/generate-gems.mjs`.
+A trait no top player has unlocked isn't on fellows.gg: add it to `MANUAL` in the script, copied from the in-game
+tooltip (Blessing of the Artisan II, Diamond 1500, is there; it's dropped once fellows.gg lists the trait).
 Icons are `public/icons/gem-trait-<id>.webp` (fellows.gg's trait id, 96px webp); without one a trait shows a lettered
 tile. Socket gem icons are `public/icons/socket-<size>-<colour>.webp`.
 

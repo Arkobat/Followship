@@ -2,12 +2,12 @@ import { GEAR_SLOTS, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
 import { getItem } from '../../data/items'
 import type { HeroBuild } from '../../state/buildStore'
-import { SLOT_STATUS, type BuildAnalysis, type SlotInfo, type SlotStatus } from '../../utils/progress'
+import { SLOT_STATUS, wantedName, type BuildAnalysis, type SlotInfo, type SlotStatus } from '../../utils/progress'
 import styles from './GearStatusBoard.module.css'
 
 /**
  * The board's groups, in order: reroll changes a piece's lines, replace changes the piece (the build's legendary
- * included). Pieces with no lines to roll (another legendary) are as done as complete ones.
+ * included, and a legendary in a slot the build has none for). Pieces marked as having no lines are as done as complete ones.
  */
 const GROUPS: { status: SlotStatus; with: SlotStatus[] }[] = [
   { status: 'reroll', with: ['reroll'] },
@@ -81,7 +81,7 @@ export function GearStatusBoard({ heroId, build, analysis, onSelectSlot }: Props
 function Fixes({ heroId, build, analysis, info }: Omit<Props, 'onSelectSlot'> & { info: SlotInfo }) {
   const replace = info.status === 'legendary' || info.status === 'replace'
   const worn = getItem(heroId, build.slots[info.slot.id]?.item)
-  const to = info.legendary?.entry.name ?? getItem(heroId, analysis.items.wanted[info.slot.id])?.name
+  const to = info.legendary?.entry.name ?? wantedName(heroId, analysis, info.slot.id)
   const wrong = info.lines.filter((l) => l.suggestion)
   if (!replace && wrong.length === 0) return null
   return (

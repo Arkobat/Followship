@@ -144,6 +144,13 @@ export const GEM_TRAITS: GemTrait[] = [
     description: "+6% Strength / Intellect / Agility\n\n(Replaces Ancient's Wisdom)",
   },
   {
+    colour: 'diamond',
+    power: 1500,
+    name: 'Blessing of the Artisan - II',
+    icon: 'icons/gem-trait-291.webp',
+    description: 'Your Relic cooldowns are reduced by 24%.\n\n(Replaces Blessing of the Artisan)',
+  },
+  {
     colour: 'emerald',
     power: 80,
     name: 'First Strike',

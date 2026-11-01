@@ -2,7 +2,6 @@ import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router'
 import { SLOT_BY_ID, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
-import { getItem } from '../../data/items'
 import {
   activeBuildName,
   clearBuild,
@@ -14,7 +13,7 @@ import {
   useSaveData,
   type HeroBuild,
 } from '../../state/buildStore'
-import { isGoalDone, summarizeSlots, type BuildAnalysis, type GoalInfo } from '../../utils/progress'
+import { isGoalDone, summarizeSlots, wantedName, type BuildAnalysis, type GoalInfo } from '../../utils/progress'
 import { Tip } from '../tooltip/Tooltip'
 import { EntryTip, Status } from '../tooltip/tips'
 import { BuildMenu } from './BuildMenu'
@@ -271,7 +270,7 @@ function WrongItems({
   analysis: BuildAnalysis
   onSelectSlot: (slotId: SlotId) => void
 }) {
-  const { wrong, wanted } = analysis.items
+  const { wrong } = analysis.items
   if (wrong.length === 0) return null
   return (
     <div className={styles.wrongItems} role="status">
@@ -282,7 +281,7 @@ function WrongItems({
             <button type="button" onClick={() => onSelectSlot(slotId)}>
               {SLOT_BY_ID[slotId].label}
             </button>
-            : it wants {getItem(heroId, wanted[slotId])?.name}
+            : it wants {wantedName(heroId, analysis, slotId)}
           </li>
         ))}
       </ul>

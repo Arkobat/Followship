@@ -170,8 +170,10 @@ export function heroStats(heroId: HeroId, build: HeroBuild): HeroStats {
     levels.push(level)
     for (const [stat, value] of Object.entries(statsAt(item, level, s.temper)))
       flat[stat as StatId] = (flat[stat as StatId] ?? 0) + value
-    for (const line of s.lines ?? [])
-      if (line?.category === 'enchant') add(statsIn(getEntry('enchant', line.entryId)?.description))
+    // A legendary has no lines (any saved are left from the piece before it).
+    if (item.rarity !== 'Legendary')
+      for (const line of s.lines ?? [])
+        if (line?.category === 'enchant') add(statsIn(getEntry('enchant', line.entryId)?.description))
   }
   for (const key of build.loadout.weaponTree) {
     const [category, entryId] = key?.split(':') ?? []

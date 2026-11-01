@@ -1,13 +1,13 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { CATEGORY_BY_ID, getEntry, nameFor, type CategoryId } from '../../data/catalog'
 import { LEFT_SLOTS, RIGHT_SLOTS, SLOT_BY_ID, type SlotId } from '../../data/gearSlots'
 import type { Hero } from '../../data/heroes'
-import { gemId, getSocketGem } from '../../data/gems'
+import { gemColourName, gemId, getSocketGem } from '../../data/gems'
 import { getItem } from '../../data/items'
 import { isSocketSlot, loadoutFor, PICK_LIMITS, socketKind, weaponTraitsFor, type SocketSlot } from '../../data/loadout'
-import type { HeroBuild } from '../../state/buildStore'
+import { layoutPlan, type BuildPlan, type HeroBuild, type PlanSlot } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
-import type { BuildAnalysis } from '../../utils/progress'
+import { wantedName, type BuildAnalysis } from '../../utils/progress'
 import { entryTip, itemTip } from '../tooltip/tipContent'
 import { EmptyTip, OptionTip, PicksTip, SocketGemTip, Status } from '../tooltip/tips'
 import { GearSlotTile, type ItemArt, type SocketView, type TabPick, type TileTips } from './GearSlotTile'
@@ -63,15 +63,55 @@ function itemFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
   return wanted ? { id: wanted.id, name: wanted.name, icon: wanted.icon, equipped: false } : undefined
 }
 
-/** The build's item for a slot when you wear something else there. */
+/** What the build wants in a slot when you wear something else there (its item, or a piece with lines). */
 const wrongItemFor = (hero: Hero, analysis: BuildAnalysis, slotId: SlotId) =>
-  analysis.items.wrong.includes(slotId) ? getItem(hero.id, analysis.items.wanted[slotId]) : undefined
+  analysis.items.wrong.includes(slotId) ? wantedName(hero.id, analysis, slotId) : undefined
 
 /** "Enchant", "Defensive trait": what kind of line a reroll target is. */
 const kindOf = (category: CategoryId) => CATEGORY_BY_ID[category].singular.replace(/^\w/, (c) => c.toUpperCase())
 
-/** Tooltips for a tile: the item you wear (nothing more when it's empty), each line, the socket and the tabs. */
-function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: SlotId): TileTips {
+/**
+ * What the build has in a slot with no item: its item and lines, as its gear lays them out (as in edit mode). Lines
+ * already entered there are rated on the tile, so then it's just the item.
+ */
+function BuildWants({
+  hero,
+  analysis,
+  target,
+  slotId,
+}: {
+  hero: Hero
+  analysis: BuildAnalysis
+  target: PlanSlot | undefined
+  slotId: SlotId
+}) {
+  const item = getItem(hero.id, analysis.items.wanted[slotId] ?? target?.item)
+  const entered = analysis.slots[slotId].lines.some((l) => l.line)
+  const lines = entered ? [] : (target?.lines.filter((l) => !!l) ?? [])
+  if (!item && !lines.length) return null
+  return (
+    <>
+      <Status>Build wants {item?.name ?? 'a piece with these lines'}</Status>
+      {lines.map((l, i) => (
+        <Status key={i}>
+          {kindOf(l.category)}: {nameFor(hero.id, l.category, l.entryId, l.name)}
+        </Status>
+      ))}
+    </>
+  )
+}
+
+/**
+ * Tooltips for a tile: the item you wear, each line, the socket and the tabs. An empty slot or socket says what the
+ * build wants there (`gear`: the build's gear, none in edit mode, where the tiles are the build).
+ */
+function tipsFor(
+  hero: Hero,
+  build: HeroBuild,
+  analysis: BuildAnalysis,
+  gear: BuildPlan | null,
+  slotId: SlotId,
+): TileTips {
   const info = analysis.slots[slotId]
   const progress = build.slots[slotId]
   const options = loadoutFor(hero.id)
@@ -87,9 +127,13 @@ function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
               ? 'anything you need'
               : `${kindOf(l.suggestion.category)}: ${nameFor(hero.id, l.suggestion.category, l.suggestion.entryId, l.suggestion.name)}`,
         ),
-        note: wrong && <Status tone="bad">Not your build’s: it wants {wrong.name} here</Status>,
+        note: wrong && <Status tone="bad">Not your build’s: it wants {wrong} here</Status>,
       })
-    : () => <EmptyTip title={SLOT_BY_ID[slotId].label} text="Nothing entered yet. Click to pick the item." />
+    : () => (
+        <EmptyTip title={SLOT_BY_ID[slotId].label} text="Nothing entered yet. Click to pick the item.">
+          {gear && <BuildWants hero={hero} analysis={analysis} target={gear.slots[slotId]} slotId={slotId} />}
+        </EmptyTip>
+      )
 
   const lines = info.lines.map((l) => {
     if (!l.line) return null
@@ -120,7 +164,15 @@ function tipsFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
     const rated = have && options.sockets[socketKind(slotId)].find((o) => o.id === gemId('flawless', have.colour))
     socket = have
       ? () => <SocketGemTip gem={have} rated={rated} have target={target} socket={SLOT_BY_ID[slotId].label} />
-      : () => <EmptyTip title={`${SLOT_BY_ID[slotId].label} socket`} text="Empty. Click to pick the gem in it." />
+      : () => (
+          <EmptyTip title={`${SLOT_BY_ID[slotId].label} socket`} text="Empty. Click to pick the gem in it.">
+            {gear && target && (
+              <Status>
+                Build wants {target.name} (+{target.power} {gemColourName(target.colour)} gem power)
+              </Status>
+            )}
+          </EmptyTip>
+        )
   }
 
   let tabs: TileTips['tabs'] = null
@@ -194,6 +246,10 @@ const TAB_LABELS: Partial<Record<SlotId, string>> = {
 /** Equipped gear around the hero, laid out like the in-game character screen. */
 export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot }: Props) {
   const writer = useGearWriter()
+  const gear = useMemo(
+    () => (writer.plan ? null : (build.plan ?? layoutPlan(hero.id, build).plan)),
+    [writer.plan, build, hero.id],
+  )
   const [picker, setPicker] = useState<{
     slotId: SlotId
     anchor: HTMLButtonElement
@@ -248,7 +304,7 @@ export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot
                 progress={build.slots[slot.id]}
                 plan={writer.plan}
                 item={itemFor(hero, build, analysis, slot.id)}
-                wrongItem={wrongItemFor(hero, analysis, slot.id)?.name}
+                wrongItem={wrongItemFor(hero, analysis, slot.id)}
                 tabs={tabsFor(hero, build, slot.id, writer.plan)}
                 tabsLabel={TAB_LABELS[slot.id]}
                 tabsOpen={picker?.slotId === slot.id}
@@ -278,7 +334,7 @@ export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot
                 highlightGoalId={highlightGoalId}
                 onSelect={() => onSelectSlot(slot.id)}
                 onClear={canClear(build, analysis, slot.id) ? () => writer.clearSlot(hero.id, slot.id) : undefined}
-                tips={tipsFor(hero, build, analysis, slot.id)}
+                tips={tipsFor(hero, build, analysis, gear, slot.id)}
               />
             </li>
           ))}

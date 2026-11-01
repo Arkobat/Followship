@@ -17,7 +17,7 @@ import {
 } from '../../data/items'
 import { setSlotItemLevel, setSlotItemTemper, type HeroBuild } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
-import { wantedItems } from '../../utils/progress'
+import { wantedItems, wantedName, type BuildAnalysis } from '../../utils/progress'
 import { Tip } from '../tooltip/Tooltip'
 import { ItemTip } from '../tooltip/tips'
 import { SlotIcon } from './SlotIcon'
@@ -46,6 +46,7 @@ const writeFresh = (on: boolean) => {
 interface Props {
   heroId: HeroId
   build: HeroBuild
+  analysis: BuildAnalysis
   slotId: SlotId
   /** The item list is open. */
   open: boolean
@@ -56,7 +57,7 @@ interface Props {
 }
 
 /** The item you wear in a slot: its stats, what it does and where it drops, and the list to pick another. */
-export function SlotItem({ heroId, build, slotId, open, onOpen, onClose, onPicked }: Props) {
+export function SlotItem({ heroId, build, analysis, slotId, open, onOpen, onClose, onPicked }: Props) {
   // Edit mode picks the build's item: nothing to compare it with, and no item level or tempering.
   const { plan, setSlotItem } = useGearWriter()
   const progress = build.slots[slotId]
@@ -64,7 +65,8 @@ export function SlotItem({ heroId, build, slotId, open, onOpen, onClose, onPicke
   const wantedItem = plan ? undefined : getItem(heroId, wantedItems(build)[slotId])
   const wanted = wantedItem ? [wantedItem] : []
   const isWanted = !!item && item.id === wantedItem?.id
-  const isWrong = !!item && !!wantedItem && !isWanted
+  // The build's item isn't this one, or this is a legendary where the build wants a piece with lines.
+  const isWrong = !plan && analysis.items.wrong.includes(slotId)
 
   return (
     <div className={styles.slotItem}>
@@ -95,7 +97,9 @@ export function SlotItem({ heroId, build, slotId, open, onOpen, onClose, onPicke
                   ? 'What should the build wear here?'
                   : `What do you wear here?${wantedItem ? ` Your build wants ${wantedItem.name}.` : ''}`}
             </small>
-            {isWrong && <small className={styles.wrong}>Not your build’s: it wants {wantedItem.name}</small>}
+            {isWrong && (
+              <small className={styles.wrong}>Not your build’s: it wants {wantedName(heroId, analysis, slotId)}</small>
+            )}
           </span>
           {isWanted && <span className={styles.buildTag}>Build’s</span>}
           <span className={styles.change}>{open ? 'Close' : item ? 'Change' : 'Pick'}</span>

@@ -16,6 +16,23 @@ const text = (h) =>
     .replace(/ *\n */g, '\n')
     .trim()
 
+// Traits no top player has unlocked, so fellows.gg doesn't list them: copied from the in-game tooltip. Rank II
+// shares rank I's icon (gem-trait-291.webp is a copy of 290). Ignored once fellows.gg has the trait.
+const MANUAL = [
+  {
+    colour: 'diamond',
+    power: 1500,
+    id: 291,
+    name: 'Blessing of the Artisan - II',
+    description: 'Your Relic cooldowns are reduced by 24%.<br><br>(Replaces Blessing of the Artisan)',
+  },
+]
+for (const t of MANUAL) {
+  if (data.traits.some((s) => s.colour === t.colour && s.power === t.power)) continue
+  const after = data.traits.findLastIndex((s) => s.colour === t.colour && s.power < t.power)
+  data.traits.splice(after + 1, 0, t)
+}
+
 const unknown = data.traits.filter((t) => !COLOURS.includes(t.colour)).map((t) => t.colour)
 if (unknown.length) {
   console.error(`Unknown gem colours: ${[...new Set(unknown)].join(', ')}`)

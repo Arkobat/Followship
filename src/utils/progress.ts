@@ -1,6 +1,7 @@
 import { CATEGORIES, type CategoryDefinition, type CategoryId } from '../data/catalog'
 import { GEAR_SLOTS, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
 import { SOCKET_SLOTS } from '../data/loadout'
+import type { HeroId } from '../data/heroes'
 import { getItem, itemForOption } from '../data/items'
 import { getLegendary, type Legendary } from '../data/recommended'
 import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
@@ -14,8 +15,10 @@ import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
  *    item can take a while), after the pieces you keep have had their pick.
  * A trait picked on the weapon tree counts like a line, before gear does.
  * The checklist's legendary takes over its slot: it's done once the legendary is equipped. Until then the
- * piece you wear there can have lines: they count, and get reroll tips last (it's being replaced). Any other
- * slot can hold another legendary (picked as its item, or marked as having no lines): filled, nothing to rate. Without a build there's nothing to rate lines against: they're "unrated".
+ * piece you wear there can have lines: they count, and get reroll tips last (it's being replaced). Another legendary
+ * in any other slot is to be replaced (the build wants a piece with lines there); without a build it fills the slot,
+ * nothing to rate, as does a piece older saves marked as having no lines. Without a build there's nothing to rate
+ * lines against: they're "unrated".
  */
 
 /** Where a piece stands, from its good lines. */
@@ -101,7 +104,7 @@ export interface BuildAnalysis {
   sockets: { have: number; need: number }
   /**
    * The items the build names: the one for each slot (`wanted`), how many you wear, and the slots where you wear
-   * something else.
+   * something else (including a legendary where the build has none: `wanted` may be missing for those).
    */
   items: { wanted: Partial<Record<SlotId, string>>; have: number; need: number; wrong: SlotId[] }
   summary: { slotsComplete: number; slotsTotal: number; have: number; need: number }
@@ -148,8 +151,12 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   const legendarySlot = legendary?.entry.slot
   const wanted = wantedItems(build)
   const worn = (s: SlotId) => build.slots[s]?.item
-  // Wearing something other than the build's item: replace it. (The legendary's slot already says to get it.)
-  const wrongItem = (s: SlotId) => rated && !!worn(s) && !!wanted[s] && worn(s) !== wanted[s] && s !== legendarySlot
+  // Wearing something other than the build's item: replace it. (The legendary's slot already says to get it.) A
+  // legendary anywhere but the build's legendary slot is wrong too, whether or not the build names an item there:
+  // the build wants a piece with lines.
+  const wornLegendary = (s: SlotId) => getItem(build.heroId, worn(s))?.rarity === 'Legendary'
+  const wrongItem = (s: SlotId) =>
+    rated && !!worn(s) && s !== legendarySlot && worn(s) !== wanted[s] && (!!wanted[s] || wornLegendary(s))
   if (legendary?.equipped) {
     slots[legendarySlot!] = { slot: SLOT_BY_ID[legendarySlot!], lines: [], correct: 0, status: 'complete', legendary }
   }
@@ -162,7 +169,8 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   }
 
   const raw = GEAR_SLOTS.filter((slot) => !slots[slot.id]).map((slot) => {
-    const lines = build.slots[slot.id]?.lines ?? []
+    // A legendary has no lines: any saved on the slot are left from the piece before it.
+    const lines = wornLegendary(slot.id) ? [] : (build.slots[slot.id]?.lines ?? [])
     return {
       slot,
       lines: Array.from({ length: STAT_LINES }, (_, i) => lines[i] ?? null),
@@ -270,7 +278,7 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     wanted,
     have: wantedSlots.filter((s) => worn(s) === wanted[s]).length,
     need: wantedSlots.length,
-    wrong: wantedSlots.filter(wrongItem),
+    wrong: GEAR_SLOTS.map((s) => s.id).filter(wrongItem),
   }
   const targets = SOCKET_SLOTS.filter((s) => build.sockets[s])
   const sockets = {
@@ -333,6 +341,13 @@ export function wantedItems(build: HeroBuild): Partial<Record<SlotId, string>> {
   })
   return wanted
 }
+
+/**
+ * What the build wants in a slot you wear the wrong item in: its item's name, or, where you wear a legendary the build
+ * has none for, "a piece with lines".
+ */
+export const wantedName = (heroId: HeroId, analysis: BuildAnalysis, slotId: SlotId) =>
+  getItem(heroId, analysis.items.wanted[slotId])?.name ?? 'a piece with lines'
 
 export const isGoalDone = (g: GoalInfo) => g.have >= g.goal.target
 

@@ -392,13 +392,14 @@ export function GemTraitTip({
   )
 }
 
-/** An empty slot or socket: nothing to show but how to fill it. */
-export function EmptyTip({ title, text }: { title: string; text: string }) {
+/** An empty slot or socket: how to fill it, then (`children`) what the build wants there. */
+export function EmptyTip({ title, text, children }: { title: string; text: string; children?: ReactNode }) {
   return (
     <Card kind="entry" title={title}>
       <Section>
         <Text>{text}</Text>
       </Section>
+      {children && <Section>{children}</Section>}
     </Card>
   )
 }
