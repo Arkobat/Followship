@@ -248,7 +248,15 @@ const withItem = (b: HeroBuild, slotId: SlotId, item: string | undefined): HeroB
   ...b,
   slots: {
     ...b.slots,
-    [slotId]: { lines: emptyLines(), ...b.slots[slotId], item, itemLevel: undefined, temper: undefined },
+    [slotId]: {
+      lines: emptyLines(),
+      ...b.slots[slotId],
+      // A legendary has none: the old piece's lines go.
+      ...(getItem(b.heroId, item)?.rarity === 'Legendary' && { lines: emptyLines() }),
+      item,
+      itemLevel: undefined,
+      temper: undefined,
+    },
   },
 })
 
@@ -587,7 +595,8 @@ function sanitizeBuild(heroId: HeroId, raw: Partial<LegacyBuild>, version: numbe
     while (lines.length < STAT_LINES) lines.push(null)
     const item = itemsFor(heroId, id as SlotId).find((i) => i.id === slot.item)
     slots[id as SlotId] = {
-      lines,
+      // A legendary has no lines: any saved are left from the piece before it.
+      lines: item?.rarity === 'Legendary' ? emptyLines() : lines,
       note: slot.note,
       noLines: slot.noLines === true || undefined,
       item: item?.id,
@@ -1036,7 +1045,10 @@ export function clearSlot(heroId: HeroId, slotId: SlotId) {
   }))
 }
 
-/** Sets the item you wear in a slot (`null` for none). `fresh`: it's a new piece, so its lines and socket gem go. */
+/**
+ * Sets the item you wear in a slot (`null` for none). `fresh`: it's a new piece, so its lines and socket gem go. A
+ * legendary always loses the lines (it has none: see `withItem`), whatever `fresh` says.
+ */
 export function setSlotItem(heroId: HeroId, slotId: SlotId, itemId: string | null, fresh = false) {
   updateBuild(heroId, (b) => {
     const next = withItem(b, slotId, itemsFor(heroId, slotId).find((i) => i.id === itemId)?.id)

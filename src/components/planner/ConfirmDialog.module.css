@@ -35,6 +35,11 @@
   margin: 0 0 8px;
 }
 
+.body ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
 .body strong {
   color: var(--text);
 }

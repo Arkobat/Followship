@@ -70,6 +70,8 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
 - Changing a piece's item (Change, top of the slot editor) clears its lines and socket gem too, since a new piece comes
   without them. A checkbox in the item list turns that off; the choice is remembered for every slot (in its own
   localStorage key, not the save). Picking the same item again, or picking one for an empty slot, clears nothing.
+  A legendary always clears the lines, checkbox or not (also from the checklist's "I have it"): it has none. Lines
+  older saves kept on a legendary are dropped when the save loads.
 - Hovering an empty slot or socket says what the build wants there: "Build wants" its item (or a piece with lines) and
   the lines the build's gear has on it (its own plan, or the layout edit mode shows), or the socket's gem. A slot with
   lines entered but no item gets only the item, since its lines are rated on the tile. Edit mode adds nothing: the

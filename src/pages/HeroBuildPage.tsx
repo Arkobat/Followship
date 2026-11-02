@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
-import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router'
+import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router'
 import { Backdrop } from '../components/Backdrop'
 import { HeroPortrait } from '../components/HeroPortrait'
 import { RoleIcon } from '../components/RoleIcon'
 import { Checklist } from '../components/planner/Checklist'
+import { ConfirmDialog } from '../components/planner/ConfirmDialog'
 import { DungeonPlan } from '../components/planner/DungeonPlan'
 import { GemTree } from '../components/planner/GemTree'
 import { GearStatusBoard } from '../components/planner/GearStatusBoard'
@@ -12,10 +13,11 @@ import { SlotEditor } from '../components/planner/SlotEditor'
 import { StatsPanel } from '../components/planner/StatsPanel'
 import { TalentGrid } from '../components/planner/TalentGrid'
 import type { SlotId } from '../data/gearSlots'
-import { getHero } from '../data/heroes'
+import { getHero, type Hero } from '../data/heroes'
 import { presetBySlug } from '../data/presetBuilds'
 import { ROLES } from '../data/roles'
 import {
+  activeBuildName,
   addSharedBuild,
   buildOf,
   deleteBuild,
@@ -26,6 +28,7 @@ import {
   planView,
   switchBuild,
   useSaveData,
+  type HeroBuild,
 } from '../state/buildStore'
 import { GearWriterContext } from '../state/gearWriter'
 import { analyzeBuild } from '../utils/progress'
@@ -51,6 +54,7 @@ export function HeroBuildPage() {
   const [editingSlot, setEditingSlot] = useState<SlotId | null>(null)
   const [highlightGoalId, setHighlightGoalId] = useState<string | null>(null)
   const [view, setView] = useState<View>('gear')
+  const [resetting, setResetting] = useState(false)
   // Edit mode: the paper doll and slot editor show and change the build's gear instead of yours.
   const [editing, setEditingState] = useState(false)
   const analysis = useMemo(() => (build ? analyzeBuild(build) : null), [build])
@@ -96,28 +100,10 @@ export function HeroBuildPage() {
     dismissShared()
   }
 
-  const handleDelete = () => {
-    if (
-      !confirm(
-        `Reset ${hero.name}? This clears the gear you entered and the build you follow; your saved builds stay. It can't be undone.`,
-      )
-    )
-      return
-    deleteBuild(hero.id)
-    navigate('/heroes')
-  }
-
   return (
     <>
       <Backdrop hero={hero} />
       <div className={styles.page} style={{ '--role-color': role.color } as CSSProperties}>
-        <Link to="/heroes" className={`btn btn-ghost ${styles.back}`}>
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M10 3.5 5.5 8 10 12.5" />
-          </svg>
-          Change hero
-        </Link>
-
         <header className={styles.banner}>
           <HeroPortrait hero={hero} className={styles.avatar} />
           <div className={styles.identity}>
@@ -265,7 +251,7 @@ export function HeroBuildPage() {
             <span>Not started: {hero.name} is saved once you enter gear or choose a build</span>
           )}
           {isStarted(save, hero.id) && (
-            <button type="button" className="btn btn-danger" onClick={handleDelete}>
+            <button type="button" className="btn btn-danger" onClick={() => setResetting(true)}>
               Reset hero
             </button>
           )}
@@ -284,7 +270,81 @@ export function HeroBuildPage() {
           />
         </GearWriterContext.Provider>
       )}
+
+      {resetting && (
+        <ResetDialog
+          hero={hero}
+          build={build}
+          buildName={build.active ? activeBuildName(build, save.saved) : null}
+          onCancel={() => setResetting(false)}
+          onConfirm={() => {
+            deleteBuild(hero.id)
+            navigate('/heroes')
+          }}
+        />
+      )}
     </>
+  )
+}
+
+const count = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`
+
+/**
+ * Asks before resetting a hero, saying what goes: what you entered for them (counted) and which build they follow.
+ * Builds stay: edits to a saved build are already saved in it.
+ */
+function ResetDialog({
+  hero,
+  build,
+  buildName,
+  onConfirm,
+  onCancel,
+}: {
+  hero: Hero
+  build: HeroBuild
+  /** The build it follows, if any. */
+  buildName: string | null
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  const slots = Object.values(build.slots)
+  const items = slots.filter((s) => s?.item).length
+  const lines = slots.reduce((n, s) => n + (s?.lines?.filter(Boolean).length ?? 0), 0)
+  const gems = Object.values(build.loadout.sockets).filter(Boolean).length
+  const { neck, relic1, relic2, weaponTree } = build.loadout
+  const picks = neck.length + Number(!!relic1) + Number(!!relic2) + weaponTree.filter(Boolean).length
+  const rows = [
+    (items > 0 || lines > 0) && `Your gear: ${count(items, 'item')} and ${count(lines, 'line')}`,
+    gems > 0 && `Your socket gems: ${count(gems, 'gem')}`,
+    picks > 0 && `Your necklace powers, charms and weapon tree: ${count(picks, 'pick')}`,
+    buildName && `The build ${hero.name} follows: ${buildName}`,
+  ].filter((r): r is string => !!r)
+
+  return (
+    <ConfirmDialog
+      title={`Reset ${hero.name}?`}
+      confirmLabel="Reset hero"
+      danger
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+    >
+      <p>This clears:</p>
+      <ul>
+        {rows.map((r) => (
+          <li key={r}>{r}</li>
+        ))}
+      </ul>
+      <p>
+        {buildName ? (
+          <>
+            Your builds stay, <strong>{buildName}</strong> included, with any changes you made to it.
+          </>
+        ) : (
+          'Your builds stay.'
+        )}{' '}
+        This can’t be undone.
+      </p>
+    </ConfirmDialog>
   )
 }
 

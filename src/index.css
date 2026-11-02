@@ -42,11 +42,24 @@ a {
   color: inherit;
 }
 
+/* The footer sits at the bottom of the window when a page is short. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 /* ---- Site header ---- */
 
 .site-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   width: min(1240px, 100%);
   margin: 0 auto;
   padding: 18px 24px 0;
@@ -74,6 +87,38 @@ a {
 @media (max-width: 900px) {
   .site-header {
     padding: 14px 16px 0;
+  }
+}
+
+/* ---- Site footer ---- */
+
+.site-footer {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--text-faint);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--gold-bright);
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .site-footer {
+    padding: 0 16px 16px;
   }
 }
 

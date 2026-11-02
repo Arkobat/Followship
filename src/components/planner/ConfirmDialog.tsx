@@ -5,6 +5,8 @@ interface Props {
   title: string
   children: ReactNode
   confirmLabel: string
+  /** Something that can't be undone: the confirm button is red. */
+  danger?: boolean
   onConfirm: () => void
   /** Cancelled, or closed with Escape or a click outside. */
   onCancel: () => void
@@ -14,7 +16,7 @@ interface Props {
  * Asks before doing something, as a modal over everything (the slot editor included). Shown while mounted. Its
  * events stop here: a dialog's close would otherwise reach the slot editor's and close that too.
  */
-export function ConfirmDialog({ title, children, confirmLabel, onConfirm, onCancel }: Props) {
+export function ConfirmDialog({ title, children, confirmLabel, danger, onConfirm, onCancel }: Props) {
   const ref = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export function ConfirmDialog({ title, children, confirmLabel, onConfirm, onCanc
         <button type="button" className="btn btn-ghost" onClick={() => ref.current?.close()}>
           Cancel
         </button>
-        <button type="button" className="btn btn-primary" onClick={onConfirm} autoFocus>
+        <button type="button" className={`btn ${danger ? 'btn-danger' : 'btn-primary'}`} onClick={onConfirm} autoFocus>
           {confirmLabel}
         </button>
       </footer>
