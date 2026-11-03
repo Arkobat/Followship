@@ -50,16 +50,19 @@ function tabsFor(
     )
   if (slotId === 'relic1' || slotId === 'relic2') return [find(options.charms, picks[slotId], want?.charms.want ?? [])]
   if (slotId !== 'weapon') return undefined
-  // The tree path as in game: aspect on top, down to the row by the weapon.
-  return [...picks.weaponTree].reverse().map((key) => {
-    const option = weaponTraitsFor(hero.id).find((o) => o.id === key)
-    return option
-      ? {
-          name: option.name,
-          icon: getEntry(option.category, option.entryId)?.icon,
-        }
-      : null
-  })
+  // The tree path as in game: aspect on top, down to the row by the weapon. A row to pick again is marked off.
+  return picks.weaponTree
+    .map((key, row) => {
+      const option = weaponTraitsFor(hero.id).find((o) => o.id === key)
+      return option
+        ? {
+            name: option.name,
+            icon: getEntry(option.category, option.entryId)?.icon,
+            off: !!analysis?.tree[row]?.suggestion,
+          }
+        : null
+    })
+    .reverse()
 }
 
 /** The tile's art: the item you wear there, or else the build's item for it, faded, as one to get. */
@@ -235,7 +238,17 @@ function tipsFor(
           return o ? [{ name: o.name, icon: entry?.icon, description: entry?.description }] : []
         })}
         empty="Nothing picked yet"
-      />
+      >
+        {gear &&
+          analysis.tree
+            .filter((t) => t.suggestion)
+            .map((t) => (
+              <Status key={t.row}>
+                ↻ Row {t.row + 1} from the bottom: pick {t.suggestion!.name}
+                {t.pick ? ` instead of ${weaponTraitsFor(hero.id).find((o) => o.id === t.pick)?.name ?? t.pick}` : ''}
+              </Status>
+            ))}
+      </PicksTip>
     )
 
   return { tile, lines, socket, tabs }

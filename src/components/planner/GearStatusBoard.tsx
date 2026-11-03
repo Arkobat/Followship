@@ -2,7 +2,8 @@ import { GEAR_SLOTS, type GearSlot, type SlotId } from '../../data/gearSlots'
 import { getSocketGem } from '../../data/gems'
 import type { HeroId } from '../../data/heroes'
 import { getItem } from '../../data/items'
-import { loadoutFor, SOCKET_SLOTS } from '../../data/loadout'
+import { loadoutFor, SOCKET_SLOTS, weaponTraitsFor } from '../../data/loadout'
+import { CATEGORY_BY_ID } from '../../data/catalog'
 import type { HeroBuild } from '../../state/buildStore'
 import {
   moveNote,
@@ -33,14 +34,15 @@ interface Props {
   onSelectSlot: (slotId: SlotId) => void
 }
 
-/** A socket gem, necklace power or charm to change: `from` null for an empty one. */
+/** A socket gem, necklace power, charm or weapon tree pick to change: `from` null for an empty one. */
 interface Swap {
-  kind: 'Socket' | 'Power' | 'Charm'
+  /** "Socket", "Power", "Charm", "Tree row 1 from the bottom (sigil)". */
+  kind: string
   from: string | null
   to: string
 }
 
-/** Everything to change besides lines and items, by slot: socket gems, necklace powers and charms. */
+/** Everything to change besides lines and items, by slot: socket gems, necklace powers, charms, weapon tree picks. */
 function swapsOf(heroId: HeroId, build: HeroBuild, analysis: BuildAnalysis): { slot: GearSlot; swaps: Swap[] }[] {
   const options = loadoutFor(heroId)
   const name = (list: { id: string; name: string }[], id: string | null) =>
@@ -57,6 +59,14 @@ function swapsOf(heroId: HeroId, build: HeroBuild, analysis: BuildAnalysis): { s
     add('neck', { kind: 'Power', from: name(options.neck, from), to: name(options.neck, to)! })
   for (const { from, to, slot } of analysis.picks.charms.swaps)
     if (slot) add(slot, { kind: 'Charm', from: name(options.charms, from), to: name(options.charms, to)! })
+  const traits = weaponTraitsFor(heroId)
+  for (const t of analysis.tree)
+    if (t.suggestion)
+      add('weapon', {
+        kind: `Tree row ${t.row + 1} from the bottom (${CATEGORY_BY_ID[t.category].singular})`,
+        from: name(traits, t.pick),
+        to: t.suggestion.name,
+      })
 
   return GEAR_SLOTS.filter((s) => bySlot.has(s.id)).map((slot) => ({ slot, swaps: bySlot.get(slot.id)! }))
 }
@@ -94,7 +104,7 @@ export function GearStatusBoard({ heroId, build, analysis, onSelectSlot }: Props
         Swap
         <span>{swaps.length}</span>
       </h3>
-      <p className={styles.hint}>Socket gems, necklace powers, charms</p>
+      <p className={styles.hint}>Socket gems, necklace powers, charms, weapon tree</p>
       <ul>
         {swaps.map(({ slot, swaps }) => (
           <li key={slot.id}>

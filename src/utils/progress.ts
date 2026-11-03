@@ -1,7 +1,7 @@
 import { CATEGORIES, type CategoryDefinition, type CategoryId } from '../data/catalog'
 import { GEAR_SLOTS, lineGroups, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
 import { getSocketGem } from '../data/gems'
-import { PICK_LIMITS, SOCKET_SLOTS, type SocketSlot } from '../data/loadout'
+import { PICK_LIMITS, SOCKET_SLOTS, WEAPON_TREE_ROWS, weaponTraitsFor, type SocketSlot } from '../data/loadout'
 import type { HeroId } from '../data/heroes'
 import { getItem, itemForOption } from '../data/items'
 import { getLegendary, type Legendary } from '../data/recommended'
@@ -94,6 +94,8 @@ export interface GoalInfo {
   weaponPick: boolean
   /** Slots where a reroll is suggested for this goal. */
   planned: SlotId[]
+  /** Weapon tree rows (bottom row 0) to pick it on instead of what they have. */
+  treeRows: number[]
   /** Copies still needed that no wrong line can be rerolled into. */
   unplaced: number
 }
@@ -103,6 +105,17 @@ export interface CategoryProgress {
   goals: GoalInfo[]
   have: number
   need: number
+}
+
+/** A weapon tree row against the build: its pick (a trait key), and what to pick there instead. */
+export interface TreeRowInfo {
+  /** 0 is the bottom row, by the weapon. */
+  row: number
+  category: CategoryId
+  pick: string | null
+  state: LineState
+  goal?: Goal
+  suggestion?: Goal
 }
 
 /** One of your picks to change to one of the build's (`from` null: an empty pick), and for a charm, where. */
@@ -164,6 +177,8 @@ export interface BuildAnalysis {
    * picked, and how many it has.
    */
   picks: { neck: PickProgress; charms: PickProgress }
+  /** Each weapon tree row (bottom row first) against the build. */
+  tree: TreeRowInfo[]
   summary: { slotsComplete: number; slotsTotal: number; have: number; need: number }
 }
 
@@ -185,19 +200,22 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
   const goals = new Map<string, GoalInfo>(
     build.goals.map((g) => [
       g.id,
-      { goal: g, have: 0, on: [], extra: [], weaponPick: false, planned: [], unplaced: 0 },
+      { goal: g, have: 0, on: [], extra: [], weaponPick: false, planned: [], treeRows: [], unplaced: 0 },
     ]),
   )
   // Weapon tree picks are fixed choices, so they claim their copy before gear lines.
-  for (const key of build.loadout.weaponTree) {
-    if (!key) continue
-    const goal = goalByKey.get(key)
-    if (!goal) continue
+  const tree: TreeRowInfo[] = build.loadout.weaponTree.map((pick, row) => {
+    const category = WEAPON_TREE_ROWS[row].category
+    if (!pick) return { row, category, pick, state: 'empty' }
+    if (!rated) return { row, category, pick, state: 'unrated' }
+    const goal = goalByKey.get(pick)
+    if (!goal) return { row, category, pick, state: 'unneeded' }
     const info = goals.get(goal.id)!
-    if (info.have >= goal.target) continue
+    if (info.have >= goal.target) return { row, category, pick, goal, state: 'surplus' }
     info.have++
     info.weaponPick = true
-  }
+    return { row, category, pick, goal, state: 'good' }
+  })
 
   const legendaryEntry = getLegendary(build.heroId, build.legendary?.id)
   const legendary = legendaryEntry ? { entry: legendaryEntry, equipped: !!build.legendary?.equipped } : null
@@ -340,6 +358,23 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     assign(wrong, ['gem'])
     for (const w of wrong) w.info.suggestion ??= 'anything'
   }
+  // Weapon tree rows first: each takes only its own group, so it gets first pick of what that group still needs. An
+  // empty row or one with a pick the build doesn't need is picked again, from what the hero's trees can have.
+  const traits = new Set(weaponTraitsFor(build.heroId).map((o) => o.id))
+  for (const t of tree) {
+    if (t.state === 'good' || t.state === 'unrated') continue
+    const taken = new Set(tree.map((r) => (r.suggestion ? keyOf(r.suggestion) : r.pick)))
+    const pick = build.goals
+      .filter(
+        (g) => g.category === t.category && remaining.get(g.id)! > 0 && traits.has(keyOf(g)) && !taken.has(keyOf(g)),
+      )
+      .sort((a, b) => remaining.get(b.id)! - remaining.get(a.id)!)[0]
+    if (!pick) continue
+    t.suggestion = pick
+    remaining.set(pick.id, remaining.get(pick.id)! - 1)
+    goals.get(pick.id)!.treeRows.push(t.row)
+  }
+
   suggestAll()
 
   // 3. Last resort, for a goal no wrong line can hold (a glyph, with only a ring's line spare): a piece you keep that
@@ -452,6 +487,7 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     sockets,
     items,
     picks,
+    tree,
     summary: {
       // A slot marked as having no lines (another legendary) is as done as it gets.
       slotsComplete: GEAR_SLOTS.filter((s) => slots[s.id].status === 'complete' || slots[s.id].status === 'noLines')

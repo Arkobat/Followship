@@ -113,7 +113,8 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   socket: wearing them swapped is never wrong.
 - The Gear tab under the doll sorts the pieces: Reroll (lines to change, with socket gems, necklace powers and
   charms that aren't the build's or are missing as their own group: "Swap", e.g. "Socket: Splendid Emerald →
-  Flawless Emerald"), Replace (not the build's item, with the build's legendary as its own group: "Get legendary",
+  Flawless Emerald"; weapon tree rows too, e.g. "Tree row 1 from the bottom (sigil): Patient Soul → Seized
+  Opportunity", for a row that is empty or holds a pick the build has no use for), Replace (not the build's item, with the build's legendary as its own group: "Get legendary",
   each with its reroll tips for meanwhile) and Complete (all lines right). Everything the checklist counts shows up
   in one of them.
 - Two tabs on top of the doll pick what it shows. Progression is your gear against the build: ratings, rerolls, the
@@ -128,7 +129,8 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   laid out from their counts the first time you edit them; anything that doesn't fit is listed.
 - Neck (3 powers), relics (1 charm each, never the same twice) and weapon (its tree, picked from the aspect down:
   aspect, enchant, sigil, enchant, sigil) have tabs with every option tiered S–F by how many top players pick it. Weapon tree picks count
-  toward the checklist like a gear line.
+  toward the checklist like a gear line, and a row the build needs changed is marked red, its checklist row saying
+  which tree row to pick it on.
 - A build picks its three necklace powers and two charms too: the Build tab shows them on the neck and relic tabs
   (and edits them there), and they count toward the checklist one each. On Progression, a dot in the tab's tier
   list marks the build's picks, a power or charm the build doesn't pick is framed red, and the tab's tooltip says

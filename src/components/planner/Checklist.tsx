@@ -312,7 +312,7 @@ interface RowProps {
 }
 
 function GoalRow({ heroId, info, plain, onHighlight }: RowProps) {
-  const { goal, have, on, extra, weaponPick, planned, unplaced } = info
+  const { goal, have, on, extra, weaponPick, planned, treeRows, unplaced } = info
   const done = !plain && isGoalDone(info)
   // Done, with copies to spare: those lines can be rerolled into something else.
   const over = !plain && extra.length > 0
@@ -356,8 +356,17 @@ function GoalRow({ heroId, info, plain, onHighlight }: RowProps) {
               {extra.length} too many: {summarizeSlots(extra, SLOT_BY_ID)}
             </span>
           )}
-          {!done && planned.length > 0 && (
-            <span className={styles.rowPlanned}>↻ Reroll {summarizeSlots(planned, SLOT_BY_ID)}</span>
+          {!done && (planned.length > 0 || treeRows.length > 0) && (
+            <span className={styles.rowPlanned}>
+              ↻{' '}
+              {[
+                planned.length > 0 && `Reroll ${summarizeSlots(planned, SLOT_BY_ID)}`,
+                treeRows.length > 0 &&
+                  `Pick it on the weapon tree (row ${treeRows.map((r) => r + 1).join(', ')} from the bottom)`,
+              ]
+                .filter(Boolean)
+                .join(' · ')}
+            </span>
           )}
           {!done && unplaced > 0 && (
             <span className={styles.rowUnplaced}>
