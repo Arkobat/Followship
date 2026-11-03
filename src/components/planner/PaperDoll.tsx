@@ -7,7 +7,7 @@ import { getItem } from '../../data/items'
 import { isSocketSlot, loadoutFor, PICK_LIMITS, socketKind, weaponTraitsFor, type SocketSlot } from '../../data/loadout'
 import { layoutPlan, type BuildPlan, type HeroBuild, type PlanSlot } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
-import { wantedName, type BuildAnalysis } from '../../utils/progress'
+import { charmTarget, moveNote, spareNote, wantedName, type BuildAnalysis } from '../../utils/progress'
 import { entryTip, itemTip } from '../tooltip/tipContent'
 import { EmptyTip, OptionTip, PicksTip, SocketGemTip, Status } from '../tooltip/tips'
 import { GearSlotTile, type ItemArt, type SocketView, type TabPick, type TileTips } from './GearSlotTile'
@@ -25,23 +25,30 @@ interface Props {
 }
 
 /**
- * The little tabs beside the neck, relics (charms) and weapon: one per pick, empty until chosen. The build's gear
- * (edit mode) only has the weapon tree.
+ * The little tabs beside the neck, relics (charms) and weapon: one per pick, empty until chosen. Against a build
+ * (`analysis`, not on the Build tab), a necklace power or charm the build doesn't pick is marked off.
  */
-function tabsFor(hero: Hero, build: HeroBuild, slotId: SlotId, plan: boolean): (TabPick | null)[] | undefined {
+function tabsFor(
+  hero: Hero,
+  build: HeroBuild,
+  analysis: BuildAnalysis | null,
+  slotId: SlotId,
+): (TabPick | null)[] | undefined {
   const options = loadoutFor(hero.id)
   const picks = build.loadout
-  const find = (list: { id: string; name: string; icon?: string }[], id: string | null) =>
-    list.find((o) => o.id === id) ?? null
+  const find = (list: { id: string; name: string; icon?: string }[], id: string | null, want: string[]) => {
+    const option = list.find((o) => o.id === id)
+    return option ? { name: option.name, icon: option.icon, off: want.length > 0 && !want.includes(option.id) } : null
+  }
   const fill = (items: (TabPick | null)[], size: number) => [...items, ...Array<null>(size).fill(null)].slice(0, size)
+  const want = analysis?.picks
 
-  if (plan && slotId !== 'weapon') return undefined
   if (slotId === 'neck')
     return fill(
-      picks.neck.map((id) => find(options.neck, id)),
+      picks.neck.map((id) => find(options.neck, id, want?.neck.want ?? [])),
       PICK_LIMITS.neck,
     )
-  if (slotId === 'relic1' || slotId === 'relic2') return [find(options.charms, picks[slotId])]
+  if (slotId === 'relic1' || slotId === 'relic2') return [find(options.charms, picks[slotId], want?.charms.want ?? [])]
   if (slotId !== 'weapon') return undefined
   // The tree path as in game: aspect on top, down to the row by the weapon.
   return [...picks.weaponTree].reverse().map((key) => {
@@ -67,7 +74,7 @@ function itemFor(hero: Hero, build: HeroBuild, analysis: BuildAnalysis, slotId: 
 const wrongItemFor = (hero: Hero, analysis: BuildAnalysis, slotId: SlotId) =>
   analysis.items.wrong.includes(slotId) ? wantedName(hero.id, analysis, slotId) : undefined
 
-/** "Enchant", "Defensive trait": what kind of line a reroll target is. */
+/** "Enchant", "Glyph": what kind of line a reroll target is. */
 const kindOf = (category: CategoryId) => CATEGORY_BY_ID[category].singular.replace(/^\w/, (c) => c.toUpperCase())
 
 /**
@@ -124,7 +131,7 @@ function tipsFor(
           !l.suggestion
             ? undefined
             : l.suggestion === 'anything'
-              ? 'anything you need'
+              ? undefined
               : `${kindOf(l.suggestion.category)}: ${nameFor(hero.id, l.suggestion.category, l.suggestion.entryId, l.suggestion.name)}`,
         ),
         note: wrong && <Status tone="bad">Not your build’s: it wants {wrong} here</Status>,
@@ -145,14 +152,13 @@ function tipsFor(
         {l.state === 'good' && goal && <Status tone="good">On your checklist ({goal.name})</Status>}
         {l.state === 'surplus' && <Status>You already have enough of these</Status>}
         {l.state === 'unneeded' && <Status tone="bad">Not on your checklist</Status>}
-        {l.suggestion && (
+        {l.suggestion === 'anything' && <Status>{spareNote(analysis)}</Status>}
+        {l.suggestion && l.suggestion !== 'anything' && (
           <Status>
-            ↻ Reroll to{' '}
-            {l.suggestion === 'anything'
-              ? 'anything you need'
-              : `${kindOf(l.suggestion.category).toLowerCase()} ${l.suggestion.name}`}
+            ↻ Reroll to {kindOf(l.suggestion.category).toLowerCase()} {l.suggestion.name}
           </Status>
         )}
+        {moveNote(l) && <Status>{moveNote(l)}</Status>}
       </>,
     )
   })
@@ -175,20 +181,50 @@ function tipsFor(
         )
   }
 
+  // Against the build (not on the Build tab, where these are the build's): what it picks that you haven't.
+  const names = (list: { id: string; name: string }[], ids: string[]) =>
+    ids.flatMap((id) => list.filter((o) => o.id === id).map((o) => o.name)).join(', ')
   let tabs: TileTips['tabs'] = null
-  if (slotId === 'neck')
+  if (slotId === 'neck') {
+    const { want } = analysis.picks.neck
+    const yours = build.loadout.neck
+    const missing = want.filter((id) => !yours.includes(id))
+    const extra = want.length ? yours.filter((id) => !want.includes(id)) : []
     tabs = () => (
       <PicksTip
         title="Necklace powers"
-        picks={build.loadout.neck.flatMap((id) => options.neck.filter((o) => o.id === id))}
+        picks={yours.flatMap((id) => options.neck.filter((o) => o.id === id))}
         empty="None picked yet"
-      />
+      >
+        {gear && want.length > 0 && missing.length === 0 && <Status tone="good">The build’s powers</Status>}
+        {gear && extra.length > 0 && <Status tone="bad">Not the build’s: {names(options.neck, extra)}</Status>}
+        {gear && missing.length > 0 && <Status>Build wants {names(options.neck, missing)}</Status>}
+      </PicksTip>
     )
-  else if (slotId === 'relic1' || slotId === 'relic2') {
+  } else if (slotId === 'relic1' || slotId === 'relic2') {
     const charm = options.charms.find((o) => o.id === build.loadout[slotId])
+    const target = gear ? charmTarget(build, analysis, slotId) : null
+    const status =
+      gear && target ? (
+        charm?.id === target ? (
+          <Status tone="good">One of the build’s charms</Status>
+        ) : charm ? (
+          <Status tone="bad">Not the build’s: it wants {names(options.charms, [target])}</Status>
+        ) : (
+          <Status>Build wants {names(options.charms, [target])}</Status>
+        )
+      ) : null
     tabs = charm
-      ? () => <OptionTip option={charm} kind="Charm" />
-      : () => <PicksTip title="Charm" picks={[]} empty="None picked yet" />
+      ? () => (
+          <OptionTip option={charm} kind="Charm">
+            {status}
+          </OptionTip>
+        )
+      : () => (
+          <PicksTip title="Charm" picks={[]} empty="None picked yet">
+            {status}
+          </PicksTip>
+        )
   } else if (slotId === 'weapon')
     tabs = () => (
       <PicksTip
@@ -306,7 +342,7 @@ export function PaperDoll({ hero, build, analysis, highlightGoalId, onSelectSlot
                 plan={writer.plan}
                 item={itemFor(hero, build, analysis, slot.id)}
                 wrongItem={wrongItemFor(hero, analysis, slot.id)}
-                tabs={tabsFor(hero, build, slot.id, writer.plan)}
+                tabs={tabsFor(hero, build, writer.plan ? null : analysis, slot.id)}
                 tabsLabel={TAB_LABELS[slot.id]}
                 tabsOpen={picker?.slotId === slot.id}
                 onOpenTabs={(anchor) => {

@@ -230,6 +230,13 @@
     0 0 6px rgb(233 193 120 / 60%);
 }
 
+/* A necklace power or charm the build doesn't pick. */
+.tab[data-off] {
+  box-shadow:
+    0 0 0 1px #e5625a,
+    0 0 6px rgb(229 98 90 / 55%);
+}
+
 .tab img {
   width: 100%;
   height: 100%;

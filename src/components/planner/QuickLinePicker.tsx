@@ -40,7 +40,7 @@ export function QuickLinePicker({ heroId, build, analysis, slotId, index, anchor
         bare
         build={build}
         analysis={analysis}
-        side={slot.side}
+        slotId={slotId}
         current={analysis.slots[slotId].lines[index]}
         onPick={(value) => {
           setLine(heroId, slotId, index, value)

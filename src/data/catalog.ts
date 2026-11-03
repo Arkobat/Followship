@@ -9,7 +9,7 @@
 import type { HeroId } from './heroes'
 import { HERO_PRIMARY_STAT } from './itemsData'
 
-export type CategoryId = 'aspect' | 'glyph' | 'sigil' | 'enchant' | 'gem' | 'defensive'
+export type CategoryId = 'aspect' | 'glyph' | 'sigil' | 'enchant' | 'gem'
 
 export interface CategoryDefinition {
   id: CategoryId
@@ -26,7 +26,6 @@ export const CATEGORIES: CategoryDefinition[] = [
   { id: 'sigil', label: 'Sigils', singular: 'sigil', color: '#4fd1c5' },
   { id: 'enchant', label: 'Enchants', singular: 'enchant', color: '#f0924a' },
   { id: 'gem', label: 'Gems', singular: 'gem', color: '#ff6f9c' },
-  { id: 'defensive', label: 'Defensive', singular: 'defensive trait', color: '#7fa8e0' },
 ]
 
 export const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<
@@ -159,19 +158,7 @@ const GEMS = group(
   ]),
 )
 
-const DEFENSIVE = group('defensive', [
-  ['divine-mediation', 'Divine Mediation', 'Taking damage can heal you, then shield you and your allies.'],
-  ['first-man-standing', 'First Man Standing', 'Each new enemy that hits you grants damage reduction.'],
-  ['grounded-spirit', 'Grounded Spirit', 'Standing still builds stacks that heal you on moving.'],
-  ['heart-of-stone', 'Heart of Stone', 'Gain 2.5–9.3% more Health from Stamina.'],
-  ['iron-spikes', 'Iron Spikes', 'Taking damage can raise Armor and reflect physical damage.'],
-  ['king-of-the-hill', 'King of the Hill', 'Take 3–12% less damage above 80% health.'],
-  ['latent-resurgence', 'Latent Resurgence', 'Heals build stacks that burst-heal you below 50% health.'],
-  ['stalwart-readiness', 'Stalwart Readiness', 'Time without taking damage builds damage-reduction stacks.'],
-  ['treasure-hunters-delight', "Treasure Hunter's Delight", 'Relic Abilities grant damage reduction for 12 seconds.'],
-])
-
-export const CATALOG: CatalogEntry[] = [...ASPECTS, ...GLYPHS, ...SIGILS, ...ENCHANTS, ...GEMS, ...DEFENSIVE]
+export const CATALOG: CatalogEntry[] = [...ASPECTS, ...GLYPHS, ...SIGILS, ...ENCHANTS, ...GEMS]
 
 const ENTRY_BY_KEY = new Map(CATALOG.map((e) => [`${e.category}:${e.id}`, e]))
 

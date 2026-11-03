@@ -24,6 +24,23 @@
   --status-color: #6fd37a;
 }
 
+/* Why a needed line is rerolled anyway (a last-resort move). */
+.why {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-faint);
+}
+
+/* Socket gems, necklace powers and charms to change: a heading of its own under Reroll's pieces. */
+.swap {
+  --status-color: #7fb3e8;
+}
+
+.group h3 ~ .swap {
+  margin-top: 16px;
+}
+
 .group h3 {
   display: flex;
   align-items: center;

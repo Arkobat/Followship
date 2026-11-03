@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { CATEGORY_BY_ID, entriesFor, nameFor, type CategoryId } from '../../data/catalog'
-import { rerollCategories, type SlotSide } from '../../data/gearSlots'
+import { ANY_COUNT, lineGroups, MAX_PER_GROUP, type SlotId } from '../../data/gearSlots'
 import type { GearLine, HeroBuild } from '../../state/buildStore'
+import { useGearWriter } from '../../state/gearWriter'
 import type { BuildAnalysis, LineInfo } from '../../utils/progress'
 import { Tip } from '../tooltip/Tooltip'
 import { entryTip } from '../tooltip/tipContent'
@@ -12,7 +13,7 @@ import styles from './LinePicker.module.css'
 interface Props {
   build: HeroBuild
   analysis: BuildAnalysis
-  side: SlotSide
+  slotId: SlotId
   current: LineInfo
   onPick: (line: GearLine | null) => void
   /** Without its own box, for use inside another panel. */
@@ -20,13 +21,19 @@ interface Props {
 }
 
 /** Choose what a line rolled: what it has now, and everything it can roll (your checklist's first), filtered as you type. */
-export function LinePicker({ build, analysis, side, current, onPick, bare }: Props) {
+export function LinePicker({ build, analysis, slotId, current, onPick, bare }: Props) {
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(0)
   const searchRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
-  // A gem line stays a gem and vice versa; clear the line to change its type.
-  const categories: CategoryId[] = rerollCategories(side, current.line?.category ?? null)
+  // Everything the slot rolls. A build's piece holds two of a group at most; your own gear is what you rolled.
+  const { plan } = useGearWriter()
+  const categories: CategoryId[] = lineGroups(
+    slotId,
+    analysis.slots[slotId].lines.map((l) => l.line),
+    current.index,
+    plan ? MAX_PER_GROUP : ANY_COUNT,
+  )
   const selected = current.line
 
   // The popover places itself after mounting: focusing must not scroll the page to where it first lands.
@@ -74,9 +81,7 @@ export function LinePicker({ build, analysis, side, current, onPick, bare }: Pro
             className={styles.clear}
             onClick={() => onPick(null)}
             aria-label={`Clear ${selected.name}`}
-            title={
-              selected.category === 'gem' ? 'Clear the line (to enter a non-gem)' : 'Clear the line (to enter a gem)'
-            }
+            title="Clear the line"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M4 4l8 8M12 4l-8 8" />

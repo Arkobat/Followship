@@ -32,7 +32,7 @@ const root = new URL('../', import.meta.url)
 const fellows = JSON.parse(readFileSync(new URL('scripts/fellows-builds.json', root), 'utf8'))
 const catalogSource = readFileSync(new URL('src/data/catalog.ts', root), 'utf8')
 
-const CATEGORY_ORDER = ['aspect', 'glyph', 'sigil', 'enchant', 'gem', 'defensive']
+const CATEGORY_ORDER = ['aspect', 'glyph', 'sigil', 'enchant', 'gem']
 const SOCKETS = ['neck', 'wrists', 'ring1', 'ring2']
 
 const slugify = (name) =>

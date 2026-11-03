@@ -10,9 +10,10 @@ import styles from './StatsPanel.module.css'
 
 interface Props {
   heroId: HeroId
-  /** Your gear, or the build's in edit mode (`planView`). */
+  /** Your gear, or the build's on the Build tab (`planView`). */
   build: HeroBuild
-  editing: boolean
+  /** Shows the build's gear (the Build tab). */
+  buildGear: boolean
 }
 
 const SECONDARY_INFO: Record<Secondary, { name: string; description: string }> = {
@@ -38,7 +39,7 @@ const num = (n: number) => n.toLocaleString('en-US')
  * The character sheet, laid out like the game's: health, armor and the primary stats, each secondary's rating and
  * percent, and gem power. Hover a stat for what makes it up.
  */
-export function StatsPanel({ heroId, build, editing }: Props) {
+export function StatsPanel({ heroId, build, buildGear }: Props) {
   const s = useMemo(() => heroStats(heroId, build), [heroId, build])
   const primary = statLabel('primary', heroId)
   const legendaryRow = s.legendary ? [{ label: 'Legendary', value: '+10%', good: true }] : []
@@ -47,7 +48,7 @@ export function StatsPanel({ heroId, build, editing }: Props) {
     <section className={styles.panel} aria-labelledby="stats-title">
       <header className={styles.header}>
         <h3 id="stats-title">Stats</h3>
-        <small>{editing ? 'With the build’s gear' : 'With your gear'}</small>
+        <small>{buildGear ? 'With the build’s gear' : 'With your gear'}</small>
       </header>
 
       <div className={styles.groups}>

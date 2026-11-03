@@ -29,6 +29,8 @@ export interface SocketView {
 export interface TabPick {
   name: string
   icon?: string
+  /** A necklace power or charm the build doesn't pick. */
+  off?: boolean
 }
 
 interface Props {
@@ -255,7 +257,7 @@ export function GearSlotTile({
             onClick={(e) => onOpenTabs?.(e.currentTarget)}
           >
             {tabs.map((t, i) => (
-              <span key={i} className={styles.tab} data-picked={t ? true : undefined}>
+              <span key={i} className={styles.tab} data-picked={t ? true : undefined} data-off={t?.off || undefined}>
                 {t?.icon && <img src={t.icon} alt="" />}
               </span>
             ))}

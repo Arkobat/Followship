@@ -96,6 +96,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "master-of-war",
       "greater-shockwave"
     ],
+    neck: [
+      "the-oak",
+      "the-dragon",
+      "the-stag"
+    ],
+    charms: [
+      "health-potion",
+      "group-invisibility"
+    ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-sapphire", "ring2": "flawless-sapphire" },
     goals: [
       { category: "aspect", entryId: "martial-initiative", target: 4 },
@@ -137,6 +146,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "warden-of-the-temple",
       "conclusive-strikes"
     ],
+    neck: [
+      "the-oak",
+      "the-stag",
+      "the-dragon"
+    ],
+    charms: [
+      "health-potion",
+      "group-invisibility"
+    ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-emerald", "ring2": "flawless-sapphire" },
     goals: [
       { category: "aspect", entryId: "martial-initiative", target: 4 },
@@ -170,6 +188,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "vanguard-of-vengeance",
       "invictus",
       "golden-hour"
+    ],
+    neck: [
+      "the-stag",
+      "the-oak",
+      "the-dune"
+    ],
+    charms: [
+      "health-potion",
+      "group-invisibility"
     ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-sapphire", "ring2": "flawless-sapphire" },
     goals: [
@@ -212,6 +239,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "superior-serration",
       "ancestral-instinct",
       "harvesters-toll"
+    ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-lake"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
     ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-emerald", "ring2": "flawless-sapphire" },
     goals: [
@@ -257,6 +293,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "crack-the-sky",
       "killing-in-the-name"
     ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-lake"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
+    ],
     sockets: { neck: "flawless-sapphire", wrists: "flawless-emerald", "ring1": "flawless-sapphire", "ring2": "flawless-sapphire" },
     goals: [
       { category: "aspect", entryId: "visions-of-grandeur", target: 2 },
@@ -296,6 +341,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "macabre-stratagem",
       "sinners-pride",
       "malevolence"
+    ],
+    neck: [
+      "the-mountain",
+      "the-lake",
+      "the-beetle"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
     ],
     sockets: { neck: "flawless-ruby", wrists: "flawless-sapphire", "ring1": "flawless-emerald", "ring2": "flawless-sapphire" },
     goals: [
@@ -337,6 +391,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "supreme-torrent",
       "wisdom-of-the-north"
     ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-lake"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
+    ],
     sockets: { neck: "flawless-topaz", wrists: "flawless-amethyst", "ring1": "flawless-emerald", "ring2": "flawless-emerald" },
     goals: [
       { category: "aspect", entryId: "emerald-judgement", target: 1 },
@@ -376,6 +439,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "last-lights",
       "swift-reload",
       "skylit-grace"
+    ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-lake"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
     ],
     sockets: { neck: "flawless-amethyst", wrists: "flawless-sapphire", "ring1": "flawless-sapphire", "ring2": "flawless-sapphire" },
     goals: [
@@ -418,6 +490,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "pyrophibian-frenzy",
       "spontaneous-combustion"
     ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-lake"
+    ],
+    charms: [
+      "battle-res",
+      "dispell"
+    ],
     sockets: { neck: "flawless-sapphire", wrists: "flawless-emerald", "ring1": "flawless-emerald", "ring2": "flawless-sapphire" },
     goals: [
       { category: "aspect", entryId: "visions-of-grandeur", target: 3 },
@@ -459,6 +540,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "flower-power",
       "rowdy-rootsap"
     ],
+    neck: [
+      "the-mountain",
+      "the-beetle",
+      "the-tower"
+    ],
+    charms: [
+      "dispell",
+      "battle-res"
+    ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-sapphire", "ring1": "flawless-emerald", "ring2": "flawless-emerald" },
     goals: [
       { category: "aspect", entryId: "martial-initiative", target: 3 },
@@ -497,6 +587,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "grand-proliferation",
       "meticulous-runesmith",
       "beacon-in-the-dark"
+    ],
+    neck: [
+      "the-mountain",
+      "the-lake",
+      "the-beetle"
+    ],
+    charms: [
+      "dispell",
+      "battle-res"
     ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-emerald", "ring2": "flawless-topaz" },
     goals: [
@@ -537,6 +636,15 @@ export const RECOMMENDED_DATA: Partial<Record<HeroId, Recommendation>> = {
       "continuum-shift",
       "karmic-dispersion",
       "echoes-of-divinity"
+    ],
+    neck: [
+      "the-stag",
+      "the-tower",
+      "the-mountain"
+    ],
+    charms: [
+      "dispell",
+      "battle-res"
     ],
     sockets: { neck: "flawless-emerald", wrists: "flawless-emerald", "ring1": "flawless-amethyst", "ring2": "flawless-emerald" },
     goals: [

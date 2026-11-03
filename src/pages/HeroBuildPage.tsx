@@ -28,6 +28,7 @@ import {
   planView,
   switchBuild,
   useSaveData,
+  type GearWriter,
   type HeroBuild,
 } from '../state/buildStore'
 import { GearWriterContext } from '../state/gearWriter'
@@ -45,6 +46,26 @@ const VIEWS: { id: View; label: string }[] = [
   { id: 'dungeons', label: 'Dungeons' },
 ]
 
+/** Progression: your gear against the build. Build: the build itself, as its gear would look. */
+type Mode = 'progress' | 'build'
+
+const MODES: { id: Mode; label: string }[] = [
+  { id: 'progress', label: 'Progression' },
+  { id: 'build', label: 'Build' },
+]
+
+/** The build's writer, but the first change starts edit mode (the Build tab shows the build without editing it). */
+const editOnWrite = (startEditing: () => void): GearWriter => ({
+  plan: true,
+  setLine: (...args) => (startEditing(), PLAN_WRITER.setLine(...args)),
+  setSlotItem: (...args) => (startEditing(), PLAN_WRITER.setSlotItem(...args)),
+  clearSlot: (...args) => (startEditing(), PLAN_WRITER.clearSlot(...args)),
+  setSocket: (...args) => (startEditing(), PLAN_WRITER.setSocket(...args)),
+  setWeaponTreeRow: (...args) => (startEditing(), PLAN_WRITER.setWeaponTreeRow(...args)),
+  toggleNeckPower: (...args) => (startEditing(), PLAN_WRITER.toggleNeckPower(...args)),
+  setCharm: (...args) => (startEditing(), PLAN_WRITER.setCharm(...args)),
+})
+
 export function HeroBuildPage() {
   const { heroId } = useParams()
   const navigate = useNavigate()
@@ -54,16 +75,31 @@ export function HeroBuildPage() {
   const [editingSlot, setEditingSlot] = useState<SlotId | null>(null)
   const [highlightGoalId, setHighlightGoalId] = useState<string | null>(null)
   const [view, setView] = useState<View>('gear')
+  const [mode, setModeState] = useState<Mode>('progress')
   const [resetting, setResetting] = useState(false)
-  // Edit mode: the paper doll and slot editor show and change the build's gear instead of yours.
+  // Edit mode (on the Build tab): the paper doll and slot editor change the build's gear instead of yours.
   const [editing, setEditingState] = useState(false)
+  const showBuild = mode === 'build'
   const analysis = useMemo(() => (build ? analyzeBuild(build) : null), [build])
-  const shown = useMemo(() => (build && editing ? planView(build) : build), [build, editing])
-  const shownAnalysis = useMemo(() => (shown && editing ? analyzeBuild(shown) : analysis), [shown, editing, analysis])
+  const shown = useMemo(() => (build && showBuild ? planView(build) : build), [build, showBuild])
+  const shownAnalysis = useMemo(
+    () => (shown && showBuild ? analyzeBuild(shown) : analysis),
+    [shown, showBuild, analysis],
+  )
+  const setMode = (next: Mode) => {
+    setModeState(next)
+    setEditingSlot(null)
+    // Editing is the build's gear, so it ends on Progression; the Build tab has no Dungeons view.
+    if (next === 'progress') setEditingState(false)
+    if (next === 'build' && view === 'dungeons') setView('gear')
+  }
   const setEditing = (on: boolean) => {
     setEditingState(on)
     setEditingSlot(null)
-    if (on) setView('gear')
+    if (on) {
+      setModeState('build')
+      setView('gear')
+    }
   }
   const [searchParams, setSearchParams] = useSearchParams()
   const sharedCode = searchParams.get('checklist')
@@ -85,6 +121,17 @@ export function HeroBuildPage() {
 
   const role = ROLES[hero.role]
   const { summary } = analysis
+  // On the Build tab, opening a slot or changing anything starts editing the build.
+  const writer = !showBuild ? GEAR_WRITER : editing ? PLAN_WRITER : editOnWrite(() => setEditing(true))
+  const selectSlot = (slotId: SlotId) => {
+    if (showBuild && !editing) setEditing(true)
+    setEditingSlot(slotId)
+  }
+  // The checklist counts your gear unless editing, so its slots open on Progression.
+  const selectChecklistSlot = (slotId: SlotId) => {
+    if (showBuild && !editing) setMode('progress')
+    setEditingSlot(slotId)
+  }
 
   const dismissShared = () => setSearchParams({}, { replace: true })
   const useShared = () => {
@@ -180,7 +227,23 @@ export function HeroBuildPage() {
         )}
 
         <div className={styles.layout}>
-          <section className={styles.gear} aria-label="Build" data-editing={editing || undefined}>
+          <section className={styles.gear} aria-label="Gear" data-editing={editing || undefined}>
+            <div className={styles.modeTabs} role="tablist" aria-label="Show">
+              {MODES.map((m) => (
+                <button
+                  key={m.id}
+                  id={`mode-${m.id}`}
+                  type="button"
+                  role="tab"
+                  className={styles.viewTab}
+                  aria-selected={mode === m.id}
+                  aria-controls="build-view"
+                  onClick={() => setMode(m.id)}
+                >
+                  {m.label}
+                </button>
+              ))}
+            </div>
             {editing && (
               <p className={styles.editBanner}>
                 <strong>Editing the build’s gear.</strong> Click a slot to pick its item and lines, a socket for its
@@ -190,26 +253,26 @@ export function HeroBuildPage() {
             )}
             <div id="build-view" role="tabpanel" aria-labelledby={`view-${view}`}>
               {view === 'gear' ? (
-                <GearWriterContext.Provider value={editing ? PLAN_WRITER : GEAR_WRITER}>
+                <GearWriterContext.Provider value={writer}>
                   <PaperDoll
                     hero={hero}
                     build={shown}
                     analysis={shownAnalysis}
                     highlightGoalId={highlightGoalId}
-                    onSelectSlot={setEditingSlot}
+                    onSelectSlot={selectSlot}
                   />
                 </GearWriterContext.Provider>
               ) : view === 'talents' ? (
                 <TalentGrid heroId={hero.id} build={build} editing={editing} />
               ) : view === 'gems' ? (
-                <GemTree heroId={hero.id} build={build} />
+                <GemTree heroId={hero.id} build={shown} buildGear={showBuild} />
               ) : (
                 <DungeonPlan heroId={hero.id} build={build} analysis={analysis} />
               )}
             </div>
             {/* Gear / Talents / Gems / Dungeons, like the tabs under the in-game character screen. */}
             <div className={styles.viewTabs} role="tablist" aria-label="Build view">
-              {VIEWS.map((v) => (
+              {VIEWS.filter((v) => !showBuild || v.id !== 'dungeons').map((v) => (
                 <button
                   key={v.id}
                   id={`view-${v.id}`}
@@ -224,10 +287,10 @@ export function HeroBuildPage() {
                 </button>
               ))}
             </div>
-            {view === 'gear' && build.active && !editing && (
+            {view === 'gear' && build.active && !showBuild && (
               <GearStatusBoard heroId={hero.id} build={build} analysis={analysis} onSelectSlot={setEditingSlot} />
             )}
-            {view === 'gear' && <StatsPanel heroId={hero.id} build={shown} editing={editing} />}
+            {view === 'gear' && <StatsPanel heroId={hero.id} build={shown} buildGear={showBuild} />}
           </section>
 
           <aside className={styles.side}>
@@ -235,11 +298,11 @@ export function HeroBuildPage() {
               key={hero.id}
               heroId={hero.id}
               build={build}
-              analysis={shownAnalysis}
+              analysis={editing ? shownAnalysis : analysis}
               editing={editing}
               onEditingChange={setEditing}
               onHighlight={setHighlightGoalId}
-              onSelectSlot={setEditingSlot}
+              onSelectSlot={selectChecklistSlot}
             />
           </aside>
         </div>
@@ -259,7 +322,7 @@ export function HeroBuildPage() {
       </div>
 
       {editingSlot && (
-        <GearWriterContext.Provider value={editing ? PLAN_WRITER : GEAR_WRITER}>
+        <GearWriterContext.Provider value={writer}>
           <SlotEditor
             heroId={hero.id}
             build={shown}

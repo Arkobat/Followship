@@ -1,6 +1,6 @@
 // Paste into the browser console on any fellows.gg page (same origin, so fetches work).
-// It walks the top 25 Eternal players of every hero, with each player's gear piece by piece, then prints JSON to
-// save as scripts/fellows-builds.json. Then run: node scripts/generate-recommended.mjs
+// It walks the top 25 Eternal players of every hero, with each player's gear piece by piece (necklace powers and
+// charms too), then prints JSON to save as scripts/fellows-builds.json. Then run: node scripts/generate-recommended.mjs
 //
 // It's slow on purpose (one request at a time, with pauses) to go easy on fellows.gg.
 ;(async () => {
@@ -85,14 +85,35 @@
     return lines
   }
 
-  /** One player's gear slot by slot, their legendary, and whether every piece has its 3 lines. */
+  /**
+   * A player's necklace powers: the known ones (by slug or name) found anywhere in their gear set, unless marked
+   * unselected. More than three found means it's a list of every option, not their picks: then none.
+   */
+  function neckOf(gs) {
+    const known = Object.entries(out.neck)
+    const found = new Set()
+    const walk = (o) => {
+      if (!o || typeof o !== 'object') return
+      if (Array.isArray(o)) return o.forEach(walk)
+      const hit = known.find(([id, [name]]) => o.slug === id || o.name === name)
+      if (hit && o.selected !== false && o.isSelected !== false) found.add(hit[0])
+      Object.values(o).forEach(walk)
+    }
+    walk(gs)
+    return found.size <= 3 ? [...found] : []
+  }
+
+  /** One player's gear slot by slot, their charms, their legendary, and whether every piece has its 3 lines. */
   function gearOf(items) {
     const gear = {}
     const sockets = {}
+    const charms = []
     let legendary = null
     let complete = true
     const taken = {}
     for (const i of items) {
+      const charm = i.categoryName === 'Charm' && [i.slug, slug(i.name || '')].find((id) => out.charms[id])
+      if (charm && !charms.includes(charm)) charms.push(charm)
       const slots = SLOT[i.categoryName]
       if (!slots) continue // charms
       const slotId = slots[(taken[i.categoryName] = (taken[i.categoryName] ?? -1) + 1)]
@@ -110,7 +131,7 @@
       if (lines.length !== 3) complete = false
       gear[slotId] = { id: i.id, name: i.name, level: i.itemLevel, temper: i.upgrades, lines: lines.slice(0, 3) }
     }
-    return { gear, sockets, legendary, complete }
+    return { gear, sockets, charms, legendary, complete }
   }
 
   // Socket gems (one socket each on the necklace, wrists and rings), apart from the gem lines.
@@ -247,6 +268,7 @@
             player: pl.name,
             rank: pl.rankPosition,
             ...gearOf(gs.gearSet.gear.map((g) => g.item)),
+            neck: neckOf(gs),
             tree: picks.filter((t) => traitCat[t.name]).map((t) => [traitCat[t.name], short(t.name)]),
             talents: (gs.talents.selectedTalentIds ?? []).map((id) => talentSlugs.get(id)).filter(Boolean),
           })

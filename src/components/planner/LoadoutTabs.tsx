@@ -13,7 +13,7 @@ import {
   type TieredOption,
   type WeaponTraitOption,
 } from '../../data/loadout'
-import { setCharm, toggleNeckPower, type HeroBuild } from '../../state/buildStore'
+import type { HeroBuild } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
 import { Tip } from '../tooltip/Tooltip'
 import { entryTip } from '../tooltip/tipContent'
@@ -27,20 +27,33 @@ interface Props {
   slotId: SlotId
 }
 
-/** The neck / relic (charm) / weapon tabs: pick what you have, with every option tiered by how often top players take it. */
+/**
+ * The neck / relic (charm) / weapon tabs: pick what you have (or, on the Build tab, what the build has), with every
+ * option tiered by how often top players take it.
+ */
 export function LoadoutTabs({ heroId, build, slotId }: Props) {
+  const { plan, toggleNeckPower, setCharm } = useGearWriter()
   const options = loadoutFor(heroId)
   const picks = build.loadout
+  // Against the build: its picks are marked (on the Build tab, they're what's picked).
+  const builds = (want: string[]) => ({
+    marked: plan ? undefined : (id: string) => want.includes(id),
+    markedLabel: 'The build picks it',
+    selectedLabel: plan ? 'In the build' : undefined,
+    hint: !plan && want.length ? 'marks the build’s' : undefined,
+  })
 
   if (slotId === 'neck') {
+    const { hint, ...marks } = builds(build.neck)
     return (
-      <Section title="Necklace powers" picked={picks.neck.length} limit={PICK_LIMITS.neck}>
+      <Section title="Necklace powers" picked={picks.neck.length} limit={PICK_LIMITS.neck} markHint={hint}>
         <TierList
           options={options.neck}
           kind="Necklace power"
           selected={(id) => picks.neck.includes(id)}
           canSelect={() => picks.neck.length < PICK_LIMITS.neck}
           onToggle={(id) => toggleNeckPower(heroId, id)}
+          {...marks}
         />
       </Section>
     )
@@ -49,16 +62,18 @@ export function LoadoutTabs({ heroId, build, slotId }: Props) {
   if (slotId === 'relic1' || slotId === 'relic2') {
     const current = picks[slotId]
     const other = picks[slotId === 'relic1' ? 'relic2' : 'relic1']
+    const { hint, ...marks } = builds(build.charms)
     return (
-      <Section title="Charm" picked={current ? 1 : 0} limit={PICK_LIMITS.charm}>
+      <Section title="Charm" picked={current ? 1 : 0} limit={PICK_LIMITS.charm} markHint={hint}>
         <TierList
           options={options.charms}
           kind="Charm"
           selected={(id) => id === current}
-          // Picking another charm swaps it in; the one in your other relic slot is taken.
+          // Picking another charm swaps it in; the one in the other relic slot is taken.
           canSelect={(id) => id !== other}
-          disabledHint="In your other relic slot"
+          disabledHint={plan ? 'In the build’s other relic slot' : 'In your other relic slot'}
           onToggle={(id) => setCharm(heroId, slotId, id === current ? null : id)}
+          {...marks}
         />
       </Section>
     )
@@ -214,12 +229,15 @@ function Section({
   picked,
   limit,
   hint,
+  markHint,
   children,
 }: {
   title: string
   picked: number
   limit: number
   hint?: string
+  /** What the dot on an option means, after a sample dot. */
+  markHint?: string
   children: ReactNode
 }) {
   return (
@@ -230,6 +248,11 @@ function Section({
           {picked}/{limit}
         </span>
         {hint && <small>{hint}</small>}
+        {markHint && (
+          <small>
+            <span className={styles.markKey} /> {markHint}
+          </small>
+        )}
       </h3>
       {children}
     </section>
@@ -243,8 +266,12 @@ interface TierListProps {
   onToggle: (id: string) => void
   /** Why an option can't be picked. */
   disabledHint?: string | ((id: string) => string)
-  /** Options to flag as being on your checklist. */
+  /** Options to flag as being on your checklist (or the build's picks). */
   marked?: (id: string) => boolean
+  /** What a flagged option's tooltip says. */
+  markedLabel?: string
+  /** What a picked option's tooltip says. */
+  selectedLabel?: string
   icon?: (option: TieredOption) => ReactNode
   accent?: string
   /** What the options are, for their tooltips ("Necklace power"); weapon traits use their category. */
@@ -255,7 +282,19 @@ const NO_DATA = "Not on fellows.gg top players' weapon trees yet, so no tier"
 const NO_DATA_TIER = { id: '?', color: '#5b6573' }
 const isUnrated = (o: TieredOption) => 'unrated' in o && !!o.unrated
 
-function TierList({ options, selected, canSelect, onToggle, disabledHint, marked, icon, accent, kind }: TierListProps) {
+function TierList({
+  options,
+  selected,
+  canSelect,
+  onToggle,
+  disabledHint,
+  marked,
+  markedLabel = 'On your checklist',
+  selectedLabel = 'You have it',
+  icon,
+  accent,
+  kind,
+}: TierListProps) {
   if (options.length === 0) return <p className={styles.empty}>No fellows.gg data for this hero yet.</p>
 
   // The tiers, then a "?" row for options fellows.gg has no numbers for.
@@ -301,8 +340,8 @@ function TierList({ options, selected, canSelect, onToggle, disabledHint, marked
                         }}
                         kind={kind ?? (entry ? CATEGORY_BY_ID[entry.category].singular : 'Option')}
                       >
-                        {isSelected && <Status tone="good">You have it</Status>}
-                        {isMarked && <Status>On your checklist</Status>}
+                        {isSelected && <Status tone="good">{selectedLabel}</Status>}
+                        {isMarked && <Status>{markedLabel}</Status>}
                         {disabled && (
                           <Status tone="bad">
                             {typeof disabledHint === 'function'

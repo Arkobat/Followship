@@ -181,7 +181,7 @@ const SLOT_NAMES: Record<Item['slot'], string> = {
   charm: 'Charm',
 }
 
-/** A catalog entry (aspect, glyph, sigil, enchant, gem, defensive trait): what it does, by the hero's name. */
+/** A catalog entry (aspect, glyph, sigil, enchant, gem): what it does, by the hero's name. */
 export function EntryTip({
   heroId,
   category,
@@ -443,10 +443,13 @@ export function PicksTip({
   title,
   picks,
   empty,
+  children,
 }: {
   title: string
   picks: { name: string; icon?: string; description?: string }[]
   empty: string
+  /** Statuses under the picks. */
+  children?: ReactNode
 }) {
   return (
     <Card kind="entry" title={title}>
@@ -467,6 +470,7 @@ export function PicksTip({
           </Section>
         ))
       )}
+      {children && <Section>{children}</Section>}
       <div className={styles.foot}>Click to change</div>
     </Card>
   )

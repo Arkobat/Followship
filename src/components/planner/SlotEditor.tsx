@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { CATEGORY_BY_ID } from '../../data/catalog'
-import { GEAR_SLOTS, SIDE_CATEGORIES, SLOT_BY_ID, STAT_LINES, type SlotId } from '../../data/gearSlots'
+import { GEAR_SLOTS, MAX_PER_GROUP, SLOT_BY_ID, STAT_LINES, type SlotId } from '../../data/gearSlots'
 import type { HeroId } from '../../data/heroes'
 import { getItem } from '../../data/items'
 import { updateSlot, type Goal, type HeroBuild } from '../../state/buildStore'
 import { useGearWriter } from '../../state/gearWriter'
-import { SLOT_STATUS, type BuildAnalysis, type LineInfo } from '../../utils/progress'
+import { moveNote, SLOT_STATUS, spareNote, type BuildAnalysis, type LineInfo } from '../../utils/progress'
 import { Tip } from '../tooltip/Tooltip'
 import { entryTip } from '../tooltip/tipContent'
 import { Status } from '../tooltip/tips'
@@ -130,25 +130,31 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
             </button>
           </Tip>
 
-          {line.suggestion && (
+          {line.suggestion === 'anything' && (
+            <p className={styles.suggestion}>
+              <em>{spareNote(analysis)}</em>
+            </p>
+          )}
+          {line.suggestion && line.suggestion !== 'anything' && (
             <p className={styles.suggestion}>
               <span>Reroll to</span>
-              {line.suggestion === 'anything' ? (
-                <em>anything — nothing you still need fits this line</em>
-              ) : (
-                <Tip content={entryTip(heroId, line.suggestion, <Status>Click once you’ve rerolled it</Status>)}>
-                  <button
-                    type="button"
-                    className={styles.target}
-                    style={{ '--cat-color': CATEGORY_BY_ID[line.suggestion.category].color } as CSSProperties}
-                    onClick={() => setConfirming(line.index)}
-                  >
-                    <EntryIcon goal={line.suggestion} size={20} />
-                    {line.suggestion.name}
-                    <small>{CATEGORY_BY_ID[line.suggestion.category].singular}</small>
-                  </button>
-                </Tip>
-              )}
+              <Tip content={entryTip(heroId, line.suggestion, <Status>Click once you’ve rerolled it</Status>)}>
+                <button
+                  type="button"
+                  className={styles.target}
+                  style={{ '--cat-color': CATEGORY_BY_ID[line.suggestion.category].color } as CSSProperties}
+                  onClick={() => setConfirming(line.index)}
+                >
+                  <EntryIcon goal={line.suggestion} size={20} />
+                  {line.suggestion.name}
+                  <small>{CATEGORY_BY_ID[line.suggestion.category].singular}</small>
+                </button>
+              </Tip>
+            </p>
+          )}
+          {moveNote(line) && (
+            <p className={styles.suggestion}>
+              <em>{moveNote(line)}</em>
             </p>
           )}
 
@@ -176,7 +182,7 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
             <LinePicker
               build={build}
               analysis={analysis}
-              side={slot.side}
+              slotId={slotId}
               current={line}
               onPick={(value) => {
                 setLine(heroId, slotId, line.index, value)
@@ -251,7 +257,8 @@ export function SlotEditor({ heroId, build, analysis, slotId, onChangeSlot, onCl
                 ? 'reserved for your legendary'
                 : info.legendary || info.status === 'noLines'
                   ? 'no lines to roll'
-                  : SIDE_CATEGORIES[slot.side].map((c) => CATEGORY_BY_ID[c].label.toLowerCase()).join(', ')}
+                  : slot.groups.map((c) => CATEGORY_BY_ID[c].label.toLowerCase()).join(', ') +
+                    (plan ? `, up to ${MAX_PER_GROUP} of each` : '')}
             </span>
           </p>
         </div>

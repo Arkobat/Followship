@@ -36,6 +36,9 @@ export interface Recommendation {
   relics: string[]
   /** Talent ids: the most-picked set that fits the points. */
   talents: string[]
+  /** The most-picked necklace powers (three) and charms (two). */
+  neck: string[]
+  charms: string[]
   /** Socket gem ids per socket. */
   sockets: Partial<Record<SocketSlot, string>>
   goals: RecommendedGoal[]
@@ -65,6 +68,9 @@ export interface LeaderboardBuild {
   /** How many of them wear its legendary. */
   wearLegendary: number
   talents: string[]
+  /** The player's necklace powers and charms; missing when the scrape didn't have them. */
+  neck?: string[]
+  charms?: string[]
   sockets: Partial<Record<SocketSlot, string>>
   goals: RecommendedGoal[]
   plan: {

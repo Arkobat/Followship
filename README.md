@@ -19,7 +19,7 @@ npm run dev
 | --- | --- |
 | `src/data/heroes.ts` | Hero roster: name, role, epithet, portrait, tile crop |
 | `src/data/roles.ts` | Roles (Tank / Damage Dealer / Healer), order and accent colours |
-| `src/data/catalog.ts` | Aspects, glyphs, sigils, enchants, gems and defensive traits |
+| `src/data/catalog.ts` | Aspects, glyphs, sigils, enchants and gems |
 | `src/data/gearSlots.ts` | The 14 gear slots, paper-doll layout, and what can roll on each side |
 | `src/data/recommended.ts` | Legendaries and starting checklists per hero (data in `recommendedData.ts`, generated) |
 | `src/data/presetBuilds.ts` | Built-in builds: fellows.gg's per hero plus the named ones (data in `presetBuildsData.ts`, generated) |
@@ -76,9 +76,27 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   the lines the build's gear has on it (its own plan, or the layout edit mode shows), or the socket's gem. A slot with
   lines entered but no item gets only the item, since its lines are rated on the tile. Edit mode adds nothing: the
   tiles are the build.
-- Left side (armour) can roll anything; the right side (neck, wrists, rings, relics, weapon) only enchants and
-  gems. A gem line only rerolls into another gem. Reroll suggestions follow those rules and prefer the right
-  side for enchants. Tooltips name what kind of line each target is ("↻ Enchant: Kindling").
+- Each slot in `src/data/gearSlots.ts` names the line groups it rolls: armour (head, shoulders, cape, chest, hands,
+  legs, boots) aspects, glyphs, sigils, enchants and gems (top players have enchants on armour too); the neck,
+  wrists, rings, relics and weapon only enchants and gems. `lineGroups` says what a line can be, and the line
+  pickers, saving a line and loading a save all go by it: a line's picker searches every group its slot rolls,
+  so a gem can be replaced by an enchant straight away. A build's piece holds at most two lines of one group
+  (2 aspects and a glyph, 2 enchants and a gem; never 3 of one), in edit mode, when a build's gear is laid out and
+  in reroll suggestions; your own gear can have three of one (it's what you rolled).
+- A line can be rerolled into another group. Suggestions first give each line what's closest to it (a gem line a
+  gem you need, a right-side line an enchant, an armour line an aspect, glyph or sigil), then whatever is still
+  needed: two spare Diamonds on a relic become the Amethyst you need and the enchant you need. Enchants go to the
+  right side before armour. A line can always reroll within its own group, even on a piece with three of it (a
+  spare Jotunn's Might on a weapon of three enchants becomes the Griffin's Might you need). Tooltips name what kind
+  of line each target is ("↻ Enchant: Kindling").
+- A wrong line nothing you need fits gets no reroll: once your gear has everything it's a spare to keep ("Spare: the
+  build has everything it needs"); otherwise the guide names what's still missing, none of which fits that line.
+- As a last resort, when something you need fits no wrong line (a glyph, with only a relic's line spare), a piece
+  you keep that can hold it rerolls a needed line into it, and a wrong line elsewhere takes that line's goal over.
+  The cheapest way wins: a wrong line already holding a copy of it just stays (one reroll: shoulders Amethyst →
+  The Trickster, and the weapon's extra Amethyst now counts); otherwise a spare line rerolls into it (two). It only
+  happens when nothing else gets the goal onto your gear, and each line says why ("Nothing else can take The
+  Trickster, so this line makes room: your weapon takes over Amethyst").
 - In the slot editor, a line's "Reroll to …" is a button: once you've rerolled it in game, click it and confirm, and
   the line switches to it.
 - The checklist's legendary takes over its slot (a legendary has no lines); the slot is done once you wear it (pick
@@ -92,25 +110,36 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
 - A build names an item for each slot (legendary, weapon, two relics, armour). An empty slot shows the build's item
   faded; wearing something else there frames the tile red ("✕ Build wants …"), and the checklist lists those slots
   at the top with a button to open each. Rings and relics count in either slot of the pair, and socket gems in any
-  socket: wearing them swapped is never wrong. (Charms are only rated against top players, not by slot.)
-- The Gear tab under the doll sorts the pieces: Reroll (lines to change), Replace (not the build's item, with the
-  build's legendary as its own group: "Get legendary", each with its reroll tips for meanwhile) and Complete (all lines
-  right).
-- Edit mode (Edit build in the checklist's menu) edits the build the way you enter gear: the paper doll shows the
-  build's gear, and clicking a slot picks its item and lines, a socket its gem, a weapon tab its tree. Where a line
+  socket: wearing them swapped is never wrong.
+- The Gear tab under the doll sorts the pieces: Reroll (lines to change, with socket gems, necklace powers and
+  charms that aren't the build's or are missing as their own group: "Swap", e.g. "Socket: Splendid Emerald →
+  Flawless Emerald"), Replace (not the build's item, with the build's legendary as its own group: "Get legendary",
+  each with its reroll tips for meanwhile) and Complete (all lines right). Everything the checklist counts shows up
+  in one of them.
+- Two tabs on top of the doll pick what it shows. Progression is your gear against the build: ratings, rerolls, the
+  Reroll / Replace / Complete board and the Dungeons tab. Build is the build itself, its gear as it would look, with
+  the stats and the checklist still there but no board and no Dungeons tab. Opening a slot or changing anything on
+  the Build tab starts edit mode; going back to Progression ends it.
+- Edit mode (Edit build in the checklist's menu, which opens the Build tab) edits the build the way you enter gear:
+  the paper doll shows the build's gear, and clicking a slot picks its item and lines, a socket its gem, a weapon tab its tree. Where a line
   sits doesn't matter, only how many: a build with Griffin's Might on the helm is met by Griffin's Might on the
   chest. The checklist shows the counts as you go. Builds without gear of their own (built in, shared, older) are
   laid out from their counts the first time you edit them; anything that doesn't fit is listed.
 - Neck (3 powers), relics (1 charm each, never the same twice) and weapon (its tree, picked from the aspect down:
   aspect, enchant, sigil, enchant, sigil) have tabs with every option tiered S–F by how many top players pick it. Weapon tree picks count
   toward the checklist like a gear line.
+- A build picks its three necklace powers and two charms too: the Build tab shows them on the neck and relic tabs
+  (and edits them there), and they count toward the checklist one each. On Progression, a dot in the tab's tier
+  list marks the build's picks, a power or charm the build doesn't pick is framed red, and the tab's tooltip says
+  what the build wants instead. Charms count in either relic slot. Built-in builds take each player's own picks
+  once the scrape has them (see below), otherwise the most-picked ones (as do builds saved before this).
 - Builds name their talents, but talents aren't on the checklist and don't count toward it. The Talents tab under
   the doll (Gear / Talents) is the in-game grid with the build's talents lit: it shows what to take, not what you
   have. In edit mode a click adds or takes out a talent (one that costs more points than are left can't be added).
   Every talent is tiered by how many top players pick it.
 - The Stats panel under the doll is the character sheet: item level (once every slot is filled), health, mana, armor
   and physical damage reduction, stamina and the primary stat, each secondary's rating and percent, parry, dodge,
-  block, cooldown reduction and gem power. Edit mode shows the build's. Hover a stat for what makes it up. It adds up
+  block, cooldown reduction and gem power. The Build tab shows the build's. Hover a stat for what makes it up. It adds up
   (`src/utils/stats.ts`, hero bases in `src/data/heroStats.ts`):
   - base 100 stamina and 100 primary stat, plus every item's stats at its item level and temper, enchant lines (gear
     and weapon tree), necklace powers (The Oak's +25% armor, The Shadow's magic damage reduction), gem traits the gem
@@ -176,7 +205,8 @@ as a card, with how much of it your gear already has, and search, source and tag
   name; opening the link offers the build.
 
 The leaderboard builds (tagged Leaderboard) are real top Eternal players' gear, piece by piece: every item and its
-lines, the weapon tree, talents and socket gems, so they open in edit mode exactly as the player wears them. A
+lines, the weapon tree, talents, socket gems, necklace powers and charms, so they open in edit mode exactly as the
+player wears them. A
 smaller socket gem is listed at its largest size (the one to aim for).
 
 - **#1**: the highest-ranked player with a public profile (named after their rank if #1's profile is private).
@@ -206,7 +236,9 @@ Both are generated from fellows.gg:
 
 1. Open any fellows.gg page, paste `scripts/scrape-fellows.js` into the browser console, and wait (it pauses
    between requests, ~10 minutes). It reads the top 25 of each hero's leaderboard, every public profile's gear piece
-   by piece. Save the JSON it prints (also in `window.fellowsBuilds`) as `scripts/fellows-builds.json`.
+   by piece, with its necklace powers and charms. (Necklace powers are found by name anywhere in the profile, so a
+   change on fellows.gg can't break the scrape; a profile where none turn up gets the most-picked ones. Scrapes from
+   before this have none, so every leaderboard build has the most-picked until the next scrape.) Save the JSON it prints (also in `window.fellowsBuilds`) as `scripts/fellows-builds.json`.
 2. Run `node scripts/generate-recommended.mjs`, then `node scripts/generate-builds.mjs` (the named builds use the
    same data). It stops and lists any line missing from the catalog, any item missing from `itemsData.ts` (update
    the items first) and any talent it doesn't know.
@@ -257,9 +289,11 @@ tile. Socket gem icons are `public/icons/socket-<size>-<colour>.webp`.
 
 ## Updating the catalog
 
-`src/data/catalog.ts` lists every aspect, glyph, sigil, enchant, gem and defensive trait.
-It mirrors fellows.gg's database (weapon traits → aspects/sigils/enchants/defensive by
-category, blessings → glyphs, gems), with icons in `public/icons/<id>.webp` (96px).
+`src/data/catalog.ts` lists every aspect, glyph, sigil, enchant and gem.
+It mirrors fellows.gg's database (weapon traits → aspects/sigils/enchants by category, blessings → glyphs, gems).
+fellows.gg's defensive weapon traits (King of the Hill, Heart of Stone, …) were dropped: they come with Season 3,
+nobody's gear has them, and they don't roll on any slot. Their share codes (dm fm gs hs is kh lr sr th) stay retired
+in `src/data/shortCodes.ts`, so an old code never reads as something else, with icons in `public/icons/<id>.webp` (96px).
 
 To add an entry, append a row to the right group, and drop its icon in `public/icons/` (optional:
 entries without an icon show a lettered tile). Never change an existing `id`; saved builds reference it.
@@ -280,8 +314,10 @@ A shared build is one short code (about 60–100 characters with its name), and 
 `src/data/shortCodes.ts` (`gm7` is Griffin's Might ×7), then packed into base64url; the name follows after a
 dot. The format is documented at the top of `src/utils/shareCode.ts`.
 
+Version 2 codes add the build's necklace powers and charms; version 1 codes still load, keeping the build's own.
+
 Codes in people's links depend on those two letters, so never change or reuse one. Anything new (a hero, weapon,
-relic, talent, legendary or catalog entry) needs a code that isn't taken: two letters a–z, unique across the whole
+relic, talent, legendary, necklace power, charm or catalog entry) needs a code that isn't taken: two letters a–z, unique across the whole
 file (socket gems reuse their colour's gem code). Without one it's left out of share codes; the dev server logs
 a console error for anything missing a code and for any code used twice.
 

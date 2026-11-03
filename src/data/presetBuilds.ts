@@ -24,6 +24,9 @@ export interface PresetBuild {
   weapon: string | null
   relics: string[]
   talents: string[]
+  /** Missing: the necklace powers and charms top players pick most. */
+  neck?: string[]
+  charms?: string[]
   /** Missing: the gems top players socket most. */
   sockets?: Partial<Record<SocketSlot, string>>
   goals: { category: CategoryId; entryId: string; target: number }[]
@@ -63,6 +66,8 @@ function leaderboardBuild(heroId: HeroId, b: LeaderboardBuild, all: LeaderboardB
     weapon: itemIn('weapon')?.slug ?? null,
     relics: [itemIn('relic1'), itemIn('relic2')].flatMap((i) => i?.slug ?? []),
     talents: b.talents,
+    neck: b.neck,
+    charms: b.charms,
     sockets: b.sockets,
     goals: b.goals,
     plan: b.plan,

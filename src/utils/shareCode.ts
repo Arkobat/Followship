@@ -4,10 +4,13 @@ import { loadoutFor, SOCKET_SLOTS } from '../data/loadout'
 import { presetSlug, type PresetBuild } from '../data/presetBuilds'
 import { legendariesFor } from '../data/recommended'
 import {
+  CHARM_CODES,
   HERO_CODES,
   LEGENDARY_CODES,
   LINE_CODES,
+  NECK_CODES,
   RELIC_CODES,
+  RETIRED_CODES,
   SOCKET_GEM_CODES,
   TALENT_CODES,
   WEAPON_CODES,
@@ -18,12 +21,14 @@ import type { ChecklistData } from '../state/buildStore'
  * Build share codes. The build is written as short text, every item by its two-letter code (`data/shortCodes.ts`),
  * then packed into base64url; the name follows, after a dot, as base64url UTF-8:
  *
- *   1                  format version
+ *   2                  format version (1: without necklace powers and charms, which loading one then keeps)
  *   ar                 hero
  *   hd                 legendary (00: none)
  *   ac                 weapon (00: none)
  *   ohoi               two relics (00 each: none)
  *   spemem00           socket gems: neck, wrists, ring #1, ring #2 (00: none)
+ *   okdgdj             three necklace powers (00 each: none)
+ *   hlgy               two charms (00 each: none)
  *   bffhgi.            talents, then a dot
  *   gm7vg3hf …         lines: code, then the target when it's more than 1
  *
@@ -32,7 +37,9 @@ import type { ChecklistData } from '../state/buildStore'
  * ones not given one yet, custom lines from old saves) are left out.
  */
 
-const VERSION = '1'
+const VERSION = '2'
+/** Before necklace powers and charms: still read. */
+const VERSION_1 = '1'
 const SYMBOLS = '0123456789abcdefghijklmnopqrstuvwxyz.'
 const BASE64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 const NONE = '00'
@@ -45,6 +52,8 @@ const SOCKET_GEM_BY_CODE = invert(SOCKET_GEM_CODES)
 const WEAPON_BY_CODE = invert(WEAPON_CODES)
 const RELIC_BY_CODE = invert(RELIC_CODES)
 const TALENT_BY_CODE = invert(TALENT_CODES)
+const NECK_BY_CODE = invert(NECK_CODES)
+const CHARM_BY_CODE = invert(CHARM_CODES)
 
 /** The text as one base-37 number, written in base64url. The version digit up front is never 0, so nothing is lost. */
 function pack(text: string): string {
@@ -92,6 +101,8 @@ export function encodeChecklist(heroId: HeroId, data: ChecklistData, name?: stri
     codeOf(WEAPON_CODES, data.weapon) +
     relics.map((id) => codeOf(RELIC_CODES, id)).join('') +
     SOCKET_SLOTS.map((slot) => codeOf(SOCKET_GEM_CODES, data.sockets?.[slot])).join('') +
+    [0, 1, 2].map((i) => codeOf(NECK_CODES, data.neck?.[i])).join('') +
+    [0, 1].map((i) => codeOf(CHARM_CODES, data.charms?.[i])).join('') +
     (data.talents ?? []).flatMap((id) => TALENT_CODES[id] ?? []).join('') +
     '.' +
     lines.join('')
@@ -109,14 +120,18 @@ export function decodeChecklist(input: string): DecodeResult {
   const fromLink = /[?&]checklist=([^&\s]+)/.exec(trimmed)?.[1]
   const [packed, encodedName] = (fromLink ? decodeURIComponent(fromLink) : trimmed).split('.')
   const text = packed ? unpack(packed) : null
-  if (!text || text[0] !== VERSION) return { ok: false, error: 'That doesn’t look like a build code.' }
+  if (!text || (text[0] !== VERSION && text[0] !== VERSION_1))
+    return { ok: false, error: 'That doesn’t look like a build code.' }
 
-  // Fixed-width part: version, hero, legendary, weapon, two relics, four socket gems.
+  // Fixed-width part: version, hero, legendary, weapon, two relics, four socket gems, then (from version 2) three
+  // necklace powers and two charms.
   const pairs = (from: number, count: number) =>
     Array.from({ length: count }, (_, i) => text.slice(from + i * 2, from + i * 2 + 2))
   const [hero, legendary, weapon, relic1, relic2, ...gems] = pairs(1, 9)
+  const picks = text[0] === VERSION ? pairs(19, 5) : null
+  const talentsFrom = picks ? 29 : 19
   const heroId = HERO_BY_CODE.get(hero)
-  const dot = text.indexOf('.', 19)
+  const dot = text.indexOf('.', talentsFrom)
   if (!heroId || gems.length !== 4 || dot === -1) return DAMAGED
 
   let name: string | undefined
@@ -142,7 +157,11 @@ export function decodeChecklist(input: string): DecodeResult {
       legendary: LEGENDARY_BY_CODE.get(legendary) ?? null,
       weapon: WEAPON_BY_CODE.get(weapon) ?? null,
       relics: [relic1, relic2].flatMap((code) => RELIC_BY_CODE.get(code) ?? []),
-      talents: pairs(19, (dot - 19) / 2).flatMap((code) => TALENT_BY_CODE.get(code) ?? []),
+      talents: pairs(talentsFrom, (dot - talentsFrom) / 2).flatMap((code) => TALENT_BY_CODE.get(code) ?? []),
+      ...(picks && {
+        neck: picks.slice(0, 3).flatMap((code) => NECK_BY_CODE.get(code) ?? []),
+        charms: picks.slice(3).flatMap((code) => CHARM_BY_CODE.get(code) ?? []),
+      }),
       sockets: Object.fromEntries(
         SOCKET_SLOTS.flatMap((slot, i) => {
           const gem = SOCKET_GEM_BY_CODE.get(gems[i])
@@ -168,10 +187,22 @@ export function presetLink(preset: PresetBuild) {
 
 export const heroName = (heroId: HeroId) => getHero(heroId)?.name ?? heroId
 
-// Every code has to be unique (socket gems share their colour's line code on purpose) and every catalog entry
+// Every code has to be unique, retired ones included (socket gems share their colour's line code on purpose) and every catalog entry
 // needs one, or it can't be shared: say so while developing.
 if (import.meta.env.DEV) {
-  const all = [HERO_CODES, LEGENDARY_CODES, LINE_CODES, WEAPON_CODES, RELIC_CODES, TALENT_CODES].flatMap(Object.values)
+  const all = [
+    ...RETIRED_CODES,
+    ...[
+      HERO_CODES,
+      LEGENDARY_CODES,
+      LINE_CODES,
+      WEAPON_CODES,
+      RELIC_CODES,
+      TALENT_CODES,
+      NECK_CODES,
+      CHARM_CODES,
+    ].flatMap(Object.values),
+  ]
   const taken = new Set<string>()
   for (const code of all) {
     if (!/^[a-z]{2}$/.test(code) || taken.has(code)) console.error(`Share code "${code}" is invalid or used twice`)
@@ -201,6 +232,16 @@ if (import.meta.env.DEV) {
       RELIC_CODES,
       loadout.relics.map((r) => r.id),
       'relic',
+    )
+    missing(
+      NECK_CODES,
+      loadout.neck.map((o) => o.id),
+      'necklace power',
+    )
+    missing(
+      CHARM_CODES,
+      loadout.charms.map((o) => o.id),
+      'charm',
     )
     missing(
       TALENT_CODES,

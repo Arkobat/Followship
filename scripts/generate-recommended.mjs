@@ -23,7 +23,7 @@ const LARGEST_GEM = Object.fromEntries(
   ]),
 )
 const largestGem = (id) => (id ? (LARGEST_GEM[id] ?? id) : id)
-const CATEGORY_ORDER = ['aspect', 'glyph', 'sigil', 'enchant', 'gem', 'defensive']
+const CATEGORY_ORDER = ['aspect', 'glyph', 'sigil', 'enchant', 'gem']
 const SLOTS = {
   Head: 'head',
   Shoulders: 'shoulders',
@@ -109,6 +109,10 @@ function playerBuild(heroId, hero, pl) {
     items: Object.fromEntries(Object.entries(slots).map(([s, x]) => [s, x.item])),
     counts,
     talents: pl.talents.filter((t) => talentIds.has(t)),
+    // Older scrapes (or profiles where none were found) have no necklace powers or charms per player: the build then
+    // takes the most-picked ones.
+    neck: picked(pl.neck, hero.neck),
+    charms: picked(pl.charms, hero.charms),
     sockets: Object.fromEntries(
       Object.entries(pl.sockets)
         .filter(([, g]) => g)
@@ -116,6 +120,12 @@ function playerBuild(heroId, hero, pl) {
     ),
     plan: { slots, weaponTree },
   }
+}
+
+/** The ids a player picked that the hero's options list, or undefined when there are none. */
+const picked = (ids, options) => {
+  const kept = (ids ?? []).filter((id) => options.some(([o]) => o === id))
+  return kept.length ? kept : undefined
 }
 
 /**
@@ -281,6 +291,8 @@ for (const [heroId, hero] of Object.entries(data.heroes)) {
       players: top === 1 ? 1 : group.length,
       wearLegendary,
       talents: pick.talents,
+      ...(pick.neck && { neck: pick.neck }),
+      ...(pick.charms && { charms: pick.charms }),
       sockets: pick.sockets,
       goals: goalsOf(pick.counts),
       plan: pick.plan,
@@ -293,6 +305,12 @@ for (const [heroId, hero] of Object.entries(data.heroes)) {
     weapon: loadouts[heroId].weapons[0]?.id ?? null,
     relics: loadouts[heroId].relics.slice(0, 2).map((r) => r.id),
     talents: popularTalents(hero.talents),
+    // The most-picked necklace powers and charms (rates only bounded from above don't count).
+    neck: loadouts[heroId].neck.slice(0, 3).map((o) => o.id),
+    charms: loadouts[heroId].charms
+      .filter((o) => !o.rateIsMax)
+      .slice(0, 2)
+      .map((o) => o.id),
     // The most common gem per socket; the rings take the most common pair.
     sockets: {
       neck: largestGem(hero.sockets.neck[0]?.[0]),

@@ -71,16 +71,13 @@ export const LINE_CODES: Record<string, string> = {
   'gem:gem-ruby': 'ru',
   'gem:gem-sapphire': 'sp',
   'gem:gem-topaz': 'to',
-  'defensive:divine-mediation': 'dm',
-  'defensive:first-man-standing': 'fm',
-  'defensive:grounded-spirit': 'gs',
-  'defensive:heart-of-stone': 'hs',
-  'defensive:iron-spikes': 'is',
-  'defensive:king-of-the-hill': 'kh',
-  'defensive:latent-resurgence': 'lr',
-  'defensive:stalwart-readiness': 'sr',
-  'defensive:treasure-hunters-delight': 'th',
 }
+
+/**
+ * Codes once used and since removed (fellows.gg's defensive weapon traits, which don't roll on gear): never give them
+ * to anything else, or an old share code would read as that.
+ */
+export const RETIRED_CODES = ['dm', 'fm', 'gs', 'hs', 'is', 'kh', 'lr', 'sr', 'th']
 
 /** Socket gems: the code of the gem line of the same colour (their place in the code tells them apart). */
 export const SOCKET_GEM_CODES: Record<string, string> = {
@@ -90,6 +87,34 @@ export const SOCKET_GEM_CODES: Record<string, string> = {
   'flawless-ruby': 'ru',
   'flawless-amethyst': 'am',
   'flawless-topaz': 'to',
+}
+
+/** Necklace powers. */
+export const NECK_CODES: Record<string, string> = {
+  'the-oak': 'ok',
+  'the-dragon': 'dg',
+  'the-stag': 'dj',
+  'the-viper': 'va',
+  'the-mountain': 'mn',
+  'the-wolf': 'wo',
+  'the-tower': 'tw',
+  'the-shadow': 'do',
+  'the-beetle': 'dp',
+  'the-lake': 'lk',
+  'the-dune': 'du',
+}
+
+/** Charms. */
+export const CHARM_CODES: Record<string, string> = {
+  'health-potion': 'hl',
+  'group-invisibility': 'gy',
+  'battle-res': 'dq',
+  chickenize: 'dx',
+  dispell: 'dy',
+  'move-speed': 'mv',
+  portal: 'pr',
+  'mana-potion': 'mp',
+  'interrupt-healer': 'ie',
 }
 
 /** Weapons. */

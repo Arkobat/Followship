@@ -1,11 +1,11 @@
 import { CATEGORIES, type CategoryDefinition, type CategoryId } from '../data/catalog'
-import { GEAR_SLOTS, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
+import { GEAR_SLOTS, lineGroups, SLOT_BY_ID, STAT_LINES, type GearSlot, type SlotId } from '../data/gearSlots'
 import { getSocketGem } from '../data/gems'
-import { SOCKET_SLOTS, type SocketSlot } from '../data/loadout'
+import { PICK_LIMITS, SOCKET_SLOTS, type SocketSlot } from '../data/loadout'
 import type { HeroId } from '../data/heroes'
 import { getItem, itemForOption } from '../data/items'
 import { getLegendary, type Legendary } from '../data/recommended'
-import type { GearLine, Goal, HeroBuild } from '../state/buildStore'
+import type { GearLine, Goal, HeroBuild, RelicSlot } from '../state/buildStore'
 
 /**
  * Works out progress from what's actually rolled on your gear:
@@ -49,7 +49,7 @@ export type LineState =
   /** Entered, with no build to rate it against. */
   | 'unrated'
 
-/** A reroll target: a goal, or "anything" when nothing you need fits this line. */
+/** A reroll target: a goal, or "anything" when nothing you need fits this line (see `stillMissing`). */
 export type Suggestion = Goal | 'anything'
 
 export interface LineInfo {
@@ -59,6 +59,13 @@ export interface LineInfo {
   /** The checklist goal this line is a copy of (good or surplus). */
   goal?: Goal
   suggestion?: Suggestion
+  /**
+   * A needed line rerolled anyway, as a last resort: what nothing else can hold goes here, and another piece's spare
+   * line takes this one's goal (`slot`).
+   */
+  handsOff?: { slot: SlotId; goal: Goal }
+  /** A spare line that takes over a goal another piece (`slot`) gives up for something only it can hold. */
+  takesOver?: { slot: SlotId; goal: Goal }
 }
 
 export interface SlotInfo {
@@ -98,6 +105,45 @@ export interface CategoryProgress {
   need: number
 }
 
+/** One of your picks to change to one of the build's (`from` null: an empty pick), and for a charm, where. */
+export interface PickSwap {
+  from: string | null
+  to: string
+  slot?: RelicSlot
+}
+
+export interface PickProgress {
+  want: string[]
+  have: number
+  need: number
+  /** What to change to get the build's: each pick the build doesn't have, or an empty one, to one it's missing. */
+  swaps: PickSwap[]
+}
+
+/**
+ * The build's picks against yours (`yours` per slot; empty ones null). Each slot not holding one of the build's
+ * takes the next one you're missing, so two never ask for the same.
+ */
+function pickProgress(want: string[], yours: (string | null)[], slots?: RelicSlot[]): PickProgress {
+  const missing = want.filter((id) => !yours.includes(id))
+  const open = yours.map((id, i) => ({ id, slot: slots?.[i] })).filter(({ id }) => !id || !want.includes(id))
+  // Your picks the build doesn't have go first, then the empty ones.
+  open.sort((a, b) => Number(!a.id) - Number(!b.id))
+  return {
+    want,
+    have: want.length - missing.length,
+    need: want.length,
+    swaps: missing.flatMap((to, i) => (open[i] ? [{ from: open[i].id, to, slot: open[i].slot }] : [])),
+  }
+}
+
+/** The charm the build wants in a relic slot: yours when it's one of the build's, else the one to swap in. */
+export function charmTarget(build: HeroBuild, analysis: BuildAnalysis, slot: RelicSlot): string | null {
+  const yours = build.loadout[slot]
+  if (yours && analysis.picks.charms.want.includes(yours)) return yours
+  return analysis.picks.charms.swaps.find((s) => s.slot === slot)?.to ?? null
+}
+
 export interface BuildAnalysis {
   slots: Record<SlotId, SlotInfo>
   goals: Map<string, GoalInfo>
@@ -113,6 +159,11 @@ export interface BuildAnalysis {
    * something else (including a legendary where the build has none: `wanted` may be missing for those).
    */
   items: { wanted: Partial<Record<SlotId, string>>; have: number; need: number; wrong: SlotId[] }
+  /**
+   * The build's necklace powers and charms (charms in either relic slot): what it wants, how many of them you
+   * picked, and how many it has.
+   */
+  picks: { neck: PickProgress; charms: PickProgress }
   summary: { slotsComplete: number; slotsTotal: number; have: number; need: number }
 }
 
@@ -234,16 +285,25 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
         .map((l) => ({ slot: s.slot, info: l, gem: l.line!.category === 'gem' })),
     )
 
+  // What a piece will hold: the lines it keeps and the rerolls suggested so far (a wrong line not yet given one
+  // holds nothing that counts). A suggestion has to fit next to them: a group the slot rolls, two of it at most. A
+  // line can always stay in its own group (a third enchant rerolled into another enchant is still three).
+  const planned = (slotId: SlotId) =>
+    slots[slotId].lines.map((l) =>
+      l.suggestion && l.suggestion !== 'anything' ? l.suggestion : l.state === 'good' ? l.line : null,
+    )
+
   const assign = (lines: typeof wrong, categories: CategoryId[]) => {
     for (const { slot, info } of lines) {
       if (info.suggestion) continue
+      const fits = [...lineGroups(slot.id, planned(slot.id), info.index), info.line!.category]
       const onPiece = new Set<string>()
       for (const l of slots[slot.id].lines) {
         if (l.line) onPiece.add(keyOf(l.line))
         if (l.suggestion && l.suggestion !== 'anything') onPiece.add(keyOf(l.suggestion))
       }
       const candidates = build.goals
-        .filter((g) => categories.includes(g.category) && remaining.get(g.id)! > 0)
+        .filter((g) => categories.includes(g.category) && fits.includes(g.category) && remaining.get(g.id)! > 0)
         // Prefer something not already on this piece (enchants and gems may double up).
         .sort((a, b) => {
           const dupA = Number(onPiece.has(keyOf(a)) && a.category !== 'enchant' && a.category !== 'gem')
@@ -258,17 +318,97 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     }
   }
 
-  const gemLines = wrong.filter((w) => w.gem)
-  const rightLines = wrong.filter((w) => !w.gem && w.slot.side === 'right')
-  const leftLines = wrong.filter((w) => !w.gem && w.slot.side === 'left')
-  const leftOnly: CategoryId[] = ['aspect', 'glyph', 'sigil', 'defensive']
+  // A line can reroll into any group its slot rolls. Each first gets what's closest to it (a gem a gem; a right-side
+  // line an enchant; armour what only armour holds), then whatever is still needed: a spare gem becomes an enchant
+  // or an aspect, anything becomes a gem. Enchants go to the right side before armour, which has more it can hold.
+  const notGems = (ws: typeof wrong) => ws.filter((w) => !w.gem)
+  const leftOnly: CategoryId[] = ['aspect', 'glyph', 'sigil']
+  const suggestAll = () => {
+    // Spare lines get another go: a last-resort move below can leave something for them.
+    for (const w of wrong) if (w.info.suggestion === 'anything') w.info.suggestion = undefined
+    const right = wrong.filter((w) => w.slot.side === 'right')
+    const left = wrong.filter((w) => w.slot.side === 'left')
+    assign(
+      wrong.filter((w) => w.gem),
+      ['gem'],
+    )
+    assign(notGems(right), ['enchant'])
+    assign(notGems(left), leftOnly)
+    assign(right, ['enchant'])
+    assign(left, leftOnly)
+    assign(left, ['enchant'])
+    assign(wrong, ['gem'])
+    for (const w of wrong) w.info.suggestion ??= 'anything'
+  }
+  suggestAll()
 
-  assign(gemLines, ['gem']) // embellishments only reroll into gems
-  assign(rightLines, ['enchant']) // the right side can only take enchants
-  assign(leftLines, leftOnly) // left lines go to things only the left side can hold…
-  assign(leftLines, ['enchant']) // …and to enchants only when the right side ran out
+  // 3. Last resort, for a goal no wrong line can hold (a glyph, with only a ring's line spare): a piece you keep that
+  //    can hold it rerolls a needed line into it (the donor), and a wrong line elsewhere takes that line's goal (the
+  //    taker). Cheapest first: a taker already holding a copy of it just stays (one reroll; if it had a reroll of
+  //    its own, a spare line takes that instead); otherwise a spare line rerolls into it (two). Only when nothing
+  //    else gets the goal there.
+  const fitsAt = (slotId: SlotId, info: LineInfo, category: CategoryId) =>
+    category === info.line!.category || lineGroups(slotId, planned(slotId), info.index).includes(category)
+  const spares = () => wrong.filter((w) => w.info.suggestion === 'anything')
+  for (const missing of build.goals) {
+    while (remaining.get(missing.id)! > 0) {
+      const moves = GEAR_SLOTS.filter((s) => !leaving(s.id))
+        .flatMap((donor) =>
+          slots[donor.id].lines
+            .filter((l) => l.state === 'good' && !l.suggestion && l.goal && l.goal.id !== missing.id)
+            .filter((l) => fitsAt(donor.id, l, missing.category))
+            .flatMap((give) =>
+              wrong
+                .filter((t) => t.slot.id !== donor.id)
+                .flatMap((taker) => {
+                  const own = taker.info.suggestion
+                  if (keyOf(taker.info.line!) === keyOf(give.goal!)) {
+                    const freed = own !== 'anything' ? own : undefined
+                    if (freed && !spares().some((w) => fitsAt(w.slot.id, w.info, freed.category))) return []
+                    return [{ donor, give, taker, holds: true, cost: 1 }]
+                  }
+                  if (own !== 'anything' || !fitsAt(taker.slot.id, taker.info, give.goal!.category)) return []
+                  return [{ donor, give, taker, holds: false, cost: 2 }]
+                }),
+            ),
+        )
+        .sort((a, b) => a.cost - b.cost)
+      const move = moves[0]
+      if (!move) break
+      const { donor, give, taker, holds } = move
+      const goal = give.goal!
+      give.suggestion = missing
+      give.handsOff = { slot: taker.slot.id, goal }
+      taker.info.takesOver = { slot: donor.id, goal }
+      if (slots[donor.id].status === 'complete') slots[donor.id].status = 'reroll'
+      goals.get(missing.id)!.planned.push(donor.id)
+      remaining.set(missing.id, remaining.get(missing.id)! - 1)
+      if (!holds) {
+        taker.info.suggestion = goal
+        goals.get(goal.id)!.planned.push(taker.slot.id)
+        continue
+      }
+      // Needed after all: it stays, and the extra copy is the donor's until it rerolls.
+      const freed = taker.info.suggestion
+      taker.info.suggestion = undefined
+      taker.info.state = 'good'
+      wrong.splice(wrong.indexOf(taker), 1)
+      const takerInfo = slots[taker.slot.id]
+      takerInfo.correct++
+      if (takerInfo.status === 'reroll' && takerInfo.correct >= STAT_LINES) takerInfo.status = 'complete'
+      const { extra } = goals.get(goal.id)!
+      const at = extra.indexOf(taker.slot.id)
+      if (at !== -1) extra.splice(at, 1, donor.id)
+      // Its own reroll goes to a spare line instead.
+      if (freed && freed !== 'anything') {
+        remaining.set(freed.id, remaining.get(freed.id)! + 1)
+        const plannedOn = goals.get(freed.id)!.planned
+        plannedOn.splice(plannedOn.indexOf(taker.slot.id), 1)
+        suggestAll()
+      }
+    }
+  }
 
-  for (const w of wrong) w.info.suggestion ??= 'anything'
   for (const info of goals.values()) info.unplaced = Math.max(0, remaining.get(info.goal.id)!)
 
   // 3. Totals.
@@ -296,6 +436,14 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     need: SOCKET_SLOTS.filter((s) => targets[s]).length,
   }
 
+  const { neck, relic1, relic2 } = build.loadout
+  const neckSlots = [...neck, ...Array<null>(PICK_LIMITS.neck).fill(null)].slice(0, PICK_LIMITS.neck)
+  const picks = {
+    neck: pickProgress(build.neck, neckSlots),
+    charms: pickProgress(build.charms, [relic1, relic2], ['relic1', 'relic2']),
+  }
+  const pickCount = (key: 'have' | 'need') => picks.neck[key] + picks.charms[key]
+
   return {
     slots,
     goals,
@@ -303,16 +451,48 @@ export function analyzeBuild(build: HeroBuild): BuildAnalysis {
     legendary,
     sockets,
     items,
+    picks,
     summary: {
       // A slot marked as having no lines (another legendary) is as done as it gets.
       slotsComplete: GEAR_SLOTS.filter((s) => slots[s.id].status === 'complete' || slots[s.id].status === 'noLines')
         .length,
       slotsTotal: GEAR_SLOTS.length,
-      // The build's items and socket gems count one each. Talents don't count: the Talents tab shows the build's.
-      have: categories.reduce((n, c) => n + c.have, 0) + items.have + sockets.have,
-      need: categories.reduce((n, c) => n + c.need, 0) + items.need + sockets.need,
+      // The build's items, socket gems, necklace powers and charms count one each. Talents don't count: the Talents
+      // tab shows the build's.
+      have: categories.reduce((n, c) => n + c.have, 0) + items.have + sockets.have + pickCount('have'),
+      need: categories.reduce((n, c) => n + c.need, 0) + items.need + sockets.need + pickCount('need'),
     },
   }
+}
+
+/**
+ * What the build still needs that no line was given: none once your gear has it all, so a line with nothing you need
+ * (`'anything'`) is a spare to keep; else these, none of which fits that line.
+ */
+export const stillMissing = (analysis: BuildAnalysis) =>
+  [...analysis.goals.values()].filter((g) => g.unplaced > 0).map((g) => g.goal.name)
+
+/**
+ * Why a line is part of a last-resort move: a needed line rerolled so it can take what nothing else can (it hands
+ * its goal to another piece), or the line on that other piece that takes the goal over.
+ */
+export function moveNote(line: LineInfo): string | null {
+  const piece = (slotId: SlotId) => `your ${SLOT_BY_ID[slotId].label.toLowerCase()}`
+  if (line.handsOff)
+    return `Nothing else can take ${(line.suggestion as Goal).name}, so this line makes room: ${piece(line.handsOff.slot)} takes over ${line.handsOff.goal.name}`
+  if (line.takesOver)
+    return line.suggestion
+      ? `Takes over ${line.takesOver.goal.name} from ${piece(line.takesOver.slot)}, which rerolls it`
+      : `Keep it: it takes over ${line.takesOver.goal.name} once ${piece(line.takesOver.slot)} rerolls it`
+  return null
+}
+
+/** What to say about a line with nothing you need to reroll into: a spare to keep, or what's missing elsewhere. */
+export const spareNote = (analysis: BuildAnalysis) => {
+  const missing = stillMissing(analysis)
+  return missing.length
+    ? `Nothing you still need fits this line (missing: ${missing.join(', ')})`
+    : 'Spare: the build has everything it needs, so keep it'
 }
 
 /** Slots that hold the same kind of item, where it doesn't matter which one holds which. */
