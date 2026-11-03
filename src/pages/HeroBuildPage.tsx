@@ -127,11 +127,6 @@ export function HeroBuildPage() {
     if (showBuild && !editing) setEditing(true)
     setEditingSlot(slotId)
   }
-  // The checklist counts your gear unless editing, so its slots open on Progression.
-  const selectChecklistSlot = (slotId: SlotId) => {
-    if (showBuild && !editing) setMode('progress')
-    setEditingSlot(slotId)
-  }
 
   const dismissShared = () => setSearchParams({}, { replace: true })
   const useShared = () => {
@@ -161,8 +156,8 @@ export function HeroBuildPage() {
             <h1 className={styles.name}>{hero.name}</h1>
             <p className={styles.epithet}>{hero.epithet}</p>
           </div>
-          {/* Both measure against the build, so there's nothing to show without one. */}
-          {build.active && (
+          {/* Both measure your gear against the build: nothing to show without one, nor on the Build tab. */}
+          {build.active && !showBuild && (
             <div className={styles.meters}>
               <Meter label="Gear complete" value={summary.slotsComplete} max={summary.slotsTotal} color="#6fd37a" />
               <Meter label="Checklist" value={summary.have} max={summary.need} color="var(--gold-bright)" />
@@ -298,11 +293,12 @@ export function HeroBuildPage() {
               key={hero.id}
               heroId={hero.id}
               build={build}
-              analysis={editing ? shownAnalysis : analysis}
+              analysis={shownAnalysis}
+              buildView={showBuild}
               editing={editing}
               onEditingChange={setEditing}
               onHighlight={setHighlightGoalId}
-              onSelectSlot={selectChecklistSlot}
+              onSelectSlot={setEditingSlot}
             />
           </aside>
         </div>

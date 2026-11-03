@@ -24,9 +24,11 @@ import styles from './Checklist.module.css'
 interface Props {
   heroId: HeroId
   build: HeroBuild
-  /** Of your gear, or in edit mode of the build's (so its counts are the build's). */
+  /** Of your gear, or on the Build tab of the build's (so its counts are the build's). */
   analysis: BuildAnalysis
-  /** Edit mode: the build is changed on the paper doll, slot by slot; here are its totals. */
+  /** The Build tab: the build's own counts, with nothing of your gear (no progress, nothing to tick off). */
+  buildView: boolean
+  /** Edit mode (on the Build tab): the build is changed on the paper doll, slot by slot; here are its totals. */
   editing: boolean
   onEditingChange: (editing: boolean) => void
   onHighlight: (goalId: string | null) => void
@@ -34,8 +36,19 @@ interface Props {
 }
 
 /** "Ogre's Might 3/7" — what you still need, grouped by type. */
-export function Checklist({ heroId, build, analysis, editing, onEditingChange, onHighlight, onSelectSlot }: Props) {
+export function Checklist({
+  heroId,
+  build,
+  analysis,
+  buildView,
+  editing,
+  onEditingChange,
+  onHighlight,
+  onSelectSlot,
+}: Props) {
   const setEditing = onEditingChange
+  // The build's own counts: on the Build tab, editing or not.
+  const plain = buildView || editing
   const [sharing, setSharing] = useState(false)
   const [naming, setNaming] = useState(false)
   const navigate = useNavigate()
@@ -60,16 +73,16 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
   }
 
   // Complete groups start collapsed and fold up the moment they complete; a toggle holds until that changes.
-  // Edit mode keeps its own folds: everything starts open there, and you fold away what you're done with.
+  // The Build tab keeps its own folds: everything starts open there, and you fold away what you're done with.
   const [folds, setFolds] = useState<Record<string, { collapsed: boolean; done: boolean }>>({})
   const [editFolds, setEditFolds] = useState<Record<string, boolean>>({})
   const isCollapsed = (id: string, done: boolean) => {
-    if (editing) return !!editFolds[id]
+    if (plain) return !!editFolds[id]
     const fold = folds[id]
     return fold && fold.done === done ? fold.collapsed : done
   }
   const toggleFold = (id: string, done: boolean) =>
-    editing
+    plain
       ? setEditFolds((f) => ({ ...f, [id]: !f[id] }))
       : setFolds((f) => ({ ...f, [id]: { collapsed: !isCollapsed(id, done), done } }))
 
@@ -133,7 +146,13 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
                 <button type="button" className={styles.origin} onClick={browse} title="See all builds">
                   {origin}
                 </button>
-                {editing ? ' · Editing' : need === 0 ? ' · Nothing tracked yet' : ` · ${have} of ${need} in place`}
+                {editing
+                  ? ' · Editing'
+                  : need === 0
+                    ? ' · Nothing tracked yet'
+                    : buildView
+                      ? ' · The build’s own'
+                      : ` · ${have} of ${need} in place`}
               </>
             ) : (
               'Saved to your builds once you add something'
@@ -170,7 +189,7 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
       {editing ? (
         <EditNotes heroId={heroId} build={build} />
       ) : (
-        <WrongItems heroId={heroId} analysis={analysis} onSelectSlot={onSelectSlot} />
+        !buildView && <WrongItems heroId={heroId} analysis={analysis} onSelectSlot={onSelectSlot} />
       )}
 
       {need === 0 && (
@@ -184,7 +203,8 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
       {analysis.categories
         .filter((g) => g.goals.length > 0)
         .map(({ category, goals, have, need }) => {
-          const done = need > 0 && have >= need
+          // The Build tab has nothing to complete: just the build's totals.
+          const done = !plain && need > 0 && have >= need
           const collapsed = isCollapsed(category.id, done)
           return (
             <div
@@ -196,12 +216,12 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
             >
               <GroupHeader
                 label={category.label}
-                have={editing ? need : have}
+                count={plain ? `×${need}` : `${have}/${need}`}
                 need={need}
                 collapsed={collapsed}
                 onToggle={() => toggleFold(category.id, done)}
               />
-              {!collapsed && need > 0 && !editing && (
+              {!collapsed && need > 0 && !plain && (
                 <div className={styles.groupBar} aria-hidden="true">
                   <span style={{ width: `${(have / need) * 100}%` }} />
                 </div>
@@ -210,13 +230,7 @@ export function Checklist({ heroId, build, analysis, editing, onEditingChange, o
               {!collapsed && (
                 <ul className={styles.rows}>
                   {goals.map((info) => (
-                    <GoalRow
-                      key={info.goal.id}
-                      heroId={heroId}
-                      info={info}
-                      editing={editing}
-                      onHighlight={onHighlight}
-                    />
+                    <GoalRow key={info.goal.id} heroId={heroId} info={info} plain={plain} onHighlight={onHighlight} />
                   ))}
                 </ul>
               )}
@@ -292,16 +306,16 @@ function WrongItems({
 interface RowProps {
   heroId: HeroId
   info: GoalInfo
-  editing: boolean
+  /** The build's own lines (the Build tab): nothing to tick off. */
+  plain: boolean
   onHighlight: (goalId: string | null) => void
 }
 
-function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
+function GoalRow({ heroId, info, plain, onHighlight }: RowProps) {
   const { goal, have, on, extra, weaponPick, planned, unplaced } = info
-  // Edit mode lists the build's own lines: nothing to tick off.
-  const done = !editing && isGoalDone(info)
+  const done = !plain && isGoalDone(info)
   // Done, with copies to spare: those lines can be rerolled into something else.
-  const over = !editing && extra.length > 0
+  const over = !plain && extra.length > 0
   const count = have + extra.length
 
   return (
@@ -309,7 +323,7 @@ function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
       content={() => (
         <EntryTip heroId={heroId} category={goal.category} entryId={goal.entryId} name={goal.name}>
           <Status tone={done ? 'good' : undefined}>
-            {editing ? `The build has ${have}` : `You have ${count} of ${goal.target}`}
+            {plain ? `The build has ${have}` : `You have ${count} of ${goal.target}`}
             {on.length > 0 ? `: ${summarizeSlots(on, SLOT_BY_ID)}` : ''}
             {weaponPick ? `${on.length > 0 ? ',' : ':'} weapon tree` : ''}
           </Status>
@@ -347,12 +361,12 @@ function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
           )}
           {!done && unplaced > 0 && (
             <span className={styles.rowUnplaced}>
-              {editing ? `${unplaced} more that don’t fit on the gear` : `${unplaced} more with no line to reroll yet`}
+              {plain ? `${unplaced} more that don’t fit on the gear` : `${unplaced} more with no line to reroll yet`}
             </span>
           )}
         </div>
 
-        {editing ? (
+        {plain ? (
           <span className={styles.count}>×{have}</span>
         ) : (
           <span className={styles.count}>
@@ -372,13 +386,14 @@ function GoalRow({ heroId, info, editing, onHighlight }: RowProps) {
 /** A group's name and count; it folds the group away. */
 function GroupHeader({
   label,
-  have,
+  count,
   need,
   collapsed,
   onToggle,
 }: {
   label: string
-  have: number
+  /** "3/7" of yours, or the build's own total, "×7". */
+  count: string
   need: number
   collapsed: boolean
   onToggle: () => void
@@ -388,11 +403,7 @@ function GroupHeader({
       <button type="button" className={styles.groupToggle} aria-expanded={!collapsed} onClick={onToggle}>
         <span className={styles.diamond} aria-hidden="true" />
         {label}
-        {need > 0 && (
-          <span className={styles.groupCount}>
-            {have}/{need}
-          </span>
-        )}
+        {need > 0 && <span className={styles.groupCount}>{count}</span>}
         <svg className={styles.groupChevron} viewBox="0 0 16 16" aria-hidden="true">
           <path d="M4 6l4 4 4-4" />
         </svg>

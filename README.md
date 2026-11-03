@@ -118,7 +118,8 @@ The `id` is used in URLs and as the save-data key, so don't rename it once relea
   in one of them.
 - Two tabs on top of the doll pick what it shows. Progression is your gear against the build: ratings, rerolls, the
   Reroll / Replace / Complete board and the Dungeons tab. Build is the build itself, its gear as it would look, with
-  the stats and the checklist still there but no board and no Dungeons tab. Opening a slot or changing anything on
+  nothing of your gear anywhere: the stats, gems and checklist are the build's own (the checklist lists its lines and
+  where its gear has them, with no progress), and there are no header meters, board or Dungeons tab. Opening a slot or changing anything on
   the Build tab starts edit mode; going back to Progression ends it.
 - Edit mode (Edit build in the checklist's menu, which opens the Build tab) edits the build the way you enter gear:
   the paper doll shows the build's gear, and clicking a slot picks its item and lines, a socket its gem, a weapon tab its tree. Where a line
